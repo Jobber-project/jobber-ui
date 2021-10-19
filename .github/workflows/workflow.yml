@@ -16,4 +16,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
       - name: Deploy Storybook to GitHub pages
-        run: yarn deploy-storybook --ci
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: yarn deploy-storybook --ci --source-branch=main
