@@ -11,4 +11,3 @@ Jobello UI library
 - Add build script
   - Build with GitHub Actions
 - Add automated tests
-- Add GitHub pages for hosting Storybook live
