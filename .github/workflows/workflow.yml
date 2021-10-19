@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '14'
           cache: 'yarn'
@@ -15,7 +15,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
-      - name: Build Storybook static page
-        run: yarn build-storybook
-      - name: Deploy to GitHub pages
-        run: yarn gh-pages -d storybook-static
+      - name: Deploy Storybook to GitHub pages
+        run: yarn deploy-storybook --ci

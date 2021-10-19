@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
+    "deploy-storybook": "storybook-to-ghpages",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "@storybook/addon-a11y": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/react": "^6.3.12",
+    "@storybook/storybook-deployer": "^2.8.10",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "gh-pages": "^3.2.3",
