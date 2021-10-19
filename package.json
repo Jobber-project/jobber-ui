@@ -1,5 +1,5 @@
 {
-  "name": "@jobello/jobber-ui",
+  "name": "@jobber-project/jobber-ui",
   "version": "0.0.0-development",
   "description": "Jobello UI library",
   "main": "dist/index.js",
