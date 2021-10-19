@@ -23,6 +23,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@semantic-release/commit-analyzer": "^9.0.1",
     "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^8.0.1",
     "@semantic-release/npm": "^8.0.1",
     "@semantic-release/release-notes-generator": "^10.0.2",
     "@storybook/addon-a11y": "^6.3.12",
@@ -74,7 +75,8 @@
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ]
+      ],
+      "@semantic-release/github"
     ]
   },
   "publishConfig": {
