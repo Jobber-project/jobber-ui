@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": "git@github.com:Jobber-project/jobber-ui.git",
   "author": "Jesper Johansson <johansson.jesper@outlook.com>",
-  "private": true,
+  "private": false,
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
     "semantic-release": "semantic-release"
