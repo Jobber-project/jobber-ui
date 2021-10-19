@@ -1,5 +1,5 @@
 {
-  "name": "@jobber-project/jobber-ui",
+  "name": "@jobello/jobber-ui",
   "version": "0.0.0-development",
   "description": "Jobello UI library",
   "main": "dist/index.js",
@@ -59,7 +59,6 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
