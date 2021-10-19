@@ -9,3 +9,6 @@ node_modules/
 
 # Secrets
 .npmrc
+
+# Storybook static
+storybook-static
