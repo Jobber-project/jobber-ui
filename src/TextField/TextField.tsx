@@ -298,6 +298,10 @@ const Input = styled.input<{
   &::placeholder {
     color: ${COLORS.silverChalice};
   }
+
+  &::-webkit-search-decoration {
+    display: none;
+  }
 `
 
 const IconWrapper = styled.div<{
