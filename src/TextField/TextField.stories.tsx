@@ -49,7 +49,12 @@ export function Success() {
 export function Warning() {
   return (
     <Container>
-      <TextField variant="warning" label="Label" placeholder="Placeholder" />
+      <TextField
+        variant="warning"
+        label="Label"
+        placeholder="Placeholder"
+        helperText="Input helper text"
+      />
     </Container>
   )
 }
@@ -57,7 +62,12 @@ export function Warning() {
 export function Error() {
   return (
     <Container>
-      <TextField variant="error" label="Label" placeholder="Placeholder" />
+      <TextField
+        variant="error"
+        label="Label"
+        placeholder="Placeholder"
+        helperText="Input helper text"
+      />
     </Container>
   )
 }
