@@ -3,8 +3,10 @@ import React, {
   FC,
   HTMLInputTypeAttribute,
   ReactNode,
+  useRef,
+  useEffect,
 } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 import COLORS from '../shared/colors'
 // @ts-ignore
@@ -60,6 +62,23 @@ function getVariantColor({ $variant }: { $variant: TextFieldVariant }): string {
     case 'default':
     default:
       return COLORS.mischa
+  }
+}
+
+function getIconColor({ $variant }: { $variant: TextFieldVariant }): string {
+  switch ($variant) {
+    case 'success':
+      return COLORS.emerald
+
+    case 'warning':
+      return COLORS.yellowOrange
+
+    case 'error':
+      return COLORS.carnation
+
+    case 'default':
+    default:
+      return COLORS.black
   }
 }
 
@@ -261,6 +280,14 @@ const Input = styled.input<{
     background-color: ${COLORS.alabster};
   }
 
+  ${props =>
+    props.$variant === 'default' &&
+    `
+    &:placeholder-shown + div {
+      color: ${COLORS.mischa};
+    }
+  `}
+
   &,
   &::placeholder {
     font-size: ${getInputFontSize}px;
@@ -274,6 +301,7 @@ const Input = styled.input<{
 `
 
 const IconWrapper = styled.div<{
+  $animate: boolean
   $variant: TextFieldVariant
   $size: TextFieldSize
   $iconAlign: TextFieldIconAlign
@@ -292,8 +320,14 @@ const IconWrapper = styled.div<{
   }};
   display: flex;
   align-items: center;
-  color: ${getVariantColor};
-  animation: ${animateIcon} 280ms ease;
+  color: ${getIconColor};
+  transition: color 280ms ease;
+
+  ${props =>
+    props.$animate &&
+    css`
+      animation: ${animateIcon} 280ms ease;
+    `}
 
   & svg {
     width: ${getIconSize}px;
@@ -302,6 +336,7 @@ const IconWrapper = styled.div<{
 `
 
 const HelperText = styled.span<{
+  $animate: boolean
   $variant: TextFieldVariant
 }>`
   display: block;
@@ -309,8 +344,13 @@ const HelperText = styled.span<{
   font-size: 10px;
   line-height: 1.172em;
   color: ${getVariantColor};
-  animation: ${animateHelperText} 280ms ease;
   transition: color 280ms ease;
+
+  ${props =>
+    props.$animate &&
+    css`
+      animation: ${animateHelperText} 280ms ease;
+    `}
 `
 
 type TextFieldProps = {
@@ -356,6 +396,12 @@ const TextField: FC<TextFieldProps> = ({
   icon,
   onChange,
 }) => {
+  const didMountRef = useRef<boolean>(false)
+
+  useEffect(() => {
+    didMountRef.current = true
+  }, [])
+
   function getDerivedIcon(): ReactNode {
     switch (variant) {
       case 'success':
@@ -418,6 +464,7 @@ const TextField: FC<TextFieldProps> = ({
         />
         {!!derivedIcon && (
           <IconWrapper
+            $animate={didMountRef.current}
             $variant={variant}
             $size={size}
             $iconAlign={derivedIconAlign}
@@ -427,7 +474,11 @@ const TextField: FC<TextFieldProps> = ({
           </IconWrapper>
         )}
       </InputWrapper>
-      {!!helperText && <HelperText $variant={variant}>{helperText}</HelperText>}
+      {!!helperText && (
+        <HelperText $animate={didMountRef.current} $variant={variant}>
+          {helperText}
+        </HelperText>
+      )}
     </Container>
   )
 }
