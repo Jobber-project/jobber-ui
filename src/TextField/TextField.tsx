@@ -261,6 +261,7 @@ const Input = styled.input<{
   box-sizing: border-box;
   border: 1px solid ${getVariantColor};
   border-radius: 8px;
+  background-color: ${COLORS.white};
   transition: border-color 140ms ease-in;
 
   ${props =>
