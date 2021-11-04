@@ -15,6 +15,8 @@ import WarningIcon from '../shared/icons/alert-triangle.svg'
 import ErrorIcon from '../shared/icons/circle-x.svg'
 // @ts-ignore
 import EmailIcon from '../shared/icons/mail.svg'
+// @ts-ignore
+import SearchIcon from '../shared/icons/search.svg'
 
 export type TextFieldIconAlign = 'left' | 'right'
 
@@ -369,6 +371,7 @@ const TextField: FC<TextFieldProps> = ({
       default: {
         if (icon) return icon
         if (type === 'email') return <EmailIcon viewBox="0 0 24 24" />
+        if (type === 'search') return <SearchIcon viewBox="0 0 24 24" />
         return undefined
       }
     }

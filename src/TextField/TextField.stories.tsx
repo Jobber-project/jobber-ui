@@ -65,6 +65,20 @@ export function Email() {
   )
 }
 
+export function Search() {
+  return (
+    <Container>
+      <TextField type="search" label="Medium" placeholder="Placeholder" />
+      <TextField
+        type="search"
+        size="large"
+        label="Large"
+        placeholder="Placeholder"
+      />
+    </Container>
+  )
+}
+
 export function Success() {
   return (
     <Container>
