@@ -176,6 +176,7 @@ const Input = styled.input<{
   $iconAlign: TextFieldIconAlign
 }>`
   display: block;
+  margin: 0;
   padding: 10px 16px;
   box-sizing: border-box;
   border: 1px solid ${getVariantColor};
