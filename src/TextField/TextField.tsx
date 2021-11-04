@@ -160,6 +160,8 @@ const Label = styled.label`
   font-size: 12px;
   line-height: 1.667em;
   font-family: Roboto, sans-serif;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 const InputWrapper = styled.div`
@@ -242,7 +244,7 @@ const HelperText = styled.span<{
   $variant: TextFieldVariant
 }>`
   display: block;
-  padding-top: 3px;
+  padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
   color: ${getVariantColor};
