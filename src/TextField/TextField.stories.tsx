@@ -51,6 +51,20 @@ export function Disabled() {
   )
 }
 
+export function Email() {
+  return (
+    <Container>
+      <TextField type="email" label="Medium" placeholder="Placeholder" />
+      <TextField
+        type="email"
+        size="large"
+        label="Large"
+        placeholder="Placeholder"
+      />
+    </Container>
+  )
+}
+
 export function Success() {
   return (
     <Container>

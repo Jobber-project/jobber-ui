@@ -13,6 +13,8 @@ import SuccessIcon from '../shared/icons/circle-check.svg'
 import WarningIcon from '../shared/icons/alert-triangle.svg'
 // @ts-ignore
 import ErrorIcon from '../shared/icons/circle-x.svg'
+// @ts-ignore
+import EmailIcon from '../shared/icons/mail.svg'
 
 export type TextFieldIconAlign = 'left' | 'right'
 
@@ -364,8 +366,11 @@ const TextField: FC<TextFieldProps> = ({
         return <ErrorIcon viewBox="0 0 24 24" />
 
       case 'default':
-      default:
-        return icon
+      default: {
+        if (icon) return icon
+        if (type === 'email') return <EmailIcon viewBox="0 0 24 24" />
+        return undefined
+      }
     }
   }
 
@@ -377,6 +382,7 @@ const TextField: FC<TextFieldProps> = ({
   }
 
   function getDerivedIconAlign(): TextFieldIconAlign {
+    if (type === 'email') return 'right'
     return variant === 'default' ? iconAlign : 'right'
   }
 
