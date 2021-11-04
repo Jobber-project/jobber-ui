@@ -119,6 +119,17 @@ function getIconLeft({
   }
 }
 
+function getPadding({ $size }: { $size: TextFieldSize }): string {
+  switch ($size) {
+    case 'large':
+      return '16px 24px'
+
+    case 'medium':
+    default:
+      return '10px 16px'
+  }
+}
+
 function getPaddingRight({
   $size,
   $iconAlign,
@@ -167,6 +178,28 @@ function getPaddingLeft({
   }
 }
 
+function getInputFontSize({ $size }: { $size: TextFieldSize }): number {
+  switch ($size) {
+    case 'large':
+      return 18
+
+    case 'medium':
+    default:
+      return 16
+  }
+}
+
+function getInputLineHeight({ $size }: { $size: TextFieldSize }): number {
+  switch ($size) {
+    case 'large':
+      return 1.171667 // 21.09px
+
+    case 'medium':
+    default:
+      return 1.171875 // 18.75px
+  }
+}
+
 const Container = styled.div<{
   $disabled?: boolean
   $variant?: TextFieldVariant
@@ -201,7 +234,7 @@ const Input = styled.input<{
 }>`
   display: block;
   margin: 0;
-  padding: 10px 16px;
+  padding: ${getPadding};
   box-sizing: border-box;
   border: 1px solid ${getVariantColor};
   border-radius: 8px;
@@ -226,8 +259,8 @@ const Input = styled.input<{
 
   &,
   &::placeholder {
-    font-size: 16px;
-    line-height: 1.171875em;
+    font-size: ${getInputFontSize}px;
+    line-height: ${getInputLineHeight}em;
     font-weight: 400;
   }
 
@@ -283,6 +316,7 @@ type TextFieldProps = {
   id?: string
   name?: string
   type?: HTMLInputTypeAttribute
+  className?: string
   /** Text field size */
   size?: TextFieldSize
   /** Label to show above text field */
@@ -308,6 +342,7 @@ const TextField: FC<TextFieldProps> = ({
   id,
   name,
   type = 'text',
+  className,
   size = 'medium',
   label,
   value,
@@ -350,7 +385,12 @@ const TextField: FC<TextFieldProps> = ({
   const derivedIconAlign = getDerivedIconAlign()
 
   return (
-    <Container $variant={variant} $disabled={disabled} $size={size}>
+    <Container
+      $variant={variant}
+      $disabled={disabled}
+      $size={size}
+      className={className}
+    >
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
       <InputWrapper>
         <Input

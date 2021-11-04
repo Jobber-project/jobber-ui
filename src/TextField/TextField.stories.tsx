@@ -14,6 +14,10 @@ const Container = styled.div`
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
   box-sizing: border-box;
+
+  & > div + div {
+    margin-top: 20px;
+  }
 `
 
 export function Intro(props) {
@@ -27,7 +31,8 @@ export function Intro(props) {
 export function Default() {
   return (
     <Container>
-      <TextField label="Label" placeholder="Placeholder" />
+      <TextField label="Medium" placeholder="Placeholder" />
+      <TextField size="large" label="Large" placeholder="Placeholder" />
     </Container>
   )
 }
@@ -35,7 +40,13 @@ export function Default() {
 export function Disabled() {
   return (
     <Container>
-      <TextField disabled label="Label" placeholder="Placeholder" />
+      <TextField disabled label="Medium" placeholder="Placeholder" />
+      <TextField
+        disabled
+        size="large"
+        label="Large"
+        placeholder="Placeholder"
+      />
     </Container>
   )
 }
@@ -43,7 +54,13 @@ export function Disabled() {
 export function Success() {
   return (
     <Container>
-      <TextField variant="success" label="Label" placeholder="Placeholder" />
+      <TextField variant="success" label="Medium" placeholder="Placeholder" />
+      <TextField
+        variant="success"
+        size="large"
+        label="Large"
+        placeholder="Placeholder"
+      />
     </Container>
   )
 }
@@ -53,7 +70,14 @@ export function Warning() {
     <Container>
       <TextField
         variant="warning"
-        label="Label"
+        label="Medium"
+        placeholder="Placeholder"
+        helperText="Input helper text"
+      />
+      <TextField
+        variant="warning"
+        size="large"
+        label="Large"
         placeholder="Placeholder"
         helperText="Input helper text"
       />
@@ -66,7 +90,14 @@ export function Error() {
     <Container>
       <TextField
         variant="error"
-        label="Label"
+        label="Medium"
+        placeholder="Placeholder"
+        helperText="Input helper text"
+      />
+      <TextField
+        variant="error"
+        size="large"
+        label="Large"
         placeholder="Placeholder"
         helperText="Input helper text"
       />
@@ -99,7 +130,15 @@ export function Transitions() {
   return (
     <Container>
       <TextField
-        label="Label"
+        label="Medium"
+        helperText={helperText}
+        variant={variant}
+        value={value}
+        onChange={handleChange}
+      />
+      <TextField
+        label="Large"
+        size="large"
         helperText={helperText}
         variant={variant}
         value={value}
