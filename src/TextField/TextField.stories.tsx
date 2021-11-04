@@ -2,6 +2,8 @@ import React from 'react'
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
 
+import { TextFieldVariant } from './TextField'
+
 import TextField from '.'
 
 const Container = styled.div`
@@ -67,6 +69,41 @@ export function Error() {
         label="Label"
         placeholder="Placeholder"
         helperText="Input helper text"
+      />
+    </Container>
+  )
+}
+
+export function Transitions() {
+  const variations = ['default', 'success', 'warning', 'error']
+
+  const [value, setValue] = React.useState('')
+  const [variant, setVariant] = React.useState<TextFieldVariant>(
+    variations[0] as TextFieldVariant,
+  )
+  const [helperText, setHelperText] = React.useState<string | undefined>()
+
+  function handleChange({ target }) {
+    setValue(target?.value ?? '')
+    if (Math.random() > 0.5) {
+      const index = Math.floor(Math.random() * variations.length)
+      if (index > 0 && !helperText) {
+        setHelperText('Input helper text')
+      } else if (index < 1 && helperText) {
+        setHelperText(undefined)
+      }
+      setVariant(variations[index] as TextFieldVariant)
+    }
+  }
+
+  return (
+    <Container>
+      <TextField
+        label="Label"
+        helperText={helperText}
+        variant={variant}
+        value={value}
+        onChange={handleChange}
       />
     </Container>
   )

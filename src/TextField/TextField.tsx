@@ -4,7 +4,7 @@ import React, {
   HTMLInputTypeAttribute,
   ReactNode,
 } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import COLORS from '../shared/colors'
 // @ts-ignore
@@ -14,11 +14,33 @@ import WarningIcon from '../shared/icons/alert-triangle.svg'
 // @ts-ignore
 import ErrorIcon from '../shared/icons/circle-x.svg'
 
-type TextFieldIconAlign = 'left' | 'right'
+export type TextFieldIconAlign = 'left' | 'right'
 
-type TextFieldSize = 'small' | 'medium' | 'large'
+export type TextFieldSize = 'small' | 'medium' | 'large'
 
-type TextFieldVariant = 'default' | 'success' | 'warning' | 'error'
+export type TextFieldVariant = 'default' | 'success' | 'warning' | 'error'
+
+const animateIcon = keyframes`
+  0% {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+
+  100% {
+    tansform: none;
+    opacity: 1;
+  }
+`
+
+const animateHelperText = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
 
 function getVariantColor({ $variant }: { $variant: TextFieldVariant }): string {
   switch ($variant) {
@@ -183,6 +205,7 @@ const Input = styled.input<{
   box-sizing: border-box;
   border: 1px solid ${getVariantColor};
   border-radius: 8px;
+  transition: border-color 140ms ease-in;
 
   ${props =>
     props.$icon &&
@@ -233,6 +256,7 @@ const IconWrapper = styled.div<{
   display: flex;
   align-items: center;
   color: ${getVariantColor};
+  animation: ${animateIcon} 280ms ease;
 
   & svg {
     width: ${getIconSize}px;
@@ -248,6 +272,8 @@ const HelperText = styled.span<{
   font-size: 10px;
   line-height: 1.172em;
   color: ${getVariantColor};
+  animation: ${animateHelperText} 280ms ease;
+  transition: color 280ms ease;
 `
 
 type TextFieldProps = {
@@ -346,6 +372,7 @@ const TextField: FC<TextFieldProps> = ({
             $variant={variant}
             $size={size}
             $iconAlign={derivedIconAlign}
+            key={variant}
           >
             {derivedIcon}
           </IconWrapper>
