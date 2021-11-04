@@ -10,6 +10,8 @@ const COLORS = {
   supernova: '#ffc600',
   sunshade: '#ff9e2c',
   persianIndigo: '#371789',
+  silverChalice: '#a9a9a9',
+  alabster: '#f9f9f9',
   white: '#ffffff',
   black: '#000000',
 }
