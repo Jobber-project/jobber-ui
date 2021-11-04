@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
-import { COLORS, PRIMARY_GRADIENT } from '../utils/colorUtils'
+import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
 
 const primaryTheme = {
   border: COLORS.electricViolet,
@@ -149,7 +149,6 @@ const Button: FC<ButtonProps> = ({
         $size={size}
         $outlined={outlined}
         disabled={disabled}
-        height="false"
       >
         {children}
       </Container>
