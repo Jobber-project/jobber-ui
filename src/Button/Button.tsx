@@ -1,110 +1,308 @@
-import React, { FC } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import React, { FC, ReactNode } from 'react'
+import styled from 'styled-components'
 
-import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
+import COLORS, { PRIMARY_GRADIENT, SECONDARY_GRADIENT } from '../shared/colors'
 
-const primaryTheme = {
-  border: COLORS.electricViolet,
-  background: `linear-gradient(90deg, ${COLORS.electricViolet} 0%, ${COLORS.havelockBlue} 100%)`,
-  text: COLORS.white,
-}
+// TODO Filled hover
 
-function getTheme(variant) {
-  switch (variant) {
-    case 'primary':
-      return {
-        border: COLORS.electricViolet,
-        background: `linear-gradient(90deg, ${COLORS.electricViolet} 0%, ${COLORS.havelockBlue} 100%)`,
-        text: COLORS.white,
-      }
-    case 'secondary':
-      return {
-        border: COLORS.sunshade,
-        background: PRIMARY_GRADIENT,
-        text: COLORS.persianIndigo,
-      }
-    case 'success':
-      return {
-        border: COLORS.emerald,
-        background: COLORS.emerald,
-        text: COLORS.white,
-      }
-    case 'warning':
-      return {
-        border: COLORS.yellowOrange,
-        background: COLORS.yellowOrange,
-        text: COLORS.black,
-      }
-    case 'error':
-      return {
-        border: COLORS.carnation,
-        background: COLORS.carnation,
-        text: COLORS.white,
-      }
+export type ButtonSize = 'small' | 'medium' | 'large'
+
+export type ButtonVariant =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+
+function getIconSize({ $size }: { $size: ButtonSize }): number {
+  switch ($size) {
+    case 'large':
+      return 24
+
+    case 'medium':
     default:
-      return {
-        border: COLORS.havelockBlue,
-        background: COLORS.white,
-        text: COLORS.black,
-      }
+      return 20
   }
 }
 
-function getOutlined({ $outlined }): string {
-  if (!$outlined) return ''
-  return ``
+function getIconColor({
+  $variant,
+  $outlined,
+}: {
+  $variant: ButtonVariant
+  $outlined: boolean
+}): string {
+  switch ($variant) {
+    case 'secondary':
+      return $outlined ? COLORS.sunshade : COLORS.persianIndigo
+
+    case 'primary':
+    default:
+      return $outlined ? COLORS.electricViolet : COLORS.white
+  }
 }
 
-const Container = styled.button<{
-  $variant?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'error'
-  $size?: 'small' | 'medium' | 'large'
+function getIconPadding({ $size }: { $size: ButtonSize }): number {
+  switch ($size) {
+    case 'large':
+      return 24
+
+    case 'medium':
+    default:
+      return 20
+  }
+}
+
+const IconWrapper = styled.div<{
+  $variant: ButtonVariant
+  $size: ButtonSize
   $outlined: boolean
+}>`
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${getIconPadding}px;
+  display: flex;
+  align-items: center;
+  color: ${getIconColor};
+
+  & svg {
+    width: ${getIconSize}px;
+    height: ${getIconSize}px;
+  }
+`
+
+function getOutlinedStyles({
+  $outlined,
+  $variant,
+}: {
+  $outlined?: boolean
+  $variant?: ButtonVariant
+}): string {
+  if (!$outlined) return ''
+  switch ($variant) {
+    case 'primary':
+      return `
+      outline: 1px solid ${COLORS.electricViolet};
+      background: ${COLORS.white};
+      color: ${COLORS.electricViolet};
+    
+      &:hover {
+        outline: 2px solid ${COLORS.electricViolet};
+      }
+    `
+    case 'secondary':
+      return `
+      outline: 1px solid ${COLORS.sunshade};
+      background: ${COLORS.white};
+      color: ${COLORS.sunshade};
+    
+      &:hover {
+        outline: 2px solid ${COLORS.sunshade};
+      }
+    `
+    case 'success':
+      return `
+      outline: 1px solid ${COLORS.emerald};
+      background: ${COLORS.white};
+      color: ${COLORS.emerald};
+    
+      &:hover {
+        outline: 2px solid ${COLORS.emerald};
+      }
+    `
+    case 'warning':
+      return `
+      outline: 1px solid ${COLORS.yellowOrange};
+      background: ${COLORS.white};
+      color: ${COLORS.yellowOrange};
+    
+      &:hover {
+        outline: 2px solid ${COLORS.yellowOrange};
+      }
+    `
+    case 'error':
+      return `
+      outline: 1px solid ${COLORS.carnation};
+      background: ${COLORS.white};
+      color: ${COLORS.carnation};
+
+      &:hover {
+        outline: 2px solid ${COLORS.carnation};
+      }
+    `
+    default:
+      return `
+      outline: 1px solid ${COLORS.mischa};
+      background: ${COLORS.white};
+      color: ${COLORS.black};
+    
+      &:hover {
+        outline: 2px solid ${COLORS.havelockBlue};
+      }
+    `
+  }
+}
+
+function getFilledStyles({
+  $outlined,
+  $variant,
+}: {
+  $outlined?: boolean
+  $variant?: ButtonVariant
+}): string {
+  if ($outlined) return ''
+  switch ($variant) {
+    case 'primary':
+      return `
+      background: ${PRIMARY_GRADIENT};
+      color: ${COLORS.white};
+    `
+    case 'secondary':
+      return `
+      background: ${SECONDARY_GRADIENT}};
+      color: ${COLORS.persianIndigo};
+    
+      &:hover {
+        border-width: 2px
+      }
+    `
+    case 'success':
+      return `
+      background: ${COLORS.emerald};
+      color: ${COLORS.white};
+    
+      &:hover {
+        border-width: 2px
+      }
+    `
+    case 'warning':
+      return `
+      background: ${COLORS.yellowOrange};
+      color: ${COLORS.white};
+    
+      &:hover {
+        border-width: 2px
+      }
+    `
+    case 'error':
+      return `
+      background: ${COLORS.carnation};
+      color: ${COLORS.white};
+    
+      &:hover {
+        border-width: 2px
+      }
+    `
+    default:
+      return `
+      background: ${COLORS.white};
+      color: ${PRIMARY_GRADIENT};
+    
+      &:hover {
+        
+      }
+    `
+  }
+}
+
+function getSizes({ $size }: { $size?: ButtonSize }): string {
+  if ($size === 'small')
+    return `
+      font-size: 16px;
+      line-height: 21px;
+      height: 40px;
+      padding: 8px 16px;
+    `
+
+  if ($size === 'large')
+    return `
+      font-size: 18px;
+      line-height: 21px;
+      height: 53px;
+      padding: 16px 24px;
+    `
+
+  return `
+    font-size: 16px;
+    line-height: 21px;
+    height: 40px;
+    padding: 8px 16px;
+  `
+}
+
+function getIconStyles({
+  $size,
+  icon,
+}: {
+  $size?: ButtonSize
+  icon: boolean
+}): string {
+  if (!icon) return ''
+  if ($size === 'small')
+    return `
+      padding-left: 16px;
+    `
+
+  if ($size === 'large')
+    return `
+    padding-left: 24px;
+    `
+
+  return `
+    padding-left: 16px;
+  `
+}
+
+function getDisabledStyle({ disabled }: { disabled?: boolean }): string {
+  if (!disabled) return ''
+  return `
+    background: ${COLORS.alabster};
+    color: ${COLORS.silverChalice};
+    border: 1px solid ${COLORS.mischa};
+    cursor: not-allowed! important;
+  `
+}
+
+const ButtonWrapper = styled.div`
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+`
+
+const ButtonContainer = styled.button<{
+  $variant?: ButtonVariant
+  $size?: ButtonSize
+  $outlined: boolean
+  icon: boolean
 }>`
   cursor: pointer;
   appearance: none;
   border-radius: 10px;
-  height: 40px;
-  padding: 8px 16px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 0.7619047619em; // 16/21
+  font-weight: 500;
   border: none;
-  background: ${props => props.theme.background};
-  color: ${props => props.theme.text};
 
-  ${getOutlined}
+  ${getSizes};
 
-  ${props =>
-    props.$outlined &&
-    `
-    border: 1px solid ${props.theme.border};
-    background: white;
-    color: ${props.theme.border};
+  ${getIconStyles};
 
-    &:hover {
-      border-width: 2px
-    }
-  `};
+  ${getOutlinedStyles};
+
+  ${getFilledStyles};
+
+  ${getDisabledStyle};
 `
 
 type ButtonProps = {
   /**
    * Appearance variant
    */
-  variant?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'error'
+  variant?: ButtonVariant
   /**
    * Button element type attribute
    */
@@ -116,7 +314,7 @@ type ButtonProps = {
   /**
    * Button size
    */
-  size?: 'small' | 'medium' | 'large'
+  size?: ButtonSize
   /**
    * Button outlined
    */
@@ -125,6 +323,10 @@ type ButtonProps = {
    * Button disabled
    */
   disabled?: boolean
+  /**
+   * Button disabled
+   */
+  icon?: ReactNode
   /**
    * Button content
    */
@@ -138,21 +340,33 @@ const Button: FC<ButtonProps> = ({
   size = 'medium',
   outlined = false,
   disabled = false,
+  icon = null,
   children,
 }) => {
   return (
-    <ThemeProvider theme={() => getTheme(variant)}>
-      <Container
+    <ButtonWrapper>
+      {!!icon && (
+        <IconWrapper
+          $outlined={outlined}
+          $variant={variant}
+          $size={size}
+          key={variant}
+        >
+          {icon}
+        </IconWrapper>
+      )}
+      <ButtonContainer
         $variant={variant}
         type={type}
         onClick={onClick}
         $size={size}
         $outlined={outlined}
         disabled={disabled}
+        icon={!!icon}
       >
         {children}
-      </Container>
-    </ThemeProvider>
+      </ButtonContainer>
+    </ButtonWrapper>
   )
 }
 
