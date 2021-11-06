@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
 
+// @ts-ignore
 import SuccessIcon from '../shared/icons/circle-check.svg'
 
 import Button from './Button'
@@ -147,8 +148,29 @@ const story: ComponentMeta<typeof Button> = {
   component: Button,
   argTypes: {
     variant: {
-      options: ['primary', 'secondary'],
-      defaultValue: 'primary',
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'error',
+      ],
+      defaultValue: 'default',
+    },
+    type: {
+      options: ['button', 'submit'],
+      defaultValue: 'button',
+    },
+    size: {
+      options: ['small', 'medium', 'large'],
+      defaultValue: 'medium',
+    },
+    outlined: {
+      defaultValue: 'false',
+    },
+    disabled: {
+      defaultValue: 'false',
     },
     onClick: { action: 'onClick' },
     children: {

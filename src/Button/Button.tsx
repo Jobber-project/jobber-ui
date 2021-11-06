@@ -1,9 +1,8 @@
+import { keyframes } from '@emotion/core'
 import React, { FC, ReactNode } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT, SECONDARY_GRADIENT } from '../shared/colors'
-
-// TODO Filled hover
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 
@@ -59,7 +58,7 @@ const IconWrapper = styled.div<{
   $size: ButtonSize
   $outlined: boolean
 }>`
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -162,50 +161,58 @@ function getFilledStyles({
     `
     case 'secondary':
       return `
-      background: ${SECONDARY_GRADIENT}};
-      color: ${COLORS.persianIndigo};
-    
-      &:hover {
-        border-width: 2px
-      }
-    `
+        background: ${SECONDARY_GRADIENT};
+        color: ${COLORS.persianIndigo};
+      `
     case 'success':
       return `
       background: ${COLORS.emerald};
       color: ${COLORS.white};
-    
-      &:hover {
-        border-width: 2px
-      }
     `
     case 'warning':
       return `
       background: ${COLORS.yellowOrange};
       color: ${COLORS.white};
-    
-      &:hover {
-        border-width: 2px
-      }
     `
     case 'error':
       return `
       background: ${COLORS.carnation};
       color: ${COLORS.white};
-    
-      &:hover {
-        border-width: 2px
-      }
     `
     default:
       return `
       background: ${COLORS.white};
       color: ${PRIMARY_GRADIENT};
-    
-      &:hover {
-        
-      }
     `
   }
+}
+
+function getFilledHoverStyles({ $outlined }: { $outlined?: boolean }): string {
+  if ($outlined) return ''
+  return `
+    overflow: hidden;
+    z-index: 1;
+
+    &:after {
+      background: ${COLORS.white};
+      content: '';
+      height: 155px;
+      left: -75px;
+      opacity: 0.2;
+      position: absolute;
+      top: -50px;
+      transform: rotate(35deg);
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      width: 50px;
+      z-index: -10;
+    }
+    &:hover {
+      &:after {
+        left: 120%;
+        transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      }
+    }
+  `
 }
 
 function getSizes({ $size }: { $size?: ButtonSize }): string {
@@ -243,15 +250,18 @@ function getIconStyles({
   if (!icon) return ''
   if ($size === 'small')
     return `
+      z-index: 1;
       padding-left: 16px;
     `
 
   if ($size === 'large')
     return `
+    z-index: 1;
     padding-left: 24px;
     `
 
   return `
+    z-index: 1;
     padding-left: 16px;
   `
 }
@@ -267,7 +277,7 @@ function getDisabledStyle({ disabled }: { disabled?: boolean }): string {
 }
 
 const ButtonWrapper = styled.div`
-  z-index: 1;
+  z-index: 3;
   position: relative;
   display: flex;
   flex-grow: 1;
@@ -281,6 +291,7 @@ const ButtonContainer = styled.button<{
   icon: boolean
 }>`
   cursor: pointer;
+  position: relative;
   appearance: none;
   border-radius: 10px;
   font-style: normal;
@@ -294,6 +305,8 @@ const ButtonContainer = styled.button<{
   ${getOutlinedStyles};
 
   ${getFilledStyles};
+
+  ${getFilledHoverStyles};
 
   ${getDisabledStyle};
 `
