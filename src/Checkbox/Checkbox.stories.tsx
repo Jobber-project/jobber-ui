@@ -71,13 +71,8 @@ const story: ComponentMeta<typeof Checkbox> = {
       defaultValue: 'default',
     },
     label: {
-      // defaultValue:
-      //   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum cum? Culpa officia eos quis expedita minima, vel accusamus consectetur fugit optio perferendis. Necessitatibus aliquid nobis cum velit, est qui.',
       defaultValue: 'Label',
     },
-    // placeholder: {
-    //   defaultValue: 'Placeholder',
-    // },
     // size: {
     //   options: ['medium', 'large'],
     //   defaultValue: 'medium',
@@ -85,7 +80,7 @@ const story: ComponentMeta<typeof Checkbox> = {
     disabled: {
       defaultValue: false,
     },
-    // onChange: { action: 'onChange' },
+    onChange: { action: 'onChange' },
   },
 }
 

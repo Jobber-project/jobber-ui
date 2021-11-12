@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ChangeEventHandler, FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
@@ -236,7 +236,9 @@ type CheckboxProps = {
   className?: string
   variant?: CheckboxVariant
   /** Checkbox label text */
-  label?: string | React.ReactNode
+  label?: string | ReactNode
+  /** Checkbox onChange event callback */
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 const Checkbox: FC<CheckboxProps> = ({
@@ -249,6 +251,7 @@ const Checkbox: FC<CheckboxProps> = ({
   name,
   className,
   label,
+  onChange,
 }: CheckboxProps) => {
   function getDerivedId(): string {
     if (id) return id
@@ -277,6 +280,7 @@ const Checkbox: FC<CheckboxProps> = ({
           type="checkbox"
           id={derivedId}
           name={name}
+          onChange={onChange}
         />
         <SquareBorder $disabled={disabled} $variant={variant} />
         <Svg
