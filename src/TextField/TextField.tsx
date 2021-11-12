@@ -223,6 +223,16 @@ function getInputLineHeight({ $size }: { $size: TextFieldSize }): number {
   }
 }
 
+function getFocusBorderColor({ $variant }: { $variant: TextFieldVariant }) {
+  switch ($variant) {
+    case 'default':
+      return COLORS.havelockBlue
+
+    default:
+      return false
+  }
+}
+
 const Container = styled.div<{
   $disabled?: boolean
   $variant?: TextFieldVariant
@@ -273,7 +283,7 @@ const Input = styled.input<{
 
   &:focus {
     outline: none;
-    border-color: ${COLORS.havelockBlue};
+    border-color: ${getFocusBorderColor};
   }
 
   &:disabled {
