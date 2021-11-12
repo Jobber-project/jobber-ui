@@ -1,9 +1,51 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import COLORS from '../shared/colors'
+import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
 
 export type CheckboxVariant = 'default' | 'primary'
+
+function getBackground({ $disabled }: { $disabled: boolean }): string {
+  return $disabled ? COLORS.alabster : COLORS.white
+}
+
+function getStroke({
+  $disabled,
+  $variant,
+}: {
+  $disabled: boolean
+  $variant: CheckboxVariant
+}): string {
+  switch ($variant) {
+    case 'primary':
+      return COLORS.white
+
+    case 'default':
+    default:
+      return $disabled ? COLORS.silverChalice : COLORS.black
+  }
+}
+
+function getCheckedBackground({
+  $disabled,
+  $variant,
+}: {
+  $disabled: boolean
+  $variant: CheckboxVariant
+}) {
+  switch ($variant) {
+    case 'primary':
+      return $disabled ? PRIMARY_GRADIENT : undefined
+
+    case 'default':
+    default:
+      return undefined
+  }
+}
+
+function getLabelColor({ $disabled }: { $disabled: boolean }) {
+  return $disabled ? COLORS.silverChalice : COLORS.black
+}
 
 const Container = styled.label<{
   $disabled: boolean
@@ -24,7 +66,10 @@ const Square = styled.span`
   height: 24px;
 `
 
-const Input = styled.input`
+const Input = styled.input<{
+  $disabled: boolean
+  $variant: CheckboxVariant
+}>`
   z-index: 2;
   position: absolute;
   top: 0;
@@ -40,23 +85,52 @@ const Input = styled.input`
   width: 100%;
   height: 100%;
 
-  &:focus ~ span:last-child {
+  &:focus + span {
     border-color: ${COLORS.havelockBlue};
   }
 
-  &:checked + svg {
+  &:checked + span {
+    background: ${getCheckedBackground};
+
+    ${props =>
+      props.$variant === 'primary' &&
+      props.$disabled &&
+      `
+      border-width: 0;
+      opacity: 0.5;
+    `}
+  }
+
+  &:checked + span::before {
+    visibility: hidden;
+  }
+
+  &:checked ~ svg {
     opacity: 1;
     transform: none;
   }
 `
 
 const Svg = styled.svg`
+  z-index: 1;
+  position: relative;
   opacity: 0;
   transform: scale(0.5);
   transition: transform 120ms ease;
+  pointer-events: none;
 `
 
-const SquareBorder = styled.span`
+const Checkmark = styled.path<{
+  $disabled: boolean
+  $variant: CheckboxVariant
+}>`
+  stroke: ${getStroke};
+`
+
+const SquareBorder = styled.span<{
+  $disabled: boolean
+  $variant: CheckboxVariant
+}>`
   z-index: 1;
   position: absolute;
   top: 0;
@@ -65,9 +139,31 @@ const SquareBorder = styled.span`
   left: 0;
   border: 1px solid ${COLORS.mischa};
   border-radius: 4px;
+  background: ${getBackground};
+
+  ${props =>
+    props.$variant === 'primary' &&
+    !props.$disabled &&
+    `
+    border-width: 0;
+    background: ${PRIMARY_GRADIENT};
+  `}
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    border-radius: 3px;
+    background: ${getBackground};
+  }
 `
 
-const Text = styled.span`
+const Text = styled.span<{
+  $disabled: boolean
+}>`
   display: block;
   margin-left: 8px;
   font-size: 12px;
@@ -75,21 +171,28 @@ const Text = styled.span`
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: ${getLabelColor};
 `
 
 type CheckboxProps = {
+  required?: boolean
   disabled?: boolean
+  defaultChecked?: boolean
+  checked?: boolean
   id?: string
   name?: string
   className?: string
   variant?: CheckboxVariant
   /** Checkbox label text */
-  label?: string
+  label?: string | React.ReactNode
 }
 
 const Checkbox: FC<CheckboxProps> = ({
-  variant = 'default',
+  required,
   disabled = false,
+  defaultChecked,
+  checked,
+  variant = 'default',
   id,
   name,
   className,
@@ -98,7 +201,7 @@ const Checkbox: FC<CheckboxProps> = ({
   function getDerivedId(): string {
     if (id) return id
     if (label && name) return name
-    if (label) return label
+    if (typeof label === 'string') return label
     return Math.random().toString()
   }
 
@@ -112,7 +215,18 @@ const Checkbox: FC<CheckboxProps> = ({
       {...(label ? { htmlFor: derivedId } : {})}
     >
       <Square>
-        <Input type="checkbox" id={derivedId} name={name} />
+        <Input
+          $disabled={disabled}
+          $variant={variant}
+          required={required}
+          disabled={disabled}
+          defaultChecked={defaultChecked}
+          checked={checked}
+          type="checkbox"
+          id={derivedId}
+          name={name}
+        />
+        <SquareBorder $disabled={disabled} $variant={variant} />
         <Svg
           width="13"
           height="10"
@@ -120,17 +234,17 @@ const Checkbox: FC<CheckboxProps> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
+          <Checkmark
+            $disabled={disabled}
+            $variant={variant}
             d="M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663"
-            stroke="#2B2A35"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </Svg>
-        <SquareBorder />
       </Square>
-      {!!label && <Text>{label}</Text>}
+      {!!label && <Text $disabled={disabled}>{label}</Text>}
     </Container>
   )
 }
