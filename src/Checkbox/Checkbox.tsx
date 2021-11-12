@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
 
-export type CheckboxVariant = 'default' | 'primary'
+export type CheckboxVariant = 'default' | 'primary' | 'error'
 
 function getBackground({ $disabled }: { $disabled: boolean }): string {
   return $disabled ? COLORS.alabster : COLORS.white
@@ -19,6 +19,9 @@ function getStroke({
   switch ($variant) {
     case 'primary':
       return COLORS.white
+
+    case 'error':
+      return COLORS.carnation
 
     case 'default':
     default:
@@ -43,8 +46,45 @@ function getCheckedBackground({
   }
 }
 
-function getLabelColor({ $disabled }: { $disabled: boolean }) {
-  return $disabled ? COLORS.silverChalice : COLORS.black
+function getBorderColor({ $variant }: { $variant: CheckboxVariant }) {
+  switch ($variant) {
+    case 'error':
+      return COLORS.carnation
+
+    case 'primary':
+    case 'default':
+    default:
+      return COLORS.mischa
+  }
+}
+
+function getLabelColor({
+  $disabled,
+  $variant,
+}: {
+  $disabled: boolean
+  $variant: CheckboxVariant
+}) {
+  switch ($variant) {
+    case 'error':
+      return COLORS.carnation
+
+    case 'primary':
+    case 'default':
+    default:
+      return $disabled ? COLORS.silverChalice : COLORS.black
+  }
+}
+
+function getFocusedBorderColor({ $variant }: { $variant: CheckboxVariant }) {
+  switch ($variant) {
+    case 'default':
+    case 'primary':
+      return COLORS.havelockBlue
+
+    default:
+      return false
+  }
 }
 
 const Container = styled.label<{
@@ -84,9 +124,10 @@ const Input = styled.input<{
   border: none;
   width: 100%;
   height: 100%;
+  cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 
   &:focus + span {
-    border-color: ${COLORS.havelockBlue};
+    border-color: ${getFocusedBorderColor};
   }
 
   &:checked + span {
@@ -100,6 +141,15 @@ const Input = styled.input<{
       opacity: 0.5;
     `}
   }
+
+  ${props =>
+    props.$variant === 'primary' &&
+    `
+      &:hover + span::before,
+      &:focus + span::before {
+        transform: scale(0.95);
+      }
+    `}
 
   &:checked + span::before {
     visibility: hidden;
@@ -137,7 +187,7 @@ const SquareBorder = styled.span<{
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid ${COLORS.mischa};
+  border: 1px solid ${getBorderColor};
   border-radius: 4px;
   background: ${getBackground};
 
@@ -158,11 +208,13 @@ const SquareBorder = styled.span<{
     left: 1px;
     border-radius: 3px;
     background: ${getBackground};
+    transition: transform 120ms ease-out;
   }
 `
 
 const Text = styled.span<{
   $disabled: boolean
+  $variant: CheckboxVariant
 }>`
   display: block;
   margin-left: 8px;
@@ -244,7 +296,11 @@ const Checkbox: FC<CheckboxProps> = ({
           />
         </Svg>
       </Square>
-      {!!label && <Text $disabled={disabled}>{label}</Text>}
+      {!!label && (
+        <Text $disabled={disabled} $variant={variant}>
+          {label}
+        </Text>
+      )}
     </Container>
   )
 }

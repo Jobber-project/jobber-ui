@@ -55,6 +55,14 @@ export function Primary() {
   )
 }
 
+export function Error() {
+  return (
+    <Container>
+      <Checkbox variant="error" label="Error" />
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof Checkbox> = {
   title: 'Design System/Checkbox',
   component: Checkbox,
