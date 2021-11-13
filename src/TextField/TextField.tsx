@@ -145,11 +145,11 @@ function getIconLeft({
 function getPadding({ $size }: { $size: TextFieldSize }): string {
   switch ($size) {
     case 'large':
-      return '17px 24px 15px'
+      return '16px 24px'
 
     case 'medium':
     default:
-      return '11px 16px 9px'
+      return '10px 16px'
   }
 }
 
