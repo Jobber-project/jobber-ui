@@ -293,7 +293,7 @@ const ButtonContainer = styled.button<{
   cursor: pointer;
   position: relative;
   appearance: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-style: normal;
   font-weight: 500;
   border: none;

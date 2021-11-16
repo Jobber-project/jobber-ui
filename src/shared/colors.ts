@@ -17,6 +17,6 @@ const COLORS = {
 }
 
 export const PRIMARY_GRADIENT = `linear-gradient(90deg, ${COLORS.electricViolet}, ${COLORS.havelockBlue})`
-export const SECONDARY_GRADIENT = `linear-gradient(90deg, ${COLORS.sunshade}, ${COLORS.supernova})`
+export const SECONDARY_GRADIENT = `linear-gradient(90deg, ${COLORS.supernova}, ${COLORS.sunshade})`
 
 export default COLORS
