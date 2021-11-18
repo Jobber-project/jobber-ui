@@ -1,6 +1,6 @@
 {
   "name": "@jobello/jobber-ui",
-  "version": "1.21.4",
+  "version": "1.22.0",
   "description": "Jobello UI library",
   "main": "dist/index.js",
   "repository": "git@github.com:Jobber-project/jobber-ui.git",
