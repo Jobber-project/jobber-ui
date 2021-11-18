@@ -21,19 +21,20 @@ function getWidthHeight({
 }
 
 function getCheckedBackground({
-  $disabled,
   $variant,
 }: {
-  $disabled: boolean
   $variant: RadioButtonVariant
 }): string | undefined {
   switch ($variant) {
     case 'primary':
-      return $disabled ? PRIMARY_GRADIENT : undefined
+      return COLORS.white
+
+    case 'error':
+      return COLORS.carnation
 
     case 'default':
     default:
-      return undefined
+      return COLORS.charade
   }
 }
 
@@ -72,33 +73,17 @@ function getInnerCircleBackgroundColor({
   $variant,
 }: {
   $variant: RadioButtonVariant
-}): string {
+}): string | undefined {
   switch ($variant) {
     case 'primary':
       return COLORS.white
 
     case 'error':
-      return COLORS.carnation
+      return undefined
 
     case 'default':
     default:
-      return COLORS.black
-  }
-}
-
-function getInnerCircleCheckedOffset({
-  $variant,
-}: {
-  $variant: RadioButtonVariant
-}): number {
-  switch ($variant) {
-    case 'primary':
-      return 7
-
-    case 'default':
-    case 'error':
-    default:
-      return 6
+      return undefined
   }
 }
 
@@ -134,17 +119,15 @@ const OuterCircle = styled.span<{
 }>`
   z-index: 1;
   position: relative;
-  width: ${getWidthHeight}px;
-  height: ${getWidthHeight}px;
-  border: 1px solid ${getBorderColor};
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: ${getOutlerCircleBackground};
 
   ${props =>
     props.$variant === 'primary' &&
     `
-    border-width: 0;
-    opacity: ${props.$disabled && 0.5};
+    opacity: ${props.$disabled ? 0.5 : 1};
   `}
 `
 
@@ -153,20 +136,39 @@ const InnerCircle = styled.span<{
 }>`
   z-index: 1;
   position: absolute;
-  top: 1px;
-  right: 1px;
-  bottom: 1px;
-  left: 1px;
-  opacity: 0;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  border: 1px solid ${getBorderColor};
   border-radius: 50%;
   background-color: ${getInnerCircleBackgroundColor};
-  transition: transform 120ms ease;
+  transition: transform 120ms ease-out;
 
   ${props =>
     props.$variant === 'primary' &&
     `
-      opacity: 1;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    border-width: 0;
   `}
+
+  &::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    bottom: 6px;
+    left: 6px;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: ${getCheckedBackground};
+    transform: scale(0.25);
+    transition: transform 120ms ease;
+  }
 `
 
 const Input = styled.input<{
@@ -189,9 +191,19 @@ const Input = styled.input<{
   height: 100%;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 
-  &:checked {
-    background: ${getCheckedBackground};
+  &:checked + span::before {
+    opacity: 1;
+    transform: none;
   }
+
+  ${props =>
+    props.$variant === 'default' &&
+    `
+    &:hover:not(:disabled):not(:checked) + span,
+    &:focus:not(:disabled):not(:checked) + span {
+      border-color: ${COLORS.havelockBlue};
+    }
+  `}
 
   ${props =>
     props.$variant === 'primary' &&
@@ -200,15 +212,11 @@ const Input = styled.input<{
       &:focus:not(:disabled):not(:checked) + span {
         transform: scale(0.95);
       }
-    `}
 
-  &:checked + span {
-    top: ${getInnerCircleCheckedOffset}px;
-    right: ${getInnerCircleCheckedOffset}px;
-    bottom: ${getInnerCircleCheckedOffset}px;
-    left: ${getInnerCircleCheckedOffset}px;
-    opacity: 1;
-  }
+      &:checked + span {
+        background-color: transparent;
+      }
+  `}
 `
 
 const Text = styled.span<{
