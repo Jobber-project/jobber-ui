@@ -126,6 +126,14 @@ const Input = styled.input<{
   height: 100%;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 
+  ${props =>
+    props.$variant === 'default' &&
+    `
+    &:hover:not(:disabled) + span {
+      border-color: ${getFocusedBorderColor(props)};  
+    }
+  `}
+
   &:focus + span {
     border-color: ${getFocusedBorderColor};
   }
