@@ -204,7 +204,7 @@ function getPaddingLeft({
 function getInputHeight({ $size }: { $size: TextFieldSize }): number {
   switch ($size) {
     case 'large':
-      return 53
+      return 56
 
     case 'medium':
     default:
