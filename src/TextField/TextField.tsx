@@ -285,6 +285,7 @@ const Input = styled.input<{
   border: 1px solid ${getVariantColor};
   border-radius: 8px;
   background-color: ${COLORS.white};
+  color: ${COLORS.charade};
   transition: border-color 140ms ease-in;
 
   ${props =>

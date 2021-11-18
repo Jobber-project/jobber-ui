@@ -12,6 +12,7 @@ const COLORS = {
   persianIndigo: '#371789',
   silverChalice: '#a9a9a9',
   alabster: '#f9f9f9',
+  charade: '#2b2a35',
   white: '#ffffff',
   black: '#000000',
 }
