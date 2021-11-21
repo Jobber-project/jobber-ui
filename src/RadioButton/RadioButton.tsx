@@ -5,24 +5,36 @@ import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
 
 type RadioButtonVariant = 'default' | 'primary' | 'error'
 
-function getBackground({ $disabled }: { $disabled: boolean }): string {
-  return $disabled ? COLORS.alabster : COLORS.white
+function getWidthHeight({
+  $variant,
+}: {
+  $variant: RadioButtonVariant
+}): number {
+  switch ($variant) {
+    case 'primary':
+      return 24
+
+    case 'default':
+    case 'error':
+      return 22
+  }
 }
 
 function getCheckedBackground({
-  $disabled,
   $variant,
 }: {
-  $disabled: boolean
   $variant: RadioButtonVariant
-}) {
+}): string | undefined {
   switch ($variant) {
     case 'primary':
-      return $disabled ? PRIMARY_GRADIENT : undefined
+      return COLORS.white
+
+    case 'error':
+      return COLORS.carnation
 
     case 'default':
     default:
-      return undefined
+      return COLORS.charade
   }
 }
 
@@ -42,18 +54,36 @@ function getBorderColor({
   }
 }
 
-function getInnerCircleBackgroundColor({
+function getOutlerCircleBackground({
   $variant,
 }: {
   $variant: RadioButtonVariant
 }): string {
   switch ($variant) {
     case 'primary':
-      return COLORS.white
+      return PRIMARY_GRADIENT
 
     case 'default':
     default:
-      return COLORS.black
+      return COLORS.white
+  }
+}
+
+function getInnerCircleBackgroundColor({
+  $variant,
+}: {
+  $variant: RadioButtonVariant
+}): string | undefined {
+  switch ($variant) {
+    case 'primary':
+      return COLORS.white
+
+    case 'error':
+      return undefined
+
+    case 'default':
+    default:
+      return undefined
   }
 }
 
@@ -84,14 +114,21 @@ const Container = styled.label<{
 `
 
 const OuterCircle = styled.span<{
+  $disabled: boolean
   $variant: RadioButtonVariant
 }>`
   z-index: 1;
   position: relative;
   width: 24px;
   height: 24px;
-  border: 1px solid ${getBorderColor};
   border-radius: 50%;
+  background: ${getOutlerCircleBackground};
+
+  ${props =>
+    props.$variant === 'primary' &&
+    `
+    opacity: ${props.$disabled ? 0.5 : 1};
+  `}
 `
 
 const InnerCircle = styled.span<{
@@ -99,13 +136,39 @@ const InnerCircle = styled.span<{
 }>`
   z-index: 1;
   position: absolute;
-  top: 7px;
-  right: 7px;
-  bottom: 7px;
-  left: 7px;
-  opacity: 0;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  border: 1px solid ${getBorderColor};
   border-radius: 50%;
   background-color: ${getInnerCircleBackgroundColor};
+  transition: transform 120ms ease-out;
+
+  ${props =>
+    props.$variant === 'primary' &&
+    `
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    border-width: 0;
+  `}
+
+  &::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    bottom: 6px;
+    left: 6px;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: ${getCheckedBackground};
+    transform: scale(0.25);
+    transition: transform 120ms ease;
+  }
 `
 
 const Input = styled.input<{
@@ -128,13 +191,32 @@ const Input = styled.input<{
   height: 100%;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 
-  &:checked {
-    background: ${getCheckedBackground};
+  &:checked + span::before {
+    opacity: 1;
+    transform: none;
   }
 
-  &:checked + span {
-    opacity: 1;
-  }
+  ${props =>
+    props.$variant === 'default' &&
+    `
+    &:hover:not(:disabled):not(:checked) + span,
+    &:focus:not(:disabled):not(:checked) + span {
+      border-color: ${COLORS.havelockBlue};
+    }
+  `}
+
+  ${props =>
+    props.$variant === 'primary' &&
+    `
+      &:hover:not(:disabled):not(:checked) + span,
+      &:focus:not(:disabled):not(:checked) + span {
+        transform: scale(0.95);
+      }
+
+      &:checked + span {
+        background-color: transparent;
+      }
+  `}
 `
 
 const Text = styled.span<{
@@ -194,7 +276,7 @@ const RadioButton: FC<RadioButtonProps> = ({
       as={label ? undefined : 'span'}
       {...(label ? { htmlFor: derivedId } : {})}
     >
-      <OuterCircle $variant={variant}>
+      <OuterCircle $disabled={disabled} $variant={variant}>
         <Input
           $disabled={disabled}
           $variant={variant}

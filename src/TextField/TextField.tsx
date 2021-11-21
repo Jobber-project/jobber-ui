@@ -149,7 +149,7 @@ function getPadding({ $size }: { $size: TextFieldSize }): string {
 
     case 'medium':
     default:
-      return '10px 16px'
+      return '8px 16px'
   }
 }
 
@@ -201,6 +201,17 @@ function getPaddingLeft({
   }
 }
 
+function getInputHeight({ $size }: { $size: TextFieldSize }): number {
+  switch ($size) {
+    case 'large':
+      return 56
+
+    case 'medium':
+    default:
+      return 40
+  }
+}
+
 function getInputFontSize({ $size }: { $size: TextFieldSize }): number {
   switch ($size) {
     case 'large':
@@ -215,11 +226,11 @@ function getInputFontSize({ $size }: { $size: TextFieldSize }): number {
 function getInputLineHeight({ $size }: { $size: TextFieldSize }): number {
   switch ($size) {
     case 'large':
-      return 1.171667 // 21.09px
+      return 1.1667 // 21px
 
     case 'medium':
     default:
-      return 1.171875 // 18.75px
+      return 1.1875 // 19px
   }
 }
 
@@ -265,13 +276,16 @@ const Input = styled.input<{
   $size: TextFieldSize
   $iconAlign: TextFieldIconAlign
 }>`
-  display: block;
+  display: flex;
+  align-items: center;
+  height: ${getInputHeight}px;
   margin: 0;
   padding: ${getPadding};
   box-sizing: border-box;
   border: 1px solid ${getVariantColor};
   border-radius: 8px;
   background-color: ${COLORS.white};
+  color: ${COLORS.charade};
   transition: border-color 140ms ease-in;
 
   ${props =>
