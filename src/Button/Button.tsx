@@ -1,6 +1,5 @@
-import { keyframes } from '@emotion/core'
 import React, { FC, ReactNode } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT, SECONDARY_GRADIENT } from '../shared/colors'
 
@@ -22,6 +21,50 @@ function getIconSize({ $size }: { $size: ButtonSize }): number {
     case 'medium':
     default:
       return 20
+  }
+}
+
+function getBackgroundColor({
+  $variant,
+}: {
+  $variant?: ButtonVariant
+}): string {
+  switch ($variant) {
+    case 'primary':
+      return PRIMARY_GRADIENT
+    case 'secondary':
+      return SECONDARY_GRADIENT
+    case 'success':
+      return COLORS.emerald
+    case 'warning':
+      return COLORS.yellowOrange
+    case 'error':
+      return COLORS.carnation
+    default:
+      return COLORS.white
+  }
+}
+
+function getTextColor({
+  $variant,
+  $outlined,
+}: {
+  $variant?: ButtonVariant
+  $outlined: boolean
+}): string {
+  switch ($variant) {
+    case 'secondary':
+      return $outlined ? COLORS.supernova : COLORS.persianIndigo
+    case 'primary':
+      return $outlined ? COLORS.electricViolet : COLORS.white
+    case 'success':
+      return $outlined ? COLORS.emerald : COLORS.white
+    case 'warning':
+      return $outlined ? COLORS.yellowOrange : COLORS.white
+    case 'error':
+      return $outlined ? COLORS.carnation : COLORS.white
+    default:
+      return COLORS.black
   }
 }
 
@@ -72,124 +115,67 @@ const IconWrapper = styled.div<{
     height: ${getIconSize}px;
   }
 `
+const ChildrenWrapper = styled.div<{
+  $variant: ButtonVariant
+  $size: ButtonSize
+  $outlined: boolean
+}>`
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: ${getTextColor};
+`
 
 function getOutlinedStyles({
   $outlined,
-  $variant,
 }: {
   $outlined?: boolean
   $variant?: ButtonVariant
 }): string {
-  if (!$outlined) return ''
-  switch ($variant) {
-    case 'primary':
-      return `
-      outline: 1px solid ${COLORS.electricViolet};
-      background: ${COLORS.white};
-      color: ${COLORS.electricViolet};
-    
-      &:hover {
-        outline: 2px solid ${COLORS.electricViolet};
+  return (
+    $outlined &&
+    `
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      bottom: 1px;
+      left: 1px;
+      border-radius: 7px;
+      
+      background: white;
+      pointer-events: none;
+    }
+    &:hover {
+      &::before {
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        border-radius: 6px;
       }
+    }
     `
-    case 'secondary':
-      return `
-      outline: 1px solid ${COLORS.sunshade};
-      background: ${COLORS.white};
-      color: ${COLORS.sunshade};
-    
-      &:hover {
-        outline: 2px solid ${COLORS.sunshade};
-      }
-    `
-    case 'success':
-      return `
-      outline: 1px solid ${COLORS.emerald};
-      background: ${COLORS.white};
-      color: ${COLORS.emerald};
-    
-      &:hover {
-        outline: 2px solid ${COLORS.emerald};
-      }
-    `
-    case 'warning':
-      return `
-      outline: 1px solid ${COLORS.yellowOrange};
-      background: ${COLORS.white};
-      color: ${COLORS.yellowOrange};
-    
-      &:hover {
-        outline: 2px solid ${COLORS.yellowOrange};
-      }
-    `
-    case 'error':
-      return `
-      outline: 1px solid ${COLORS.carnation};
-      background: ${COLORS.white};
-      color: ${COLORS.carnation};
-
-      &:hover {
-        outline: 2px solid ${COLORS.carnation};
-      }
-    `
-    default:
-      return `
-      outline: 1px solid ${COLORS.mischa};
-      background: ${COLORS.white};
-      color: ${COLORS.black};
-    
-      &:hover {
-        outline: 2px solid ${COLORS.havelockBlue};
-      }
-    `
-  }
-}
-
-function getFilledStyles({
-  $outlined,
-  $variant,
-}: {
-  $outlined?: boolean
-  $variant?: ButtonVariant
-}): string {
-  if ($outlined) return ''
-  switch ($variant) {
-    case 'primary':
-      return `
-      background: ${PRIMARY_GRADIENT};
-      color: ${COLORS.white};
-    `
-    case 'secondary':
-      return `
-        background: ${SECONDARY_GRADIENT};
-        color: ${COLORS.persianIndigo};
-      `
-    case 'success':
-      return `
-      background: ${COLORS.emerald};
-      color: ${COLORS.white};
-    `
-    case 'warning':
-      return `
-      background: ${COLORS.yellowOrange};
-      color: ${COLORS.white};
-    `
-    case 'error':
-      return `
-      background: ${COLORS.carnation};
-      color: ${COLORS.white};
-    `
-    default:
-      return `
-      background: ${COLORS.white};
-      color: ${PRIMARY_GRADIENT};
-    `
-  }
+  )
 }
 
 function getFilledHoverStyles({ $outlined }: { $outlined?: boolean }): string {
-  if ($outlined) return ''
-  return `
+  return (
+    !$outlined &&
+    `
     overflow: hidden;
     z-index: 1;
 
@@ -213,6 +199,7 @@ function getFilledHoverStyles({ $outlined }: { $outlined?: boolean }): string {
       }
     }
   `
+  )
 }
 
 function getSizes({ $size }: { $size?: ButtonSize }): string {
@@ -277,7 +264,6 @@ function getDisabledStyle({ disabled }: { disabled?: boolean }): string {
 }
 
 const ButtonWrapper = styled.div`
-  z-index: 3;
   position: relative;
   display: flex;
   flex-grow: 1;
@@ -298,13 +284,15 @@ const ButtonContainer = styled.button<{
   font-weight: 500;
   border: none;
 
+  background: ${getBackgroundColor};
+
+  color: ${getTextColor};
+
   ${getSizes};
 
   ${getIconStyles};
 
   ${getOutlinedStyles};
-
-  ${getFilledStyles};
 
   ${getFilledHoverStyles};
 
@@ -377,7 +365,14 @@ const Button: FC<ButtonProps> = ({
         disabled={disabled}
         icon={!!icon}
       >
-        {children}
+        <ChildrenWrapper
+          $outlined={outlined}
+          $variant={variant}
+          $size={size}
+          key={variant}
+        >
+          {children}
+        </ChildrenWrapper>
       </ButtonContainer>
     </ButtonWrapper>
   )
