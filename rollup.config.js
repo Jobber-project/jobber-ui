@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
+import image from '@rollup/plugin-image'
 
 import pkg from './package.json'
 
@@ -31,7 +32,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), typescript(tsconfig)],
+    plugins: [resolve(), commonjs(), typescript(tsconfig), image()],
   },
   {
     input: 'src/index.ts',
@@ -48,6 +49,6 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [typescript(tsconfig)],
+    plugins: [typescript(tsconfig), image()],
   },
 ]
