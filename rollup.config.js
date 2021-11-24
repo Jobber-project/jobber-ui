@@ -1,27 +1,26 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import typescript from '@rollup/plugin-typescript'
 import image from '@rollup/plugin-image'
+import ts from 'rollup-plugin-ts'
 
 import pkg from './package.json'
 
 const tsconfig = {
   target: 'es6',
   lib: ['dom', 'dom.iterable', 'esnext'],
-  allowJs: true,
   skipLibCheck: true,
   strict: false,
   forceConsistentCasingInFileNames: true,
-  noEmit: true,
   esModuleInterop: true,
   module: 'esnext',
   moduleResolution: 'node',
   resolveJsonModule: true,
   isolatedModules: true,
   jsx: 'react-jsx',
-  noUnusedLocals: true,
-  include: ['src/**/*.ts', 'src/**/*.tsx'],
-  exclude: ['node_modules', '*.stories.tsx', 'dist'],
+  noUnusedLocals: false,
+  declaration: true,
+  declarationDir: 'dist',
+  emitDeclarationOnly: true,
 }
 
 export default [
@@ -32,7 +31,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), typescript(tsconfig), image()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), image()],
   },
   {
     input: 'src/index.ts',
@@ -49,16 +48,17 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [typescript(tsconfig), image()],
+    plugins: [ts({ tsconfig }), image()],
   },
   {
     input: 'src/shared/colors.ts',
     output: [
       {
+        name: 'colors',
         file: 'dist/shared/colors.js',
         format: 'esm',
       },
     ],
-    plugins: [typescript(tsconfig)],
+    plugins: [ts({ tsconfig: { ...tsconfig, declarationDir: 'dist/shared' } })],
   },
 ]
