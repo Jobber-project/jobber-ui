@@ -23,9 +23,12 @@ const tsconfig = {
   emitDeclarationOnly: true,
 }
 
+const external = ['react', 'styled-components', 'react-dom']
+
 export default [
   {
     input: 'src/index.ts',
+    external,
     output: {
       name: 'jobber-ui',
       file: pkg.browser,
@@ -35,7 +38,7 @@ export default [
   },
   {
     input: 'src/index.ts',
-    external: ['react', 'styled-components'],
+    external,
     output: [
       {
         name: 'jobber-ui',
@@ -52,6 +55,7 @@ export default [
   },
   {
     input: 'src/shared/colors.ts',
+    external,
     output: [
       {
         name: 'colors',
