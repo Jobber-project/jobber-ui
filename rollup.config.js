@@ -51,4 +51,14 @@ export default [
     ],
     plugins: [typescript(tsconfig), image()],
   },
+  {
+    input: 'src/shared/colors.ts',
+    output: [
+      {
+        file: 'dist/shared/colors.js',
+        format: 'esm',
+      },
+    ],
+    plugins: [typescript(tsconfig)],
+  },
 ]
