@@ -11,4 +11,7 @@ node_modules/
 .npmrc
 
 # Storybook static
-storybook-static
+storybook-static/
+
+# Build
+dist/
