@@ -1,5 +1,7 @@
-export { default as GlobalStyle } from './GlobalStyle'
-export { default as Button } from './Button'
-export { default as Checkbox } from './Checkbox'
-export { default as RadioButton } from './RadioButton'
-export { default as TextField } from './TextField'
+import GlobalStyle from './GlobalStyle/GlobalStyle'
+import Button from './Button/Button'
+import Checkbox from './Checkbox/Checkbox'
+import RadioButton from './RadioButton/RadioButton'
+import TextField from './TextField/TextField'
+
+export { GlobalStyle, Button, Checkbox, RadioButton, TextField }
