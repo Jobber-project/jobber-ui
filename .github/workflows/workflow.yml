@@ -8,15 +8,27 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-          cache: yarn
+          # cache: yarn
+
+      - name: Caching
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./.storybook
+            ./.node_modules
+          key: storybook-node-modules-${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+
       - run: yarn install
+      
       - name: Build
         run: yarn build
+      
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
+      
       - name: Deploy Storybook to GitHub pages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
