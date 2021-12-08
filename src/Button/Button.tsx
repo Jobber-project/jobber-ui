@@ -342,6 +342,7 @@ type ButtonProps = {
    * Button size
    */
   size?: ButtonSize
+  className?: string
   /**
    * Button outlined
    */
@@ -365,6 +366,7 @@ const Button: FC<ButtonProps> = ({
   type = 'button',
   onClick,
   size = 'medium',
+  className,
   outlined = false,
   disabled = false,
   icon = null,
@@ -390,6 +392,7 @@ const Button: FC<ButtonProps> = ({
         $outlined={outlined}
         disabled={disabled}
         icon={!!icon}
+        className={className}
       >
         <ChildrenWrapper
           $outlined={outlined}
