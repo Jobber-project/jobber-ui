@@ -80,8 +80,11 @@ function getIconColor({
       return $outlined ? COLORS.sunshade : COLORS.persianIndigo
 
     case 'primary':
-    default:
       return $outlined ? COLORS.electricViolet : COLORS.white
+
+    case 'default':
+    default:
+      return COLORS.mischa
   }
 }
 
@@ -145,7 +148,7 @@ function getOutlinedStyles({
     `
     display: inline-block;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     &::before {
       content: '';
       display: block;
@@ -263,6 +266,25 @@ function getDisabledStyle({ disabled }: { disabled?: boolean }): string {
   `
 }
 
+function getBorderStyle({
+  $outlined,
+  $variant,
+}: {
+  $outlined: boolean
+  $variant?: ButtonVariant
+}): string {
+  switch ($variant) {
+    case 'default':
+      return $outlined
+        ? `
+        border: 1px solid ${COLORS.mischa};
+      `
+        : ''
+    default:
+      return ''
+  }
+}
+
 const ButtonWrapper = styled.div`
   position: relative;
   display: flex;
@@ -295,6 +317,8 @@ const ButtonContainer = styled.button<{
   ${getOutlinedStyles};
 
   ${getFilledHoverStyles};
+
+  ${getBorderStyle};
 
   ${getDisabledStyle};
 `

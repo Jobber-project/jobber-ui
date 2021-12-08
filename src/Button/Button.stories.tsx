@@ -114,6 +114,12 @@ export function Icon() {
   return (
     <>
       <Container>
+        <Button icon={<SuccessIcon viewBox="0 0 24 24" />}>Icon</Button>
+        <Button outlined icon={<SuccessIcon viewBox="0 0 24 24" />}>
+          Icon
+        </Button>
+      </Container>
+      <Container>
         <Button variant="primary" icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Icon
         </Button>
