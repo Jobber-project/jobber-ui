@@ -373,7 +373,7 @@ const Button: FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper className={className}>
       {!!icon && (
         <IconWrapper
           $outlined={outlined}
@@ -392,7 +392,6 @@ const Button: FC<ButtonProps> = ({
         $outlined={outlined}
         disabled={disabled}
         icon={!!icon}
-        className={className}
       >
         <ChildrenWrapper
           $outlined={outlined}
