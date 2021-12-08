@@ -12,7 +12,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 var reset__default = /*#__PURE__*/_interopDefaultLegacy(reset);
 
-const GlobalStyle = styled.createGlobalStyle `
+const globalStyle = styled.css `
   ${reset__default["default"]}
   font-family: 'Roboto', sans-serif;
 
@@ -22,6 +22,9 @@ const GlobalStyle = styled.createGlobalStyle `
   textarea {
     font-family: 'Roboto', sans-serif;
   }
+`;
+const GlobalStyle = styled.createGlobalStyle `
+  ${globalStyle}
 `;
 
 // https://chir.ag/projects/name-that-color/#6B53FF
@@ -963,3 +966,4 @@ exports.Checkbox = Checkbox;
 exports.GlobalStyle = GlobalStyle;
 exports.RadioButton = RadioButton;
 exports.TextField = TextField;
+exports.globalStyle = globalStyle;

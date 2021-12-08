@@ -18,7 +18,7 @@
     styled.createGlobalStyle(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", ""], ["", ""])), reset);
     var templateObject_1, templateObject_2;
 
-    const GlobalStyle = styled.createGlobalStyle `
+    const globalStyle = styled.css `
   ${reset}
   font-family: 'Roboto', sans-serif;
 
@@ -28,6 +28,9 @@
   textarea {
     font-family: 'Roboto', sans-serif;
   }
+`;
+    const GlobalStyle = styled.createGlobalStyle `
+  ${globalStyle}
 `;
 
     var jsxRuntime = {exports: {}};
@@ -2300,6 +2303,7 @@
     exports.GlobalStyle = GlobalStyle;
     exports.RadioButton = RadioButton;
     exports.TextField = TextField;
+    exports.globalStyle = globalStyle;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

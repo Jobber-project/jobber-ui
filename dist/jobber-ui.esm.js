@@ -1,9 +1,9 @@
-import styled, { createGlobalStyle, keyframes, css } from 'styled-components';
+import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useRef, useEffect } from 'react';
 
-const GlobalStyle = createGlobalStyle `
+const globalStyle = css `
   ${reset}
   font-family: 'Roboto', sans-serif;
 
@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle `
   textarea {
     font-family: 'Roboto', sans-serif;
   }
+`;
+const GlobalStyle = createGlobalStyle `
+  ${globalStyle}
 `;
 
 // https://chir.ag/projects/name-that-color/#6B53FF
@@ -949,4 +952,4 @@ const TextField = ({ required, disabled, variant = 'default', id, name, type = '
     return (jsxs(Container, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxs(InputWrapper, { children: [jsx(Input, { "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
 };
 
-export { Button, Checkbox, GlobalStyle, RadioButton, TextField };
+export { Button, Checkbox, GlobalStyle, RadioButton, TextField, globalStyle };
