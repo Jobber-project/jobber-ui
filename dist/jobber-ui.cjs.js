@@ -290,8 +290,8 @@ const ButtonContainer = styled__default["default"].button `
 
   ${getDisabledStyle};
 `;
-const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', outlined = false, disabled = false, icon = null, children, }) => {
-    return (jsxRuntime.jsxs(ButtonWrapper, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: icon }), variant)), jsxRuntime.jsx(ButtonContainer, Object.assign({ "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon }, { children: jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: children }), variant) }), void 0)] }, void 0));
+const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, icon = null, children, }) => {
+    return (jsxRuntime.jsxs(ButtonWrapper, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: icon }), variant)), jsxRuntime.jsx(ButtonContainer, Object.assign({ "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, className: className }, { children: jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: children }), variant) }), void 0)] }, void 0));
 };
 
 function getBackground({ $disabled }) {
