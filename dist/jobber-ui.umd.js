@@ -1431,8 +1431,10 @@
             case 'secondary':
                 return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
             case 'primary':
-            default:
                 return $outlined ? COLORS.electricViolet : COLORS.white;
+            case 'default':
+            default:
+                return COLORS.mischa;
         }
     }
     function getIconPadding({ $size }) {
@@ -1478,7 +1480,7 @@
             `
     display: inline-block;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     &::before {
       content: '';
       display: block;
@@ -1580,6 +1582,18 @@
     cursor: not-allowed! important;
   `;
     }
+    function getBorderStyle({ $outlined, $variant, }) {
+        switch ($variant) {
+            case 'default':
+                return $outlined
+                    ? `
+        border: 1px solid ${COLORS.mischa};
+      `
+                    : '';
+            default:
+                return '';
+        }
+    }
     const ButtonWrapper = styled__default["default"].div `
   position: relative;
   display: flex;
@@ -1606,6 +1620,8 @@
   ${getOutlinedStyles};
 
   ${getFilledHoverStyles};
+
+  ${getBorderStyle};
 
   ${getDisabledStyle};
 `;

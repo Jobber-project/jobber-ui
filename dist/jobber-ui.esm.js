@@ -85,8 +85,10 @@ function getIconColor$1({ $variant, $outlined, }) {
         case 'secondary':
             return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
         case 'primary':
-        default:
             return $outlined ? COLORS.electricViolet : COLORS.white;
+        case 'default':
+        default:
+            return COLORS.mischa;
     }
 }
 function getIconPadding({ $size }) {
@@ -132,7 +134,7 @@ function getOutlinedStyles({ $outlined, }) {
         `
     display: inline-block;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     &::before {
       content: '';
       display: block;
@@ -234,6 +236,18 @@ function getDisabledStyle({ disabled }) {
     cursor: not-allowed! important;
   `;
 }
+function getBorderStyle({ $outlined, $variant, }) {
+    switch ($variant) {
+        case 'default':
+            return $outlined
+                ? `
+        border: 1px solid ${COLORS.mischa};
+      `
+                : '';
+        default:
+            return '';
+    }
+}
 const ButtonWrapper = styled.div `
   position: relative;
   display: flex;
@@ -260,6 +274,8 @@ const ButtonContainer = styled.button `
   ${getOutlinedStyles};
 
   ${getFilledHoverStyles};
+
+  ${getBorderStyle};
 
   ${getDisabledStyle};
 `;
