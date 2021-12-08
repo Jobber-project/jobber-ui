@@ -85,8 +85,9 @@ function getTextColor({ $variant, $outlined, }) {
             return $outlined ? COLORS.yellowOrange : COLORS.white;
         case 'error':
             return $outlined ? COLORS.carnation : COLORS.white;
+        case 'default':
         default:
-            return COLORS.black;
+            return COLORS.charade;
     }
 }
 function getIconColor$1({ $variant, $outlined, }) {
