@@ -118,6 +118,7 @@ const IconWrapper$1 = styled__default["default"].div `
   display: flex;
   align-items: center;
   color: ${getIconColor$1};
+  pointer-events: none;
 
   & svg {
     width: ${getIconSize$1}px;
