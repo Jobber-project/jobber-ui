@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 import reset from 'styled-reset'
 
-const GlobalStyle = createGlobalStyle`
+export const globalStyle = css`
   ${reset}
   font-family: 'Roboto', sans-serif;
 
@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
   textarea {
     font-family: 'Roboto', sans-serif;
   }
+`
+
+const GlobalStyle = createGlobalStyle`
+  ${globalStyle}
 `
 
 export default GlobalStyle
