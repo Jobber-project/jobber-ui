@@ -112,6 +112,7 @@ const IconWrapper = styled.div<{
   display: flex;
   align-items: center;
   color: ${getIconColor};
+  pointer-events: none;
 
   & svg {
     width: ${getIconSize}px;
