@@ -59,7 +59,17 @@ export default [
     output: [
       {
         name: 'colors',
-        file: 'dist/shared/colors.js',
+        file: 'dist/shared/colors.umd.js',
+        format: 'umd',
+      },
+      {
+        name: 'colors',
+        file: 'dist/shared/colors.cjs.js',
+        format: 'cjs',
+      },
+      {
+        name: 'colors',
+        file: 'dist/shared/colors.esm.js',
         format: 'esm',
       },
     ],
