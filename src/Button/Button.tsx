@@ -358,7 +358,7 @@ type ButtonProps = {
   /**
    * Button content
    */
-  children?: string
+  children?: ReactNode
 }
 
 const Button: FC<ButtonProps> = ({
