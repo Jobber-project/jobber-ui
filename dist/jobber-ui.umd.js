@@ -1,13 +1,32 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('styled-components'), require('react')) :
     typeof define === 'function' && define.amd ? define(['exports', 'styled-components', 'react'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["jobber-ui"] = {}, global.styled, global.require$$0));
-})(this, (function (exports, styled, require$$0) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["jobber-ui"] = {}, global.styled, global.React));
+})(this, (function (exports, styled, React) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () { return e[k]; }
+                    });
+                }
+            });
+        }
+        n["default"] = e;
+        return Object.freeze(n);
+    }
+
     var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
-    var require$$0__default = /*#__PURE__*/_interopDefaultLegacy(require$$0);
+    var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+    var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
     var __makeTemplateObject = (undefined && undefined.__makeTemplateObject) || function (cooked, raw) {
         if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
@@ -134,7 +153,7 @@
      * This source code is licensed under the MIT license found in the
      * LICENSE file in the root directory of this source tree.
      */
-    var f=require$$0__default["default"],g=60103;reactJsxRuntime_production_min.Fragment=60107;if("function"===typeof Symbol&&Symbol.for){var h=Symbol.for;g=h("react.element");reactJsxRuntime_production_min.Fragment=h("react.fragment");}var m=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,n=Object.prototype.hasOwnProperty,p={key:!0,ref:!0,__self:!0,__source:!0};
+    var f=React__default["default"],g=60103;reactJsxRuntime_production_min.Fragment=60107;if("function"===typeof Symbol&&Symbol.for){var h=Symbol.for;g=h("react.element");reactJsxRuntime_production_min.Fragment=h("react.fragment");}var m=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,n=Object.prototype.hasOwnProperty,p={key:!0,ref:!0,__self:!0,__source:!0};
     function q(c,a,k){var b,d={},e=null,l=null;void 0!==k&&(e=""+k);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(l=a.ref);for(b in a)n.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return {$$typeof:g,type:c,key:e,ref:l,props:d,_owner:m.current}}reactJsxRuntime_production_min.jsx=q;reactJsxRuntime_production_min.jsxs=q;
 
     var reactJsxRuntime_development = {};
@@ -153,7 +172,7 @@
     if (process.env.NODE_ENV !== "production") {
       (function() {
 
-    var React = require$$0__default["default"];
+    var React = React__default["default"];
     var _assign = objectAssign;
 
     // ATTENTION
@@ -1990,15 +2009,138 @@
         return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.exports.jsx(Input$1, { "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.exports.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
     };
 
-    var img$4 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-circle-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'%3e %3cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3e %3ccircle cx='12' cy='12' r='9' /%3e %3cpath d='M9 12l2 2l4 -4' /%3e%3c/svg%3e";
+    var _path$4, _circle$2, _path2$4;
 
-    var img$3 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-alert-triangle' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'%3e %3cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3e %3cpath d='M12 9v2m0 4v.01' /%3e %3cpath d='M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75' /%3e%3c/svg%3e";
+    function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
-    var img$2 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-circle-x' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'%3e %3cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3e %3ccircle cx='12' cy='12' r='9' /%3e %3cpath d='M10 10l4 4m0 -4l-4 4' /%3e%3c/svg%3e";
+    var SvgCircleCheck = function SvgCircleCheck(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$4({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "circle-check_svg__icon circle-check_svg__icon-tabler circle-check_svg__icon-tabler-circle-check",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$4 || (_path$4 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _circle$2 || (_circle$2 = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 12,
+        cy: 12,
+        r: 9
+      })), _path2$4 || (_path2$4 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "m9 12 2 2 4-4"
+      })));
+    };
 
-    var img$1 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-mail' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'%3e %3cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3e %3crect x='3' y='5' width='18' height='14' rx='2' /%3e %3cpolyline points='3 7 12 13 21 7' /%3e%3c/svg%3e";
+    var _path$3, _path2$3;
 
-    var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-search' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'%3e %3cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3e %3ccircle cx='10' cy='10' r='7' /%3e %3cline x1='21' y1='21' x2='15' y2='15' /%3e%3c/svg%3e";
+    function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
+
+    var SvgAlertTriangle = function SvgAlertTriangle(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$3({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "alert-triangle_svg__icon alert-triangle_svg__icon-tabler alert-triangle_svg__icon-tabler-alert-triangle",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$3 || (_path$3 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _path2$3 || (_path2$3 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M12 9v2m0 4v.01M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19"
+      })));
+    };
+
+    var _path$2, _circle$1, _path2$2;
+
+    function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+
+    var SvgCircleX = function SvgCircleX(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$2({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "circle-x_svg__icon circle-x_svg__icon-tabler circle-x_svg__icon-tabler-circle-x",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$2 || (_path$2 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _circle$1 || (_circle$1 = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 12,
+        cy: 12,
+        r: 9
+      })), _path2$2 || (_path2$2 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "m10 10 4 4m0-4-4 4"
+      })));
+    };
+
+    var _path$1, _rect, _path2$1;
+
+    function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
+
+    var SvgMail = function SvgMail(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$1({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "mail_svg__icon mail_svg__icon-tabler mail_svg__icon-tabler-mail",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$1 || (_path$1 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _rect || (_rect = /*#__PURE__*/React__namespace.createElement("rect", {
+        x: 3,
+        y: 5,
+        width: 18,
+        height: 14,
+        rx: 2
+      })), _path2$1 || (_path2$1 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "m3 7 9 6 9-6"
+      })));
+    };
+
+    var _path, _circle, _path2;
+
+    function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+    var SvgSearch = function SvgSearch(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "search_svg__icon search_svg__icon-tabler search_svg__icon-tabler-search",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path || (_path = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _circle || (_circle = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 10,
+        cy: 10,
+        r: 7
+      })), _path2 || (_path2 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "m21 21-6-6"
+      })));
+    };
 
     const animateIcon = styled.keyframes `
   0% {
@@ -2272,26 +2414,26 @@
     `}
 `;
     const TextField = ({ required, disabled, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, iconAlign, icon, onChange, }) => {
-        const didMountRef = require$$0.useRef(false);
-        require$$0.useEffect(() => {
+        const didMountRef = React.useRef(false);
+        React.useEffect(() => {
             didMountRef.current = true;
         }, []);
         function getDerivedIcon() {
             switch (variant) {
                 case 'success':
-                    return jsxRuntime.exports.jsx(img$4, { viewBox: "0 0 24 24" }, void 0);
+                    return jsxRuntime.exports.jsx(SvgCircleCheck, { viewBox: "0 0 24 24" }, void 0);
                 case 'warning':
-                    return jsxRuntime.exports.jsx(img$3, { viewBox: "0 0 24 24" }, void 0);
+                    return jsxRuntime.exports.jsx(SvgAlertTriangle, { viewBox: "0 0 24 24" }, void 0);
                 case 'error':
-                    return jsxRuntime.exports.jsx(img$2, { viewBox: "0 0 24 24" }, void 0);
+                    return jsxRuntime.exports.jsx(SvgCircleX, { viewBox: "0 0 24 24" }, void 0);
                 case 'default':
                 default: {
                     if (icon)
                         return icon;
                     if (type === 'email')
-                        return jsxRuntime.exports.jsx(img$1, { viewBox: "0 0 24 24" }, void 0);
+                        return jsxRuntime.exports.jsx(SvgMail, { viewBox: "0 0 24 24" }, void 0);
                     if (type === 'search')
-                        return jsxRuntime.exports.jsx(img, { viewBox: "0 0 24 24" }, void 0);
+                        return jsxRuntime.exports.jsx(SvgSearch, { viewBox: "0 0 24 24" }, void 0);
                     return undefined;
                 }
             }

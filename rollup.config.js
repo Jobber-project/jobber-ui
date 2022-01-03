@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import image from '@rollup/plugin-image'
+import svgr from '@svgr/rollup'
 import ts from 'rollup-plugin-ts'
 
 import pkg from './package.json'
@@ -34,7 +34,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), image()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
   },
   {
     input: 'src/index.ts',
@@ -51,7 +51,7 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [ts({ tsconfig }), image()],
+    plugins: [ts({ tsconfig }), svgr()],
   },
   {
     input: 'src/shared/colors.ts',
