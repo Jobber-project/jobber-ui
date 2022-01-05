@@ -8,6 +8,4 @@ Jobello UI library
 
 ## TODO
 
-- Add build script
-  - Build with GitHub Actions
 - Add automated tests
