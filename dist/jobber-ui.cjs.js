@@ -487,7 +487,7 @@ const Text$1 = styled__default["default"].span `
   overflow: hidden;
   color: ${getLabelColor$1};
 `;
-const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, variant = 'default', id, name, className, label, onChange, }) => {
+const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, variant = 'default', id, name, className, label, onChange, }, ref) => {
     function getDerivedId() {
         if (id)
             return id;
@@ -512,8 +512,9 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, 
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (jsxRuntime.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
+var Checkbox$1 = React.forwardRef(Checkbox);
 
 function getCheckedBackground({ $variant, }) {
     switch ($variant) {
@@ -672,7 +673,7 @@ const Text = styled__default["default"].span `
   overflow: hidden;
   color: ${getLabelColor};
 `;
-const RadioButton = ({ required, disabled = false, defaultChecked, checked, variant = 'default', id, name, label, className, onChange, }) => {
+const RadioButton = ({ required, disabled = false, defaultChecked, checked, variant = 'default', id, name, label, className, onChange, }, ref) => {
     function getDerivedId() {
         if (id)
             return id;
@@ -683,8 +684,9 @@ const RadioButton = ({ required, disabled = false, defaultChecked, checked, vari
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.jsx(Input$1, { "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.jsx(Text, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.jsx(Text, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
+var RadioButton$1 = React.forwardRef(RadioButton);
 
 var _path$4, _circle$2, _path2$4;
 
@@ -1090,7 +1092,7 @@ const HelperText = styled__default["default"].span `
       animation: ${animateHelperText} 280ms ease;
     `}
 `;
-const TextField = ({ required, disabled, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, iconAlign, icon, onChange, }) => {
+const TextField = ({ required, disabled, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, iconAlign, icon, onChange, }, ref) => {
     const didMountRef = React.useRef(false);
     React.useEffect(() => {
         didMountRef.current = true;
@@ -1132,12 +1134,13 @@ const TextField = ({ required, disabled, variant = 'default', id, name, type = '
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
     const derivedIconAlign = getDerivedIconAlign();
-    return (jsxRuntime.jsxs(Container, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
 };
+var TextField$1 = React.forwardRef(TextField);
 
 exports.Button = Button;
-exports.Checkbox = Checkbox;
+exports.Checkbox = Checkbox$1;
 exports.GlobalStyle = GlobalStyle;
-exports.RadioButton = RadioButton;
-exports.TextField = TextField;
+exports.RadioButton = RadioButton$1;
+exports.TextField = TextField$1;
 exports.globalStyle = globalStyle;
