@@ -518,4 +518,6 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   )
 }
 
-export default forwardRef(TextField)
+const ForwardedTextField = forwardRef(TextField)
+
+export default ForwardedTextField

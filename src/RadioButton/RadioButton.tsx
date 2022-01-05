@@ -313,4 +313,6 @@ const RadioButton: ForwardRefRenderFunction<
   )
 }
 
-export default forwardRef(RadioButton)
+const ForwardedRadioButton = forwardRef(RadioButton)
+
+export default ForwardedRadioButton

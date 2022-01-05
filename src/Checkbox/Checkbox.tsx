@@ -347,4 +347,6 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
   )
 }
 
-export default forwardRef(Checkbox)
+const ForwardedCheckbox = forwardRef(Checkbox)
+
+export default ForwardedCheckbox
