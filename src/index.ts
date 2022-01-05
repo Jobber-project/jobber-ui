@@ -8,14 +8,7 @@ import TextField, {
   TextFieldVariant,
 } from './TextField/TextField'
 
-export {
-  GlobalStyle,
-  globalStyle,
-  Button,
-  Checkbox,
-  RadioButton,
-  TextField,
-  /* Types */
+export type {
   ButtonSize,
   ButtonVariant,
   CheckboxVariant,
@@ -23,3 +16,5 @@ export {
   TextFieldSize,
   TextFieldVariant,
 }
+
+export { GlobalStyle, globalStyle, Button, Checkbox, RadioButton, TextField }
