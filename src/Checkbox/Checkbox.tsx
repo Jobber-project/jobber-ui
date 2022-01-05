@@ -239,6 +239,7 @@ type CheckboxProps = {
   disabled?: boolean
   defaultChecked?: boolean
   checked?: boolean
+  value?: 'on' | 'off'
   id?: string
   name?: string
   className?: string
@@ -254,6 +255,7 @@ const Checkbox: FC<CheckboxProps> = ({
   disabled = false,
   defaultChecked,
   checked,
+  value,
   variant = 'default',
   id,
   name,
@@ -268,7 +270,25 @@ const Checkbox: FC<CheckboxProps> = ({
     return Math.random().toString()
   }
 
+  function getDerivedDefaultChecked(): boolean | undefined {
+    if (typeof value === 'string' && value.length > 0) {
+      return value === 'on'
+    }
+
+    return defaultChecked
+  }
+
+  function getDerivedChecked(): boolean {
+    if (typeof value === 'string' && value.length > 0) {
+      return value === 'on'
+    }
+
+    return checked
+  }
+
   const derivedId = getDerivedId()
+  const derivedDefaultChecked = getDerivedDefaultChecked()
+  const derivedChecked = getDerivedChecked()
 
   return (
     <Container
@@ -283,8 +303,9 @@ const Checkbox: FC<CheckboxProps> = ({
           $variant={variant}
           required={required}
           disabled={disabled}
-          defaultChecked={defaultChecked}
-          checked={checked}
+          defaultChecked={derivedDefaultChecked}
+          checked={derivedChecked}
+          value={value}
           type="checkbox"
           id={derivedId}
           name={name}
