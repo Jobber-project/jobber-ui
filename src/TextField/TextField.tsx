@@ -5,6 +5,8 @@ import React, {
   ReactNode,
   useRef,
   useEffect,
+  forwardRef,
+  ForwardRefRenderFunction,
 } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 
@@ -408,23 +410,26 @@ type TextFieldProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-const TextField: FC<TextFieldProps> = ({
-  required,
-  disabled,
-  variant = 'default',
-  id,
-  name,
-  type = 'text',
-  className,
-  size = 'medium',
-  label,
-  value,
-  placeholder,
-  helperText,
-  iconAlign,
-  icon,
-  onChange,
-}) => {
+const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
+  {
+    required,
+    disabled,
+    variant = 'default',
+    id,
+    name,
+    type = 'text',
+    className,
+    size = 'medium',
+    label,
+    value,
+    placeholder,
+    helperText,
+    iconAlign,
+    icon,
+    onChange,
+  },
+  ref,
+) => {
   const didMountRef = useRef<boolean>(false)
 
   useEffect(() => {
@@ -478,6 +483,7 @@ const TextField: FC<TextFieldProps> = ({
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
       <InputWrapper>
         <Input
+          ref={ref}
           $icon={!!derivedIcon}
           $variant={variant}
           $size={size}
@@ -512,4 +518,4 @@ const TextField: FC<TextFieldProps> = ({
   )
 }
 
-export default TextField
+export default forwardRef(TextField)

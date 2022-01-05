@@ -1,4 +1,9 @@
-import React, { ChangeEventHandler, FC, ReactNode } from 'react'
+import React, {
+  ChangeEventHandler,
+  forwardRef,
+  ForwardRefRenderFunction,
+  ReactNode,
+} from 'react'
 import styled from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
@@ -250,19 +255,22 @@ type CheckboxProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-const Checkbox: FC<CheckboxProps> = ({
-  required,
-  disabled = false,
-  defaultChecked,
-  checked,
-  value,
-  variant = 'default',
-  id,
-  name,
-  className,
-  label,
-  onChange,
-}: CheckboxProps) => {
+const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
+  {
+    required,
+    disabled = false,
+    defaultChecked,
+    checked,
+    value,
+    variant = 'default',
+    id,
+    name,
+    className,
+    label,
+    onChange,
+  }: CheckboxProps,
+  ref,
+) => {
   function getDerivedId(): string {
     if (id) return id
     if (label && name) return name
@@ -299,6 +307,7 @@ const Checkbox: FC<CheckboxProps> = ({
     >
       <Square>
         <Input
+          ref={ref}
           $disabled={disabled}
           $variant={variant}
           required={required}
@@ -338,4 +347,4 @@ const Checkbox: FC<CheckboxProps> = ({
   )
 }
 
-export default Checkbox
+export default forwardRef(Checkbox)

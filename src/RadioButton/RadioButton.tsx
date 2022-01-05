@@ -1,4 +1,10 @@
-import React, { ChangeEventHandler, FC, ReactNode } from 'react'
+import React, {
+  ChangeEventHandler,
+  FC,
+  forwardRef,
+  ForwardRefRenderFunction,
+  ReactNode,
+} from 'react'
 import styled from 'styled-components'
 
 import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
@@ -248,18 +254,24 @@ type RadioButtonProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-const RadioButton: FC<RadioButtonProps> = ({
-  required,
-  disabled = false,
-  defaultChecked,
-  checked,
-  variant = 'default',
-  id,
-  name,
-  label,
-  className,
-  onChange,
-}) => {
+const RadioButton: ForwardRefRenderFunction<
+  HTMLInputElement,
+  RadioButtonProps
+> = (
+  {
+    required,
+    disabled = false,
+    defaultChecked,
+    checked,
+    variant = 'default',
+    id,
+    name,
+    label,
+    className,
+    onChange,
+  },
+  ref,
+) => {
   function getDerivedId(): string {
     if (id) return id
     if (label && name) return name
@@ -278,6 +290,7 @@ const RadioButton: FC<RadioButtonProps> = ({
     >
       <OuterCircle $disabled={disabled} $variant={variant}>
         <Input
+          ref={ref}
           $disabled={disabled}
           $variant={variant}
           required={required}
@@ -300,4 +313,4 @@ const RadioButton: FC<RadioButtonProps> = ({
   )
 }
 
-export default RadioButton
+export default forwardRef(RadioButton)
