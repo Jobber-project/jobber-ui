@@ -460,7 +460,7 @@ const Text$1 = styled.span `
   overflow: hidden;
   color: ${getLabelColor$1};
 `;
-const Checkbox = ({ required, disabled = false, defaultChecked, checked, variant = 'default', id, name, className, label, onChange, }) => {
+const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, variant = 'default', id, name, className, label, onChange, }) => {
     function getDerivedId() {
         if (id)
             return id;
@@ -470,8 +470,22 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, variant
             return label;
         return Math.random().toString();
     }
+    function getDerivedDefaultChecked() {
+        if (typeof value === 'string' && value.length > 0) {
+            return value === 'on';
+        }
+        return defaultChecked;
+    }
+    function getDerivedChecked() {
+        if (typeof value === 'string' && value.length > 0) {
+            return value === 'on';
+        }
+        return checked;
+    }
     const derivedId = getDerivedId();
-    return (jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    const derivedDefaultChecked = getDerivedDefaultChecked();
+    const derivedChecked = getDerivedChecked();
+    return (jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 
 function getCheckedBackground({ $variant, }) {
