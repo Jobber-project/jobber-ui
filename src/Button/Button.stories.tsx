@@ -100,6 +100,19 @@ export function Error() {
 
 Error.storyName = 'Error'
 
+export function Coach() {
+  return (
+    <Container>
+      <Button variant="coach">Coach</Button>
+      <Button outlined variant="coach">
+        Outlined
+      </Button>
+    </Container>
+  )
+}
+
+Coach.storyName = 'Coach'
+
 export function Disabled() {
   return (
     <Container>
@@ -137,6 +150,18 @@ export function Icon() {
         </Button>
         <Button
           variant="secondary"
+          outlined
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="coach" icon={<SuccessIcon viewBox="0 0 24 24" />}>
+          Icon
+        </Button>
+        <Button
+          variant="coach"
           outlined
           icon={<SuccessIcon viewBox="0 0 24 24" />}
         >
