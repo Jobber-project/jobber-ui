@@ -3,6 +3,7 @@ const COLORS = {
   havelockBlue: '#5971dd',
   electricViolet: '#8d49f7',
   cornflowerBlue: '#6b53ff',
+  royalBlue: '#586EE0',
   mischa: '#dddfe5',
   emerald: '#41c879',
   yellowOrange: '#fda146',
