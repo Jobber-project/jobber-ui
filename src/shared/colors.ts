@@ -16,6 +16,9 @@ const COLORS = {
   charade: '#2b2a35',
   white: '#ffffff',
   black: '#000000',
+  razzleDazzleRose: '#F22CCD',
+  wildStrawberry: '#FF4591',
+  salmon: '#FF8761',
 }
 
 export const PRIMARY_GRADIENT = `linear-gradient(90deg, ${COLORS.electricViolet}, ${COLORS.havelockBlue})`
