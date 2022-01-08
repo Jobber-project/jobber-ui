@@ -51,6 +51,7 @@ const COLORS = {
     havelockBlue: '#5971dd',
     electricViolet: '#8d49f7',
     cornflowerBlue: '#6b53ff',
+    royalBlue: '#586EE0',
     mischa: '#dddfe5',
     emerald: '#41c879',
     yellowOrange: '#fda146',
@@ -63,6 +64,9 @@ const COLORS = {
     charade: '#2b2a35',
     white: '#ffffff',
     black: '#000000',
+    razzleDazzleRose: '#F22CCD',
+    wildStrawberry: '#FF4591',
+    salmon: '#FF8761',
 };
 const PRIMARY_GRADIENT = `linear-gradient(90deg, ${COLORS.electricViolet}, ${COLORS.havelockBlue})`;
 const SECONDARY_GRADIENT = `linear-gradient(90deg, ${COLORS.supernova}, ${COLORS.sunshade})`;
@@ -88,6 +92,8 @@ function getBackgroundColor({ $variant, }) {
             return COLORS.yellowOrange;
         case 'error':
             return COLORS.carnation;
+        case 'coach':
+            return COLORS.royalBlue;
         default:
             return COLORS.white;
     }
@@ -104,6 +110,8 @@ function getTextColor({ $variant, $outlined, }) {
             return $outlined ? COLORS.yellowOrange : COLORS.white;
         case 'error':
             return $outlined ? COLORS.carnation : COLORS.white;
+        case 'coach':
+            return $outlined ? COLORS.royalBlue : COLORS.white;
         case 'default':
         default:
             return COLORS.charade;
@@ -115,6 +123,8 @@ function getIconColor$1({ $variant, $outlined, }) {
             return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
         case 'primary':
             return $outlined ? COLORS.electricViolet : COLORS.white;
+        case 'coach':
+            return $outlined ? COLORS.royalBlue : COLORS.white;
         case 'default':
         default:
             return COLORS.mischa;
@@ -189,9 +199,16 @@ function getOutlinedStyles({ $outlined, }) {
     }
     `);
 }
-function getFilledHoverStyles({ $outlined }) {
-    return (!$outlined &&
-        `
+function getFilledHoverStyles({ $variant, $outlined, }) {
+    if ($outlined)
+        return null;
+    if ($variant === 'coach')
+        return `
+      &:hover {
+        background-color: ${COLORS.havelockBlue};
+      }
+    `;
+    return `
     overflow: hidden;
     z-index: 1;
 
@@ -214,7 +231,7 @@ function getFilledHoverStyles({ $outlined }) {
         transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
       }
     }
-  `);
+  `;
 }
 function getSizes({ $size }) {
     if ($size === 'small')
