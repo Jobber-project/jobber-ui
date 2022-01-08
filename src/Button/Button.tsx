@@ -12,8 +12,45 @@ export type ButtonVariant =
   | 'success'
   | 'warning'
   | 'error'
+  | 'coach'
 
-function getIconSize({ $size }: { $size: ButtonSize }): number {
+type ButtonProps = {
+  /**
+   * Appearance variant
+   */
+  variant?: ButtonVariant
+  /**
+   * Button element type attribute
+   */
+  type?: 'button' | 'submit'
+  /**
+   * Regular onClick handler
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  /**
+   * Button size
+   */
+  size?: ButtonSize
+  className?: string
+  /**
+   * Button outlined
+   */
+  outlined?: boolean
+  /**
+   * Button disabled
+   */
+  disabled?: boolean
+  /**
+   * Button disabled
+   */
+  icon?: ReactNode
+  /**
+   * Button content
+   */
+  children?: ReactNode
+}
+
+function getIconSize({ $size }: { $size: ButtonSize }) {
   switch ($size) {
     case 'large':
       return 24
@@ -40,6 +77,8 @@ function getBackgroundColor({
       return COLORS.yellowOrange
     case 'error':
       return COLORS.carnation
+    case 'coach':
+      return COLORS.royalBlue
     default:
       return COLORS.white
   }
@@ -63,6 +102,8 @@ function getTextColor({
       return $outlined ? COLORS.yellowOrange : COLORS.white
     case 'error':
       return $outlined ? COLORS.carnation : COLORS.white
+    case 'coach':
+      return $outlined ? COLORS.royalBlue : COLORS.white
     case 'default':
     default:
       return COLORS.charade
@@ -82,6 +123,9 @@ function getIconColor({
 
     case 'primary':
       return $outlined ? COLORS.electricViolet : COLORS.white
+
+    case 'coach':
+      return $outlined ? COLORS.royalBlue : COLORS.white
 
     case 'default':
     default:
@@ -177,10 +221,21 @@ function getOutlinedStyles({
   )
 }
 
-function getFilledHoverStyles({ $outlined }: { $outlined?: boolean }): string {
-  return (
-    !$outlined &&
+function getFilledHoverStyles({
+  $variant,
+  $outlined,
+}: {
+  $variant?: ButtonVariant
+  $outlined?: boolean
+}): string {
+  if ($outlined) return null
+  if ($variant === 'coach')
+    return `
+      &:hover {
+        background-color: ${COLORS.havelockBlue};
+      }
     `
+  return `
     overflow: hidden;
     z-index: 1;
 
@@ -204,7 +259,6 @@ function getFilledHoverStyles({ $outlined }: { $outlined?: boolean }): string {
       }
     }
   `
-  )
 }
 
 function getSizes({ $size }: { $size?: ButtonSize }): string {
@@ -324,42 +378,6 @@ const ButtonContainer = styled.button<{
 
   ${getDisabledStyle};
 `
-
-type ButtonProps = {
-  /**
-   * Appearance variant
-   */
-  variant?: ButtonVariant
-  /**
-   * Button element type attribute
-   */
-  type?: 'button' | 'submit'
-  /**
-   * Regular onClick handler
-   */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
-  /**
-   * Button size
-   */
-  size?: ButtonSize
-  className?: string
-  /**
-   * Button outlined
-   */
-  outlined?: boolean
-  /**
-   * Button disabled
-   */
-  disabled?: boolean
-  /**
-   * Button disabled
-   */
-  icon?: ReactNode
-  /**
-   * Button content
-   */
-  children?: ReactNode
-}
 
 const Button: FC<ButtonProps> = ({
   variant = 'default',
