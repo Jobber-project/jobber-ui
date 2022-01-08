@@ -11,9 +11,19 @@ type AvatarProps = {
   alt?: string
   id: string
   name: string
+  className?: string
 }
 
-const getTextSize = ({ size }: AvatarProps): number => {
+type CircleProps = {
+  size: SizeTypes
+  id: string
+}
+
+type TextProps = {
+  size: SizeTypes
+}
+
+const getTextSize = ({ size }: TextProps): number => {
   switch (size) {
     case 'small':
       return 16
@@ -28,7 +38,7 @@ const getTextSize = ({ size }: AvatarProps): number => {
   }
 }
 
-const getCircleSize = ({ size }: AvatarProps): number => {
+const getCircleSize = ({ size }: CircleProps): number => {
   switch (size) {
     case 'small':
       return 32
@@ -43,7 +53,7 @@ const getCircleSize = ({ size }: AvatarProps): number => {
   }
 }
 
-const getColorFromId = ({ id }: AvatarProps): string => {
+const getColorFromId = ({ id }: CircleProps): string => {
   const idAsNumber = parseInt(id, 10)
   const color = idAsNumber % 4
   switch (color) {
@@ -60,7 +70,7 @@ const getColorFromId = ({ id }: AvatarProps): string => {
   }
 }
 
-const Circle = styled.div<AvatarProps>`
+const Circle = styled.div<CircleProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,19 +94,19 @@ const Text = styled.p`
   color: ${COLORS.white};
 `
 
-const Avatar: FC<AvatarProps> = props => {
-  const { src, name, ...rest } = props
+const Avatar: FC<AvatarProps> = ({ src, name, id, size, className }) => {
   const initials = name
     .split(' ')
+    .slice(0, 2)
     .map(n => n[0])
     .join('')
 
   return (
-    <Circle {...props}>
+    <Circle size={size} id={id} className={className}>
       {src ? (
-        <Image src={src} alt={'Avatar'} {...rest} />
+        <Image src={src} alt={'Avatar'} />
       ) : (
-        <Text {...props}>{initials}</Text>
+        <Text size={size}>{initials}</Text>
       )}
     </Circle>
   )

@@ -26,7 +26,7 @@ const Container = styled.div`
 export function Initials() {
   return (
     <Container>
-      <Avatar size="small" id="1" name="Test Testsson" />
+      <Avatar size="small" id="1" name="Test Testsson Testsson" />
       <Avatar size="medium" id="1" name="Test Testsson" />
       <Avatar size="large" id="1" name="Test Testsson" />
       <Avatar size="xlarge" id="1" name="Test Testsson" />
