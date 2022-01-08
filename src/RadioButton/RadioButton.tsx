@@ -250,6 +250,7 @@ type RadioButtonProps = {
   className?: string
   /** Radio button label text */
   label?: string | ReactNode
+  value?: string | number
   /** Radio button onChange event callback */
   onChange?: ChangeEventHandler<HTMLInputElement>
 }
@@ -267,6 +268,7 @@ const RadioButton: ForwardRefRenderFunction<
     id,
     name,
     label,
+    value,
     className,
     onChange,
   },
@@ -300,6 +302,7 @@ const RadioButton: ForwardRefRenderFunction<
           type="radio"
           id={derivedId}
           name={name}
+          value={value}
           onChange={onChange}
         />
         <InnerCircle $variant={variant} />
