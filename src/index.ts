@@ -7,6 +7,7 @@ import TextField, {
   TextFieldSize,
   TextFieldVariant,
 } from './TextField/TextField'
+import Avatar from './Avatar/Avatar'
 
 export type {
   ButtonSize,
@@ -17,4 +18,4 @@ export type {
   TextFieldVariant,
 }
 
-export { GlobalStyle, globalStyle, Button, Checkbox, RadioButton, TextField }
+export { GlobalStyle, globalStyle, Button, Checkbox, RadioButton, TextField, Avatar }
