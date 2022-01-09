@@ -94,7 +94,13 @@ const Text = styled.p`
   color: ${COLORS.white};
 `
 
-const Avatar: FC<AvatarProps> = ({ src, name, id, size, className }) => {
+const Avatar: FC<AvatarProps> = ({
+  src,
+  name,
+  id,
+  size,
+  className,
+}): JSX.Element => {
   const initials = name
     .split(' ')
     .slice(0, 2)
