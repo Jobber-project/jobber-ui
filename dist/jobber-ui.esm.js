@@ -467,7 +467,7 @@ const SquareBorder = styled.span `
     transition: transform 120ms ease-out;
   }
 `;
-const Text$1 = styled.span `
+const Text$2 = styled.span `
   display: block;
   margin-left: 8px;
   font-size: 12px;
@@ -502,7 +502,7 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, 
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$2, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedCheckbox = forwardRef(Checkbox);
 
@@ -653,7 +653,7 @@ const Input$1 = styled.input `
       }
   `}
 `;
-const Text = styled.span `
+const Text$1 = styled.span `
   display: block;
   margin-left: 8px;
   font-size: 12px;
@@ -674,7 +674,7 @@ const RadioButton = ({ required, disabled = false, defaultChecked, checked, vari
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsx(Text, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedRadioButton = forwardRef(RadioButton);
 
@@ -1128,4 +1128,79 @@ const TextField = ({ required, disabled, variant = 'default', id, name, type = '
 };
 const ForwardedTextField = forwardRef(TextField);
 
-export { Button, ForwardedCheckbox as Checkbox, GlobalStyle, ForwardedRadioButton as RadioButton, ForwardedTextField as TextField, globalStyle };
+const getTextSize = ({ size }) => {
+    switch (size) {
+        case 'small':
+            return 16;
+        case 'medium':
+            return 20;
+        case 'large':
+            return 36;
+        case 'xlarge':
+            return 72;
+        default:
+            return 20;
+    }
+};
+const getCircleSize = ({ size }) => {
+    switch (size) {
+        case 'small':
+            return 32;
+        case 'medium':
+            return 40;
+        case 'large':
+            return 72;
+        case 'xlarge':
+            return 144;
+        default:
+            return 40;
+    }
+};
+const getColorFromId = ({ id }) => {
+    const idAsNumber = parseInt(id, 10);
+    const color = idAsNumber % 4;
+    switch (color) {
+        case 0:
+            return `${COLORS.razzleDazzleRose}`;
+        case 1:
+            return `${COLORS.cornflowerBlue}`;
+        case 2:
+            return `${COLORS.wildStrawberry}`;
+        case 3:
+            return `${COLORS.salmon}`;
+        default:
+            return `${COLORS.razzleDazzleRose}`;
+    }
+};
+const Circle = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  width: ${getCircleSize}px;
+  height: ${getCircleSize}px;
+  border-radius: 50%;
+  background-color: ${getColorFromId};
+`;
+const Image = styled.img `
+  width: 100%;
+  height: 100%;
+`;
+const Text = styled.p `
+  margin: 0;
+  font-size: ${getTextSize}px;
+  font-weight: 500;
+  font-family: Roboto, sans-serif;
+  color: ${COLORS.white};
+`;
+const Avatar = ({ src, name, id, size, className, }) => {
+    const initials = name
+        .split(' ')
+        .slice(0, 2)
+        .map(n => n[0])
+        .join('');
+    return (jsx(Circle, Object.assign({ size: size, id: id, className: className }, { children: src ? (jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsx(Text, Object.assign({ size: size }, { children: initials }), void 0)) }), void 0));
+};
+
+export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, ForwardedRadioButton as RadioButton, ForwardedTextField as TextField, globalStyle };

@@ -1831,7 +1831,7 @@
     transition: transform 120ms ease-out;
   }
 `;
-    const Text$1 = styled__default["default"].span `
+    const Text$2 = styled__default["default"].span `
   display: block;
   margin-left: 8px;
   font-size: 12px;
@@ -1866,7 +1866,7 @@
         const derivedId = getDerivedId();
         const derivedDefaultChecked = getDerivedDefaultChecked();
         const derivedChecked = getDerivedChecked();
-        return (jsxRuntime.exports.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(Square, { children: [jsxRuntime.exports.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.exports.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.exports.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.exports.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.exports.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+        return (jsxRuntime.exports.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(Square, { children: [jsxRuntime.exports.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.exports.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.exports.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.exports.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.exports.jsx(Text$2, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
     };
     const ForwardedCheckbox = React.forwardRef(Checkbox);
 
@@ -2017,7 +2017,7 @@
       }
   `}
 `;
-    const Text = styled__default["default"].span `
+    const Text$1 = styled__default["default"].span `
   display: block;
   margin-left: 8px;
   font-size: 12px;
@@ -2038,7 +2038,7 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.exports.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsxRuntime.exports.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.exports.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsxRuntime.exports.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.exports.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
     };
     const ForwardedRadioButton = React.forwardRef(RadioButton);
 
@@ -2492,6 +2492,82 @@
     };
     const ForwardedTextField = React.forwardRef(TextField);
 
+    const getTextSize = ({ size }) => {
+        switch (size) {
+            case 'small':
+                return 16;
+            case 'medium':
+                return 20;
+            case 'large':
+                return 36;
+            case 'xlarge':
+                return 72;
+            default:
+                return 20;
+        }
+    };
+    const getCircleSize = ({ size }) => {
+        switch (size) {
+            case 'small':
+                return 32;
+            case 'medium':
+                return 40;
+            case 'large':
+                return 72;
+            case 'xlarge':
+                return 144;
+            default:
+                return 40;
+        }
+    };
+    const getColorFromId = ({ id }) => {
+        const idAsNumber = parseInt(id, 10);
+        const color = idAsNumber % 4;
+        switch (color) {
+            case 0:
+                return `${COLORS.razzleDazzleRose}`;
+            case 1:
+                return `${COLORS.cornflowerBlue}`;
+            case 2:
+                return `${COLORS.wildStrawberry}`;
+            case 3:
+                return `${COLORS.salmon}`;
+            default:
+                return `${COLORS.razzleDazzleRose}`;
+        }
+    };
+    const Circle = styled__default["default"].div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  width: ${getCircleSize}px;
+  height: ${getCircleSize}px;
+  border-radius: 50%;
+  background-color: ${getColorFromId};
+`;
+    const Image = styled__default["default"].img `
+  width: 100%;
+  height: 100%;
+`;
+    const Text = styled__default["default"].p `
+  margin: 0;
+  font-size: ${getTextSize}px;
+  font-weight: 500;
+  font-family: Roboto, sans-serif;
+  color: ${COLORS.white};
+`;
+    const Avatar = ({ src, name, id, size, className, }) => {
+        const initials = name
+            .split(' ')
+            .slice(0, 2)
+            .map(n => n[0])
+            .join('');
+        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ size: size }, { children: initials }), void 0)) }), void 0));
+    };
+
+    exports.Avatar = Avatar;
     exports.Button = Button;
     exports.Checkbox = ForwardedCheckbox;
     exports.GlobalStyle = GlobalStyle;
