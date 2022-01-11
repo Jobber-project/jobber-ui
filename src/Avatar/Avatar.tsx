@@ -9,8 +9,8 @@ type AvatarProps = {
   size: SizeTypes
   src?: string
   alt?: string
-  id: string
-  name: string
+  id?: string
+  name?: string
   className?: string
 }
 
@@ -66,7 +66,7 @@ const getColorFromId = ({ id }: CircleProps): string => {
     case 3:
       return `${COLORS.salmon}`
     default:
-      return `${COLORS.razzleDazzleRose}`
+      return `${COLORS.mischa}`
   }
 }
 
@@ -86,17 +86,17 @@ const Image = styled.img`
   height: 100%;
 `
 
-const Text = styled.p`
+const Text = styled.p<CircleProps>`
   margin: 0;
   font-size: ${getTextSize}px;
   font-weight: 500;
   font-family: Roboto, sans-serif;
-  color: ${COLORS.white};
+  color: ${props => (props.id ? COLORS.white : COLORS.charade)};
 `
 
 const Avatar: FC<AvatarProps> = ({
   src,
-  name,
+  name = 'N N',
   id,
   size,
   className,
@@ -112,7 +112,9 @@ const Avatar: FC<AvatarProps> = ({
       {src ? (
         <Image src={src} alt={'Avatar'} />
       ) : (
-        <Text size={size}>{initials}</Text>
+        <Text id={id} size={size}>
+          {initials}
+        </Text>
       )}
     </Circle>
   )
