@@ -29,7 +29,7 @@ export function Initials() {
       <Avatar size="small" id="1" name="Test Testsson Testsson" />
       <Avatar size="medium" id="1" name="Test Testsson" />
       <Avatar size="large" id="1" name="Test Testsson" />
-      <Avatar size="xlarge" id="1" name="Test Testsson" />
+      <Avatar size="xlarge" id="1" />
     </Container>
   )
 }
@@ -73,24 +73,28 @@ export function Colors() {
         <Avatar size="small" id="2" name="Test Testsson" />
         <Avatar size="small" id="3" name="Test Testsson" />
         <Avatar size="small" id="4" name="Test Testsson" />
+        <Avatar size="small" />
       </Container>
       <Container>
         <Avatar size="medium" id="1" name="Test Testsson" />
         <Avatar size="medium" id="2" name="Test Testsson" />
         <Avatar size="medium" id="3" name="Test Testsson" />
         <Avatar size="medium" id="4" name="Test Testsson" />
+        <Avatar size="medium" />
       </Container>
       <Container>
         <Avatar size="large" id="1" name="Test Testsson" />
         <Avatar size="large" id="2" name="Test Testsson" />
         <Avatar size="large" id="3" name="Test Testsson" />
         <Avatar size="large" id="4" name="Test Testsson" />
+        <Avatar size="large" />
       </Container>
       <Container>
         <Avatar size="xlarge" id="1" name="Test Testsson" />
         <Avatar size="xlarge" id="2" name="Test Testsson" />
         <Avatar size="xlarge" id="3" name="Test Testsson" />
         <Avatar size="xlarge" id="4" name="Test Testsson" />
+        <Avatar size="xlarge" />
       </Container>
     </>
   )
