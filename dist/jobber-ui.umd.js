@@ -2533,7 +2533,7 @@
             case 3:
                 return `${COLORS.salmon}`;
             default:
-                return `${COLORS.razzleDazzleRose}`;
+                return `${COLORS.mischa}`;
         }
     };
     const Circle = styled__default["default"].div `
@@ -2556,15 +2556,15 @@
   font-size: ${getTextSize}px;
   font-weight: 500;
   font-family: Roboto, sans-serif;
-  color: ${COLORS.white};
+  color: ${props => (props.id ? COLORS.white : COLORS.charade)};
 `;
-    const Avatar = ({ src, name, id, size, className, }) => {
+    const Avatar = ({ src, name = 'N N', id, size, className, }) => {
         const initials = name
             .split(' ')
             .slice(0, 2)
             .map(n => n[0])
             .join('');
-        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ size: size }, { children: initials }), void 0)) }), void 0));
+        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ id: id, size: size }, { children: initials }), void 0)) }), void 0));
     };
 
     exports.Avatar = Avatar;
