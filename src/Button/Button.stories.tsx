@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 // @ts-ignore
 import SuccessIcon from '../shared/icons/circle-check.svg'
+import COLORS from '../shared/colors'
 
 import Button from './Button'
 
@@ -316,10 +317,10 @@ Disabled.storyName = 'Disabled'
 export function Loading() {
   return (
     <Container>
-      <Button fluid loading>
+      <Button fluid loading spinnerColor={COLORS.emerald}>
         Loading
       </Button>
-      <Button fluid loading size="large">
+      <Button fluid loading size="large" spinnerColor={COLORS.emerald}>
         Loading
       </Button>
       <Button fluid loading variant="primary">

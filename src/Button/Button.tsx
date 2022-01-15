@@ -55,6 +55,8 @@ type ButtonProps = {
   fluid?: boolean
   /** Whether or not button should show spinner and disable clicks */
   loading?: boolean
+  /** Override spinner color to use instead of text color */
+  spinnerColor?: string
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -115,6 +117,18 @@ function getTextColor({
     default:
       return COLORS.charade
   }
+}
+
+function getSpinnerColor({
+  $variant,
+  $outlined,
+  $spinnerColor,
+}: {
+  $variant?: ButtonVariant
+  $outlined: boolean
+  $spinnerColor?: string
+}): string {
+  return $spinnerColor ?? getTextColor({ $variant, $outlined })
 }
 
 function getIconColor({
@@ -214,11 +228,13 @@ const ChildrenWrapper = styled(InnerWrapper)<{
 const StyledSpinner = styled(Spinner).attrs<{
   $variant: ButtonVariant
   $outlined: boolean
+  $spinnerColor?: string
 }>(props => ({
-  color: getTextColor(props),
+  color: getSpinnerColor(props),
 }))<{
   $variant: ButtonVariant
   $outlined: boolean
+  $spinnerColor?: string
 }>`
   display: flex;
   flex-direction: column;
@@ -440,6 +456,7 @@ const Button: FC<ButtonProps> = ({
   fluid = false,
   loading = false,
   icon = null,
+  spinnerColor,
   children,
 }) => {
   const derivedDisabled = disabled || loading
@@ -479,7 +496,12 @@ const Button: FC<ButtonProps> = ({
       </ChildrenWrapper>
       {loading && (
         <InnerWrapper>
-          <StyledSpinner $variant={variant} $outlined={outlined} size="small" />
+          <StyledSpinner
+            $variant={variant}
+            $outlined={outlined}
+            $spinnerColor={spinnerColor}
+            size="small"
+          />
         </InnerWrapper>
       )}
     </ButtonContainer>
