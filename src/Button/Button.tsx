@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
-import { Spinner } from '..'
+import Spinner from '../Spinner/Spinner'
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 
