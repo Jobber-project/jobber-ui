@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
-import COLORS, { PRIMARY_GRADIENT, SECONDARY_GRADIENT } from '../shared/colors'
+import COLORS from '../shared/colors'
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 
@@ -48,6 +48,10 @@ type ButtonProps = {
    * Button content
    */
   children?: ReactNode
+  /**
+   * Button flex state
+   */
+  fluid?: boolean
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -68,9 +72,9 @@ function getBackgroundColor({
 }): string {
   switch ($variant) {
     case 'primary':
-      return PRIMARY_GRADIENT
+      return COLORS.primaryGradient
     case 'secondary':
-      return SECONDARY_GRADIENT
+      return COLORS.secondaryGradient
     case 'success':
       return COLORS.emerald
     case 'warning':
@@ -93,7 +97,7 @@ function getTextColor({
 }): string {
   switch ($variant) {
     case 'secondary':
-      return $outlined ? COLORS.supernova : COLORS.persianIndigo
+      return $outlined ? COLORS.sunshade : COLORS.persianIndigo
     case 'primary':
       return $outlined ? COLORS.electricViolet : COLORS.white
     case 'success':
@@ -133,7 +137,7 @@ function getIconColor({
   }
 }
 
-function getIconPadding({ $size }: { $size: ButtonSize }): number {
+function getIconLeftPosition({ $size }: { $size: ButtonSize }): number {
   switch ($size) {
     case 'large':
       return 24
@@ -144,20 +148,34 @@ function getIconPadding({ $size }: { $size: ButtonSize }): number {
   }
 }
 
+function getIconFluidStyling({
+  $size,
+  fluid,
+}: {
+  $size: ButtonSize
+  fluid: boolean
+}): string {
+  if (!fluid) return `padding-right: 8px;`
+  return `
+    position: absolute;
+    left: ${getIconLeftPosition({ $size })}px;
+  `
+}
+
 const IconWrapper = styled.div<{
   $variant: ButtonVariant
   $size: ButtonSize
   $outlined: boolean
+  fluid: boolean
 }>`
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: ${getIconPadding}px;
   display: flex;
   align-items: center;
-  color: ${getIconColor};
+  justify-content: center;
+  z-index: 2;
   pointer-events: none;
+
+  ${getIconFluidStyling}
+  color: ${getIconColor};
 
   & svg {
     width: ${getIconSize}px;
@@ -170,30 +188,14 @@ const ChildrenWrapper = styled.div<{
   $outlined: boolean
 }>`
   z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
   color: ${getTextColor};
 `
 
-function getOutlinedStyles({
-  $outlined,
-}: {
-  $outlined?: boolean
-  $variant?: ButtonVariant
-}): string {
+function getOutlinedStyles({ $outlined }: { $outlined?: boolean }): string {
   return (
     $outlined &&
     `
-    display: inline-block;
-    position: relative;
+    display: flex;
     z-index: 1;
     &::before {
       content: '';
@@ -341,21 +343,19 @@ function getBorderStyle({
   }
 }
 
-const ButtonWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-`
-
 const ButtonContainer = styled.button<{
   $variant?: ButtonVariant
   $size?: ButtonSize
   $outlined: boolean
   icon: boolean
+  fluid: boolean
 }>`
   cursor: pointer;
   position: relative;
+  display: flex;
+  width: ${({ fluid }) => (fluid ? '100%' : 'auto')};
+  align-items: center;
+  justify-content: center;
   appearance: none;
   border-radius: 8px;
   font-style: normal;
@@ -387,40 +387,42 @@ const Button: FC<ButtonProps> = ({
   className,
   outlined = false,
   disabled = false,
+  fluid = false,
   icon = null,
   children,
 }) => {
   return (
-    <ButtonWrapper className={className}>
+    <ButtonContainer
+      className={className}
+      $variant={variant}
+      type={type}
+      onClick={onClick}
+      $size={size}
+      $outlined={outlined}
+      disabled={disabled}
+      icon={!!icon}
+      fluid={fluid}
+    >
       {!!icon && (
         <IconWrapper
           $outlined={outlined}
           $variant={variant}
           $size={size}
           key={variant}
+          fluid={fluid}
         >
           {icon}
         </IconWrapper>
       )}
-      <ButtonContainer
-        $variant={variant}
-        type={type}
-        onClick={onClick}
-        $size={size}
+      <ChildrenWrapper
         $outlined={outlined}
-        disabled={disabled}
-        icon={!!icon}
+        $variant={variant}
+        $size={size}
+        key={variant}
       >
-        <ChildrenWrapper
-          $outlined={outlined}
-          $variant={variant}
-          $size={size}
-          key={variant}
-        >
-          {children}
-        </ChildrenWrapper>
-      </ButtonContainer>
-    </ButtonWrapper>
+        {children}
+      </ChildrenWrapper>
+    </ButtonContainer>
   )
 }
 
