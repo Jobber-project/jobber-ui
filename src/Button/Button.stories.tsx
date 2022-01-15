@@ -13,6 +13,17 @@ const Container = styled.div`
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
 
+  & > button {
+    margin-top: 20px;
+  }
+`
+
+const DefaultContainer = styled(Container)`
+  min-width: 333px;
+  width: 333px;
+  background-color: #7b61ff;
+  padding: 50px 20px;
+
   & > div + div {
     margin-top: 20px;
   }
@@ -26,23 +37,43 @@ Intro.storyName = 'Intro'
 
 export function Default() {
   return (
-    <Container>
-      <Button variant="default">Default</Button>
-      <Button outlined variant="default">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <DefaultContainer>
+        <Button fluid variant="default">
+          Default fluid
+        </Button>
+        <Button fluid outlined variant="default">
+          Outlined fluid
+        </Button>
+      </DefaultContainer>
+      <DefaultContainer>
+        <Button variant="default">Default</Button>
+        <Button outlined variant="default">
+          Outlined
+        </Button>
+      </DefaultContainer>
+    </>
   )
 }
 
 export function Primary() {
   return (
-    <Container>
-      <Button variant="primary">Primary</Button>
-      <Button outlined variant="primary">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="primary">
+          Primary fluid
+        </Button>
+        <Button fluid outlined variant="primary">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="primary">Primary</Button>
+        <Button outlined variant="primary">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -50,12 +81,22 @@ Primary.storyName = 'Primary'
 
 export function Secondary() {
   return (
-    <Container>
-      <Button variant="secondary">Secondary</Button>
-      <Button outlined variant="secondary">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="secondary">
+          Secondary fluid
+        </Button>
+        <Button fluid outlined variant="secondary">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="secondary">Secondary</Button>
+        <Button outlined variant="secondary">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -63,12 +104,22 @@ Secondary.storyName = 'Secondary'
 
 export function Success() {
   return (
-    <Container>
-      <Button variant="success">Success</Button>
-      <Button outlined variant="success">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="success">
+          Success fluid
+        </Button>
+        <Button fluid outlined variant="success">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="success">Success</Button>
+        <Button outlined variant="success">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -76,12 +127,22 @@ Success.storyName = 'Success'
 
 export function Warning() {
   return (
-    <Container>
-      <Button variant="warning">Warning</Button>
-      <Button outlined variant="warning">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="warning">
+          Warning fluid
+        </Button>
+        <Button fluid outlined variant="warning">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="warning">Warning</Button>
+        <Button outlined variant="warning">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -89,12 +150,22 @@ Warning.storyName = 'Warning'
 
 export function Error() {
   return (
-    <Container>
-      <Button variant="error">Error</Button>
-      <Button outlined variant="error">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="error">
+          Error fluid
+        </Button>
+        <Button fluid outlined variant="error">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="error">Error</Button>
+        <Button outlined variant="error">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -102,12 +173,22 @@ Error.storyName = 'Error'
 
 export function Coach() {
   return (
-    <Container>
-      <Button variant="coach">Coach</Button>
-      <Button outlined variant="coach">
-        Outlined
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid variant="coach">
+          Coach fluid
+        </Button>
+        <Button fluid outlined variant="coach">
+          Outlined fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button variant="coach">Coach</Button>
+        <Button outlined variant="coach">
+          Outlined
+        </Button>
+      </Container>
+    </>
   )
 }
 
@@ -115,9 +196,16 @@ Coach.storyName = 'Coach'
 
 export function Disabled() {
   return (
-    <Container>
-      <Button disabled>Disabled</Button>
-    </Container>
+    <>
+      <Container>
+        <Button fluid disabled>
+          Disabled fluid
+        </Button>
+      </Container>
+      <Container>
+        <Button disabled>Disabled</Button>
+      </Container>
+    </>
   )
 }
 
@@ -127,12 +215,33 @@ export function Icon() {
   return (
     <>
       <Container>
+        <Button fluid icon={<SuccessIcon viewBox="0 0 24 24" />}>
+          Icon fluid
+        </Button>
+        <Button fluid outlined icon={<SuccessIcon viewBox="0 0 24 24" />}>
+          Icon fluid
+        </Button>
         <Button icon={<SuccessIcon viewBox="0 0 24 24" />}>Icon</Button>
         <Button outlined icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Icon
         </Button>
       </Container>
       <Container>
+        <Button
+          fluid
+          variant="primary"
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
+        <Button
+          fluid
+          variant="primary"
+          outlined
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
         <Button variant="primary" icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Icon
         </Button>
@@ -145,6 +254,21 @@ export function Icon() {
         </Button>
       </Container>
       <Container>
+        <Button
+          fluid
+          variant="secondary"
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
+        <Button
+          fluid
+          variant="secondary"
+          outlined
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
         <Button variant="secondary" icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Icon
         </Button>
@@ -157,6 +281,21 @@ export function Icon() {
         </Button>
       </Container>
       <Container>
+        <Button
+          fluid
+          variant="coach"
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
+        <Button
+          fluid
+          variant="coach"
+          outlined
+          icon={<SuccessIcon viewBox="0 0 24 24" />}
+        >
+          Icon fluid
+        </Button>
         <Button variant="coach" icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Icon
         </Button>
