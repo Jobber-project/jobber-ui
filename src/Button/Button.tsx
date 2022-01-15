@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
-import COLORS, { PRIMARY_GRADIENT, SECONDARY_GRADIENT } from '../shared/colors'
+import COLORS from '../shared/colors'
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 
@@ -72,9 +72,9 @@ function getBackgroundColor({
 }): string {
   switch ($variant) {
     case 'primary':
-      return PRIMARY_GRADIENT
+      return COLORS.primaryGradient
     case 'secondary':
-      return SECONDARY_GRADIENT
+      return COLORS.secondaryGradient
     case 'success':
       return COLORS.emerald
     case 'warning':

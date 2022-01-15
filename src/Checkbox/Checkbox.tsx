@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 
-import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
+import COLORS from '../shared/colors'
 
 export type CheckboxVariant = 'default' | 'primary' | 'error'
 
@@ -43,7 +43,7 @@ function getCheckedBackground({
 }) {
   switch ($variant) {
     case 'primary':
-      return $disabled ? PRIMARY_GRADIENT : undefined
+      return $disabled ? COLORS.primaryGradient : undefined
 
     case 'default':
     default:
@@ -209,7 +209,7 @@ const SquareBorder = styled.span<{
     !props.$disabled &&
     `
     border-width: 0;
-    background: ${PRIMARY_GRADIENT};
+    background: ${COLORS.primaryGradient};
   `}
 
   &::before {

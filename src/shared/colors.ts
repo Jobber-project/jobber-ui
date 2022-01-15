@@ -1,5 +1,7 @@
+import { ColorTypes } from '../types/colorTypes'
+
 // https://chir.ag/projects/name-that-color/#6B53FF
-const COLORS = {
+const COLORS: ColorTypes = {
   havelockBlue: '#5971dd',
   electricViolet: '#8d49f7',
   cornflowerBlue: '#6b53ff',
@@ -19,8 +21,9 @@ const COLORS = {
   razzleDazzleRose: '#F22CCD',
   wildStrawberry: '#FF4591',
   salmon: '#FF8761',
+  primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
+  secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 }
-
 export const PRIMARY_GRADIENT = `linear-gradient(90deg, ${COLORS.electricViolet}, ${COLORS.havelockBlue})`
 export const SECONDARY_GRADIENT = `linear-gradient(90deg, ${COLORS.supernova}, ${COLORS.sunshade})`
 
