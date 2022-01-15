@@ -8,6 +8,7 @@ import TextField, {
   TextFieldVariant,
 } from './TextField/TextField'
 import Avatar from './Avatar/Avatar'
+import Spinner, { SpinnerSize } from './Spinner/Spinner'
 
 export type {
   ButtonSize,
@@ -16,6 +17,16 @@ export type {
   TextFieldIconAlign,
   TextFieldSize,
   TextFieldVariant,
+  SpinnerSize,
 }
 
-export { GlobalStyle, globalStyle, Button, Checkbox, RadioButton, TextField, Avatar }
+export {
+  GlobalStyle,
+  globalStyle,
+  Button,
+  Checkbox,
+  RadioButton,
+  TextField,
+  Avatar,
+  Spinner,
+}
