@@ -1,4 +1,4 @@
-import { ColorTypes } from '../types/colorTypes'
+import { ColorTypes } from '../types/colors'
 
 // https://chir.ag/projects/name-that-color/#6B53FF
 const COLORS: ColorTypes = {

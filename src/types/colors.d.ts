@@ -1,8 +1,7 @@
-// https://chir.ag/projects/name-that-color/#6B53FF
 export type ColorTypes = {
   havelockBlue: string
   electricViolet: string
-  cornflowerBlue: '#6b53ff'
+  cornflowerBlue: string
   royalBlue: string
   mischa: string
   emerald: string
