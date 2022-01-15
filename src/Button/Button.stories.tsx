@@ -313,6 +313,31 @@ export function Icon() {
 
 Disabled.storyName = 'Disabled'
 
+export function Loading() {
+  return (
+    <Container>
+      <Button fluid loading>
+        Loading
+      </Button>
+      <Button fluid loading size="large">
+        Loading
+      </Button>
+      <Button fluid loading variant="primary">
+        Loading
+      </Button>
+      <Button fluid loading variant="primary" size="large">
+        Loading
+      </Button>
+      <Button fluid loading variant="success">
+        Loading
+      </Button>
+      <Button fluid loading variant="success" size="large">
+        Loading
+      </Button>
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof Button> = {
   title: 'Design System/Button',
   component: Button,
