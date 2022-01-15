@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 
-import COLORS, { PRIMARY_GRADIENT } from '../shared/colors'
+import COLORS from '../shared/colors'
 
 type RadioButtonVariant = 'default' | 'primary' | 'error'
 
@@ -67,7 +67,7 @@ function getOutlerCircleBackground({
 }): string {
   switch ($variant) {
     case 'primary':
-      return PRIMARY_GRADIENT
+      return COLORS.primaryGradient
 
     case 'default':
     default:

@@ -40,9 +40,9 @@ const COLORS = {
     razzleDazzleRose: '#F22CCD',
     wildStrawberry: '#FF4591',
     salmon: '#FF8761',
+    primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
+    secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
-const PRIMARY_GRADIENT = `linear-gradient(90deg, ${COLORS.electricViolet}, ${COLORS.havelockBlue})`;
-const SECONDARY_GRADIENT = `linear-gradient(90deg, ${COLORS.supernova}, ${COLORS.sunshade})`;
 
 function getIconSize$1({ $size }) {
     switch ($size) {
@@ -56,9 +56,9 @@ function getIconSize$1({ $size }) {
 function getBackgroundColor({ $variant, }) {
     switch ($variant) {
         case 'primary':
-            return PRIMARY_GRADIENT;
+            return COLORS.primaryGradient;
         case 'secondary':
-            return SECONDARY_GRADIENT;
+            return COLORS.secondaryGradient;
         case 'success':
             return COLORS.emerald;
         case 'warning':
@@ -74,7 +74,7 @@ function getBackgroundColor({ $variant, }) {
 function getTextColor({ $variant, $outlined, }) {
     switch ($variant) {
         case 'secondary':
-            return $outlined ? COLORS.supernova : COLORS.persianIndigo;
+            return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
         case 'primary':
             return $outlined ? COLORS.electricViolet : COLORS.white;
         case 'success':
@@ -103,7 +103,7 @@ function getIconColor$1({ $variant, $outlined, }) {
             return COLORS.mischa;
     }
 }
-function getIconPadding({ $size }) {
+function getIconLeftPosition({ $size }) {
     switch ($size) {
         case 'large':
             return 24;
@@ -112,16 +112,23 @@ function getIconPadding({ $size }) {
             return 20;
     }
 }
+function getIconFluidStyling({ $size, fluid, }) {
+    if (!fluid)
+        return `padding-right: 8px;`;
+    return `
+    position: absolute;
+    left: ${getIconLeftPosition({ $size })}px;
+  `;
+}
 const IconWrapper$1 = styled.div `
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: ${getIconPadding}px;
   display: flex;
   align-items: center;
-  color: ${getIconColor$1};
+  justify-content: center;
+  z-index: 2;
   pointer-events: none;
+
+  ${getIconFluidStyling}
+  color: ${getIconColor$1};
 
   & svg {
     width: ${getIconSize$1}px;
@@ -130,23 +137,12 @@ const IconWrapper$1 = styled.div `
 `;
 const ChildrenWrapper = styled.div `
   z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
   color: ${getTextColor};
 `;
-function getOutlinedStyles({ $outlined, }) {
+function getOutlinedStyles({ $outlined }) {
     return ($outlined &&
         `
-    display: inline-block;
-    position: relative;
+    display: flex;
     z-index: 1;
     &::before {
       content: '';
@@ -268,15 +264,13 @@ function getBorderStyle({ $outlined, $variant, }) {
             return '';
     }
 }
-const ButtonWrapper = styled.div `
-  position: relative;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-`;
 const ButtonContainer = styled.button `
   cursor: pointer;
   position: relative;
+  display: flex;
+  width: ${({ fluid }) => (fluid ? '100%' : 'auto')};
+  align-items: center;
+  justify-content: center;
   appearance: none;
   border-radius: 8px;
   font-style: normal;
@@ -299,8 +293,8 @@ const ButtonContainer = styled.button `
 
   ${getDisabledStyle};
 `;
-const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, icon = null, children, }) => {
-    return (jsxs(ButtonWrapper, Object.assign({ className: className }, { children: [!!icon && (jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: icon }), variant)), jsx(ButtonContainer, Object.assign({ "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon }, { children: jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: children }), variant) }), void 0)] }), void 0));
+const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, fluid = false, icon = null, children, }) => {
+    return (jsxs(ButtonContainer, Object.assign({ className: className, "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid }, { children: [!!icon && (jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), variant)), jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size }, { children: children }), variant)] }), void 0));
 };
 
 function getBackground({ $disabled }) {
@@ -320,7 +314,7 @@ function getStroke({ $disabled, $variant, }) {
 function getCheckedBackground$1({ $disabled, $variant, }) {
     switch ($variant) {
         case 'primary':
-            return $disabled ? PRIMARY_GRADIENT : undefined;
+            return $disabled ? COLORS.primaryGradient : undefined;
         case 'default':
         default:
             return undefined;
@@ -452,7 +446,7 @@ const SquareBorder = styled.span `
     !props.$disabled &&
     `
     border-width: 0;
-    background: ${PRIMARY_GRADIENT};
+    background: ${COLORS.primaryGradient};
   `}
 
   &::before {
@@ -530,7 +524,7 @@ function getBorderColor({ $variant, }) {
 function getOutlerCircleBackground({ $variant, }) {
     switch ($variant) {
         case 'primary':
-            return PRIMARY_GRADIENT;
+            return COLORS.primaryGradient;
         case 'default':
         default:
             return COLORS.white;
