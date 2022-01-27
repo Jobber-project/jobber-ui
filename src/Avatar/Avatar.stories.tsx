@@ -40,25 +40,25 @@ export function Image() {
       <Avatar
         size="small"
         src="https://i.pravatar.cc/144"
-        id="1"
+        id="086090e8-802d-4286-a29e-ce3ee0b15941"
         name="Test Testsson"
       />
       <Avatar
         size="medium"
         src="https://i.pravatar.cc/144"
-        id="1"
+        id="1fdb6be2-5d6e-46c3-a921-8504a74383bc"
         name="Test Testsson"
       />
       <Avatar
         size="large"
         src="https://i.pravatar.cc/144"
-        id="1"
+        id="c950bfc4-d2f7-4116-bb24-42f445efaf30"
         name="Test Testsson"
       />
       <Avatar
         size="xlarge"
         src="https://i.pravatar.cc/144"
-        id="1"
+        id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
         name="Test Testsson"
       />
     </Container>
@@ -69,17 +69,49 @@ export function Colors() {
   return (
     <>
       <Container>
-        <Avatar size="small" id="1" name="Test Testsson" />
-        <Avatar size="small" id="2" name="Test Testsson" />
-        <Avatar size="small" id="3" name="Test Testsson" />
-        <Avatar size="small" id="4" name="Test Testsson" />
+        <Avatar
+          size="small"
+          id="086090e8-802d-4286-a29e-ce3ee0b15941"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="small"
+          id="1fdb6be2-5d6e-46c3-a921-8504a74383bc"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="small"
+          id="c950bfc4-d2f7-4116-bb24-42f445efaf30"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="small"
+          id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
+          name="Test Testsson"
+        />
         <Avatar size="small" />
       </Container>
       <Container>
-        <Avatar size="medium" id="1" name="Test Testsson" />
-        <Avatar size="medium" id="2" name="Test Testsson" />
-        <Avatar size="medium" id="3" name="Test Testsson" />
-        <Avatar size="medium" id="4" name="Test Testsson" />
+        <Avatar
+          size="medium"
+          id="086090e8-802d-4286-a29e-ce3ee0b15941"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="medium"
+          id="1fdb6be2-5d6e-46c3-a921-8504a74383bc"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="medium"
+          id="c950bfc4-d2f7-4116-bb24-42f445efaf30"
+          name="Test Testsson"
+        />
+        <Avatar
+          size="medium"
+          id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
+          name="Test Testsson"
+        />
         <Avatar size="medium" />
       </Container>
       <Container>
