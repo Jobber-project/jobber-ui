@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
+import Spinner from '../Spinner/Spinner'
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 
@@ -41,7 +42,7 @@ type ButtonProps = {
    */
   disabled?: boolean
   /**
-   * Button disabled
+   * Button icon
    */
   icon?: ReactNode
   /**
@@ -52,6 +53,10 @@ type ButtonProps = {
    * Button flex state
    */
   fluid?: boolean
+  /** Whether or not button should show spinner and disable clicks */
+  loading?: boolean
+  /** Override spinner color to use instead of text color */
+  spinnerColor?: string
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -112,6 +117,18 @@ function getTextColor({
     default:
       return COLORS.charade
   }
+}
+
+function getSpinnerColor({
+  $variant,
+  $outlined,
+  $spinnerColor,
+}: {
+  $variant?: ButtonVariant
+  $outlined: boolean
+  $spinnerColor?: string
+}): string {
+  return $spinnerColor ?? getTextColor({ $variant, $outlined })
 }
 
 function getIconColor({
@@ -180,13 +197,46 @@ const IconWrapper = styled.div<{
     height: ${getIconSize}px;
   }
 `
+
+const InnerWrapper = styled.span`
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`
+
 const ChildrenWrapper = styled.div<{
   $variant: ButtonVariant
   $size: ButtonSize
   $outlined: boolean
+  $loading: boolean
 }>`
   z-index: 2;
   color: ${getTextColor};
+  ${props => props.$loading && 'opacity: 0;'}
+`
+
+const StyledSpinner = styled(Spinner).attrs<{
+  $variant: ButtonVariant
+  $outlined: boolean
+  $spinnerColor?: string
+}>(props => ({
+  color: getSpinnerColor(props),
+}))<{
+  $variant: ButtonVariant
+  $outlined: boolean
+  $spinnerColor?: string
+}>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 function getOutlinedStyles({ $outlined }: { $outlined?: boolean }): string {
@@ -224,11 +274,13 @@ function getOutlinedStyles({ $outlined }: { $outlined?: boolean }): string {
 function getFilledHoverStyles({
   $variant,
   $outlined,
+  $loading,
 }: {
   $variant?: ButtonVariant
   $outlined?: boolean
+  $loading: boolean
 }): string {
-  if ($outlined) return null
+  if ($outlined || $loading) return ''
   if ($variant === 'coach')
     return `
       &:hover {
@@ -312,14 +364,27 @@ function getIconStyles({
   `
 }
 
-function getDisabledStyle({ disabled }: { disabled?: boolean }): string {
-  if (!disabled) return ''
-  return `
+function getDisabledStyle({
+  disabled,
+  $loading,
+}: {
+  disabled?: boolean
+  $loading: boolean
+}): string {
+  if ($loading) {
+    return `
+      cursor: not-allowed! important;
+    `
+  }
+
+  return disabled
+    ? `
     background: ${COLORS.alabster};
     color: ${COLORS.silverChalice};
     border: 1px solid ${COLORS.mischa};
     cursor: not-allowed! important;
   `
+    : ''
 }
 
 function getBorderStyle({
@@ -347,6 +412,7 @@ const ButtonContainer = styled.button<{
   $outlined: boolean
   icon: boolean
   fluid: boolean
+  $loading: boolean
 }>`
   cursor: pointer;
   position: relative;
@@ -387,9 +453,12 @@ const Button: FC<ButtonProps> = ({
   outlined = false,
   disabled = false,
   fluid = false,
+  loading = false,
   icon = null,
+  spinnerColor,
   children,
 }) => {
+  const derivedDisabled = disabled || loading
   return (
     <div>
       <ButtonContainer
@@ -402,6 +471,7 @@ const Button: FC<ButtonProps> = ({
         disabled={disabled}
         icon={!!icon}
         fluid={fluid}
+        $loading={loading}
       >
         {!!icon && (
           <IconWrapper
@@ -419,9 +489,20 @@ const Button: FC<ButtonProps> = ({
           $variant={variant}
           $size={size}
           key={variant}
+          $loading={loading}
         >
           {children}
         </ChildrenWrapper>
+        {loading && (
+          <InnerWrapper>
+            <StyledSpinner
+              $variant={variant}
+              $outlined={outlined}
+              $spinnerColor={spinnerColor}
+              size="small"
+            />
+          </InnerWrapper>
+        )}
       </ButtonContainer>
     </div>
   )

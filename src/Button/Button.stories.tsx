@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 // @ts-ignore
 import SuccessIcon from '../shared/icons/circle-check.svg'
+import COLORS from '../shared/colors'
 
 import Button from './Button'
 
@@ -314,6 +315,31 @@ export function Icon() {
 }
 
 Disabled.storyName = 'Disabled'
+
+export function Loading() {
+  return (
+    <Container>
+      <Button fluid loading spinnerColor={COLORS.emerald}>
+        Loading
+      </Button>
+      <Button fluid loading size="large" spinnerColor={COLORS.emerald}>
+        Loading
+      </Button>
+      <Button fluid loading variant="primary">
+        Loading
+      </Button>
+      <Button fluid loading variant="primary" size="large">
+        Loading
+      </Button>
+      <Button fluid loading variant="success">
+        Loading
+      </Button>
+      <Button fluid loading variant="success" size="large">
+        Loading
+      </Button>
+    </Container>
+  )
+}
 
 const story: ComponentMeta<typeof Button> = {
   title: 'Design System/Button',
