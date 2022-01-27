@@ -168,9 +168,7 @@ const IconWrapper = styled.div<{
   $outlined: boolean
   fluid: boolean
 }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
   z-index: 2;
   pointer-events: none;
 
@@ -353,7 +351,8 @@ const ButtonContainer = styled.button<{
   cursor: pointer;
   position: relative;
   display: flex;
-  width: ${({ fluid }) => (fluid ? '100%' : 'auto')};
+
+  ${props => props.fluid && 'width: 100%'};
   align-items: center;
   justify-content: center;
   appearance: none;
@@ -366,7 +365,7 @@ const ButtonContainer = styled.button<{
 
   color: ${getTextColor};
 
-  ${getSizes};
+  ${getSizes}
 
   ${getIconStyles};
 
@@ -392,37 +391,39 @@ const Button: FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <ButtonContainer
-      className={className}
-      $variant={variant}
-      type={type}
-      onClick={onClick}
-      $size={size}
-      $outlined={outlined}
-      disabled={disabled}
-      icon={!!icon}
-      fluid={fluid}
-    >
-      {!!icon && (
-        <IconWrapper
+    <div>
+      <ButtonContainer
+        className={className}
+        $variant={variant}
+        type={type}
+        onClick={onClick}
+        $size={size}
+        $outlined={outlined}
+        disabled={disabled}
+        icon={!!icon}
+        fluid={fluid}
+      >
+        {!!icon && (
+          <IconWrapper
+            $outlined={outlined}
+            $variant={variant}
+            $size={size}
+            key={variant}
+            fluid={fluid}
+          >
+            {icon}
+          </IconWrapper>
+        )}
+        <ChildrenWrapper
           $outlined={outlined}
           $variant={variant}
           $size={size}
           key={variant}
-          fluid={fluid}
         >
-          {icon}
-        </IconWrapper>
-      )}
-      <ChildrenWrapper
-        $outlined={outlined}
-        $variant={variant}
-        $size={size}
-        key={variant}
-      >
-        {children}
-      </ChildrenWrapper>
-    </ButtonContainer>
+          {children}
+        </ChildrenWrapper>
+      </ButtonContainer>
+    </div>
   )
 }
 

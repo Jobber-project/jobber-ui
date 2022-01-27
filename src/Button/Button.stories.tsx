@@ -8,6 +8,8 @@ import SuccessIcon from '../shared/icons/circle-check.svg'
 import Button from './Button'
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   min-width: 333px;
   width: 333px;
   border: 1px dashed #7b61ff;
