@@ -347,6 +347,15 @@ export function Link() {
       <Button fluid as="a" href="/" variant="primary">
         Go home
       </Button>
+      <Button
+        fluid
+        as="a"
+        href="//google.com"
+        target="_blank"
+        variant="primary"
+      >
+        Go to Google
+      </Button>
     </Container>
   )
 }

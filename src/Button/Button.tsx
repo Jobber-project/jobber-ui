@@ -60,6 +60,7 @@ type ButtonProps = {
   /** URL when used as link */
   href?: string
   as?: 'a'
+  target?: '_blank'
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -463,6 +464,7 @@ const Button: FC<ButtonProps> = ({
   spinnerColor,
   href,
   as,
+  target,
   children,
 }) => {
   const derivedDisabled = disabled || loading
@@ -470,12 +472,14 @@ const Button: FC<ButtonProps> = ({
   // Styled-components TS as prop workaround
   const Component = ButtonContainer as unknown as ElementType
 
+  const isLink = as === 'a'
+
   return (
     <div>
       <Component
         className={className}
         $variant={variant}
-        type={as === 'a' ? undefined : type}
+        type={isLink ? undefined : type}
         onClick={onClick}
         $size={size}
         $outlined={outlined}
@@ -483,8 +487,9 @@ const Button: FC<ButtonProps> = ({
         icon={!!icon}
         fluid={fluid}
         $loading={loading}
-        href={href}
+        href={isLink ? href : undefined}
         as={as}
+        target={isLink ? target : undefined}
       >
         {!!icon && (
           <IconWrapper
