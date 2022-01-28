@@ -54,9 +54,10 @@ const getCircleSize = ({ size }: CircleProps): number => {
 }
 
 const getColorFromId = ({ id }: CircleProps): string => {
-  const idAsNumber = parseInt(id, 10)
-  const color = idAsNumber % 4
-  switch (color) {
+  const firstValueFromId = id?.substring(0, 1) || id
+  const generatedNumber = firstValueFromId?.charCodeAt(0)
+  const colorNumber = generatedNumber % 4
+  switch (colorNumber) {
     case 0:
       return `${COLORS.razzleDazzleRose}`
     case 1:
