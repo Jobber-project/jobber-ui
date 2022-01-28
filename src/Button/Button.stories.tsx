@@ -16,7 +16,7 @@ const Container = styled.div`
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
 
-  & > button {
+  & > div + div {
     margin-top: 20px;
   }
 `
