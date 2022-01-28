@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ElementType, FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -57,6 +57,10 @@ type ButtonProps = {
   loading?: boolean
   /** Override spinner color to use instead of text color */
   spinnerColor?: string
+  /** URL when used as link */
+  href?: string
+  as?: 'a'
+  target?: '_blank'
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -212,7 +216,7 @@ const InnerWrapper = styled.span`
   justify-content: center;
 `
 
-const ChildrenWrapper = styled.div<{
+const ChildrenWrapper = styled.span<{
   $variant: ButtonVariant
   $size: ButtonSize
   $outlined: boolean
@@ -426,6 +430,8 @@ const ButtonContainer = styled.button<{
   font-style: normal;
   font-weight: 500;
   border: none;
+  box-sizing: border-box;
+  text-decoration: none;
 
   background: ${getBackgroundColor};
 
@@ -456,15 +462,24 @@ const Button: FC<ButtonProps> = ({
   loading = false,
   icon = null,
   spinnerColor,
+  href,
+  as,
+  target,
   children,
 }) => {
   const derivedDisabled = disabled || loading
+
+  // Styled-components TS as prop workaround
+  const Component = ButtonContainer as unknown as ElementType
+
+  const isLink = as === 'a'
+
   return (
     <div>
-      <ButtonContainer
+      <Component
         className={className}
         $variant={variant}
-        type={type}
+        type={isLink ? undefined : type}
         onClick={onClick}
         $size={size}
         $outlined={outlined}
@@ -472,6 +487,9 @@ const Button: FC<ButtonProps> = ({
         icon={!!icon}
         fluid={fluid}
         $loading={loading}
+        href={isLink ? href : undefined}
+        as={as}
+        target={isLink ? target : undefined}
       >
         {!!icon && (
           <IconWrapper
@@ -503,7 +521,7 @@ const Button: FC<ButtonProps> = ({
             />
           </InnerWrapper>
         )}
-      </ButtonContainer>
+      </Component>
     </div>
   )
 }

@@ -16,7 +16,7 @@ const Container = styled.div`
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
 
-  & > button {
+  & > div + div {
     margin-top: 20px;
   }
 `
@@ -336,6 +336,25 @@ export function Loading() {
       </Button>
       <Button fluid loading variant="success" size="large">
         Loading
+      </Button>
+    </Container>
+  )
+}
+
+export function Link() {
+  return (
+    <Container>
+      <Button fluid as="a" href="/" variant="primary">
+        Go home
+      </Button>
+      <Button
+        fluid
+        as="a"
+        href="//google.com"
+        target="_blank"
+        variant="primary"
+      >
+        Go to Google
       </Button>
     </Container>
   )
