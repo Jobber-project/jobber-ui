@@ -207,9 +207,7 @@ function getIconFluidStyling({ $size, fluid, }) {
   `;
 }
 const IconWrapper$1 = styled__default["default"].div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
   z-index: 2;
   pointer-events: none;
 
@@ -234,7 +232,7 @@ const InnerWrapper = styled__default["default"].span `
   align-items: center;
   justify-content: center;
 `;
-const ChildrenWrapper = styled__default["default"](InnerWrapper) `
+const ChildrenWrapper = styled__default["default"].div `
   z-index: 2;
   color: ${getTextColor};
   ${props => props.$loading && 'opacity: 0;'}
@@ -380,7 +378,8 @@ const ButtonContainer = styled__default["default"].button `
   cursor: pointer;
   position: relative;
   display: flex;
-  width: ${({ fluid }) => (fluid ? '100%' : 'auto')};
+
+  ${props => props.fluid && 'width: 100%'};
   align-items: center;
   justify-content: center;
   appearance: none;
@@ -393,7 +392,7 @@ const ButtonContainer = styled__default["default"].button `
 
   color: ${getTextColor};
 
-  ${getSizes};
+  ${getSizes}
 
   ${getIconStyles};
 
@@ -406,7 +405,7 @@ const ButtonContainer = styled__default["default"].button `
   ${getDisabledStyle};
 `;
 const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, fluid = false, loading = false, icon = null, spinnerColor, children, }) => {
-    return (jsxRuntime.jsxs(ButtonContainer, Object.assign({ className: className, "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading }, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), variant)), jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), variant), loading && (jsxRuntime.jsx(InnerWrapper, { children: jsxRuntime.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0));
+    return (jsxRuntime.jsx("div", { children: jsxRuntime.jsxs(ButtonContainer, Object.assign({ className: className, "$variant": variant, type: type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading }, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), variant)), jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), variant), loading && (jsxRuntime.jsx(InnerWrapper, { children: jsxRuntime.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
 };
 
 function getBackground({ $disabled }) {
@@ -1263,9 +1262,10 @@ const getCircleSize = ({ size }) => {
     }
 };
 const getColorFromId = ({ id }) => {
-    const idAsNumber = parseInt(id, 10);
-    const color = idAsNumber % 4;
-    switch (color) {
+    const firstValueFromId = (id === null || id === void 0 ? void 0 : id.substring(0, 1)) || id;
+    const generatedNumber = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt(0);
+    const colorNumber = generatedNumber % 4;
+    switch (colorNumber) {
         case 0:
             return `${COLORS.razzleDazzleRose}`;
         case 1:

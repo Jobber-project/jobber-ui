@@ -188,9 +188,7 @@ const IconWrapper = styled.div<{
   $outlined: boolean
   fluid: boolean
 }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
   z-index: 2;
   pointer-events: none;
 
@@ -217,7 +215,7 @@ const InnerWrapper = styled.span`
   justify-content: center;
 `
 
-const ChildrenWrapper = styled(InnerWrapper)<{
+const ChildrenWrapper = styled.div<{
   $variant: ButtonVariant
   $size: ButtonSize
   $outlined: boolean
@@ -422,7 +420,8 @@ const ButtonContainer = styled.button<{
   cursor: pointer;
   position: relative;
   display: flex;
-  width: ${({ fluid }) => (fluid ? '100%' : 'auto')};
+
+  ${props => props.fluid && 'width: 100%'};
   align-items: center;
   justify-content: center;
   appearance: none;
@@ -431,12 +430,13 @@ const ButtonContainer = styled.button<{
   font-weight: 500;
   border: none;
   box-sizing: border-box;
+  text-decoration: none;
 
   background: ${getBackgroundColor};
 
   color: ${getTextColor};
 
-  ${getSizes};
+  ${getSizes}
 
   ${getIconStyles};
 
@@ -471,51 +471,53 @@ const Button: FC<ButtonProps> = ({
   const Component = ButtonContainer as unknown as ElementType
 
   return (
-    <Component
-      className={className}
-      $variant={variant}
-      type={href ? undefined : type}
-      onClick={onClick}
-      $size={size}
-      $outlined={outlined}
-      disabled={disabled}
-      icon={!!icon}
-      fluid={fluid}
-      $loading={loading}
-      href={href}
-      as={as}
-    >
-      {!!icon && (
-        <IconWrapper
+    <div>
+      <Component
+        className={className}
+        $variant={variant}
+        type={as === 'a' ? undefined : type}
+        onClick={onClick}
+        $size={size}
+        $outlined={outlined}
+        disabled={disabled}
+        icon={!!icon}
+        fluid={fluid}
+        $loading={loading}
+        href={href}
+        as={as}
+      >
+        {!!icon && (
+          <IconWrapper
+            $outlined={outlined}
+            $variant={variant}
+            $size={size}
+            key={variant}
+            fluid={fluid}
+          >
+            {icon}
+          </IconWrapper>
+        )}
+        <ChildrenWrapper
           $outlined={outlined}
           $variant={variant}
           $size={size}
           key={variant}
-          fluid={fluid}
+          $loading={loading}
         >
-          {icon}
-        </IconWrapper>
-      )}
-      <ChildrenWrapper
-        $outlined={outlined}
-        $variant={variant}
-        $size={size}
-        $loading={loading}
-        key={variant}
-      >
-        {children}
-      </ChildrenWrapper>
-      {loading && (
-        <InnerWrapper>
-          <StyledSpinner
-            $variant={variant}
-            $outlined={outlined}
-            $spinnerColor={spinnerColor}
-            size="small"
-          />
-        </InnerWrapper>
-      )}
-    </Component>
+          {children}
+        </ChildrenWrapper>
+        {loading && (
+          <InnerWrapper>
+            <StyledSpinner
+              $variant={variant}
+              $outlined={outlined}
+              $spinnerColor={spinnerColor}
+              size="small"
+            />
+          </InnerWrapper>
+        )}
+      </Component>
+    </div>
   )
 }
 
