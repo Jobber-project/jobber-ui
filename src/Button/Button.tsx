@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ElementType, FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -57,6 +57,9 @@ type ButtonProps = {
   loading?: boolean
   /** Override spinner color to use instead of text color */
   spinnerColor?: string
+  /** URL when used as link */
+  href?: string
+  as?: 'a'
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -427,6 +430,7 @@ const ButtonContainer = styled.button<{
   font-style: normal;
   font-weight: 500;
   border: none;
+  box-sizing: border-box;
 
   background: ${getBackgroundColor};
 
@@ -457,15 +461,20 @@ const Button: FC<ButtonProps> = ({
   loading = false,
   icon = null,
   spinnerColor,
+  href,
+  as,
   children,
 }) => {
   const derivedDisabled = disabled || loading
 
+  // Styled-components TS as prop workaround
+  const Component = ButtonContainer as unknown as ElementType
+
   return (
-    <ButtonContainer
+    <Component
       className={className}
       $variant={variant}
-      type={type}
+      type={href ? undefined : type}
       onClick={onClick}
       $size={size}
       $outlined={outlined}
@@ -473,6 +482,8 @@ const Button: FC<ButtonProps> = ({
       icon={!!icon}
       fluid={fluid}
       $loading={loading}
+      href={href}
+      as={as}
     >
       {!!icon && (
         <IconWrapper
@@ -504,7 +515,7 @@ const Button: FC<ButtonProps> = ({
           />
         </InnerWrapper>
       )}
-    </ButtonContainer>
+    </Component>
   )
 }
 

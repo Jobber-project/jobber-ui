@@ -339,6 +339,16 @@ export function Loading() {
   )
 }
 
+export function Link() {
+  return (
+    <Container>
+      <Button fluid as="a" href="/" variant="primary">
+        Go home
+      </Button>
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof Button> = {
   title: 'Design System/Button',
   component: Button,
