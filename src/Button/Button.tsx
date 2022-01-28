@@ -216,7 +216,7 @@ const InnerWrapper = styled.span`
   justify-content: center;
 `
 
-const ChildrenWrapper = styled.div<{
+const ChildrenWrapper = styled.span<{
   $variant: ButtonVariant
   $size: ButtonSize
   $outlined: boolean
