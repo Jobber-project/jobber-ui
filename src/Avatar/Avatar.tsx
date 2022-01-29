@@ -105,7 +105,7 @@ const Avatar: FC<AvatarProps> = ({
   id,
   size,
   className,
-  disabled,
+  disabled = false,
 }): JSX.Element => {
   const initials = name
     .split(' ')
