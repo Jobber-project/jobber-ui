@@ -18,6 +18,7 @@ export type ColorTypes = {
   razzleDazzleRose: string
   wildStrawberry: string
   salmon: string
+  selago: string
   primaryGradient: string
   secondaryGradient: string
 }
