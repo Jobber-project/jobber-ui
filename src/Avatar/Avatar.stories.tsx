@@ -122,7 +122,7 @@ export function Colors() {
         <Avatar size="large" />
       </Container>
       <Container>
-        <Avatar size="xlarge" id="1" name="Test Testsson" />
+        <Avatar size="xlarge" id="1" name="test testsson" />
         <Avatar size="xlarge" id="2" name="Test Testsson" />
         <Avatar size="xlarge" id="3" name="Test Testsson" />
         <Avatar size="xlarge" id="4" name="Test Testsson" />
