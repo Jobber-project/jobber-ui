@@ -12,11 +12,13 @@ type AvatarProps = {
   id?: string
   name?: string
   className?: string
+  disabled?: boolean
 }
 
 type CircleProps = {
   size: SizeTypes
   id: string
+  $disabled: boolean
 }
 
 type TextProps = {
@@ -53,7 +55,8 @@ const getCircleSize = ({ size }: CircleProps): number => {
   }
 }
 
-const getColorFromId = ({ id }: CircleProps): string => {
+const getColorFromId = ({ id, $disabled }: CircleProps): string => {
+  if ($disabled) return COLORS.mischa
   const firstValueFromId = id?.substring(0, 1) || id
   const generatedNumber = firstValueFromId?.charCodeAt(0)
   const colorNumber = generatedNumber % 4
@@ -92,7 +95,8 @@ const Text = styled.p<CircleProps>`
   font-size: ${getTextSize}px;
   font-weight: 500;
   font-family: Roboto, sans-serif;
-  color: ${props => (props.id ? COLORS.white : COLORS.charade)};
+  color: ${props =>
+    props.id || props.$disabled ? COLORS.white : COLORS.charade};
 `
 
 const Avatar: FC<AvatarProps> = ({
@@ -101,6 +105,7 @@ const Avatar: FC<AvatarProps> = ({
   id,
   size,
   className,
+  disabled = false,
 }): JSX.Element => {
   const initials = name
     .split(' ')
@@ -109,11 +114,11 @@ const Avatar: FC<AvatarProps> = ({
     .join('')
 
   return (
-    <Circle size={size} id={id} className={className}>
+    <Circle size={size} id={id} className={className} $disabled={disabled}>
       {src ? (
         <Image src={src} alt={'Avatar'} />
       ) : (
-        <Text id={id} size={size}>
+        <Text $disabled={disabled} id={id} size={size}>
           {initials}
         </Text>
       )}
