@@ -108,6 +108,7 @@ const Avatar: FC<AvatarProps> = ({
   disabled = false,
 }): JSX.Element => {
   const initials = name
+    .toUpperCase()
     .split(' ')
     .slice(0, 2)
     .map(n => n[0])
