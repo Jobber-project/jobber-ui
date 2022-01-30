@@ -1404,6 +1404,7 @@
         razzleDazzleRose: '#F22CCD',
         wildStrawberry: '#FF4591',
         salmon: '#FF8761',
+        selago: '#F5F6FD',
         primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
         secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
     };
@@ -2603,7 +2604,9 @@
                 return 40;
         }
     };
-    const getColorFromId = ({ id }) => {
+    const getColorFromId = ({ id, $disabled }) => {
+        if ($disabled)
+            return COLORS.mischa;
         const firstValueFromId = (id === null || id === void 0 ? void 0 : id.substring(0, 1)) || id;
         const generatedNumber = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt(0);
         const colorNumber = generatedNumber % 4;
@@ -2640,15 +2643,15 @@
   font-size: ${getTextSize}px;
   font-weight: 500;
   font-family: Roboto, sans-serif;
-  color: ${props => (props.id ? COLORS.white : COLORS.charade)};
+  color: ${props => props.id || props.$disabled ? COLORS.white : COLORS.charade};
 `;
-    const Avatar = ({ src, name = 'N N', id, size, className, }) => {
+    const Avatar = ({ src, name = 'N N', id, size, className, disabled = false, }) => {
         const initials = name
             .split(' ')
             .slice(0, 2)
             .map(n => n[0])
             .join('');
-        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ id: id, size: size }, { children: initials }), void 0)) }), void 0));
+        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className, "$disabled": disabled }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, id: id, size: size }, { children: initials }), void 0)) }), void 0));
     };
 
     exports.Avatar = Avatar;

@@ -30,6 +30,7 @@ export function Initials() {
       <Avatar size="medium" id="1" name="Test Testsson" />
       <Avatar size="large" id="1" name="Test Testsson" />
       <Avatar size="xlarge" id="1" />
+      <Avatar size="xlarge" id="1" disabled />
     </Container>
   )
 }
@@ -89,7 +90,13 @@ export function Colors() {
           id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
           name="Test Testsson"
         />
-        <Avatar size="small" />
+        <Avatar
+          size="small"
+          id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
+          name="Test Testsson"
+        />
+
+        <Avatar size="small" disabled />
       </Container>
       <Container>
         <Avatar
@@ -112,7 +119,12 @@ export function Colors() {
           id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
           name="Test Testsson"
         />
-        <Avatar size="medium" />
+        <Avatar
+          size="medium"
+          id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
+          name="Test Testsson"
+        />
+        <Avatar size="medium" disabled />
       </Container>
       <Container>
         <Avatar size="large" id="1" name="Test Testsson" />
@@ -120,6 +132,7 @@ export function Colors() {
         <Avatar size="large" id="3" name="Test Testsson" />
         <Avatar size="large" id="4" name="Test Testsson" />
         <Avatar size="large" />
+        <Avatar size="large" disabled />
       </Container>
       <Container>
         <Avatar size="xlarge" id="1" name="test testsson" />
@@ -127,6 +140,7 @@ export function Colors() {
         <Avatar size="xlarge" id="3" name="Test Testsson" />
         <Avatar size="xlarge" id="4" name="Test Testsson" />
         <Avatar size="xlarge" />
+        <Avatar size="xlarge" disabled />
       </Container>
     </>
   )

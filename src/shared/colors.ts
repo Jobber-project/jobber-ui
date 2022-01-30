@@ -21,6 +21,7 @@ const COLORS: ColorTypes = {
   razzleDazzleRose: '#F22CCD',
   wildStrawberry: '#FF4591',
   salmon: '#FF8761',
+  selago: '#F5F6FD',
   primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
   secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 }
