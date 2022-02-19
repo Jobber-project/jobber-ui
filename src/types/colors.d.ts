@@ -19,6 +19,8 @@ export type ColorTypes = {
   wildStrawberry: string
   salmon: string
   selago: string
+  linkWater: string
+  governorBay: string
   primaryGradient: string
   secondaryGradient: string
 }
