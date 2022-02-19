@@ -4,14 +4,23 @@ import styled from 'styled-components'
 import COLORS from '../shared/colors'
 import { MenuProps } from '../types/components'
 
-const MenuContainer = styled.div`
+const MenuContainer = styled.div<{ isVisible: boolean }>`
+  position: relative;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  width: 150px;
+  transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
+`
+
+const MenuWrapper = styled.div`
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  padding: 16px;
-
+  width: 100%;
   background-color: ${COLORS.white};
-
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `
@@ -20,12 +29,17 @@ const MenuItemWrapper = styled.div`
   height: 35px;
   align-items: center;
   padding: 0px 16px;
+  margin: 10px 16px 0px 16px;
   border-radius: 8px;
 
-  transition: all 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
 
-  &:not(:last-child) {
-    margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 16px;
+  }
+
+  &:first-child {
+    margin-top: 16px;
   }
 
   &:hover {
@@ -50,7 +64,7 @@ const MenuLabel = styled.label`
   line-height: 19px;
   cursor: pointer;
 
-  transition: all 0.1s ease-in;
+  transition: color 0.1s ease-in;
 
   color: ${COLORS.charade};
 `
@@ -62,15 +76,30 @@ const MenuIcon = styled.div`
   margin-right: 8px;
 `
 
-const Menu: FC<MenuProps> = ({ options, className }): JSX.Element => {
+const Menu: FC<MenuProps> = ({
+  options,
+  className,
+  isVisible,
+  toggleVisibility,
+}): JSX.Element => {
   return (
-    <MenuContainer className={className}>
-      {options.map(({ id, onClick, label, icon, disabled }) => (
-        <MenuItemWrapper key={id} onClick={onClick}>
-          {icon && <MenuIcon>{icon}</MenuIcon>}
-          {label && <MenuLabel>{label}</MenuLabel>}
-        </MenuItemWrapper>
-      ))}
+    <MenuContainer className={className} isVisible={isVisible}>
+      <MenuWrapper>
+        {options
+          .filter(option => !option.disabled)
+          .map(({ id, onClick, label, icon }) => (
+            <MenuItemWrapper
+              key={id}
+              onClick={() => {
+                onClick()
+                toggleVisibility?.()
+              }}
+            >
+              {icon && <MenuIcon>{icon}</MenuIcon>}
+              {label && <MenuLabel>{label}</MenuLabel>}
+            </MenuItemWrapper>
+          ))}
+      </MenuWrapper>
     </MenuContainer>
   )
 }

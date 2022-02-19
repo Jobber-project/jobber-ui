@@ -1,29 +1,34 @@
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 // @ts-ignore
 import SuccessIcon from '../shared/icons/circle-check.svg'
+import Button from '../Button'
 
 import Menu from '.'
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   min-width: 333px;
+  min-height: 333px;
   resize: both;
   overflow: auto;
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
   box-sizing: border-box;
+`
 
-  & > span + span,
-  & > label + label {
-    margin-top: 20px;
-  }
-  & > div {
-    margin-right: 10px;
-  }
+const ButtonWrapper = styled.div`
+  margin-bottom: 10px;
+`
+const MenuWrapper = styled.div`
+  display: flex;
+`
+
+const StyledMenu = styled(Menu)`
+  width: 300px;
 `
 
 const options = [
@@ -53,9 +58,26 @@ const options = [
 ]
 
 export function Colors() {
+  const [open, setOpen] = useState(false)
   return (
     <Container>
-      <Menu options={options} />
+      <ButtonWrapper>
+        <Button variant="primary" onClick={() => setOpen(!open)}>
+          Open menu
+        </Button>
+      </ButtonWrapper>
+      <MenuWrapper>
+        <Menu
+          options={options}
+          isVisible={open}
+          toggleVisibility={() => setOpen(!open)}
+        />
+        <StyledMenu
+          options={options}
+          isVisible={open}
+          toggleVisibility={() => setOpen(!open)}
+        />
+      </MenuWrapper>
     </Container>
   )
 }

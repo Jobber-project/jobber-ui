@@ -8,5 +8,7 @@ export type MenuOption = {
 
 export type MenuProps = {
   options: MenuOption[]
+  isVisible: boolean
+  toggleVisibility?: () => void
   className?: string
 }
