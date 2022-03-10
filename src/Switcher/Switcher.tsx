@@ -101,15 +101,19 @@ type VerticalProps = {
   onBottomButtonClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Horizontal: FC<HorizontalProps> = ({ className }) => {
+const Horizontal: FC<HorizontalProps> = ({
+  className,
+  onLeftButtonClick,
+  onRightButtonClick,
+}) => {
   return (
     <Container className={className}>
       <Pill>
-        <PillHalf type="button" aria-label="Left">
+        <PillHalf type="button" aria-label="Left" onClick={onLeftButtonClick}>
           <ChevronLeftIcon />
           <HiddenText>Left</HiddenText>
         </PillHalf>
-        <PillHalf type="button" aria-label="Right">
+        <PillHalf type="button" aria-label="Right" onClick={onRightButtonClick}>
           <ChevronRightIcon />
           <HiddenText>Right</HiddenText>
         </PillHalf>
@@ -118,15 +122,29 @@ const Horizontal: FC<HorizontalProps> = ({ className }) => {
   )
 }
 
-const Vertical: FC<VerticalProps> = ({ className }) => {
+const Vertical: FC<VerticalProps> = ({
+  className,
+  onTopButtonClick,
+  onBottomButtonClick,
+}) => {
   return (
     <Container $vertical className={className}>
       <Pill $vertical>
-        <PillHalf $vertical type="button" aria-label="Up">
+        <PillHalf
+          $vertical
+          type="button"
+          aria-label="Up"
+          onClick={onTopButtonClick}
+        >
           <ChevronUpIcon />
           <HiddenText>Up</HiddenText>
         </PillHalf>
-        <PillHalf $vertical type="button" aria-label="Down">
+        <PillHalf
+          $vertical
+          type="button"
+          aria-label="Down"
+          onClick={onBottomButtonClick}
+        >
           <ChevronDownIcon />
           <HiddenText>Down</HiddenText>
         </PillHalf>
