@@ -82,6 +82,13 @@ const PillHalf = styled.button<{
   }
 `
 
+const HiddenText = styled.span`
+  z-index: -1;
+  position: absolute;
+  color: transparent;
+  user-select: none;
+`
+
 type HorizontalProps = {
   className?: string
   onLeftButtonClick?: React.MouseEventHandler<HTMLButtonElement>
@@ -98,11 +105,13 @@ const Horizontal: FC<HorizontalProps> = ({ className }) => {
   return (
     <Container className={className}>
       <Pill>
-        <PillHalf>
-          <ChevronLeftIcon type="button" />
+        <PillHalf type="button">
+          <ChevronLeftIcon />
+          <HiddenText>Left</HiddenText>
         </PillHalf>
-        <PillHalf>
-          <ChevronRightIcon type="button" />
+        <PillHalf type="button">
+          <ChevronRightIcon />
+          <HiddenText>Right</HiddenText>
         </PillHalf>
       </Pill>
     </Container>
@@ -113,11 +122,13 @@ const Vertical: FC<VerticalProps> = ({ className }) => {
   return (
     <Container $vertical className={className}>
       <Pill $vertical>
-        <PillHalf $vertical>
-          <ChevronUpIcon type="button" />
+        <PillHalf $vertical type="button">
+          <ChevronUpIcon />
+          <HiddenText>Up</HiddenText>
         </PillHalf>
-        <PillHalf $vertical>
-          <ChevronDownIcon type="button" />
+        <PillHalf $vertical type="button">
+          <ChevronDownIcon />
+          <HiddenText>Down</HiddenText>
         </PillHalf>
       </Pill>
     </Container>
