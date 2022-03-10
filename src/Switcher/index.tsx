@@ -1,1 +1,3 @@
-export * as default from './Switcher'
+import * as Switcher from './Switcher'
+
+export default Switcher
