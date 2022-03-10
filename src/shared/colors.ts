@@ -1,7 +1,5 @@
-import { ColorTypes } from '../types/colors'
-
 // https://chir.ag/projects/name-that-color/#6B53FF
-const COLORS: ColorTypes = {
+const COLORS = {
   havelockBlue: '#5971dd',
   electricViolet: '#8d49f7',
   cornflowerBlue: '#6b53ff',
