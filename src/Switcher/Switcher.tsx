@@ -105,11 +105,11 @@ const Horizontal: FC<HorizontalProps> = ({ className }) => {
   return (
     <Container className={className}>
       <Pill>
-        <PillHalf type="button">
+        <PillHalf type="button" aria-label="Left">
           <ChevronLeftIcon />
           <HiddenText>Left</HiddenText>
         </PillHalf>
-        <PillHalf type="button">
+        <PillHalf type="button" aria-label="Right">
           <ChevronRightIcon />
           <HiddenText>Right</HiddenText>
         </PillHalf>
@@ -122,11 +122,11 @@ const Vertical: FC<VerticalProps> = ({ className }) => {
   return (
     <Container $vertical className={className}>
       <Pill $vertical>
-        <PillHalf $vertical type="button">
+        <PillHalf $vertical type="button" aria-label="Up">
           <ChevronUpIcon />
           <HiddenText>Up</HiddenText>
         </PillHalf>
-        <PillHalf $vertical type="button">
+        <PillHalf $vertical type="button" aria-label="Down">
           <ChevronDownIcon />
           <HiddenText>Down</HiddenText>
         </PillHalf>
