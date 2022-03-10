@@ -83,7 +83,7 @@ const animation = styled.keyframes `
     transform: rotate(-360deg);
   }
 `;
-const Container$3 = styled__default["default"].span `
+const Container$4 = styled__default["default"].span `
   z-index: 1;
   position: relative;
   display: inline-block;
@@ -127,7 +127,7 @@ const Spinner = ({ size = 'medium', color = COLORS.emerald, className, children,
     const radius = derivedSize / 2 - strokeWidth;
     const circumference = radius * 2 * Math.PI;
     const offset = circumference - (25 / 100) * circumference;
-    return (jsxRuntime.jsxs(Container$3, Object.assign({ className: className }, { children: [jsxRuntime.jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsxRuntime.jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsxRuntime.jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
+    return (jsxRuntime.jsxs(Container$4, Object.assign({ className: className }, { children: [jsxRuntime.jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsxRuntime.jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsxRuntime.jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
 };
 
 function getIconSize$1({ $size }) {
@@ -468,7 +468,7 @@ function getFocusedBorderColor({ $variant }) {
             return false;
     }
 }
-const Container$2 = styled__default["default"].label `
+const Container$3 = styled__default["default"].label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -615,7 +615,7 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, 
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (jsxRuntime.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$2, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$3, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$2, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedCheckbox = React.forwardRef(Checkbox);
 
@@ -670,7 +670,7 @@ function getLabelColor({ $disabled, $variant, }) {
             return $disabled ? COLORS.silverChalice : COLORS.black;
     }
 }
-const Container$1 = styled__default["default"].label `
+const Container$2 = styled__default["default"].label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -787,18 +787,124 @@ const RadioButton = ({ required, disabled = false, defaultChecked, checked, vari
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsxRuntime.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$2, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsxRuntime.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedRadioButton = React.forwardRef(RadioButton);
 
-var _path$4, _circle$2, _path2$4;
+var _path$8, _circle$2, _path2$8;
+
+function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
+
+var SvgCircleCheck = function SvgCircleCheck(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$8({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "circle-check_svg__icon circle-check_svg__icon-tabler circle-check_svg__icon-tabler-circle-check",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$8 || (_path$8 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _circle$2 || (_circle$2 = /*#__PURE__*/React__namespace.createElement("circle", {
+    cx: 12,
+    cy: 12,
+    r: 9
+  })), _path2$8 || (_path2$8 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m9 12 2 2 4-4"
+  })));
+};
+
+var _path$7, _path2$7;
+
+function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
+
+var SvgAlertTriangle = function SvgAlertTriangle(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$7({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "alert-triangle_svg__icon alert-triangle_svg__icon-tabler alert-triangle_svg__icon-tabler-alert-triangle",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$7 || (_path$7 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _path2$7 || (_path2$7 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M12 9v2m0 4v.01M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19"
+  })));
+};
+
+var _path$6, _circle$1, _path2$6;
+
+function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
+
+var SvgCircleX = function SvgCircleX(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$6({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "circle-x_svg__icon circle-x_svg__icon-tabler circle-x_svg__icon-tabler-circle-x",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$6 || (_path$6 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _circle$1 || (_circle$1 = /*#__PURE__*/React__namespace.createElement("circle", {
+    cx: 12,
+    cy: 12,
+    r: 9
+  })), _path2$6 || (_path2$6 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m10 10 4 4m0-4-4 4"
+  })));
+};
+
+var _path$5, _rect, _path2$5;
+
+function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
+
+var SvgMail = function SvgMail(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$5({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "mail_svg__icon mail_svg__icon-tabler mail_svg__icon-tabler-mail",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$5 || (_path$5 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _rect || (_rect = /*#__PURE__*/React__namespace.createElement("rect", {
+    x: 3,
+    y: 5,
+    width: 18,
+    height: 14,
+    rx: 2
+  })), _path2$5 || (_path2$5 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m3 7 9 6 9-6"
+  })));
+};
+
+var _path$4, _circle, _path2$4;
 
 function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
-var SvgCircleCheck = function SvgCircleCheck(props) {
+var SvgSearch = function SvgSearch(props) {
   return /*#__PURE__*/React__namespace.createElement("svg", _extends$4({
     xmlns: "http://www.w3.org/2000/svg",
-    className: "circle-check_svg__icon circle-check_svg__icon-tabler circle-check_svg__icon-tabler-circle-check",
+    className: "search_svg__icon search_svg__icon-tabler search_svg__icon-tabler-search",
     width: 24,
     height: 24,
     strokeWidth: 2,
@@ -809,117 +915,11 @@ var SvgCircleCheck = function SvgCircleCheck(props) {
   }, props), _path$4 || (_path$4 = /*#__PURE__*/React__namespace.createElement("path", {
     d: "M0 0h24v24H0z",
     stroke: "none"
-  })), _circle$2 || (_circle$2 = /*#__PURE__*/React__namespace.createElement("circle", {
-    cx: 12,
-    cy: 12,
-    r: 9
-  })), _path2$4 || (_path2$4 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "m9 12 2 2 4-4"
-  })));
-};
-
-var _path$3, _path2$3;
-
-function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
-
-var SvgAlertTriangle = function SvgAlertTriangle(props) {
-  return /*#__PURE__*/React__namespace.createElement("svg", _extends$3({
-    xmlns: "http://www.w3.org/2000/svg",
-    className: "alert-triangle_svg__icon alert-triangle_svg__icon-tabler alert-triangle_svg__icon-tabler-alert-triangle",
-    width: 24,
-    height: 24,
-    strokeWidth: 2,
-    stroke: "currentColor",
-    fill: "none",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, props), _path$3 || (_path$3 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "M0 0h24v24H0z",
-    stroke: "none"
-  })), _path2$3 || (_path2$3 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "M12 9v2m0 4v.01M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19"
-  })));
-};
-
-var _path$2, _circle$1, _path2$2;
-
-function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
-
-var SvgCircleX = function SvgCircleX(props) {
-  return /*#__PURE__*/React__namespace.createElement("svg", _extends$2({
-    xmlns: "http://www.w3.org/2000/svg",
-    className: "circle-x_svg__icon circle-x_svg__icon-tabler circle-x_svg__icon-tabler-circle-x",
-    width: 24,
-    height: 24,
-    strokeWidth: 2,
-    stroke: "currentColor",
-    fill: "none",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, props), _path$2 || (_path$2 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "M0 0h24v24H0z",
-    stroke: "none"
-  })), _circle$1 || (_circle$1 = /*#__PURE__*/React__namespace.createElement("circle", {
-    cx: 12,
-    cy: 12,
-    r: 9
-  })), _path2$2 || (_path2$2 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "m10 10 4 4m0-4-4 4"
-  })));
-};
-
-var _path$1, _rect, _path2$1;
-
-function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
-
-var SvgMail = function SvgMail(props) {
-  return /*#__PURE__*/React__namespace.createElement("svg", _extends$1({
-    xmlns: "http://www.w3.org/2000/svg",
-    className: "mail_svg__icon mail_svg__icon-tabler mail_svg__icon-tabler-mail",
-    width: 24,
-    height: 24,
-    strokeWidth: 2,
-    stroke: "currentColor",
-    fill: "none",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, props), _path$1 || (_path$1 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "M0 0h24v24H0z",
-    stroke: "none"
-  })), _rect || (_rect = /*#__PURE__*/React__namespace.createElement("rect", {
-    x: 3,
-    y: 5,
-    width: 18,
-    height: 14,
-    rx: 2
-  })), _path2$1 || (_path2$1 = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "m3 7 9 6 9-6"
-  })));
-};
-
-var _path, _circle, _path2;
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var SvgSearch = function SvgSearch(props) {
-  return /*#__PURE__*/React__namespace.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    className: "search_svg__icon search_svg__icon-tabler search_svg__icon-tabler-search",
-    width: 24,
-    height: 24,
-    strokeWidth: 2,
-    stroke: "currentColor",
-    fill: "none",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, props), _path || (_path = /*#__PURE__*/React__namespace.createElement("path", {
-    d: "M0 0h24v24H0z",
-    stroke: "none"
   })), _circle || (_circle = /*#__PURE__*/React__namespace.createElement("circle", {
     cx: 10,
     cy: 10,
     r: 7
-  })), _path2 || (_path2 = /*#__PURE__*/React__namespace.createElement("path", {
+  })), _path2$4 || (_path2$4 = /*#__PURE__*/React__namespace.createElement("path", {
     d: "m21 21-6-6"
   })));
 };
@@ -1084,7 +1084,7 @@ function getFocusBorderColor({ $variant }) {
             return false;
     }
 }
-const Container = styled__default["default"].div `
+const Container$1 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
@@ -1237,7 +1237,7 @@ const TextField = ({ required, disabled, variant = 'default', id, name, type = '
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
     const derivedIconAlign = getDerivedIconAlign();
-    return (jsxRuntime.jsxs(Container, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
 };
 const ForwardedTextField = React.forwardRef(TextField);
 
@@ -1320,11 +1320,183 @@ const Avatar = ({ src, name = 'N N', id, size, className, disabled = false, }) =
     return (jsxRuntime.jsx(Circle, Object.assign({ size: size, id: id, className: className, "$disabled": disabled }, { children: src ? (jsxRuntime.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.jsx(Text, Object.assign({ "$disabled": disabled, id: id, size: size }, { children: initials }), void 0)) }), void 0));
 };
 
+var _path$3, _path2$3;
+
+function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
+
+var SvgChevronUp = function SvgChevronUp(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$3({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "chevron-up_svg__icon chevron-up_svg__icon-tabler chevron-up_svg__icon-tabler-chevron-up",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$3 || (_path$3 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _path2$3 || (_path2$3 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m6 15 6-6 6 6"
+  })));
+};
+
+var _path$2, _path2$2;
+
+function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+
+var SvgChevronRight = function SvgChevronRight(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$2({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "chevron-right_svg__icon chevron-right_svg__icon-tabler chevron-right_svg__icon-tabler-chevron-right",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$2 || (_path$2 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _path2$2 || (_path2$2 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m9 6 6 6-6 6"
+  })));
+};
+
+var _path$1, _path2$1;
+
+function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
+
+var SvgChevronDown = function SvgChevronDown(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends$1({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "chevron-down_svg__icon chevron-down_svg__icon-tabler chevron-down_svg__icon-tabler-chevron-down",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path$1 || (_path$1 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _path2$1 || (_path2$1 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m6 9 6 6 6-6"
+  })));
+};
+
+var _path, _path2;
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var SvgChevronLeft = function SvgChevronLeft(props) {
+  return /*#__PURE__*/React__namespace.createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "chevron-left_svg__icon chevron-left_svg__icon-tabler chevron-left_svg__icon-tabler-chevron-left",
+    width: 24,
+    height: 24,
+    strokeWidth: 2,
+    stroke: "currentColor",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, props), _path || (_path = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "M0 0h24v24H0z",
+    stroke: "none"
+  })), _path2 || (_path2 = /*#__PURE__*/React__namespace.createElement("path", {
+    d: "m15 6-6 6 6 6"
+  })));
+};
+
+const Container = styled__default["default"].div `
+  width: ${props => (props.$vertical ? 42 : 89)}px;
+  height: ${props => (props.$vertical ? 89 : 42)}px;
+  background-color: ${COLORS.white};
+  border-radius: 21px;
+`;
+const Pill = styled__default["default"].div `
+  display: flex;
+  flex-direction: ${props => (props.$vertical ? 'column' : 'row')};
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  border-radius: 21px;
+`;
+const PillHalf = styled__default["default"].button `
+  appearance: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${props => (props.$vertical ? '100%' : '44px')};
+  height: ${props => (props.$vertical ? '44px' : '100%')};
+  color: ${COLORS.white};
+  background: linear-gradient(
+    ${props => (props.$vertical ? 90 : 0)}deg,
+    ${COLORS.cornflowerBlue},
+    ${COLORS.electricViolet}
+  );
+
+  &:first-child {
+    border-top-left-radius: 21px;
+    ${props => props.$vertical
+    ? `
+    border-top-right-radius: 21px;
+    `
+    : `
+    border-bottom-left-radius: 21px;
+    `}
+  }
+
+  &:last-child {
+    border-bottom-right-radius: 21px;
+    ${props => props.$vertical
+    ? `
+    border-bottom-left-radius: 21px;
+    `
+    : `
+    border-top-right-radius: 21px;
+    `}
+  }
+
+  & svg {
+    transform: scale(0.83);
+  }
+`;
+const HiddenText = styled__default["default"].span `
+  z-index: -1;
+  position: absolute;
+  color: transparent;
+  user-select: none;
+`;
+const Horizontal = ({ className }) => {
+    return (jsxRuntime.jsx(Container, Object.assign({ className: className }, { children: jsxRuntime.jsxs(Pill, { children: [jsxRuntime.jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left" }, { children: [jsxRuntime.jsx(SvgChevronLeft, {}, void 0), jsxRuntime.jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxRuntime.jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right" }, { children: [jsxRuntime.jsx(SvgChevronRight, {}, void 0), jsxRuntime.jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
+};
+const Vertical = ({ className }) => {
+    return (jsxRuntime.jsx(Container, Object.assign({ "$vertical": true, className: className }, { children: jsxRuntime.jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxRuntime.jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up" }, { children: [jsxRuntime.jsx(SvgChevronUp, {}, void 0), jsxRuntime.jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxRuntime.jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down" }, { children: [jsxRuntime.jsx(SvgChevronDown, {}, void 0), jsxRuntime.jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
+};
+
+var Switcher = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  Horizontal: Horizontal,
+  Vertical: Vertical
+});
+
 exports.Avatar = Avatar;
 exports.Button = Button;
 exports.Checkbox = ForwardedCheckbox;
 exports.GlobalStyle = GlobalStyle;
 exports.RadioButton = ForwardedRadioButton;
 exports.Spinner = Spinner;
+exports.Switcher = Switcher;
 exports.TextField = ForwardedTextField;
 exports.globalStyle = globalStyle;
