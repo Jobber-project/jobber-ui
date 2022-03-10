@@ -1451,11 +1451,11 @@ const HiddenText = styled.span `
   color: transparent;
   user-select: none;
 `;
-const Horizontal = ({ className }) => {
-    return (jsx(Container, Object.assign({ className: className }, { children: jsxs(Pill, { children: [jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left" }, { children: [jsx(SvgChevronLeft, {}, void 0), jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right" }, { children: [jsx(SvgChevronRight, {}, void 0), jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
+const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
+    return (jsx(Container, Object.assign({ className: className }, { children: jsxs(Pill, { children: [jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left", onClick: onLeftButtonClick }, { children: [jsx(SvgChevronLeft, {}, void 0), jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right", onClick: onRightButtonClick }, { children: [jsx(SvgChevronRight, {}, void 0), jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
 };
-const Vertical = ({ className }) => {
-    return (jsx(Container, Object.assign({ "$vertical": true, className: className }, { children: jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up" }, { children: [jsx(SvgChevronUp, {}, void 0), jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down" }, { children: [jsx(SvgChevronDown, {}, void 0), jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
+const Vertical = ({ className, onTopButtonClick, onBottomButtonClick, }) => {
+    return (jsx(Container, Object.assign({ "$vertical": true, className: className }, { children: jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick }, { children: [jsx(SvgChevronUp, {}, void 0), jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down", onClick: onBottomButtonClick }, { children: [jsx(SvgChevronDown, {}, void 0), jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
 };
 
 var Switcher = /*#__PURE__*/Object.freeze({
