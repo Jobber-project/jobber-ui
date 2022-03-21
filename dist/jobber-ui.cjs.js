@@ -1135,7 +1135,7 @@ const Input = styled__default["default"].input `
   ${props => props.$variant === 'default' &&
     `
     &:placeholder-shown + div {
-      color: ${COLORS.mischa};
+      color: ${COLORS.silverChalice};
     }
   `}
 
