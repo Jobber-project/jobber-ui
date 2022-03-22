@@ -402,6 +402,7 @@ type TextFieldProps = {
   placeholder?: string
   /** Helper text to show below text input, ie validation message */
   helperText?: string
+  ariaLabel?: string
   /** Which side the icon should be rendered on */
   iconAlign?: TextFieldIconAlign
   /** Icon to render ie `<Icon />` */
@@ -424,6 +425,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
     value,
     placeholder,
     helperText,
+    ariaLabel,
     iconAlign,
     icon,
     onChange,
@@ -495,6 +497,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
           name={name}
           value={value}
           placeholder={placeholder}
+          aria-label={ariaLabel}
           onChange={onChange}
         />
         {!!derivedIcon && (
