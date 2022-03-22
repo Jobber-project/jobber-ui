@@ -924,6 +924,14 @@ var SvgSearch = function SvgSearch(props) {
   })));
 };
 
+function usePrevious(value) {
+    const ref = React.useRef(value);
+    React.useEffect(() => {
+        ref.current = value;
+    }, [value]);
+    return ref.current;
+}
+
 const animateIcon = styled.keyframes `
   0% {
     transform: scale(0.25);
@@ -1195,11 +1203,9 @@ const HelperText = styled__default["default"].span `
       animation: ${animateHelperText} 280ms ease;
     `}
 `;
-const TextField = ({ required, disabled, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, iconAlign, icon, onChange, }, ref) => {
-    const didMountRef = React.useRef(false);
-    React.useEffect(() => {
-        didMountRef.current = true;
-    }, []);
+const TextField = ({ required, disabled, autoFocus, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, ariaLabel, iconAlign, icon, onChange, }, ref) => {
+    const prevVariant = usePrevious(variant);
+    const [shouldAnimate, setShouldAnimate] = React.useState(false);
     function getDerivedIcon() {
         switch (variant) {
             case 'success':
@@ -1234,10 +1240,19 @@ const TextField = ({ required, disabled, variant = 'default', id, name, type = '
             return 'right';
         return variant === 'default' ? iconAlign : 'right';
     }
+    function handleAnimationEnd() {
+        if (shouldAnimate)
+            setShouldAnimate(false);
+    }
+    React.useEffect(() => {
+        if (variant !== prevVariant && !shouldAnimate) {
+            setShouldAnimate(true);
+        }
+    }, [variant, prevVariant, shouldAnimate]);
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
     const derivedIconAlign = getDerivedIconAlign();
-    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": didMountRef.current, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": didMountRef.current, "$variant": variant }, { children: helperText }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$1, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsxs(InputWrapper, { children: [jsxRuntime.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.jsx(IconWrapper, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
 };
 const ForwardedTextField = React.forwardRef(TextField);
 

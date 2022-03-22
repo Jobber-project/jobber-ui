@@ -1,6 +1,6 @@
 {
   "name": "@jobello/jobber-ui",
-  "version": "1.38.1",
+  "version": "1.39.0",
   "description": "Jobello UI library",
   "main": "dist/jobber-ui.cjs.js",
   "module": "dist/jobber-ui.esm.js",
