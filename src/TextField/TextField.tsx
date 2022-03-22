@@ -1,12 +1,11 @@
 import React, {
   ChangeEventHandler,
-  FC,
   HTMLInputTypeAttribute,
   ReactNode,
-  useRef,
   useEffect,
   forwardRef,
   ForwardRefRenderFunction,
+  useState,
 } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 
@@ -21,6 +20,7 @@ import ErrorIcon from '../shared/icons/circle-x.svg'
 import EmailIcon from '../shared/icons/mail.svg'
 // @ts-ignore
 import SearchIcon from '../shared/icons/search.svg'
+import { usePrevious } from '../shared/hooks'
 
 export type TextFieldIconAlign = 'left' | 'right'
 
@@ -434,11 +434,9 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   },
   ref,
 ) => {
-  const didMountRef = useRef<boolean>(false)
+  const prevVariant = usePrevious(variant)
 
-  useEffect(() => {
-    didMountRef.current = true
-  }, [])
+  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
 
   function getDerivedIcon(): ReactNode {
     switch (variant) {
@@ -473,6 +471,16 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
     return variant === 'default' ? iconAlign : 'right'
   }
 
+  function handleAnimationEnd() {
+    if (shouldAnimate) setShouldAnimate(false)
+  }
+
+  useEffect(() => {
+    if (variant !== prevVariant && !shouldAnimate) {
+      setShouldAnimate(true)
+    }
+  }, [variant, prevVariant, shouldAnimate])
+
   const derivedId = getDerivedId()
   const derivedIcon = getDerivedIcon()
   const derivedIconAlign = getDerivedIconAlign()
@@ -505,18 +513,23 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
         />
         {!!derivedIcon && (
           <IconWrapper
-            $animate={didMountRef.current}
+            $animate={shouldAnimate}
             $variant={variant}
             $size={size}
             $iconAlign={derivedIconAlign}
             key={variant}
+            onAnimationEnd={handleAnimationEnd}
           >
             {derivedIcon}
           </IconWrapper>
         )}
       </InputWrapper>
       {!!helperText && (
-        <HelperText $animate={didMountRef.current} $variant={variant}>
+        <HelperText
+          $animate={shouldAnimate}
+          $variant={variant}
+          onAnimationEnd={handleAnimationEnd}
+        >
           {helperText}
         </HelperText>
       )}
