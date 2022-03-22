@@ -387,6 +387,7 @@ const HelperText = styled.span<{
 type TextFieldProps = {
   required?: boolean
   disabled?: boolean
+  autoFocus?: boolean
   variant?: TextFieldVariant
   id?: string
   name?: string
@@ -415,6 +416,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   {
     required,
     disabled,
+    autoFocus,
     variant = 'default',
     id,
     name,
@@ -492,6 +494,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
           $iconAlign={derivedIconAlign}
           required={required}
           disabled={disabled}
+          autoFocus={autoFocus}
           type={type}
           id={derivedId}
           name={name}
