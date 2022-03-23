@@ -467,7 +467,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   }
 
   function getDerivedIconAlign(): TextFieldIconAlign {
-    if (type === 'email') return 'right'
+    if (type === 'email' && !icon) return 'right'
     return variant === 'default' ? iconAlign : 'right'
   }
 
