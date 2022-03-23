@@ -1209,7 +1209,7 @@ const TextField = ({ required, disabled, autoFocus, variant = 'default', id, nam
         return Math.random().toString();
     }
     function getDerivedIconAlign() {
-        if (type === 'email')
+        if (type === 'email' && !icon)
             return 'right';
         return variant === 'default' ? iconAlign : 'right';
     }
