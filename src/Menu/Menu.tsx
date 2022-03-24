@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import React, { Children, FC } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
-import { MenuProps } from '../types/components'
+import { MenuItemProps, MenuProps, MenuType } from '../types/components'
 
 const MenuContainer = styled.div<{ isVisible: boolean }>`
   position: relative;
@@ -76,32 +76,27 @@ const MenuIcon = styled.div`
   margin-right: 8px;
 `
 
-const Menu: FC<MenuProps> = ({
-  options,
-  className,
-  isVisible,
-  toggleVisibility,
+export const Item: FC<MenuItemProps> = ({
+  onClick,
+  icon,
+  children,
 }): JSX.Element => {
   return (
+    <MenuItemWrapper onClick={onClick}>
+      {icon && <MenuIcon>{icon}</MenuIcon>}
+      {children && <MenuLabel>{children}</MenuLabel>}
+    </MenuItemWrapper>
+  )
+}
+
+const Menu: MenuType = ({ className, isVisible, children }): JSX.Element => {
+  return (
     <MenuContainer className={className} isVisible={isVisible}>
-      <MenuWrapper>
-        {options
-          .filter(option => !option.disabled)
-          .map(({ id, onClick, label, icon }) => (
-            <MenuItemWrapper
-              key={id}
-              onClick={() => {
-                onClick()
-                toggleVisibility?.()
-              }}
-            >
-              {icon && <MenuIcon>{icon}</MenuIcon>}
-              {label && <MenuLabel>{label}</MenuLabel>}
-            </MenuItemWrapper>
-          ))}
-      </MenuWrapper>
+      <MenuWrapper>{children}</MenuWrapper>
     </MenuContainer>
   )
 }
+
+Menu.Item = Item
 
 export default Menu

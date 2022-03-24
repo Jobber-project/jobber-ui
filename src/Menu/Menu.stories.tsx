@@ -67,16 +67,12 @@ export function Colors() {
         </Button>
       </ButtonWrapper>
       <MenuWrapper>
-        <Menu
-          options={options}
-          isVisible={open}
-          toggleVisibility={() => setOpen(!open)}
-        />
-        <StyledMenu
-          options={options}
-          isVisible={open}
-          toggleVisibility={() => setOpen(!open)}
-        />
+        <StyledMenu isVisible={open}>
+          <Menu.Item>Menu item 1</Menu.Item>
+          <Menu.Item icon={<SuccessIcon viewBox="0 0 24 24" />}>
+            Menu item icon
+          </Menu.Item>
+        </StyledMenu>
       </MenuWrapper>
     </Container>
   )

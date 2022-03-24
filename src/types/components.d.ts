@@ -1,14 +1,17 @@
-export type MenuOption = {
-  id: string
-  label: string
-  onClick: () => void
-  icon?: JSX.Element
-  disabled?: boolean
-}
+import { FC } from 'react'
 
 export type MenuProps = {
-  options: MenuOption[]
   isVisible: boolean
   toggleVisibility?: () => void
   className?: string
+}
+
+export type MenuItemProps = {
+  onClick?: () => void
+  icon?: JSX.Element
+  children?: string
+}
+
+type MenuType = FC<MenuProps> & {
+  Item: FC<MenuItemProps>
 }
