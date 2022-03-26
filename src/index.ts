@@ -9,6 +9,8 @@ import TextField, {
 } from './TextField/TextField'
 import Avatar from './Avatar/Avatar'
 import Spinner, { SpinnerSize } from './Spinner/Spinner'
+import Switcher from './Switcher'
+import Menu from './Menu'
 
 export type {
   ButtonSize,
@@ -29,4 +31,6 @@ export {
   TextField,
   Avatar,
   Spinner,
+  Switcher,
+  Menu,
 }

@@ -1,12 +1,11 @@
 import React, {
   ChangeEventHandler,
-  FC,
   HTMLInputTypeAttribute,
   ReactNode,
-  useRef,
   useEffect,
   forwardRef,
   ForwardRefRenderFunction,
+  useState,
 } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 
@@ -21,6 +20,7 @@ import ErrorIcon from '../shared/icons/circle-x.svg'
 import EmailIcon from '../shared/icons/mail.svg'
 // @ts-ignore
 import SearchIcon from '../shared/icons/search.svg'
+import { usePrevious } from '../shared/hooks'
 
 export type TextFieldIconAlign = 'left' | 'right'
 
@@ -311,7 +311,7 @@ const Input = styled.input<{
     props.$variant === 'default' &&
     `
     &:placeholder-shown + div {
-      color: ${COLORS.mischa};
+      color: ${COLORS.silverChalice};
     }
   `}
 
@@ -387,6 +387,7 @@ const HelperText = styled.span<{
 type TextFieldProps = {
   required?: boolean
   disabled?: boolean
+  autoFocus?: boolean
   variant?: TextFieldVariant
   id?: string
   name?: string
@@ -402,6 +403,7 @@ type TextFieldProps = {
   placeholder?: string
   /** Helper text to show below text input, ie validation message */
   helperText?: string
+  ariaLabel?: string
   /** Which side the icon should be rendered on */
   iconAlign?: TextFieldIconAlign
   /** Icon to render ie `<Icon />` */
@@ -414,6 +416,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   {
     required,
     disabled,
+    autoFocus,
     variant = 'default',
     id,
     name,
@@ -424,17 +427,16 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
     value,
     placeholder,
     helperText,
+    ariaLabel,
     iconAlign,
     icon,
     onChange,
   },
   ref,
 ) => {
-  const didMountRef = useRef<boolean>(false)
+  const prevVariant = usePrevious(variant)
 
-  useEffect(() => {
-    didMountRef.current = true
-  }, [])
+  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
 
   function getDerivedIcon(): ReactNode {
     switch (variant) {
@@ -465,9 +467,19 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
   }
 
   function getDerivedIconAlign(): TextFieldIconAlign {
-    if (type === 'email') return 'right'
+    if (type === 'email' && !icon) return 'right'
     return variant === 'default' ? iconAlign : 'right'
   }
+
+  function handleAnimationEnd() {
+    if (shouldAnimate) setShouldAnimate(false)
+  }
+
+  useEffect(() => {
+    if (variant !== prevVariant && !shouldAnimate) {
+      setShouldAnimate(true)
+    }
+  }, [variant, prevVariant, shouldAnimate])
 
   const derivedId = getDerivedId()
   const derivedIcon = getDerivedIcon()
@@ -490,27 +502,34 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
           $iconAlign={derivedIconAlign}
           required={required}
           disabled={disabled}
+          autoFocus={autoFocus}
           type={type}
           id={derivedId}
           name={name}
           value={value}
           placeholder={placeholder}
+          aria-label={ariaLabel}
           onChange={onChange}
         />
         {!!derivedIcon && (
           <IconWrapper
-            $animate={didMountRef.current}
+            $animate={shouldAnimate}
             $variant={variant}
             $size={size}
             $iconAlign={derivedIconAlign}
             key={variant}
+            onAnimationEnd={handleAnimationEnd}
           >
             {derivedIcon}
           </IconWrapper>
         )}
       </InputWrapper>
       {!!helperText && (
-        <HelperText $animate={didMountRef.current} $variant={variant}>
+        <HelperText
+          $animate={shouldAnimate}
+          $variant={variant}
+          onAnimationEnd={handleAnimationEnd}
+        >
           {helperText}
         </HelperText>
       )}

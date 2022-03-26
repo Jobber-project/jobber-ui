@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
+
+// @ts-ignore
+import SearchIcon from '../shared/icons/search.svg'
 
 import { TextFieldVariant } from './TextField'
 
@@ -18,6 +21,12 @@ const Container = styled.div`
   & > div + div {
     margin-top: 20px;
   }
+`
+
+const Toggled = styled.div<{
+  $visible: boolean
+}>`
+  display: ${props => (props.$visible ? 'block' : 'none')};
 `
 
 export function Intro(props) {
@@ -129,6 +138,25 @@ export function Error() {
         placeholder="Placeholder"
         helperText="Input helper text"
       />
+    </Container>
+  )
+}
+
+export function Icon() {
+  const [show, setShow] = useState(false)
+  return (
+    <Container>
+      <button type="button" onClick={() => setShow(!show)}>
+        toggle
+      </button>
+      <Toggled $visible={show}>
+        <TextField
+          label="Medium"
+          placeholder="Placeholder"
+          helperText="Input helper text"
+          icon={<SearchIcon />}
+        />
+      </Toggled>
     </Container>
   )
 }

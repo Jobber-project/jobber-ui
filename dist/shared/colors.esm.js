@@ -20,6 +20,8 @@ const COLORS = {
     wildStrawberry: '#FF4591',
     salmon: '#FF8761',
     selago: '#F5F6FD',
+    linkWater: '#EBEEFB',
+    governorBay: '#3A52BF',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
