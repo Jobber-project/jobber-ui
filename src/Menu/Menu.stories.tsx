@@ -8,7 +8,12 @@ import Button from '../Button'
 
 import Menu from '.'
 
+const StyledButton = styled(Button)`
+  z-index: 4;
+`
+
 const Container = styled.div`
+  z-index: 3;
   display: flex;
   flex-direction: column;
   min-width: 333px;
@@ -50,9 +55,9 @@ export function Colors() {
   const [open, setOpen] = useState(false)
   return (
     <Container>
-      <Button variant="primary" onClick={() => setOpen(!open)}>
+      <StyledButton variant="primary" onClick={() => setOpen(!open)}>
         Open menu
-      </Button>
+      </StyledButton>
 
       <Menu isVisible={open}>
         <Menu.Item>Menu item 1</Menu.Item>

@@ -2,8 +2,9 @@ import { FC } from 'react'
 
 export type MenuProps = {
   isVisible: boolean
-  toggleVisibility?: () => void
+  align?: 'left' | 'right'
   className?: string
+  children: JSX.Element[]
 }
 
 export type MenuItemProps = {
