@@ -1,26 +1,24 @@
-import React, { Children, FC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
-import { MenuItemProps, MenuProps, MenuType } from '../types/components'
+import { MenuItemProps, MenuType } from '../types/components'
 
 const MenuContainer = styled.div<{ isVisible: boolean }>`
   position: relative;
+  z-index: 3;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-  width: 150px;
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `
 
 const MenuWrapper = styled.div`
   z-index: 1;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  background-color: ${COLORS.white};
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `
