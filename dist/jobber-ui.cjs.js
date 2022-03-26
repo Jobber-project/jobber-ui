@@ -1508,18 +1508,19 @@ var Switcher = /*#__PURE__*/Object.freeze({
 
 const MenuContainer = styled__default["default"].div `
   position: relative;
-  z-index: 3;
+  z-index: 4;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `;
 const MenuWrapper = styled__default["default"].div `
-  z-index: 1;
   position: absolute;
+  z-index: 4;
   top: 10px;
-  left: 0;
+  ${({ $align }) => ($align === 'left' ? 'left: 0;' : 'right: 0;')}
   display: flex;
   flex-direction: column;
+  background-color: ${COLORS.white};
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `;
@@ -1575,8 +1576,8 @@ const MenuIcon = styled__default["default"].div `
 const Item = ({ onClick, icon, children, }) => {
     return (jsxRuntime.jsxs(MenuItemWrapper, Object.assign({ onClick: onClick }, { children: [icon && jsxRuntime.jsx(MenuIcon, { children: icon }, void 0), children && jsxRuntime.jsx(MenuLabel, { children: children }, void 0)] }), void 0));
 };
-const Menu = ({ className, isVisible, children }) => {
-    return (jsxRuntime.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.jsx(MenuWrapper, { children: children }, void 0) }), void 0));
+const Menu = ({ className, isVisible, align = 'left', children, }) => {
+    return (jsxRuntime.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: children }), void 0) }), void 0));
 };
 Menu.Item = Item;
 
