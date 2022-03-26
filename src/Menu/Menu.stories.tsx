@@ -28,7 +28,7 @@ const MenuWrapper = styled.div`
 `
 
 const StyledMenu = styled(Menu)`
-  width: 300px;
+  width: 280px;
 `
 
 const options = [
