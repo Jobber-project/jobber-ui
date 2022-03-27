@@ -62,7 +62,7 @@ export function Colors() {
       <Menu isVisible={open}>
         <Menu.Item>Menu item 1</Menu.Item>
         <Menu.Item icon={<SuccessIcon viewBox="0 0 24 24" />}>
-          Menu item icon
+          Menu item - very very long label
         </Menu.Item>
       </Menu>
     </Container>
