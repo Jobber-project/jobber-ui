@@ -2900,6 +2900,8 @@
   line-height: 19px;
   cursor: pointer;
 
+  white-space: nowrap;
+
   transition: color 0.1s ease-in;
 
   color: ${COLORS.charade};
