@@ -61,6 +61,7 @@ type ButtonProps = {
   href?: string
   as?: 'a'
   target?: '_blank'
+  download?: string
 }
 
 function getIconSize({ $size }: { $size: ButtonSize }) {
@@ -465,6 +466,7 @@ const Button: FC<ButtonProps> = ({
   href,
   as,
   target,
+  download,
   children,
 }) => {
   const derivedDisabled = disabled || loading
@@ -488,6 +490,7 @@ const Button: FC<ButtonProps> = ({
         fluid={fluid}
         $loading={loading}
         href={isLink ? href : undefined}
+        download={isLink ? download : undefined}
         as={as}
         target={isLink ? target : undefined}
       >
