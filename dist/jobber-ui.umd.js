@@ -1467,7 +1467,7 @@
         return (jsxRuntime.exports.jsxs(Container$4, Object.assign({ className: className }, { children: [jsxRuntime.exports.jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsxRuntime.exports.jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsxRuntime.exports.jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
     };
 
-    function getIconSize$1({ $size }) {
+    function getIconSize$2({ $size }) {
         switch ($size) {
             case 'large':
                 return 24;
@@ -1546,7 +1546,7 @@
     left: ${getIconLeftPosition({ $size })}px;
   `;
     }
-    const IconWrapper$1 = styled__default["default"].div `
+    const IconWrapper$2 = styled__default["default"].div `
   line-height: 0;
   z-index: 2;
   pointer-events: none;
@@ -1555,8 +1555,8 @@
   color: ${getIconColor$1};
 
   & svg {
-    width: ${getIconSize$1}px;
-    height: ${getIconSize$1}px;
+    width: ${getIconSize$2}px;
+    height: ${getIconSize$2}px;
   }
 `;
     const InnerWrapper = styled__default["default"].span `
@@ -1750,7 +1750,7 @@
         // Styled-components TS as prop workaround
         const Component = ButtonContainer;
         const isLink = as === 'a';
-        return (jsxRuntime.exports.jsx("div", { children: jsxRuntime.exports.jsxs(Component, Object.assign({ className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined }, { children: [!!icon && (jsxRuntime.exports.jsx(IconWrapper$1, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), variant)), jsxRuntime.exports.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), variant), loading && (jsxRuntime.exports.jsx(InnerWrapper, { children: jsxRuntime.exports.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
+        return (jsxRuntime.exports.jsx("div", { children: jsxRuntime.exports.jsxs(Component, Object.assign({ className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined }, { children: [!!icon && (jsxRuntime.exports.jsx(IconWrapper$2, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), variant)), jsxRuntime.exports.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), variant), loading && (jsxRuntime.exports.jsx(InnerWrapper, { children: jsxRuntime.exports.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
     };
 
     function getBackground({ $disabled }) {
@@ -2128,14 +2128,41 @@
     };
     const ForwardedRadioButton = React.forwardRef(RadioButton);
 
-    var _path$8, _circle$2, _path2$8;
+    var _path$9, _circle$3, _path2$9;
+
+    function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
+
+    var SvgCircleCheck = function SvgCircleCheck(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$9({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "circle-check_svg__icon circle-check_svg__icon-tabler circle-check_svg__icon-tabler-circle-check",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$9 || (_path$9 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _circle$3 || (_circle$3 = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 12,
+        cy: 12,
+        r: 9
+      })), _path2$9 || (_path2$9 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "m9 12 2 2 4-4"
+      })));
+    };
+
+    var _path$8, _path2$8;
 
     function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 
-    var SvgCircleCheck = function SvgCircleCheck(props) {
+    var SvgAlertTriangle = function SvgAlertTriangle(props) {
       return /*#__PURE__*/React__namespace.createElement("svg", _extends$8({
         xmlns: "http://www.w3.org/2000/svg",
-        className: "circle-check_svg__icon circle-check_svg__icon-tabler circle-check_svg__icon-tabler-circle-check",
+        className: "alert-triangle_svg__icon alert-triangle_svg__icon-tabler alert-triangle_svg__icon-tabler-alert-triangle",
         width: 24,
         height: 24,
         strokeWidth: 2,
@@ -2146,23 +2173,19 @@
       }, props), _path$8 || (_path$8 = /*#__PURE__*/React__namespace.createElement("path", {
         d: "M0 0h24v24H0z",
         stroke: "none"
-      })), _circle$2 || (_circle$2 = /*#__PURE__*/React__namespace.createElement("circle", {
-        cx: 12,
-        cy: 12,
-        r: 9
       })), _path2$8 || (_path2$8 = /*#__PURE__*/React__namespace.createElement("path", {
-        d: "m9 12 2 2 4-4"
+        d: "M12 9v2m0 4v.01M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19"
       })));
     };
 
-    var _path$7, _path2$7;
+    var _path$7, _circle$2, _path2$7;
 
     function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 
-    var SvgAlertTriangle = function SvgAlertTriangle(props) {
+    var SvgCircleX = function SvgCircleX(props) {
       return /*#__PURE__*/React__namespace.createElement("svg", _extends$7({
         xmlns: "http://www.w3.org/2000/svg",
-        className: "alert-triangle_svg__icon alert-triangle_svg__icon-tabler alert-triangle_svg__icon-tabler-alert-triangle",
+        className: "circle-x_svg__icon circle-x_svg__icon-tabler circle-x_svg__icon-tabler-circle-x",
         width: 24,
         height: 24,
         strokeWidth: 2,
@@ -2173,19 +2196,23 @@
       }, props), _path$7 || (_path$7 = /*#__PURE__*/React__namespace.createElement("path", {
         d: "M0 0h24v24H0z",
         stroke: "none"
+      })), _circle$2 || (_circle$2 = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 12,
+        cy: 12,
+        r: 9
       })), _path2$7 || (_path2$7 = /*#__PURE__*/React__namespace.createElement("path", {
-        d: "M12 9v2m0 4v.01M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19"
+        d: "m10 10 4 4m0-4-4 4"
       })));
     };
 
-    var _path$6, _circle$1, _path2$6;
+    var _path$6, _rect, _path2$6;
 
     function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 
-    var SvgCircleX = function SvgCircleX(props) {
+    var SvgMail = function SvgMail(props) {
       return /*#__PURE__*/React__namespace.createElement("svg", _extends$6({
         xmlns: "http://www.w3.org/2000/svg",
-        className: "circle-x_svg__icon circle-x_svg__icon-tabler circle-x_svg__icon-tabler-circle-x",
+        className: "mail_svg__icon mail_svg__icon-tabler mail_svg__icon-tabler-mail",
         width: 24,
         height: 24,
         strokeWidth: 2,
@@ -2196,23 +2223,25 @@
       }, props), _path$6 || (_path$6 = /*#__PURE__*/React__namespace.createElement("path", {
         d: "M0 0h24v24H0z",
         stroke: "none"
-      })), _circle$1 || (_circle$1 = /*#__PURE__*/React__namespace.createElement("circle", {
-        cx: 12,
-        cy: 12,
-        r: 9
+      })), _rect || (_rect = /*#__PURE__*/React__namespace.createElement("rect", {
+        x: 3,
+        y: 5,
+        width: 18,
+        height: 14,
+        rx: 2
       })), _path2$6 || (_path2$6 = /*#__PURE__*/React__namespace.createElement("path", {
-        d: "m10 10 4 4m0-4-4 4"
+        d: "m3 7 9 6 9-6"
       })));
     };
 
-    var _path$5, _rect, _path2$5;
+    var _path$5, _circle$1, _path2$5;
 
     function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
 
-    var SvgMail = function SvgMail(props) {
+    var SvgSearch = function SvgSearch(props) {
       return /*#__PURE__*/React__namespace.createElement("svg", _extends$5({
         xmlns: "http://www.w3.org/2000/svg",
-        className: "mail_svg__icon mail_svg__icon-tabler mail_svg__icon-tabler-mail",
+        className: "search_svg__icon search_svg__icon-tabler search_svg__icon-tabler-search",
         width: 24,
         height: 24,
         strokeWidth: 2,
@@ -2223,40 +2252,11 @@
       }, props), _path$5 || (_path$5 = /*#__PURE__*/React__namespace.createElement("path", {
         d: "M0 0h24v24H0z",
         stroke: "none"
-      })), _rect || (_rect = /*#__PURE__*/React__namespace.createElement("rect", {
-        x: 3,
-        y: 5,
-        width: 18,
-        height: 14,
-        rx: 2
-      })), _path2$5 || (_path2$5 = /*#__PURE__*/React__namespace.createElement("path", {
-        d: "m3 7 9 6 9-6"
-      })));
-    };
-
-    var _path$4, _circle, _path2$4;
-
-    function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
-
-    var SvgSearch = function SvgSearch(props) {
-      return /*#__PURE__*/React__namespace.createElement("svg", _extends$4({
-        xmlns: "http://www.w3.org/2000/svg",
-        className: "search_svg__icon search_svg__icon-tabler search_svg__icon-tabler-search",
-        width: 24,
-        height: 24,
-        strokeWidth: 2,
-        stroke: "currentColor",
-        fill: "none",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }, props), _path$4 || (_path$4 = /*#__PURE__*/React__namespace.createElement("path", {
-        d: "M0 0h24v24H0z",
-        stroke: "none"
-      })), _circle || (_circle = /*#__PURE__*/React__namespace.createElement("circle", {
+      })), _circle$1 || (_circle$1 = /*#__PURE__*/React__namespace.createElement("circle", {
         cx: 10,
         cy: 10,
         r: 7
-      })), _path2$4 || (_path2$4 = /*#__PURE__*/React__namespace.createElement("path", {
+      })), _path2$5 || (_path2$5 = /*#__PURE__*/React__namespace.createElement("path", {
         d: "m21 21-6-6"
       })));
     };
@@ -2315,7 +2315,7 @@
                 return COLORS.black;
         }
     }
-    function getIconSize({ $size }) {
+    function getIconSize$1({ $size }) {
         switch ($size) {
             case 'large':
                 return 24;
@@ -2367,7 +2367,7 @@
     function getPaddingRight({ $size, $iconAlign, }) {
         switch ($iconAlign) {
             case 'right':
-                return getIconSize({ $size }) + getIconRight({ $size, $iconAlign }) * 1.5;
+                return getIconSize$1({ $size }) + getIconRight({ $size, $iconAlign }) * 1.5;
             case 'left':
             default:
                 switch ($size) {
@@ -2391,7 +2391,7 @@
                 }
             case 'left':
             default:
-                return getIconSize({ $size }) + getIconLeft({ $size, $iconAlign }) * 1.5;
+                return getIconSize$1({ $size }) + getIconLeft({ $size, $iconAlign }) * 1.5;
         }
     }
     function getInputHeight({ $size }) {
@@ -2499,7 +2499,7 @@
     display: none;
   }
 `;
-    const IconWrapper = styled__default["default"].div `
+    const IconWrapper$1 = styled__default["default"].div `
   z-index: 1;
   position: absolute;
   top: 0;
@@ -2523,8 +2523,8 @@
     `}
 
   & svg {
-    width: ${getIconSize}px;
-    height: ${getIconSize}px;
+    width: ${getIconSize$1}px;
+    height: ${getIconSize$1}px;
   }
 `;
     const HelperText = styled__default["default"].span `
@@ -2589,9 +2589,36 @@
         const derivedId = getDerivedId();
         const derivedIcon = getDerivedIcon();
         const derivedIconAlign = getDerivedIconAlign();
-        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.exports.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.exports.jsxs(InputWrapper, { children: [jsxRuntime.exports.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.exports.jsx(IconWrapper, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.exports.jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
+        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.exports.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.exports.jsxs(InputWrapper, { children: [jsxRuntime.exports.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.exports.jsx(IconWrapper$1, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.exports.jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
     };
     const ForwardedTextField = React.forwardRef(TextField);
+
+    var _path$4, _path2$4, _circle;
+
+    function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
+
+    var SvgCamera = function SvgCamera(props) {
+      return /*#__PURE__*/React__namespace.createElement("svg", _extends$4({
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "camera_svg__icon camera_svg__icon-tabler camera_svg__icon-tabler-camera",
+        width: 24,
+        height: 24,
+        strokeWidth: 2,
+        stroke: "currentColor",
+        fill: "none",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, props), _path$4 || (_path$4 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M0 0h24v24H0z",
+        stroke: "none"
+      })), _path2$4 || (_path2$4 = /*#__PURE__*/React__namespace.createElement("path", {
+        d: "M5 7h1a2 2 0 0 0 2-2 1 1 0 0 1 1-1h6a1 1 0 0 1 1 1 2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"
+      })), _circle || (_circle = /*#__PURE__*/React__namespace.createElement("circle", {
+        cx: 12,
+        cy: 13,
+        r: 3
+      })));
+    };
 
     const getTextSize = ({ size }) => {
         switch (size) {
@@ -2603,6 +2630,23 @@
                 return 36;
             case 'xlarge':
                 return 72;
+            default:
+                return 20;
+        }
+    };
+    const getIcon = (icon) => {
+        switch (icon) {
+            case 'camera':
+            default:
+                return jsxRuntime.exports.jsx(SvgCamera, { height: "16px", width: "16", viewBox: "0 0 24 24" }, void 0);
+        }
+    };
+    const getIconSize = ({ size }) => {
+        switch (size) {
+            case 'small':
+            case 'medium':
+            case 'large':
+            case 'xlarge':
             default:
                 return 20;
         }
@@ -2640,6 +2684,9 @@
                 return `${COLORS.mischa}`;
         }
     };
+    const AvatarWrapper = styled__default["default"].div `
+  position: relative;
+`;
     const Circle = styled__default["default"].div `
   display: flex;
   align-items: center;
@@ -2662,14 +2709,40 @@
   font-family: Roboto, sans-serif;
   color: ${props => props.id || props.$disabled ? COLORS.white : COLORS.charade};
 `;
-    const Avatar = ({ src, name = 'N N', id, size, className, disabled = false, }) => {
+    const ButtonWrapper = styled__default["default"].button `
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+    const IconWrapper = styled__default["default"].div `
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 50%;
+  width: ${getIconSize}px;
+  height: ${getIconSize}px;
+  border: 1px solid ${COLORS.mischa};
+`;
+    const Icon = ({ icon, onClick, size }) => {
+        return (jsxRuntime.exports.jsx(ButtonWrapper, Object.assign({ onClick: onClick }, { children: jsxRuntime.exports.jsx(IconWrapper, Object.assign({ size: size }, { children: getIcon(icon) }), void 0) }), void 0));
+    };
+    const Avatar = ({ src, name = 'N N', id, size, className, disabled = false, onClick, icon, }) => {
         const initials = name
             .toUpperCase()
             .split(' ')
             .slice(0, 2)
             .map(n => n[0])
             .join('');
-        return (jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className, "$disabled": disabled }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, id: id, size: size }, { children: initials }), void 0)) }), void 0));
+        return (jsxRuntime.exports.jsxs(AvatarWrapper, { children: [jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className, "$disabled": disabled }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, id: id, size: size }, { children: initials }), void 0)) }), void 0), icon && size === 'large' && (jsxRuntime.exports.jsx(Icon, { size: size, onClick: onClick, icon: icon }, void 0))] }, void 0));
     };
 
     var _path$3, _path2$3;
