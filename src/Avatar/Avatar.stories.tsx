@@ -66,6 +66,45 @@ export function Image() {
   )
 }
 
+export function Icon() {
+  return (
+    <Container>
+      <Avatar
+        size="small"
+        icon="camera"
+        onClick={() => {}}
+        src="https://i.pravatar.cc/144"
+        id="086090e8-802d-4286-a29e-ce3ee0b15941"
+        name="Test Testsson"
+      />
+      <Avatar
+        size="medium"
+        icon="camera"
+        onClick={() => {}}
+        src="https://i.pravatar.cc/144"
+        id="1fdb6be2-5d6e-46c3-a921-8504a74383bc"
+        name="Test Testsson"
+      />
+      <Avatar
+        size="large"
+        icon="camera"
+        onClick={() => {}}
+        src="https://i.pravatar.cc/144"
+        id="c950bfc4-d2f7-4116-bb24-42f445efaf30"
+        name="Test Testsson"
+      />
+      <Avatar
+        size="xlarge"
+        icon="camera"
+        onClick={() => {}}
+        src="https://i.pravatar.cc/144"
+        id="d9ef3594-08b7-4869-b58f-adf11ce9d5bf"
+        name="Test Testsson"
+      />
+    </Container>
+  )
+}
+
 export function Colors() {
   return (
     <>
