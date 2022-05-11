@@ -2991,7 +2991,6 @@
   margin-right: 8px;
 `;
     const Item = ({ isVisible = false, as, onClick, icon, children, }) => {
-        console.log('isVisible', isVisible);
         return (jsxRuntime.exports.jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, forwardedAs: as, type: as === undefined ? 'button' : undefined, onClick: onClick }, { children: [icon && jsxRuntime.exports.jsx(MenuIcon, { children: icon }, void 0), children && jsxRuntime.exports.jsx(MenuLabel, { children: children }, void 0)] }), void 0));
     };
     const Menu = ({ className, isVisible, align = 'left', children, }) => {
