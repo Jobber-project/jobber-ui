@@ -89,7 +89,6 @@ export const Item: FC<MenuItemProps> = ({
   icon,
   children,
 }): JSX.Element => {
-  console.log('isVisible', isVisible)
   return (
     <MenuItemWrapper
       tabIndex={isVisible ? undefined : -1}
