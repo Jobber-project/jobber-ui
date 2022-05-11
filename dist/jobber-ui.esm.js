@@ -2,7 +2,7 @@ import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import * as React from 'react';
-import { forwardRef, useRef, useEffect, useState, Children, cloneElement } from 'react';
+import { forwardRef, useRef, useEffect, useState, cloneElement } from 'react';
 
 const globalStyle = css `
   ${reset}
@@ -1630,7 +1630,16 @@ const Item = ({ isVisible = false, as, href, onClick, icon, children, }) => {
     return (jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
 };
 const Menu = ({ className, isVisible, align = 'left', children, }) => {
-    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: Children.map(Children.toArray(children), (child) => cloneElement(child, {
+    function getMutableChildrenArray() {
+        if (!children) {
+            return [];
+        }
+        if (Array.isArray(children)) {
+            return children;
+        }
+        return [children];
+    }
+    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map(child => cloneElement(child, {
                 isVisible: isVisible,
             })) }), void 0) }), void 0));
 };
