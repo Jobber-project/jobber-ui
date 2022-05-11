@@ -129,15 +129,25 @@ const Menu: MenuType = ({
   align = 'left',
   children,
 }): JSX.Element => {
+  function getMutableChildrenArray(): JSX.Element[] {
+    if (!children) {
+      return []
+    }
+
+    if (Array.isArray(children)) {
+      return children as JSX.Element[]
+    }
+
+    return [children]
+  }
+
   return (
     <MenuContainer className={className} isVisible={isVisible}>
       <MenuWrapper $align={align}>
-        {Children.map(
-          Children.toArray(children) as readonly JSX.Element[],
-          (child: JSX.Element) =>
-            cloneElement(child, {
-              isVisible: isVisible,
-            }),
+        {getMutableChildrenArray().map(child =>
+          cloneElement(child, {
+            isVisible: isVisible,
+          }),
         )}
       </MenuWrapper>
     </MenuContainer>
