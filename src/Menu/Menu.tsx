@@ -2,7 +2,6 @@ import React, { Children, cloneElement, FC } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
-import { MenuItemProps, MenuType } from '../types/components'
 
 const MenuContainer = styled.div<{ isVisible: boolean }>`
   position: relative;
@@ -82,6 +81,14 @@ const MenuIcon = styled.div`
   margin-right: 8px;
 `
 
+type MenuItemProps = {
+  isVisible?: boolean
+  as?: 'button' | 'a' | 'span'
+  onClick?: () => void
+  icon?: JSX.Element
+  children?: string
+}
+
 export const Item: FC<MenuItemProps> = ({
   isVisible = false,
   as,
@@ -100,6 +107,17 @@ export const Item: FC<MenuItemProps> = ({
       {children && <MenuLabel>{children}</MenuLabel>}
     </MenuItemWrapper>
   )
+}
+
+type MenuProps = {
+  isVisible: boolean
+  align?: 'left' | 'right'
+  className?: string
+  children: JSX.Element[]
+}
+
+type MenuType = FC<MenuProps> & {
+  Item: FC<MenuItemProps>
 }
 
 const Menu: MenuType = ({
