@@ -2994,7 +2994,7 @@
         return (jsxRuntime.exports.jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsxRuntime.exports.jsx(MenuIcon, { children: icon }, void 0), children && jsxRuntime.exports.jsx(MenuLabel, { children: children }, void 0)] }), void 0));
     };
     const Menu = ({ className, isVisible, align = 'left', children, }) => {
-        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: React.Children.map(children, (child) => React.cloneElement(child, {
+        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: React.Children.map(React.Children.toArray(children), (child) => React.cloneElement(child, {
                     isVisible: isVisible,
                 })) }), void 0) }), void 0));
     };
