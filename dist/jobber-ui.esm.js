@@ -2,7 +2,7 @@ import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import * as React from 'react';
-import { forwardRef, useRef, useEffect, useState } from 'react';
+import { forwardRef, useRef, useEffect, useState, Children, cloneElement } from 'react';
 
 const globalStyle = css `
   ${reset}
@@ -1570,7 +1570,14 @@ const MenuWrapper = styled.div `
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `;
-const MenuItemWrapper = styled.div `
+const MenuItemWrapper = styled.button `
+  appearance: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
   display: flex;
   height: 35px;
   align-items: center;
@@ -1590,24 +1597,22 @@ const MenuItemWrapper = styled.div `
 
   &:hover {
     background-color: ${COLORS.selago};
-    cursor: pointer;
   }
 
   &:active {
     background-color: ${COLORS.linkWater};
-    cursor: pointer;
-    & > label {
+
+    & > span {
       color: ${COLORS.governorBay};
     }
   }
 `;
-const MenuLabel = styled.label `
+const MenuLabel = styled.span `
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  cursor: pointer;
 
   white-space: nowrap;
 
@@ -1621,11 +1626,14 @@ const MenuIcon = styled.div `
   color: ${COLORS.havelockBlue};
   margin-right: 8px;
 `;
-const Item = ({ onClick, icon, children, }) => {
-    return (jsxs(MenuItemWrapper, Object.assign({ onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
+const Item = ({ isVisible = false, as, onClick, icon, children, }) => {
+    console.log('isVisible', isVisible);
+    return (jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, forwardedAs: as, type: as === undefined ? 'button' : undefined, onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
 };
 const Menu = ({ className, isVisible, align = 'left', children, }) => {
-    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: children }), void 0) }), void 0));
+    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: Children.map(children, (child) => cloneElement(child, {
+                isVisible: isVisible,
+            })) }), void 0) }), void 0));
 };
 Menu.Item = Item;
 
