@@ -116,7 +116,7 @@ type MenuProps = {
   isVisible: boolean
   align?: 'left' | 'right'
   className?: string
-  children: JSX.Element[]
+  children: JSX.Element | JSX.Element[]
 }
 
 type MenuType = FC<MenuProps> & {
@@ -132,10 +132,12 @@ const Menu: MenuType = ({
   return (
     <MenuContainer className={className} isVisible={isVisible}>
       <MenuWrapper $align={align}>
-        {Children.map(children, (child: JSX.Element) =>
-          cloneElement(child, {
-            isVisible: isVisible,
-          }),
+        {Children.map(
+          Children.toArray(children) as readonly JSX.Element[],
+          (child: JSX.Element) =>
+            cloneElement(child, {
+              isVisible: isVisible,
+            }),
         )}
       </MenuWrapper>
     </MenuContainer>
