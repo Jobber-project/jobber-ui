@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, FC } from 'react'
+import React, { Children, cloneElement, FC, ReactElement } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -22,7 +22,7 @@ const MenuWrapper = styled.div<{ $align: 'left' | 'right' }>`
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `
-const MenuItemWrapper = styled.button`
+const MenuItemWrapper = styled.button<any>`
   appearance: none;
   padding: 0;
   border-radius: 0;
@@ -84,6 +84,7 @@ const MenuIcon = styled.div`
 type MenuItemProps = {
   isVisible?: boolean
   as?: 'button' | 'a' | 'span'
+  href?: string
   onClick?: () => void
   icon?: JSX.Element
   children?: string
@@ -92,6 +93,7 @@ type MenuItemProps = {
 export const Item: FC<MenuItemProps> = ({
   isVisible = false,
   as,
+  href,
   onClick,
   icon,
   children,
@@ -99,8 +101,9 @@ export const Item: FC<MenuItemProps> = ({
   return (
     <MenuItemWrapper
       tabIndex={isVisible ? undefined : -1}
-      forwardedAs={as}
+      as={as}
       type={as === undefined ? 'button' : undefined}
+      href={as === 'a' ? href : undefined}
       onClick={onClick}
     >
       {icon && <MenuIcon>{icon}</MenuIcon>}
