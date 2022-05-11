@@ -55,7 +55,7 @@ const MenuItemWrapper = styled.div`
   }
 `
 
-const MenuLabel = styled.label`
+const MenuLabel = styled.div`
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
