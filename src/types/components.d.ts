@@ -8,6 +8,8 @@ export type MenuProps = {
 }
 
 export type MenuItemProps = {
+  isVisible?: boolean
+  as?: 'button' | 'a' | 'span'
   onClick?: () => void
   icon?: JSX.Element
   children?: string

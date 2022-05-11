@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { Children, cloneElement, FC } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -23,7 +23,14 @@ const MenuWrapper = styled.div<{ $align: 'left' | 'right' }>`
   border: 1px solid ${COLORS.mischa};
   border-radius: 8px;
 `
-const MenuItemWrapper = styled.div`
+const MenuItemWrapper = styled.button`
+  appearance: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
   display: flex;
   height: 35px;
   align-items: center;
@@ -43,25 +50,23 @@ const MenuItemWrapper = styled.div`
 
   &:hover {
     background-color: ${COLORS.selago};
-    cursor: pointer;
   }
 
   &:active {
     background-color: ${COLORS.linkWater};
-    cursor: pointer;
-    & > label {
+
+    & > span {
       color: ${COLORS.governorBay};
     }
   }
 `
 
-const MenuLabel = styled.div`
+const MenuLabel = styled.span`
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  cursor: pointer;
 
   white-space: nowrap;
 
@@ -78,12 +83,20 @@ const MenuIcon = styled.div`
 `
 
 export const Item: FC<MenuItemProps> = ({
+  isVisible = false,
+  as,
   onClick,
   icon,
   children,
 }): JSX.Element => {
+  console.log('isVisible', isVisible)
   return (
-    <MenuItemWrapper onClick={onClick}>
+    <MenuItemWrapper
+      tabIndex={isVisible ? undefined : -1}
+      forwardedAs={as}
+      type={as === undefined ? 'button' : undefined}
+      onClick={onClick}
+    >
       {icon && <MenuIcon>{icon}</MenuIcon>}
       {children && <MenuLabel>{children}</MenuLabel>}
     </MenuItemWrapper>
@@ -98,7 +111,13 @@ const Menu: MenuType = ({
 }): JSX.Element => {
   return (
     <MenuContainer className={className} isVisible={isVisible}>
-      <MenuWrapper $align={align}>{children}</MenuWrapper>
+      <MenuWrapper $align={align}>
+        {Children.map(children, (child: JSX.Element) =>
+          cloneElement(child, {
+            isVisible: isVisible,
+          }),
+        )}
+      </MenuWrapper>
     </MenuContainer>
   )
 }
