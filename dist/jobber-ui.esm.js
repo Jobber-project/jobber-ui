@@ -1626,8 +1626,8 @@ const MenuIcon = styled.div `
   color: ${COLORS.havelockBlue};
   margin-right: 8px;
 `;
-const Item = ({ isVisible = false, as, onClick, icon, children, }) => {
-    return (jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, forwardedAs: as, type: as === undefined ? 'button' : undefined, onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
+const Item = ({ isVisible = false, as, href, onClick, icon, children, }) => {
+    return (jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
 };
 const Menu = ({ className, isVisible, align = 'left', children, }) => {
     return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: Children.map(children, (child) => cloneElement(child, {
