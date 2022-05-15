@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, FC, ReactElement } from 'react'
+import React, { cloneElement, FC } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
