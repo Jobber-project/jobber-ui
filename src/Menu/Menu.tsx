@@ -29,6 +29,7 @@ const MenuItemWrapper = styled.button<any>`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   height: 35px;
