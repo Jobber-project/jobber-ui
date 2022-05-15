@@ -144,8 +144,9 @@ const Menu: MenuType = ({
   return (
     <MenuContainer className={className} isVisible={isVisible}>
       <MenuWrapper $align={align}>
-        {getMutableChildrenArray().map(child =>
+        {getMutableChildrenArray().map((child, i) =>
           cloneElement(child, {
+            key: i,
             isVisible: isVisible,
           }),
         )}
