@@ -499,7 +499,7 @@ const Button: FC<ButtonProps> = ({
             $outlined={outlined}
             $variant={variant}
             $size={size}
-            key={variant}
+            key={`${variant}-icon-wrapper`}
             fluid={fluid}
           >
             {icon}
@@ -509,7 +509,7 @@ const Button: FC<ButtonProps> = ({
           $outlined={outlined}
           $variant={variant}
           $size={size}
-          key={variant}
+          key={`${variant}-children-wrapper`}
           $loading={loading}
         >
           {children}
