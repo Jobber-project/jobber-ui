@@ -69,6 +69,26 @@ export function Colors() {
   )
 }
 
+export function Links() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Container>
+      <StyledButton variant="primary" onClick={() => setOpen(!open)}>
+        Open menu
+      </StyledButton>
+
+      <Menu isVisible={open}>
+        <Menu.Item as="a" href="#1">
+          Menu item 1
+        </Menu.Item>
+        <Menu.Item as="a" href="#2" icon={<SuccessIcon viewBox="0 0 24 24" />}>
+          Menu item - very very long label
+        </Menu.Item>
+      </Menu>
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof Menu> = {
   title: 'Design System/Menu',
   component: Menu,
