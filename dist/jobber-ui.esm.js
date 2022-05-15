@@ -1577,6 +1577,7 @@ const MenuItemWrapper = styled.button `
   border: none;
   background-color: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   height: 35px;
@@ -1639,7 +1640,8 @@ const Menu = ({ className, isVisible, align = 'left', children, }) => {
         }
         return [children];
     }
-    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map(child => cloneElement(child, {
+    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map((child, i) => cloneElement(child, {
+                key: i,
                 isVisible: isVisible,
             })) }), void 0) }), void 0));
 };

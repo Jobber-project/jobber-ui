@@ -2941,6 +2941,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   height: 35px;
@@ -3003,7 +3004,8 @@
             }
             return [children];
         }
-        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map(child => React.cloneElement(child, {
+        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map((child, i) => React.cloneElement(child, {
+                    key: i,
                     isVisible: isVisible,
                 })) }), void 0) }), void 0));
     };

@@ -1604,6 +1604,7 @@ const MenuItemWrapper = styled__default["default"].button `
   border: none;
   background-color: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   height: 35px;
@@ -1666,7 +1667,8 @@ const Menu = ({ className, isVisible, align = 'left', children, }) => {
         }
         return [children];
     }
-    return (jsxRuntime.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map(child => React.cloneElement(child, {
+    return (jsxRuntime.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().map((child, i) => React.cloneElement(child, {
+                key: i,
                 isVisible: isVisible,
             })) }), void 0) }), void 0));
 };
