@@ -409,12 +409,13 @@ const ButtonContainer = styled__default["default"].button `
 
   ${getDisabledStyle};
 `;
-const Button = ({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, fluid = false, loading = false, icon = null, spinnerColor, href, as, target, download, children, }) => {
+const Button = React.forwardRef(({ variant = 'default', type = 'button', onClick, size = 'medium', className, outlined = false, disabled = false, fluid = false, loading = false, icon = null, spinnerColor, href, as, target, download, children, }, ref) => {
     // Styled-components TS as prop workaround
     const Component = ButtonContainer;
     const isLink = as === 'a';
-    return (jsxRuntime.jsx("div", { children: jsxRuntime.jsxs(Component, Object.assign({ className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined }, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$2, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), `${variant}-icon-wrapper`)), jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), `${variant}-children-wrapper`), loading && (jsxRuntime.jsx(InnerWrapper, { children: jsxRuntime.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
-};
+    return (jsxRuntime.jsx("div", { children: jsxRuntime.jsxs(Component, Object.assign({ ref: ref, className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined }, { children: [!!icon && (jsxRuntime.jsx(IconWrapper$2, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), `${variant}-icon-wrapper`)), jsxRuntime.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), `${variant}-children-wrapper`), loading && (jsxRuntime.jsx(InnerWrapper, { children: jsxRuntime.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
+});
+Button.displayName = 'Button';
 
 function getBackground({ $disabled }) {
     return $disabled ? COLORS.alabster : COLORS.white;
