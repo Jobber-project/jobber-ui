@@ -1,4 +1,4 @@
-import React, { ElementType, FC, ReactNode } from 'react'
+import React, { ElementType, FC, ReactNode, forwardRef } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -451,82 +451,90 @@ const ButtonContainer = styled.button<{
   ${getDisabledStyle};
 `
 
-const Button: FC<ButtonProps> = ({
-  variant = 'default',
-  type = 'button',
-  onClick,
-  size = 'medium',
-  className,
-  outlined = false,
-  disabled = false,
-  fluid = false,
-  loading = false,
-  icon = null,
-  spinnerColor,
-  href,
-  as,
-  target,
-  download,
-  children,
-}) => {
-  const derivedDisabled = disabled || loading
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      variant = 'default',
+      type = 'button',
+      onClick,
+      size = 'medium',
+      className,
+      outlined = false,
+      disabled = false,
+      fluid = false,
+      loading = false,
+      icon = null,
+      spinnerColor,
+      href,
+      as,
+      target,
+      download,
+      children,
+    }: ButtonProps,
+    ref,
+  ) => {
+    const derivedDisabled = disabled || loading
 
-  // Styled-components TS as prop workaround
-  const Component = ButtonContainer as unknown as ElementType
+    // Styled-components TS as prop workaround
+    const Component = ButtonContainer as unknown as ElementType
 
-  const isLink = as === 'a'
+    const isLink = as === 'a'
 
-  return (
-    <div>
-      <Component
-        className={className}
-        $variant={variant}
-        type={isLink ? undefined : type}
-        onClick={onClick}
-        $size={size}
-        $outlined={outlined}
-        disabled={disabled}
-        icon={!!icon}
-        fluid={fluid}
-        $loading={loading}
-        href={isLink ? href : undefined}
-        download={isLink ? download : undefined}
-        as={as}
-        target={isLink ? target : undefined}
-      >
-        {!!icon && (
-          <IconWrapper
-            $outlined={outlined}
-            $variant={variant}
-            $size={size}
-            key={`${variant}-icon-wrapper`}
-            fluid={fluid}
-          >
-            {icon}
-          </IconWrapper>
-        )}
-        <ChildrenWrapper
-          $outlined={outlined}
+    return (
+      <div>
+        <Component
+          ref={ref}
+          className={className}
           $variant={variant}
+          type={isLink ? undefined : type}
+          onClick={onClick}
           $size={size}
-          key={`${variant}-children-wrapper`}
+          $outlined={outlined}
+          disabled={disabled}
+          icon={!!icon}
+          fluid={fluid}
           $loading={loading}
+          href={isLink ? href : undefined}
+          download={isLink ? download : undefined}
+          as={as}
+          target={isLink ? target : undefined}
         >
-          {children}
-        </ChildrenWrapper>
-        {loading && (
-          <InnerWrapper>
-            <StyledSpinner
-              $variant={variant}
+          {!!icon && (
+            <IconWrapper
               $outlined={outlined}
-              $spinnerColor={spinnerColor}
-              size="small"
-            />
-          </InnerWrapper>
-        )}
-      </Component>
-    </div>
-  )
-}
+              $variant={variant as ButtonVariant}
+              $size={size as ButtonSize}
+              key={`${variant}-icon-wrapper`}
+              fluid={fluid}
+            >
+              {icon}
+            </IconWrapper>
+          )}
+          <ChildrenWrapper
+            $outlined={outlined}
+            $variant={variant as ButtonVariant}
+            $size={size as ButtonSize}
+            key={`${variant}-children-wrapper`}
+            $loading={loading}
+          >
+            {children}
+          </ChildrenWrapper>
+          {loading && (
+            <InnerWrapper>
+              <StyledSpinner
+                $variant={variant as ButtonVariant}
+                $outlined={outlined}
+                $spinnerColor={spinnerColor}
+                size="small"
+              />
+            </InnerWrapper>
+          )}
+        </Component>
+      </div>
+    )
+  },
+)
+
+Button.displayName = 'Button'
 
 export default Button
