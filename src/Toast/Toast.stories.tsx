@@ -1,13 +1,31 @@
 import { ComponentMeta } from '@storybook/react'
+import { useEffect, useRef } from 'react'
 
 import { Toaster, ToastVariant } from './Toast'
 
 import Toast from '.'
 
 export function Intro() {
+  const num = useRef(0)
+
+  useEffect(() => {
+    num.current += 1
+    Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+    num.current += 1
+    Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+    num.current += 1
+    Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+  }, [])
+
   return (
     <div>
-      <button type="button" onClick={() => Toast.info('Title', 'Message')}>
+      <button
+        type="button"
+        onClick={() => {
+          num.current += 1
+          Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+        }}
+      >
         Info
       </button>
       <Toaster />

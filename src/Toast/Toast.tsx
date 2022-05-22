@@ -11,7 +11,7 @@ import React, {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 // @ts-ignore
 import XIcon from '../shared/icons/x.svg'
@@ -25,14 +25,45 @@ import WarningIcon from '../shared/icons/alert-triangle-modified.svg'
 import ErrorIcon from '../shared/icons/alert-circle.svg'
 import COLORS from '../shared/colors'
 
+const animateIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
+const Positioner = styled.div<{
+  $closing?: boolean
+  $index: number
+}>`
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: ${props => (props.$closing ? 0 : 1)};
+  transition: transform ease 280ms, opacity ease 280ms;
+  transform: translateX(${props => (props.$closing ? -100 : 0)}%)
+    translateY(${props => -props.$index * 100}%)
+    translateY(${props => -props.$index * 10}px);
+`
+
 const Container = styled.div`
   z-index: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 80px;
   max-width: 427px;
   background-color: ${COLORS.white};
   border-radius: 8px;
   box-shadow: 0px 5px 50px 10px rgba(0, 0, 0, 0.05);
+  animation: ${animateIn} ease 280ms forwards;
 `
 
 const CloseButton = styled.button`
@@ -56,6 +87,7 @@ const CloseButton = styled.button`
 
 const Inner = styled.span`
   display: flex;
+  flex-grow: 1;
   padding: 16px 16px 15px 16px;
   box-sizing: border-box;
 `
@@ -185,10 +217,12 @@ function getColor(variant: ToastVariant): string {
 type ToastOptions = {}
 
 type ToastConfig = ToastOptions & {
+  closing?: boolean
   id: string
   variant: ToastVariant
   title?: string
   message?: string
+  onTransitionEnd?: () => any
 }
 
 type TToast = {
@@ -223,7 +257,7 @@ const Toast: FC<ToastProps> = ({
   }
 
   function handleCloseClick() {
-    if (id) context.remove(id)
+    if (id) context.close(id)
   }
 
   return (
@@ -282,6 +316,7 @@ MemoizedToast.displayName = 'Toast'
 
 const ToasterContext = createContext({
   remove: (id: string) => {},
+  close: (id: string) => {},
 })
 
 function getOrCreatePortalElement() {
@@ -318,7 +353,7 @@ export const Toaster: FC = () => {
           ...options,
         }
 
-        setToasts(prev => [toastConfig, ...prev])
+        setToasts(prev => [...prev, toastConfig])
       }
     }
 
@@ -329,16 +364,41 @@ export const Toaster: FC = () => {
     setToasts(prev => prev.filter(toastConfig => toastConfig.id !== id))
   }, [])
 
+  const close = useCallback(
+    (id: string) => {
+      setToasts(prev =>
+        prev.map(toastConfig =>
+          toastConfig.id === id
+            ? {
+                ...toastConfig,
+                closing: true,
+                onTransitionEnd: () => remove(id),
+              }
+            : toastConfig,
+        ),
+      )
+    },
+    [remove],
+  )
+
   const value = useMemo(() => {
     return {
       remove,
+      close,
     }
-  }, [remove])
+  }, [remove, close])
 
   return createPortal(
     <ToasterContext.Provider value={value}>
-      {toasts.map(props => (
-        <MemoizedToast key={props.id} {...props} />
+      {toasts.map(({ closing, onTransitionEnd, ...props }, index) => (
+        <Positioner
+          $closing={closing}
+          $index={index}
+          key={props.id}
+          onTransitionEnd={onTransitionEnd}
+        >
+          <MemoizedToast {...props} />
+        </Positioner>
       ))}
     </ToasterContext.Provider>,
     getOrCreatePortalElement(),
