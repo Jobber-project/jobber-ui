@@ -36,6 +36,16 @@ const animateIn = keyframes`
   }
 `
 
+const progressOut = keyframes`
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+`
+
 const Positioner = styled.div<{
   $closing?: boolean
   $index: number
@@ -133,15 +143,24 @@ const Message = styled.span`
   color: ${COLORS.charade};
 `
 
-const Progress = styled.span<{
-  $color: string
-}>`
+const ProgressWrapper = styled.span`
   display: block;
   width: 100%;
   height: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  overflow: hidden;
+`
+
+const Progress = styled.span<{
+  $duration: number
+  $color: string
+}>`
+  display: block;
+  width: 100%;
+  height: 100%;
   background-color: ${props => props.$color};
+  animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `
 
 const StyledInfoIcon = styled(InfoIcon)`
@@ -214,6 +233,28 @@ function getColor(variant: ToastVariant): string {
   }
 }
 
+type ProgressBarProps = {
+  duration?: number
+  color: string
+  onAnimationEnd?: () => any
+}
+
+const ProgressBar = memo(
+  ({ duration = 5000, color, onAnimationEnd }: ProgressBarProps) => {
+    return (
+      <ProgressWrapper>
+        <Progress
+          $duration={duration}
+          $color={color}
+          onAnimationEnd={onAnimationEnd}
+        />
+      </ProgressWrapper>
+    )
+  },
+)
+
+ProgressBar.displayName = 'ProgressBar'
+
 type ToastOptions = {}
 
 type ToastConfig = ToastOptions & {
@@ -260,6 +301,10 @@ const Toast: FC<ToastProps> = ({
     if (id) context.close(id)
   }
 
+  function handleAnimationEnd() {
+    if (id) context.close(id)
+  }
+
   return (
     <Container onClick={handleClick}>
       <Inner>
@@ -269,7 +314,7 @@ const Toast: FC<ToastProps> = ({
           {!!message && <Message>{message}</Message>}
         </InnerRight>
       </Inner>
-      <Progress $color={color} />
+      <ProgressBar color={color} onAnimationEnd={handleAnimationEnd} />
       <CloseButton type="button" onClick={handleCloseClick} aria-label="close">
         <XIcon width={20} height={20} viewBox="0 0 24 24" />
       </CloseButton>
