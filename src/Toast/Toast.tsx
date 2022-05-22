@@ -247,13 +247,13 @@ function getColor(variant: ToastVariant): string {
 }
 
 type ProgressBarProps = {
-  duration?: number
+  duration: number
   color: string
   onAnimationEnd?: () => any
 }
 
 const ProgressBar = memo(
-  ({ duration = 500000, color, onAnimationEnd }: ProgressBarProps) => {
+  ({ duration, color, onAnimationEnd }: ProgressBarProps) => {
     return (
       <ProgressWrapper>
         <Progress
@@ -268,7 +268,9 @@ const ProgressBar = memo(
 
 ProgressBar.displayName = 'ProgressBar'
 
-type ToastOptions = {}
+type ToastOptions = {
+  duration?: number
+}
 
 type ToastConfig = ToastOptions & {
   closing?: boolean
@@ -276,6 +278,7 @@ type ToastConfig = ToastOptions & {
   variant: ToastVariant
   title?: string
   message?: string
+  duration?: number
   onTransitionEnd?: () => any
 }
 
@@ -287,6 +290,7 @@ type TToast = {
 }
 
 type ToastProps = {
+  duration?: number
   id?: string
   variant?: ToastVariant
   title?: string
@@ -295,6 +299,7 @@ type ToastProps = {
 }
 
 const Toast: FC<ToastProps> = ({
+  duration = 5000,
   id,
   variant = 'info',
   title,
@@ -327,7 +332,11 @@ const Toast: FC<ToastProps> = ({
           {!!message && <Message>{message}</Message>}
         </InnerRight>
       </Inner>
-      <ProgressBar color={color} onAnimationEnd={handleAnimationEnd} />
+      <ProgressBar
+        duration={duration}
+        color={color}
+        onAnimationEnd={handleAnimationEnd}
+      />
       <CloseButton type="button" onClick={handleCloseClick} aria-label="close">
         <XIcon width={20} height={20} viewBox="0 0 24 24" />
       </CloseButton>
