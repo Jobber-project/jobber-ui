@@ -1,8 +1,19 @@
 import { ComponentMeta } from '@storybook/react'
 
-import { ToastVariant } from './Toast'
+import { Toaster, ToastVariant } from './Toast'
 
 import Toast from '.'
+
+export function Intro() {
+  return (
+    <div>
+      <button type="button" onClick={() => Toast.info('Title', 'Message')}>
+        Info
+      </button>
+      <Toaster />
+    </div>
+  )
+}
 
 export function Info({ title = 'Information title', ...props }) {
   return <Toast title={title} {...props} />

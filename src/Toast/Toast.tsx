@@ -1,4 +1,16 @@
-import React, { FC, MouseEventHandler } from 'react'
+import React, {
+  createContext,
+  FC,
+  memo,
+  NamedExoticComponent,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 
 // @ts-ignore
@@ -170,7 +182,24 @@ function getColor(variant: ToastVariant): string {
   }
 }
 
+type ToastOptions = {}
+
+type ToastConfig = ToastOptions & {
+  id: string
+  variant: ToastVariant
+  title?: string
+  message?: string
+}
+
+type TToast = {
+  info: (title?: string, message?: string, options?: ToastOptions) => void
+  success: (title?: string, message?: string, options?: ToastOptions) => void
+  warning: (title?: string, message?: string, options?: ToastOptions) => void
+  error: (title?: string, message?: string, options?: ToastOptions) => void
+}
+
 type ToastProps = {
+  id?: string
   variant?: ToastVariant
   title?: string
   message?: string
@@ -178,11 +207,14 @@ type ToastProps = {
 }
 
 const Toast: FC<ToastProps> = ({
+  id,
   variant = 'info',
   title,
   message,
   onClick,
 }: ToastProps) => {
+  const context = useContext(ToasterContext)
+
   const icon = getIcon(variant)
   const color = getColor(variant)
 
@@ -190,7 +222,9 @@ const Toast: FC<ToastProps> = ({
     onClick?.()
   }
 
-  function handleCloseClick() {}
+  function handleCloseClick() {
+    if (id) context.remove(id)
+  }
 
   return (
     <Container onClick={handleClick}>
@@ -209,4 +243,106 @@ const Toast: FC<ToastProps> = ({
   )
 }
 
-export default Toast
+// @ts-ignore
+const MemoizedToast: NamedExoticComponent<ToastProps> & TToast = memo(Toast)
+
+MemoizedToast.info = (
+  title?: string,
+  message?: string,
+  options?: ToastOptions,
+) => {
+  throw new Error('Toast.info() was called before Toaster had mounted.')
+}
+
+MemoizedToast.success = (
+  title?: string,
+  message?: string,
+  options?: ToastOptions,
+) => {
+  throw new Error('Toast.success() was called before Toaster had mounted.')
+}
+
+MemoizedToast.warning = (
+  title?: string,
+  message?: string,
+  options?: ToastOptions,
+) => {
+  throw new Error('Toast.warning() was called before Toaster had mounted.')
+}
+
+MemoizedToast.error = (
+  title?: string,
+  message?: string,
+  options?: ToastOptions,
+) => {
+  throw new Error('Toast.error() was called before Toaster had mounted.')
+}
+
+MemoizedToast.displayName = 'Toast'
+
+const ToasterContext = createContext({
+  remove: (id: string) => {},
+})
+
+function getOrCreatePortalElement() {
+  let element = document.getElementById('toasts-portal')
+
+  if (!element) {
+    element = document.createElement('div')
+    element.setAttribute('id', 'toasts-portal')
+    document.body.appendChild(element)
+  }
+
+  return element
+}
+
+export const Toaster: FC = () => {
+  const [toasts, setToasts] = useState<ToastConfig[]>([])
+
+  useEffect(() => {
+    function generateId(): string {
+      return `toast-${
+        Math.random().toString().split('.')[1]
+      }-${Date.now().toString()}`
+    }
+
+    function createToastCallback(
+      variant: ToastVariant,
+    ): (title?: string, message?: string, options?: ToastOptions) => void {
+      return (title?: string, message?: string, options?: ToastOptions) => {
+        const toastConfig: ToastConfig = {
+          id: generateId(),
+          variant,
+          title,
+          message,
+          ...options,
+        }
+
+        setToasts(prev => [toastConfig, ...prev])
+      }
+    }
+
+    MemoizedToast.info = createToastCallback('info')
+  }, [])
+
+  const remove = useCallback((id: string) => {
+    setToasts(prev => prev.filter(toastConfig => toastConfig.id !== id))
+  }, [])
+
+  const value = useMemo(() => {
+    return {
+      remove,
+    }
+  }, [remove])
+
+  return createPortal(
+    <ToasterContext.Provider value={value}>
+      {toasts.map(props => (
+        <MemoizedToast key={props.id} {...props} />
+      ))}
+    </ToasterContext.Provider>,
+    getOrCreatePortalElement(),
+  )
+}
+
+export default MemoizedToast
