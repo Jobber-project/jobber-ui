@@ -62,6 +62,26 @@ const Positioner = styled.div<{
     translateY(${props => -props.$index * 10}px);
 `
 
+const ProgressWrapper = styled.span`
+  display: block;
+  width: 100%;
+  height: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: hidden;
+`
+
+const Progress = styled.span<{
+  $duration: number
+  $color: string
+}>`
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.$color};
+  animation: ${progressOut} ${props => props.$duration}ms linear forwards;
+`
+
 const Container = styled.div`
   z-index: 1;
   position: relative;
@@ -74,6 +94,12 @@ const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0px 5px 50px 10px rgba(0, 0, 0, 0.05);
   animation: ${animateIn} ease 280ms forwards;
+
+  &:hover {
+    ${Progress} {
+      animation-play-state: paused;
+    }
+  }
 `
 
 const CloseButton = styled.button`
@@ -141,26 +167,6 @@ const Message = styled.span`
   font-size: 12px;
   line-height: 1.167em;
   color: ${COLORS.charade};
-`
-
-const ProgressWrapper = styled.span`
-  display: block;
-  width: 100%;
-  height: 8px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  overflow: hidden;
-`
-
-const Progress = styled.span<{
-  $duration: number
-  $color: string
-}>`
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: ${props => props.$color};
-  animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `
 
 const StyledInfoIcon = styled(InfoIcon)`
