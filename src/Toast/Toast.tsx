@@ -48,12 +48,14 @@ const progressOut = keyframes`
 
 const Positioner = styled.div<{
   $closing?: boolean
+  $bottom?: number
+  $left?: number
   $index: number
 }>`
   z-index: 1;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: ${props => props.$bottom ?? 0}px;
+  left: ${props => props.$bottom ?? 0}px;
   width: 100%;
   opacity: ${props => (props.$closing ? 0 : 1)};
   transition: transform ease 280ms, opacity ease 280ms;
@@ -270,6 +272,8 @@ ProgressBar.displayName = 'ProgressBar'
 
 type ToastOptions = {
   duration?: number
+  bottom?: number
+  left?: number
 }
 
 type ToastConfig = ToastOptions & {
@@ -460,16 +464,23 @@ export const Toaster: FC = () => {
 
   return createPortal(
     <ToasterContext.Provider value={value}>
-      {toasts.map(({ closing, onTransitionEnd, ...props }, index) => (
-        <Positioner
-          $closing={closing}
-          $index={index}
-          key={props.id}
-          onTransitionEnd={onTransitionEnd}
-        >
-          <MemoizedToast {...props} />
-        </Positioner>
-      ))}
+      {toasts.map(
+        (
+          { closing, bottom = 10, left = 10, onTransitionEnd, ...props },
+          index,
+        ) => (
+          <Positioner
+            $closing={closing}
+            $index={index}
+            $bottom={bottom}
+            $left={left}
+            key={props.id}
+            onTransitionEnd={onTransitionEnd}
+          >
+            <MemoizedToast {...props} />
+          </Positioner>
+        ),
+      )}
     </ToasterContext.Provider>,
     getOrCreatePortalElement(),
   )
