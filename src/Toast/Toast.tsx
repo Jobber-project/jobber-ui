@@ -124,7 +124,7 @@ const CloseButton = styled.button`
 const Inner = styled.span`
   display: flex;
   flex-grow: 1;
-  padding: 16px 16px 15px 16px;
+  padding: 16px 32px 15px 16px;
   box-sizing: border-box;
 `
 
@@ -147,6 +147,7 @@ const InnerRight = styled.span`
   flex-direction: column;
   flex-grow: 1;
   text-align: left;
+  overflow: hidden;
 `
 
 const Title = styled.span<{
@@ -159,6 +160,9 @@ const Title = styled.span<{
   font-size: 18px;
   line-height: 1.167em;
   color: ${props => props.$color};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const Message = styled.span`
@@ -167,6 +171,9 @@ const Message = styled.span`
   font-size: 12px;
   line-height: 1.167em;
   color: ${COLORS.charade};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const StyledInfoIcon = styled(InfoIcon)`
@@ -246,7 +253,7 @@ type ProgressBarProps = {
 }
 
 const ProgressBar = memo(
-  ({ duration = 5000, color, onAnimationEnd }: ProgressBarProps) => {
+  ({ duration = 500000, color, onAnimationEnd }: ProgressBarProps) => {
     return (
       <ProgressWrapper>
         <Progress
