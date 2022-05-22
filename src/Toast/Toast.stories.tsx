@@ -12,9 +12,11 @@ export function Intro() {
     num.current += 1
     Toast.info(`Title #${num.current}`, `Message #${num.current}`)
     num.current += 1
-    Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+    Toast.success(`Title #${num.current}`, `Message #${num.current}`)
     num.current += 1
-    Toast.info(`Title #${num.current}`, `Message #${num.current}`)
+    Toast.warning(`Title #${num.current}`, `Message #${num.current}`)
+    num.current += 1
+    Toast.error(`Title #${num.current}`, `Message #${num.current}`)
   }, [])
 
   return (
@@ -27,6 +29,33 @@ export function Intro() {
         }}
       >
         Info
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          num.current += 1
+          Toast.success(`Title #${num.current}`, `Message #${num.current}`)
+        }}
+      >
+        Success
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          num.current += 1
+          Toast.warning(`Title #${num.current}`, `Message #${num.current}`)
+        }}
+      >
+        Warning
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          num.current += 1
+          Toast.error(`Title #${num.current}`, `Message #${num.current}`)
+        }}
+      >
+        Error
       </button>
       <Toaster />
     </div>

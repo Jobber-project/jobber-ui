@@ -409,6 +409,9 @@ export const Toaster: FC = () => {
     }
 
     MemoizedToast.info = createToastCallback('info')
+    MemoizedToast.success = createToastCallback('success')
+    MemoizedToast.warning = createToastCallback('warning')
+    MemoizedToast.error = createToastCallback('error')
   }, [])
 
   const remove = useCallback((id: string) => {
