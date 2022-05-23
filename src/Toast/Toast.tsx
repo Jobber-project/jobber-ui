@@ -36,6 +36,16 @@ const animateIn = keyframes`
   }
 `
 
+const animateInReducedMotion = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
 const progressOut = keyframes`
   0% {
     transform: translateX(0%);
@@ -63,6 +73,12 @@ const Positioner = styled.div<{
   transform: translateX(${props => (props.$closing ? -100 : 0)}%)
     translateY(${props => -props.$index * 100}%)
     translateY(${props => -props.$index * 10}px);
+
+  @media (prefers-reduced-motion) {
+    transform: translateY(${props => -props.$index * 100}%)
+      translateY(${props => -props.$index * 10}px);
+    transition: opacity ease 280ms;
+  }
 `
 
 const ProgressWrapper = styled.span`
@@ -98,6 +114,10 @@ const Container = styled.div`
   overflow: hidden;
   box-shadow: 0px 5px 50px 10px rgba(0, 0, 0, 0.05);
   animation: ${animateIn} ease 280ms forwards;
+
+  @media (prefers-reduced-motion) {
+    animation: ${animateInReducedMotion} ease 280ms forwards;
+  }
 
   &:hover {
     ${Progress} {
