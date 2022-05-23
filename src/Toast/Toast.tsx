@@ -94,6 +94,7 @@ const Container = styled.div`
   max-width: 427px;
   background-color: ${COLORS.white};
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0px 5px 50px 10px rgba(0, 0, 0, 0.05);
   animation: ${animateIn} ease 280ms forwards;
 
@@ -273,7 +274,7 @@ type ToastProps = {
 }
 
 const Toast: FC<ToastProps> = ({
-  duration = 5000,
+  duration = 500000,
   id,
   variant = 'info',
   title,
