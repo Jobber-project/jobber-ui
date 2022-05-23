@@ -90,8 +90,16 @@ const story: ComponentMeta<typeof Toast> = {
   title: 'Design System/Toast',
   component: Toast,
   argTypes: {
+    title: {
+      type: 'string',
+    },
     message: {
+      type: 'string',
       defaultValue: 'This is a message to notify the end user about happened.',
+    },
+    duration: {
+      defaultValue: 5000,
+      type: 'number',
     },
     onClick: { action: 'onClick' },
   },
