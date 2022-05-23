@@ -54,9 +54,10 @@ const Positioner = styled.div<{
 }>`
   z-index: 1;
   position: fixed;
+  right: ${props => props.$left ?? 0}px;
   bottom: ${props => props.$bottom ?? 0}px;
   left: ${props => props.$bottom ?? 0}px;
-  width: 100%;
+  max-width: 100%;
   opacity: ${props => (props.$closing ? 0 : 1)};
   transition: transform ease 280ms, opacity ease 280ms;
   transform: translateX(${props => (props.$closing ? -100 : 0)}%)
