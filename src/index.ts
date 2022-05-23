@@ -11,6 +11,7 @@ import Avatar from './Avatar/Avatar'
 import Spinner, { SpinnerSize } from './Spinner/Spinner'
 import Switcher from './Switcher'
 import Menu from './Menu'
+import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 
 export type {
   ButtonSize,
@@ -20,6 +21,7 @@ export type {
   TextFieldSize,
   TextFieldVariant,
   SpinnerSize,
+  ToastVariant,
 }
 
 export {
@@ -33,4 +35,6 @@ export {
   Spinner,
   Switcher,
   Menu,
+  Toast,
+  Toaster,
 }
