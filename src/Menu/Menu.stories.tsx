@@ -84,6 +84,9 @@ export function Links() {
         <Menu.Item as="a" href="#2" icon={<SuccessIcon viewBox="0 0 24 24" />}>
           Menu item - very very long label
         </Menu.Item>
+        {Math.random() > 0.5 && (
+          <Menu.Item>This item may or may not render</Menu.Item>
+        )}
       </Menu>
     </Container>
   )

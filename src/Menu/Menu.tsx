@@ -1,4 +1,10 @@
-import React, { cloneElement, FC } from 'react'
+import React, {
+  cloneElement,
+  FC,
+  ReactChild,
+  ReactElement,
+  ReactNode,
+} from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -117,7 +123,7 @@ type MenuProps = {
   isVisible: boolean
   align?: 'left' | 'right'
   className?: string
-  children: JSX.Element | JSX.Element[]
+  children: ReactElement | ReactElement[]
 }
 
 type MenuType = FC<MenuProps> & {
@@ -130,26 +136,35 @@ const Menu: MenuType = ({
   align = 'left',
   children,
 }): JSX.Element => {
-  function getMutableChildrenArray(): JSX.Element[] {
+  function getMutableChildrenArray(): ReactElement[] {
     if (!children) {
       return []
     }
 
     if (Array.isArray(children)) {
-      return children as JSX.Element[]
+      return children as ReactElement[]
     }
 
-    return [children]
+    return [children] as ReactElement[]
   }
 
   return (
     <MenuContainer className={className} isVisible={isVisible}>
       <MenuWrapper $align={align}>
-        {getMutableChildrenArray().map((child, i) =>
-          cloneElement(child, {
-            key: i,
-            isVisible: isVisible,
-          }),
+        {getMutableChildrenArray().reduce(
+          (acc: ReactNode[], child: ReactElement, i) => {
+            if (child) {
+              acc.push(
+                cloneElement(child, {
+                  key: i,
+                  isVisible: isVisible,
+                }),
+              )
+            }
+
+            return acc
+          },
+          [],
         )}
       </MenuWrapper>
     </MenuContainer>
