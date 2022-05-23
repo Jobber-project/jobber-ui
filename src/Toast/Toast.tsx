@@ -274,7 +274,7 @@ type ToastProps = {
 }
 
 const Toast: FC<ToastProps> = ({
-  duration = 500000,
+  duration = 5000,
   id,
   variant = 'info',
   title,
