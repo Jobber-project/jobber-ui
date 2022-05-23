@@ -16,13 +16,13 @@ import styled, { keyframes } from 'styled-components'
 // @ts-ignore
 import XIcon from '../shared/icons/x.svg'
 // @ts-ignore
-import InfoIcon from '../shared/icons/info-circle.svg'
+import InfoIcon from '../shared/icons/custom/info-circle-filled.svg'
 // @ts-ignore
-import SuccessIcon from '../shared/icons/circle-check.svg'
+import SuccessIcon from '../shared/icons/custom/circle-check-filled.svg'
 // @ts-ignore
-import WarningIcon from '../shared/icons/alert-triangle-modified.svg'
+import WarningIcon from '../shared/icons/custom/alert-triangle-filled.svg'
 // @ts-ignore
-import ErrorIcon from '../shared/icons/alert-circle.svg'
+import ErrorIcon from '../shared/icons/custom/alert-circle-filled.svg'
 import COLORS from '../shared/colors'
 
 const animateIn = keyframes`
@@ -178,51 +178,21 @@ const Message = styled.span`
   text-overflow: ellipsis;
 `
 
-const StyledInfoIcon = styled(InfoIcon)`
-  & circle {
-    fill: currentColor;
-  }
-
-  & circle + path {
-    color: ${COLORS.white};
-  }
-`
-
-const StyledSuccessIcon = styled(SuccessIcon)`
-  & circle {
-    fill: currentColor;
-  }
-
-  & circle + path {
-    color: ${COLORS.white};
-  }
-`
-
-const StyledErrorIcon = styled(ErrorIcon)`
-  & circle {
-    fill: currentColor;
-  }
-
-  & circle + path {
-    color: ${COLORS.white};
-  }
-`
-
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
 
 function getIcon(variant: ToastVariant): JSX.Element {
   switch (variant) {
     case 'info':
-      return <StyledInfoIcon width={32} height={32} viewBox="0 0 24 24" />
+      return <InfoIcon width={32} height={32} viewBox="0 0 24 24" />
 
     case 'success':
-      return <StyledSuccessIcon width={32} height={32} viewBox="0 0 24 24" />
+      return <SuccessIcon width={32} height={32} viewBox="0 0 24 24" />
 
     case 'warning':
       return <WarningIcon width={32} height={32} viewBox="0 0 24 24" />
 
     case 'error':
-      return <StyledErrorIcon width={32} height={32} viewBox="0 0 24 24" />
+      return <ErrorIcon width={32} height={32} viewBox="0 0 24 24" />
 
     default:
       return null
