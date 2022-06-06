@@ -91,15 +91,17 @@ const MenuIcon = styled.div`
 type MenuItemProps = {
   isVisible?: boolean
   as?: 'button' | 'a' | 'span'
+  className?: string
   href?: string
   onClick?: () => void
   icon?: JSX.Element
-  children?: string
+  children?: string | Element
 }
 
 export const Item: FC<MenuItemProps> = ({
   isVisible = false,
   as,
+  className,
   href,
   onClick,
   icon,
@@ -109,6 +111,7 @@ export const Item: FC<MenuItemProps> = ({
     <MenuItemWrapper
       tabIndex={isVisible ? undefined : -1}
       as={as}
+      className={className}
       type={as === undefined ? 'button' : undefined}
       href={as === 'a' ? href : undefined}
       onClick={onClick}
