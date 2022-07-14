@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
 
-type SliderProps = {
+export type SliderProps = {
   onChange?: (number: number | number[]) => void
   disabled?: boolean
   min?: number

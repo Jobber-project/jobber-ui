@@ -10,6 +10,7 @@ import TextField, {
 import Avatar from './Avatar/Avatar'
 import Spinner, { SpinnerSize } from './Spinner/Spinner'
 import Switcher from './Switcher'
+import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 
@@ -22,6 +23,7 @@ export type {
   TextFieldVariant,
   SpinnerSize,
   ToastVariant,
+  SliderProps,
 }
 
 export {
@@ -33,6 +35,7 @@ export {
   TextField,
   Avatar,
   Spinner,
+  Slider,
   Switcher,
   Menu,
   Toast,
