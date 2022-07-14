@@ -5,6 +5,14 @@ import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
 
+type SliderProps = {
+  onChange?: (number: number | number[]) => void
+  disabled?: boolean
+  min?: number
+  max?: number
+  step?: number
+}
+
 const SliderWrapper = styled.div`
   * {
     border-color: none;
@@ -42,14 +50,6 @@ const SliderWrapper = styled.div`
   .rc-slider-disabled {
   }
 `
-
-type SliderProps = {
-  onChange?: (number: number | number[]) => void
-  disabled?: boolean
-  min?: number
-  max?: number
-  step?: number
-}
 
 const Slider: FC<SliderProps> = ({
   disabled,
