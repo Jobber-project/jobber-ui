@@ -474,6 +474,7 @@ function getFocusedBorderColor({ $variant }) {
 }
 const Container$4 = styled__default["default"].label `
   display: inline-flex;
+  flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 `;
@@ -586,7 +587,8 @@ const SquareBorder = styled__default["default"].span `
 `;
 const Text$2 = styled__default["default"].span `
   display: block;
-  margin-left: 8px;
+  margin-right: ${props => (props.$flipped ? 8 : 0)}px;
+  margin-left: ${props => (props.$flipped ? 0 : 8)}px;
   font-size: 12px;
   line-height: 1.667em;
   font-family: Roboto, sans-serif;
@@ -594,7 +596,7 @@ const Text$2 = styled__default["default"].span `
   overflow: hidden;
   color: ${getLabelColor$1};
 `;
-const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, variant = 'default', id, name, className, label, onChange, }, ref) => {
+const Checkbox = ({ required, disabled = false, defaultChecked, checked, flipped = false, value, variant = 'default', id, name, className, label, onChange, }, ref) => {
     function getDerivedId() {
         if (id)
             return id;
@@ -619,7 +621,7 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, value, 
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (jsxRuntime.jsxs(Container$4, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$2, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxRuntime.jsxs(Container$4, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.jsxs(Square, { children: [jsxRuntime.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.jsx(Text$2, Object.assign({ "$disabled": disabled, "$flipped": flipped, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedCheckbox = React.forwardRef(Checkbox);
 
