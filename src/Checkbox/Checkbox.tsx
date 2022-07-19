@@ -94,8 +94,10 @@ function getFocusedBorderColor({ $variant }: { $variant: CheckboxVariant }) {
 
 const Container = styled.label<{
   $disabled: boolean
+  $flipped: boolean
 }>`
   display: inline-flex;
+  flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
 `
@@ -227,10 +229,12 @@ const SquareBorder = styled.span<{
 
 const Text = styled.span<{
   $disabled: boolean
+  $flipped: boolean
   $variant: CheckboxVariant
 }>`
   display: block;
-  margin-left: 8px;
+  margin-right: ${props => (props.$flipped ? 8 : 0)}px;
+  margin-left: ${props => (props.$flipped ? 0 : 8)}px;
   font-size: 12px;
   line-height: 1.667em;
   font-family: Roboto, sans-serif;
@@ -244,6 +248,8 @@ type CheckboxProps = {
   disabled?: boolean
   defaultChecked?: boolean
   checked?: boolean
+  /** Show checkbox **after** label instead */
+  flipped?: boolean
   value?: 'on' | 'off'
   id?: string
   name?: string
@@ -261,6 +267,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
     disabled = false,
     defaultChecked,
     checked,
+    flipped = false,
     value,
     variant = 'default',
     id,
@@ -301,6 +308,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
   return (
     <Container
       $disabled={disabled}
+      $flipped={flipped}
       className={className}
       as={label ? undefined : 'span'}
       {...(label ? { htmlFor: derivedId } : {})}
@@ -339,7 +347,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
         </Svg>
       </Square>
       {!!label && (
-        <Text $disabled={disabled} $variant={variant}>
+        <Text $disabled={disabled} $flipped={flipped} $variant={variant}>
           {label}
         </Text>
       )}
