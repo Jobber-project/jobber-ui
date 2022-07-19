@@ -286,12 +286,12 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
     return defaultChecked
   }
 
-  function getDerivedChecked(): boolean {
+  function getDerivedChecked(): boolean | undefined {
     if (typeof value === 'string' && value.length > 0) {
       return value === 'on'
     }
 
-    return checked || false
+    return checked
   }
 
   const derivedId = getDerivedId()
