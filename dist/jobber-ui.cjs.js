@@ -6,6 +6,7 @@ var styled = require('styled-components');
 var reset = require('styled-reset');
 var jsxRuntime = require('react/jsx-runtime');
 var React = require('react');
+var RCSlider = require('rc-slider');
 var reactDom = require('react-dom');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -31,6 +32,7 @@ function _interopNamespace(e) {
 var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 var reset__default = /*#__PURE__*/_interopDefaultLegacy(reset);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var RCSlider__default = /*#__PURE__*/_interopDefaultLegacy(RCSlider);
 
 const globalStyle = styled.css `
   ${reset__default["default"]}
@@ -1581,6 +1583,47 @@ var Switcher = /*#__PURE__*/Object.freeze({
   Vertical: Vertical
 });
 
+const SliderWrapper = styled__default["default"].div `
+  * {
+    border-color: none;
+  }
+  .rc-slider {
+    height: 0;
+    display: flex;
+    align-items: center;
+  }
+  .rc-slider-rail {
+    height: 2px;
+  }
+  .rc-slider-track {
+    height: 2px;
+    background-color: ${COLORS.royalBlue};
+  }
+  .rc-slider-handle,
+  .rc-slider-handle:active {
+    height: 10px;
+    width: 10px;
+    top: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-color: ${COLORS.royalBlue};
+    background-color: ${COLORS.royalBlue};
+    opacity: 1;
+  }
+
+  .rc-slider-handle-dragging {
+    border: none;
+    box-shadow: none;
+  }
+
+  .rc-slider-disabled {
+  }
+`;
+const Slider = ({ disabled, onChange, min = 0, max = 100, step = 1, }) => {
+    return (jsxRuntime.jsx(SliderWrapper, { children: jsxRuntime.jsx(RCSlider__default["default"], { min: min, max: max, step: step, disabled: disabled, onChange: onChange }, void 0) }, void 0));
+};
+
 const MenuContainer = styled__default["default"].div `
   position: relative;
   z-index: 4;
@@ -2086,6 +2129,7 @@ exports.Checkbox = ForwardedCheckbox;
 exports.GlobalStyle = GlobalStyle;
 exports.Menu = Menu;
 exports.RadioButton = ForwardedRadioButton;
+exports.Slider = Slider;
 exports.Spinner = Spinner;
 exports.Switcher = Switcher;
 exports.TextField = ForwardedTextField;

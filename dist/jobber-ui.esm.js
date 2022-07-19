@@ -3,6 +3,7 @@ import reset from 'styled-reset';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import * as React from 'react';
 import { forwardRef, useRef, useEffect, useState, cloneElement, memo, createContext, useContext, useCallback, useMemo } from 'react';
+import RCSlider from 'rc-slider';
 import { createPortal } from 'react-dom';
 
 const globalStyle = css `
@@ -1554,6 +1555,47 @@ var Switcher = /*#__PURE__*/Object.freeze({
   Vertical: Vertical
 });
 
+const SliderWrapper = styled.div `
+  * {
+    border-color: none;
+  }
+  .rc-slider {
+    height: 0;
+    display: flex;
+    align-items: center;
+  }
+  .rc-slider-rail {
+    height: 2px;
+  }
+  .rc-slider-track {
+    height: 2px;
+    background-color: ${COLORS.royalBlue};
+  }
+  .rc-slider-handle,
+  .rc-slider-handle:active {
+    height: 10px;
+    width: 10px;
+    top: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-color: ${COLORS.royalBlue};
+    background-color: ${COLORS.royalBlue};
+    opacity: 1;
+  }
+
+  .rc-slider-handle-dragging {
+    border: none;
+    box-shadow: none;
+  }
+
+  .rc-slider-disabled {
+  }
+`;
+const Slider = ({ disabled, onChange, min = 0, max = 100, step = 1, }) => {
+    return (jsx(SliderWrapper, { children: jsx(RCSlider, { min: min, max: max, step: step, disabled: disabled, onChange: onChange }, void 0) }, void 0));
+};
+
 const MenuContainer = styled.div `
   position: relative;
   z-index: 4;
@@ -2053,4 +2095,4 @@ const Toaster = () => {
         }) }), void 0), getOrCreatePortalElement());
 };
 
-export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu, ForwardedRadioButton as RadioButton, Spinner, Switcher, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
+export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu, ForwardedRadioButton as RadioButton, Slider, Spinner, Switcher, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
