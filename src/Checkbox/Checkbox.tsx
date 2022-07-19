@@ -291,7 +291,7 @@ const Checkbox: ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
       return value === 'on'
     }
 
-    return checked
+    return checked || false
   }
 
   const derivedId = getDerivedId()
