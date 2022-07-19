@@ -68,9 +68,11 @@ const story: ComponentMeta<typeof Checkbox> = {
   component: Checkbox,
   argTypes: {
     variant: {
+      type: 'string',
       defaultValue: 'default',
     },
     label: {
+      type: 'string',
       defaultValue: 'Label',
     },
     // size: {
@@ -78,6 +80,11 @@ const story: ComponentMeta<typeof Checkbox> = {
     //   defaultValue: 'medium',
     // },
     disabled: {
+      type: 'boolean',
+      defaultValue: false,
+    },
+    flipped: {
+      type: 'boolean',
       defaultValue: false,
     },
     onChange: { action: 'onChange' },
