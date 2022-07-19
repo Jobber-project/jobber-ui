@@ -95,7 +95,7 @@ type MenuItemProps = {
   href?: string
   onClick?: () => void
   icon?: JSX.Element
-  children?: string | Element
+  children?: string | JSX.Element
 }
 
 export const Item: FC<MenuItemProps> = ({
