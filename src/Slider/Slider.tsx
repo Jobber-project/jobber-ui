@@ -1,5 +1,5 @@
 import RCSlider from 'rc-slider'
-import 'rc-slider/assets/index.css'
+// import 'rc-slider/assets/index.css'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
