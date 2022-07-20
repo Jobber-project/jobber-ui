@@ -1,12 +1,14 @@
 import React from 'react'
 
 import GlobalStyle from '../src/GlobalStyle'
+import GlobalStyleStorybook from '../src/GlobalStyle/GlobalStyleStorybook'
 
 // Global decorator to apply the styles to all stories
 export const decorators = [
   Story => (
     <>
       <GlobalStyle />
+      <GlobalStyleStorybook />
       <Story />
     </>
   ),
