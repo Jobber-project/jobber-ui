@@ -2,7 +2,7 @@ import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import * as React from 'react';
-import { forwardRef, useRef, useEffect, useState, cloneElement, memo, createContext, useContext, useCallback, useMemo } from 'react';
+import { forwardRef, useRef, useEffect, useState, cloneElement, memo, createContext, useContext, useCallback, useMemo, useImperativeHandle } from 'react';
 import RCSlider from 'rc-slider';
 import { createPortal } from 'react-dom';
 
@@ -58,7 +58,7 @@ const animation = keyframes `
     transform: rotate(-360deg);
   }
 `;
-const Container$5 = styled.span `
+const Container$6 = styled.span `
   z-index: 1;
   position: relative;
   display: inline-block;
@@ -102,7 +102,7 @@ const Spinner = ({ size = 'medium', color = COLORS.emerald, className, children,
     const radius = derivedSize / 2 - strokeWidth;
     const circumference = radius * 2 * Math.PI;
     const offset = circumference - (25 / 100) * circumference;
-    return (jsxs(Container$5, Object.assign({ className: className }, { children: [jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
+    return (jsxs(Container$6, Object.assign({ className: className }, { children: [jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
 };
 
 function getIconSize$2({ $size }) {
@@ -444,7 +444,7 @@ function getFocusedBorderColor({ $variant }) {
             return false;
     }
 }
-const Container$4 = styled.label `
+const Container$5 = styled.label `
   display: inline-flex;
   flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
@@ -593,7 +593,7 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, flipped
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (jsxs(Container$4, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$2, Object.assign({ "$disabled": disabled, "$flipped": flipped, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxs(Container$5, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(Square, { children: [jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsx(Text$2, Object.assign({ "$disabled": disabled, "$flipped": flipped, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedCheckbox = forwardRef(Checkbox);
 
@@ -648,7 +648,7 @@ function getLabelColor({ $disabled, $variant, }) {
             return $disabled ? COLORS.silverChalice : COLORS.black;
     }
 }
-const Container$3 = styled.label `
+const Container$4 = styled.label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -765,7 +765,7 @@ const RadioButton = ({ required, disabled = false, defaultChecked, checked, vari
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxs(Container$3, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+    return (jsxs(Container$4, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
 };
 const ForwardedRadioButton = forwardRef(RadioButton);
 
@@ -1070,7 +1070,7 @@ function getFocusBorderColor({ $variant }) {
             return false;
     }
 }
-const Container$2 = styled.div `
+const Container$3 = styled.div `
   display: flex;
   flex-direction: column;
 `;
@@ -1230,7 +1230,7 @@ const TextField = ({ required, disabled, autoFocus, variant = 'default', id, nam
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
     const derivedIconAlign = getDerivedIconAlign();
-    return (jsxs(Container$2, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxs(InputWrapper, { children: [jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsx(IconWrapper$1, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
+    return (jsxs(Container$3, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxs(InputWrapper, { children: [jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsx(IconWrapper$1, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
 };
 const ForwardedTextField = forwardRef(TextField);
 
@@ -1478,7 +1478,7 @@ var SvgChevronLeft = function SvgChevronLeft(props) {
   })));
 };
 
-const Container$1 = styled.div `
+const Container$2 = styled.div `
   width: ${props => (props.$vertical ? 42 : 89)}px;
   height: ${props => (props.$vertical ? 89 : 42)}px;
   background-color: ${COLORS.white};
@@ -1545,10 +1545,10 @@ const HiddenText = styled.span `
   user-select: none;
 `;
 const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
-    return (jsx(Container$1, Object.assign({ className: className }, { children: jsxs(Pill, { children: [jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left", onClick: onLeftButtonClick }, { children: [jsx(SvgChevronLeft, {}, void 0), jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right", onClick: onRightButtonClick }, { children: [jsx(SvgChevronRight, {}, void 0), jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
+    return (jsx(Container$2, Object.assign({ className: className }, { children: jsxs(Pill, { children: [jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left", onClick: onLeftButtonClick }, { children: [jsx(SvgChevronLeft, {}, void 0), jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right", onClick: onRightButtonClick }, { children: [jsx(SvgChevronRight, {}, void 0), jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
 };
 const Vertical = ({ className, onTopButtonClick, onBottomButtonClick, }) => {
-    return (jsx(Container$1, Object.assign({ "$vertical": true, className: className }, { children: jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick }, { children: [jsx(SvgChevronUp, {}, void 0), jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down", onClick: onBottomButtonClick }, { children: [jsx(SvgChevronDown, {}, void 0), jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
+    return (jsx(Container$2, Object.assign({ "$vertical": true, className: className }, { children: jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick }, { children: [jsx(SvgChevronUp, {}, void 0), jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down", onClick: onBottomButtonClick }, { children: [jsx(SvgChevronDown, {}, void 0), jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
 };
 
 var Switcher = /*#__PURE__*/Object.freeze({
@@ -1894,7 +1894,7 @@ const Progress = styled.span `
   background-color: ${props => props.$color};
   animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `;
-const Container = styled.div `
+const Container$1 = styled.div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -2029,7 +2029,7 @@ const Toast = ({ duration = 5000, id, variant = 'info', title, message, onClick,
         if (id)
             context.close(id);
     }
-    return (jsxs(Container, Object.assign({ onClick: handleClick }, { children: [jsxs(Inner, { children: [jsx(InnerLeft, Object.assign({ "$color": color }, { children: icon }), void 0), jsxs(InnerRight, { children: [!!title && jsx(Title, Object.assign({ "$color": color }, { children: title }), void 0), !!message && jsx(Message, { children: message }, void 0)] }, void 0)] }, void 0), jsx(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }, void 0), jsx(CloseButton, Object.assign({ type: "button", onClick: handleCloseClick, "aria-label": "close" }, { children: jsx(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0)] }), void 0));
+    return (jsxs(Container$1, Object.assign({ onClick: handleClick }, { children: [jsxs(Inner, { children: [jsx(InnerLeft, Object.assign({ "$color": color }, { children: icon }), void 0), jsxs(InnerRight, { children: [!!title && jsx(Title, Object.assign({ "$color": color }, { children: title }), void 0), !!message && jsx(Message, { children: message }, void 0)] }, void 0)] }, void 0), jsx(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }, void 0), jsx(CloseButton, Object.assign({ type: "button", onClick: handleCloseClick, "aria-label": "close" }, { children: jsx(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0)] }), void 0));
 };
 // @ts-ignore
 const MemoizedToast = memo(Toast);
@@ -2097,4 +2097,106 @@ const Toaster = () => {
         }) }), void 0), getOrCreatePortalElement());
 };
 
-export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu, ForwardedRadioButton as RadioButton, Slider, Spinner, Switcher, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
+const Container = styled.div `
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  box-sizing: border-box;
+  border: 1px solid ${COLORS.mischa};
+  border-radius: 8px;
+`;
+const Hider = styled.div `
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  & select {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    background: transparent;
+    border: none;
+  }
+`;
+const Caption = styled.span `
+  display: block;
+  flex-grow: 1;
+  margin-right: 8px;
+  font-family: Roboto, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.1875em;
+  color: ${props => (props.$hasValue ? COLORS.charade : COLORS.silverChalice)};
+`;
+const StyledChevronDownIcon = styled(SvgChevronDown) `
+  color: ${COLORS.silverChalice};
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
+`;
+const StyledXIcon = styled(SvgX) `
+  color: ${COLORS.silverChalice};
+`;
+const ClearButton = styled.button `
+  z-index: 2;
+  position: absolute;
+  appearance: none;
+  top: 0;
+  right: 16px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  cursor: pointer;
+`;
+const Select = ({ className, id, placeholder = '', name, value, options, onChange, onClear }, ref) => {
+    var _a;
+    const innerRef = useRef(null);
+    useImperativeHandle(ref, () => innerRef.current);
+    function handleClearClick() {
+        if (innerRef.current) {
+            innerRef.current.selectedIndex = 0;
+            const evt = new Event('change', { bubbles: true });
+            innerRef.current.dispatchEvent(evt);
+        }
+    }
+    function getDerivedId() {
+        if (id)
+            return id;
+        if (placeholder && name)
+            return name;
+        if (placeholder && typeof placeholder === 'string')
+            return placeholder;
+        return Math.random().toString();
+    }
+    function getCaption() {
+        var _a, _b;
+        if (value !== undefined && options && options.length > 0) {
+            return (_b = (_a = options.find(o => o.value === value)) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : placeholder;
+        }
+        return placeholder;
+    }
+    const derivedId = getDerivedId();
+    const caption = getCaption();
+    return (jsxs(Container, Object.assign({ className: className }, { children: [jsx(Caption, Object.assign({ "$hasValue": !!value }, { children: caption }), void 0), jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20 }, void 0), jsx(Hider, { children: jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsx("option", Object.assign({ value: placeholder }, { children: placeholder }), void 0), (_a = options === null || options === void 0 ? void 0 : options.map) === null || _a === void 0 ? void 0 : _a.call(options, option => {
+                            var _a;
+                            return (jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
+                        })] }), void 0) }, void 0), !!value && (jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsx(StyledXIcon, { width: 20, height: 20 }, void 0) }), void 0))] }), void 0));
+};
+const ForwardedSelect = forwardRef(Select);
+
+export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu, ForwardedRadioButton as RadioButton, ForwardedSelect as Select, Slider, Spinner, Switcher, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
