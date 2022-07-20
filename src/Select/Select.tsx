@@ -150,6 +150,7 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
           id={derivedId}
           ref={innerRef}
           value={value}
+          name={name}
           placeholder={placeholder}
           onChange={onChange}
         >
