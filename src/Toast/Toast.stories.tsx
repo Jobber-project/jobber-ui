@@ -1,5 +1,5 @@
+import React, { useEffect, useRef } from 'react'
 import { ComponentMeta } from '@storybook/react'
-import { useEffect, useRef } from 'react'
 
 import { Toaster, ToastVariant } from './Toast'
 

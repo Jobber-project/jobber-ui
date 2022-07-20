@@ -1,6 +1,5 @@
 import React, {
   ChangeEventHandler,
-  FC,
   forwardRef,
   ForwardRefRenderFunction,
   ReactNode,

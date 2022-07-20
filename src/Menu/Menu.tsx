@@ -1,10 +1,4 @@
-import React, {
-  cloneElement,
-  FC,
-  ReactChild,
-  ReactElement,
-  ReactNode,
-} from 'react'
+import React, { cloneElement, FC, ReactElement, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -126,7 +120,7 @@ type MenuProps = {
   isVisible: boolean
   align?: 'left' | 'right'
   className?: string
-  children: ReactElement | ReactElement[]
+  children: ReactNode
 }
 
 type MenuType = FC<MenuProps> & {

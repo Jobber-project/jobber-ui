@@ -3,7 +3,6 @@ import React, {
   FC,
   memo,
   NamedExoticComponent,
-  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -202,7 +201,7 @@ const Message = styled.span`
 
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
 
-function getIcon(variant: ToastVariant): JSX.Element {
+function getIcon(variant: ToastVariant): JSX.Element | null {
   switch (variant) {
     case 'info':
       return <InfoIcon width={32} height={32} viewBox="0 0 24 24" />
