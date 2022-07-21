@@ -89,7 +89,7 @@ const ClearButton = styled.button`
   cursor: pointer;
 `
 
-type SelectOption = {
+export type SelectOption = {
   /** Optional unique identifier to use as key. Default is value and label combined */
   id?: string
   value: string | number
