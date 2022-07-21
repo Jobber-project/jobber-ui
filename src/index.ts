@@ -13,7 +13,7 @@ import Switcher from './Switcher'
 import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
-import Select from './Select'
+import Select from './Select/Select'
 
 export type {
   ButtonSize,
