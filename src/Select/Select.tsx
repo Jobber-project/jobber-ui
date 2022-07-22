@@ -73,20 +73,40 @@ const StyledXIcon = styled(XIcon)`
   color: ${COLORS.silverChalice};
 `
 
-const ClearButton = styled.button`
+const ClearButtonWrapper = styled.div`
   z-index: 2;
   position: absolute;
-  appearance: none;
   top: 0;
   right: 16px;
   bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+`
+
+const ClearButton = styled.button`
+  z-index: 1;
+  position: relative;
+  appearance: none;
+  display: flex;
+  align-items: center;
   border: none;
   border-radius: 0;
   box-shadow: none;
+  margin: 0;
+  padding: 0;
   background: transparent;
   cursor: pointer;
+
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    bottom: -10px;
+    left: -15px;
+  }
 `
 
 export type SelectOption = {
@@ -104,16 +124,17 @@ type SelectProps = {
   value?: string | number
   options?: SelectOption[]
   onChange?: ChangeEventHandler<HTMLSelectElement>
-  onClear?: () => any
 }
 
 const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
-  { className, id, placeholder = '', name, value, options, onChange, onClear },
+  { className, id, placeholder = '', name, value = '', options, onChange },
   ref,
 ) => {
   const innerRef = useRef<HTMLSelectElement>(null)
 
   useImperativeHandle(ref, () => innerRef.current as HTMLSelectElement)
+
+  const selectedOption = options?.find?.(o => o.value === value)
 
   function handleClearClick() {
     if (innerRef.current) {
@@ -130,31 +151,29 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     return Math.random().toString()
   }
 
-  function getCaption(): string {
-    if (value !== undefined && options && options.length > 0) {
-      return options.find(o => o.value === value)?.label ?? placeholder
-    }
-
-    return placeholder
-  }
-
   const derivedId = getDerivedId()
-  const caption = getCaption()
 
   return (
     <Container className={className}>
-      <Caption $hasValue={!!value}>{caption}</Caption>
-      <StyledChevronDownIcon $hidden={!!value} width={20} height={20} />
+      <Caption $hasValue={!!selectedOption}>
+        {selectedOption?.label ?? placeholder}
+      </Caption>
+      <StyledChevronDownIcon
+        $hidden={!!value}
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+      />
       <Hider>
         <select
           id={derivedId}
           ref={innerRef}
-          value={value}
+          value={selectedOption?.value}
           name={name}
           placeholder={placeholder}
           onChange={onChange}
         >
-          <option value={placeholder}>{placeholder}</option>
+          <option value="">{placeholder}</option>
           {options?.map?.(option => (
             <option
               key={option.id ?? `${option.value}-${option.label}`}
@@ -166,13 +185,15 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
         </select>
       </Hider>
       {!!value && (
-        <ClearButton
-          type="button"
-          onClick={handleClearClick}
-          aria-label="clear"
-        >
-          <StyledXIcon width={20} height={20} />
-        </ClearButton>
+        <ClearButtonWrapper>
+          <ClearButton
+            type="button"
+            onClick={handleClearClick}
+            aria-label="clear"
+          >
+            <StyledXIcon width={20} height={20} viewBox="0 0 24 24" />
+          </ClearButton>
+        </ClearButtonWrapper>
       )}
     </Container>
   )
