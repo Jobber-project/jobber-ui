@@ -55,6 +55,10 @@ const Caption = styled.span<{
 }>`
   display: block;
   flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-right: 8px;
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
