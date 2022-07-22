@@ -2148,25 +2148,45 @@ const StyledChevronDownIcon = styled(SvgChevronDown) `
 const StyledXIcon = styled(SvgX) `
   color: ${COLORS.silverChalice};
 `;
-const ClearButton = styled.button `
+const ClearButtonWrapper = styled.div `
   z-index: 2;
   position: absolute;
-  appearance: none;
   top: 0;
   right: 16px;
   bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+`;
+const ClearButton = styled.button `
+  z-index: 1;
+  position: relative;
+  appearance: none;
+  display: flex;
+  align-items: center;
   border: none;
   border-radius: 0;
   box-shadow: none;
+  margin: 0;
+  padding: 0;
   background: transparent;
   cursor: pointer;
+
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    bottom: -10px;
+    left: -15px;
+  }
 `;
-const Select = ({ className, id, placeholder = '', name, value, options, onChange, onClear }, ref) => {
-    var _a;
+const Select = ({ className, id, placeholder = '', name, value = '', options, onChange }, ref) => {
+    var _a, _b, _c;
     const innerRef = useRef(null);
     useImperativeHandle(ref, () => innerRef.current);
+    const selectedOption = (_a = options === null || options === void 0 ? void 0 : options.find) === null || _a === void 0 ? void 0 : _a.call(options, o => o.value === value);
     function handleClearClick() {
         if (innerRef.current) {
             innerRef.current.selectedIndex = 0;
@@ -2183,19 +2203,11 @@ const Select = ({ className, id, placeholder = '', name, value, options, onChang
             return placeholder;
         return Math.random().toString();
     }
-    function getCaption() {
-        var _a, _b;
-        if (value !== undefined && options && options.length > 0) {
-            return (_b = (_a = options.find(o => o.value === value)) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : placeholder;
-        }
-        return placeholder;
-    }
     const derivedId = getDerivedId();
-    const caption = getCaption();
-    return (jsxs(Container, Object.assign({ className: className }, { children: [jsx(Caption, Object.assign({ "$hasValue": !!value }, { children: caption }), void 0), jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20 }, void 0), jsx(Hider, { children: jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsx("option", Object.assign({ value: placeholder }, { children: placeholder }), void 0), (_a = options === null || options === void 0 ? void 0 : options.map) === null || _a === void 0 ? void 0 : _a.call(options, option => {
+    return (jsxs(Container, Object.assign({ className: className }, { children: [jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsx(Hider, { children: jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                             var _a;
                             return (jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                        })] }), void 0) }, void 0), !!value && (jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsx(StyledXIcon, { width: 20, height: 20 }, void 0) }), void 0))] }), void 0));
+                        })] }), void 0) }, void 0), !!value && (jsx(ClearButtonWrapper, { children: jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }, void 0))] }), void 0));
 };
 const ForwardedSelect = forwardRef(Select);
 
