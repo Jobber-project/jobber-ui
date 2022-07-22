@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
 
@@ -40,6 +40,34 @@ export function Intro({ ...props }) {
             label: 'Three',
           },
         ]}
+      />
+    </Container>
+  )
+}
+
+export function Controlled({ placeholder }) {
+  const [value, setValue] = useState<string | undefined>()
+
+  return (
+    <Container>
+      <Select
+        placeholder={placeholder}
+        value={value}
+        options={[
+          {
+            value: '1',
+            label: 'One',
+          },
+          {
+            value: '2',
+            label: 'Two',
+          },
+          {
+            value: '3',
+            label: 'Three',
+          },
+        ]}
+        onChange={e => setValue(e.target.value)}
       />
     </Container>
   )
