@@ -1558,6 +1558,8 @@ var Switcher = /*#__PURE__*/Object.freeze({
 });
 
 const SliderWrapper = styled.div `
+  display: flex;
+  width: 100%;
   .rc-slider {
     display: flex;
     position: relative;
@@ -1567,13 +1569,14 @@ const SliderWrapper = styled.div `
   .rc-slider-rail {
     height: 2px;
     position: absolute;
-    width: calc(100% - 8px);
-    z-index: -1;
+    width: calc(100% - 4px);
+    z-index: 0;
     background-color: #e9e9e9;
     border-radius: 6px;
   }
   .rc-slider-track {
     height: 2px;
+    z-index: 1;
     background-color: ${COLORS.royalBlue};
   }
   .rc-slider-handle {
