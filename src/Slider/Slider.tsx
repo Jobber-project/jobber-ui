@@ -11,26 +11,30 @@ export type SliderProps = {
   min?: number
   max?: number
   step?: number
+  defaultValue?: number | number[]
 }
 
 const SliderWrapper = styled.div`
-  * {
-    border-color: none;
-  }
   .rc-slider {
-    height: 0;
     display: flex;
+    position: relative;
+    width: 100%;
     align-items: center;
   }
   .rc-slider-rail {
     height: 2px;
+    position: absolute;
+    width: calc(100% - 8px);
+    z-index: -1;
+    background-color: #e9e9e9;
+    border-radius: 6px;
   }
   .rc-slider-track {
     height: 2px;
     background-color: ${COLORS.royalBlue};
   }
-  .rc-slider-handle,
-  .rc-slider-handle:active {
+  .rc-slider-handle {
+    border-radius: 50%;
     height: 10px;
     width: 10px;
     top: 0;
@@ -48,6 +52,9 @@ const SliderWrapper = styled.div`
   }
 
   .rc-slider-disabled {
+    * {
+      background-color: #e9e9e9;
+    }
   }
 `
 
@@ -57,6 +64,7 @@ const Slider: FC<SliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
+  defaultValue,
 }) => {
   return (
     <SliderWrapper>
@@ -66,6 +74,7 @@ const Slider: FC<SliderProps> = ({
         step={step}
         disabled={disabled}
         onChange={onChange}
+        defaultValue={defaultValue ?? min}
       />
     </SliderWrapper>
   )
