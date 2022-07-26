@@ -1586,23 +1586,26 @@ var Switcher = /*#__PURE__*/Object.freeze({
 });
 
 const SliderWrapper = styled__default["default"].div `
-  * {
-    border-color: none;
-  }
   .rc-slider {
-    height: 0;
     display: flex;
+    position: relative;
+    width: 100%;
     align-items: center;
   }
   .rc-slider-rail {
     height: 2px;
+    position: absolute;
+    width: calc(100% - 8px);
+    z-index: -1;
+    background-color: #e9e9e9;
+    border-radius: 6px;
   }
   .rc-slider-track {
     height: 2px;
     background-color: ${COLORS.royalBlue};
   }
-  .rc-slider-handle,
-  .rc-slider-handle:active {
+  .rc-slider-handle {
+    border-radius: 50%;
     height: 10px;
     width: 10px;
     top: 0;
@@ -1620,10 +1623,13 @@ const SliderWrapper = styled__default["default"].div `
   }
 
   .rc-slider-disabled {
+    * {
+      background-color: #e9e9e9;
+    }
   }
 `;
-const Slider = ({ disabled, onChange, min = 0, max = 100, step = 1, }) => {
-    return (jsxRuntime.jsx(SliderWrapper, { children: jsxRuntime.jsx(RCSlider__default["default"], { min: min, max: max, step: step, disabled: disabled, onChange: onChange }, void 0) }, void 0));
+const Slider = ({ disabled, onChange, min = 0, max = 100, step = 1, defaultValue, }) => {
+    return (jsxRuntime.jsx(SliderWrapper, { children: jsxRuntime.jsx(RCSlider__default["default"], { min: min, max: max, step: step, disabled: disabled, onChange: onChange, defaultValue: defaultValue !== null && defaultValue !== void 0 ? defaultValue : min }, void 0) }, void 0));
 };
 
 const MenuContainer = styled__default["default"].div `
