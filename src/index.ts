@@ -14,6 +14,7 @@ import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 import Select, { SelectOption } from './Select/Select'
+import TextArea from './TextArea/TextArea'
 
 export type {
   ButtonSize,
@@ -43,4 +44,5 @@ export {
   Toast,
   Toaster,
   Select,
+  TextArea,
 }

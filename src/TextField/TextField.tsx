@@ -428,7 +428,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = (
     placeholder,
     helperText,
     ariaLabel,
-    iconAlign,
+    iconAlign = 'left',
     icon,
     onChange,
   },
