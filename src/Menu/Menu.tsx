@@ -1,4 +1,13 @@
-import React, { cloneElement, FC, ReactElement, ReactNode } from 'react'
+import React, {
+  cloneElement,
+  FC,
+  ForwardRefExoticComponent,
+  ForwardRefRenderFunction,
+  ReactElement,
+  ReactNode,
+} from 'react'
+import { RefAttributes } from 'react'
+import { forwardRef } from 'react'
 import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
@@ -123,16 +132,14 @@ type MenuProps = {
   children: ReactNode
 }
 
-type MenuType = FC<MenuProps> & {
+type MenuType = ForwardRefRenderFunction<HTMLDivElement, MenuProps> & {
   Item: FC<MenuItemProps>
 }
 
-const Menu: MenuType = ({
-  className,
-  isVisible,
-  align = 'left',
-  children,
-}): JSX.Element => {
+const Menu: MenuType = (
+  { className, isVisible, align = 'left', children },
+  ref,
+) => {
   function getMutableChildrenArray(): ReactElement[] {
     if (!children) {
       return []
@@ -146,7 +153,7 @@ const Menu: MenuType = ({
   }
 
   return (
-    <MenuContainer className={className} isVisible={isVisible}>
+    <MenuContainer ref={ref} className={className} isVisible={isVisible}>
       <MenuWrapper $align={align}>
         {getMutableChildrenArray().reduce(
           (acc: ReactNode[], child: ReactElement, i) => {
@@ -170,4 +177,15 @@ const Menu: MenuType = ({
 
 Menu.Item = Item
 
-export default Menu
+const withStaticProps = <T,>(
+  forwarded: ForwardRefExoticComponent<
+    MenuProps & RefAttributes<HTMLDivElement>
+  >,
+  staticProps: T,
+) => Object.assign(forwarded, staticProps)
+
+const ForwardedMenu = forwardRef(Menu)
+
+export default withStaticProps(ForwardedMenu, {
+  Item,
+})
