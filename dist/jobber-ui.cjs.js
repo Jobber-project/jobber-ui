@@ -1735,8 +1735,7 @@ const Menu = ({ className, isVisible, align = 'left', children }, ref) => {
 };
 Menu.Item = Item;
 const withStaticProps = (forwarded, staticProps) => Object.assign(forwarded, staticProps);
-const ForwardedMenu = React.forwardRef(Menu);
-var Menu$1 = withStaticProps(ForwardedMenu, {
+const ForwardedMenu = withStaticProps(React.forwardRef(Menu), {
     Item,
 });
 
@@ -2370,19 +2369,19 @@ const TextArea = ({ required, disabled, autoFocus, rows, className, resizable = 
     const derivedId = getDerivedId();
     return (jsxRuntime.jsxs(Container, Object.assign({ className: className }, { children: [!!label && jsxRuntime.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.jsx(StyledTextArea, { "$resizable": resizable, "$variant": variant, required: required, disabled: disabled, autoFocus: autoFocus, rows: rows, ref: ref, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!helperText && (jsxRuntime.jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
 };
-var TextArea$1 = React.forwardRef(TextArea);
+const ForwardedTextArea = React.forwardRef(TextArea);
 
 exports.Avatar = Avatar;
 exports.Button = Button;
 exports.Checkbox = ForwardedCheckbox;
 exports.GlobalStyle = GlobalStyle;
-exports.Menu = Menu$1;
+exports.Menu = ForwardedMenu;
 exports.RadioButton = ForwardedRadioButton;
 exports.Select = ForwardedSelect;
 exports.Slider = Slider;
 exports.Spinner = Spinner;
 exports.Switcher = Switcher;
-exports.TextArea = TextArea$1;
+exports.TextArea = ForwardedTextArea;
 exports.TextField = ForwardedTextField;
 exports.Toast = MemoizedToast;
 exports.Toaster = Toaster;
