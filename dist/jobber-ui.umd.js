@@ -5464,7 +5464,7 @@
     const Item = ({ isVisible = false, as, className, href, onClick, icon, children, }) => {
         return (jsxRuntime.exports.jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsxRuntime.exports.jsx(MenuIcon, { children: icon }, void 0), children && jsxRuntime.exports.jsx(MenuLabel, { children: children }, void 0)] }), void 0));
     };
-    const Menu = ({ className, isVisible, align = 'left', children, }) => {
+    const Menu = ({ className, isVisible, align = 'left', children }, ref) => {
         function getMutableChildrenArray() {
             if (!children) {
                 return [];
@@ -5474,7 +5474,7 @@
             }
             return [children];
         }
-        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
+        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ ref: ref, className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
                     if (child) {
                         acc.push(React.cloneElement(child, {
                             key: i,
@@ -5485,6 +5485,11 @@
                 }, []) }), void 0) }), void 0));
     };
     Menu.Item = Item;
+    const withStaticProps = (forwarded, staticProps) => Object.assign(forwarded, staticProps);
+    const ForwardedMenu = React.forwardRef(Menu);
+    var Menu$1 = withStaticProps(ForwardedMenu, {
+        Item,
+    });
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -6122,7 +6127,7 @@
     exports.Button = Button;
     exports.Checkbox = ForwardedCheckbox;
     exports.GlobalStyle = GlobalStyle;
-    exports.Menu = Menu;
+    exports.Menu = Menu$1;
     exports.RadioButton = ForwardedRadioButton;
     exports.Select = ForwardedSelect;
     exports.Slider = Slider;

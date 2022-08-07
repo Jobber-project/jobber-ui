@@ -1685,7 +1685,7 @@ const MenuIcon = styled.div `
 const Item = ({ isVisible = false, as, className, href, onClick, icon, children, }) => {
     return (jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsx(MenuIcon, { children: icon }, void 0), children && jsx(MenuLabel, { children: children }, void 0)] }), void 0));
 };
-const Menu = ({ className, isVisible, align = 'left', children, }) => {
+const Menu = ({ className, isVisible, align = 'left', children }, ref) => {
     function getMutableChildrenArray() {
         if (!children) {
             return [];
@@ -1695,7 +1695,7 @@ const Menu = ({ className, isVisible, align = 'left', children, }) => {
         }
         return [children];
     }
-    return (jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
+    return (jsx(MenuContainer, Object.assign({ ref: ref, className: className, isVisible: isVisible }, { children: jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
                 if (child) {
                     acc.push(cloneElement(child, {
                         key: i,
@@ -1706,6 +1706,11 @@ const Menu = ({ className, isVisible, align = 'left', children, }) => {
             }, []) }), void 0) }), void 0));
 };
 Menu.Item = Item;
+const withStaticProps = (forwarded, staticProps) => Object.assign(forwarded, staticProps);
+const ForwardedMenu = forwardRef(Menu);
+var Menu$1 = withStaticProps(ForwardedMenu, {
+    Item,
+});
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -2339,4 +2344,4 @@ const TextArea = ({ required, disabled, autoFocus, rows, className, resizable = 
 };
 var TextArea$1 = forwardRef(TextArea);
 
-export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu, ForwardedRadioButton as RadioButton, ForwardedSelect as Select, Slider, Spinner, Switcher, TextArea$1 as TextArea, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
+export { Avatar, Button, ForwardedCheckbox as Checkbox, GlobalStyle, Menu$1 as Menu, ForwardedRadioButton as RadioButton, ForwardedSelect as Select, Slider, Spinner, Switcher, TextArea$1 as TextArea, ForwardedTextField as TextField, MemoizedToast as Toast, Toaster, globalStyle };
