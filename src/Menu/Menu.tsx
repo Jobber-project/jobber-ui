@@ -184,8 +184,8 @@ const withStaticProps = <T,>(
   staticProps: T,
 ) => Object.assign(forwarded, staticProps)
 
-const ForwardedMenu = forwardRef(Menu)
-
-export default withStaticProps(ForwardedMenu, {
+const ForwardedMenu = withStaticProps(forwardRef(Menu), {
   Item,
 })
+
+export default ForwardedMenu

@@ -206,4 +206,6 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
   )
 }
 
-export default forwardRef(TextArea)
+const ForwardedTextArea = forwardRef(TextArea)
+
+export default ForwardedTextArea
