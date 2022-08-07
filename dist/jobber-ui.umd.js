@@ -5474,7 +5474,7 @@
             }
             return [children];
         }
-        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ ref: ref, className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
+        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ ref: ref, "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
                     if (child) {
                         acc.push(React.cloneElement(child, {
                             key: i,
