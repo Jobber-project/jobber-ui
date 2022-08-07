@@ -153,8 +153,8 @@ const Menu: MenuType = (
   }
 
   return (
-    <MenuContainer ref={ref} className={className} isVisible={isVisible}>
-      <MenuWrapper $align={align}>
+    <MenuContainer className={className} isVisible={isVisible}>
+      <MenuWrapper ref={ref} $align={align}>
         {getMutableChildrenArray().reduce(
           (acc: ReactNode[], child: ReactElement, i) => {
             if (child) {
