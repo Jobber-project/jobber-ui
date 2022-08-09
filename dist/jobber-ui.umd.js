@@ -5923,6 +5923,10 @@
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `;
     const Caption = styled__default["default"].span `
   display: block;
