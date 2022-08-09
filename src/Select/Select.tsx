@@ -48,6 +48,10 @@ const Hider = styled.div`
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `
 
 const Caption = styled.span<{
