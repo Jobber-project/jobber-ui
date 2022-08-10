@@ -81,7 +81,9 @@ const StyledXIcon = styled(XIcon)`
   color: ${COLORS.silverChalice};
 `
 
-const ClearButtonWrapper = styled.div`
+const ClearButtonWrapper = styled.div<{
+  $hidden: boolean
+}>`
   z-index: 2;
   position: absolute;
   top: 0;
@@ -90,6 +92,7 @@ const ClearButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `
 
 const ClearButton = styled.button`
@@ -192,17 +195,15 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
           ))}
         </select>
       </Hider>
-      {!!value && (
-        <ClearButtonWrapper>
-          <ClearButton
-            type="button"
-            onClick={handleClearClick}
-            aria-label="clear"
-          >
-            <StyledXIcon width={20} height={20} viewBox="0 0 24 24" />
-          </ClearButton>
-        </ClearButtonWrapper>
-      )}
+      <ClearButtonWrapper $hidden={!value}>
+        <ClearButton
+          type="button"
+          onClick={handleClearClick}
+          aria-label="clear"
+        >
+          <StyledXIcon width={20} height={20} viewBox="0 0 24 24" />
+        </ClearButton>
+      </ClearButtonWrapper>
     </Container>
   )
 }
