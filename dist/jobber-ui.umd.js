@@ -1416,8 +1416,8 @@
     transform: rotate(0deg);
   }
   
-  0% {
-    transform: rotate(-360deg);
+  100% {
+    transform: rotate(360deg);
   }
 `;
     const Container$7 = styled__default["default"].span `
