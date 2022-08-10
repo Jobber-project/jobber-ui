@@ -2206,6 +2206,7 @@ const ClearButtonWrapper = styled__default["default"].div `
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `;
 const ClearButton = styled__default["default"].button `
   z-index: 1;
@@ -2256,7 +2257,7 @@ const Select = ({ className, id, placeholder = '', name, value = '', options, on
     return (jsxRuntime.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.jsx(Hider, { children: jsxRuntime.jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                             var _a;
                             return (jsxRuntime.jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                        })] }), void 0) }, void 0), !!value && (jsxRuntime.jsx(ClearButtonWrapper, { children: jsxRuntime.jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }, void 0))] }), void 0));
+                        })] }), void 0) }, void 0), jsxRuntime.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
 };
 const ForwardedSelect = React.forwardRef(Select);
 
