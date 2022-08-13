@@ -2233,7 +2233,10 @@ const ClearButton = styled__default["default"].button `
     left: -15px;
   }
 `;
-const Select = ({ className, id, placeholder = '', name, value = '', options, onChange }, ref) => {
+const StyledSelect = styled__default["default"].select `
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`;
+const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
     var _a, _b, _c;
     const innerRef = React.useRef(null);
     React.useImperativeHandle(ref, () => innerRef.current);
@@ -2255,10 +2258,10 @@ const Select = ({ className, id, placeholder = '', name, value = '', options, on
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxRuntime.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.jsx(Hider, { children: jsxRuntime.jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
+    return (jsxRuntime.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.jsx(Hider, { children: jsxRuntime.jsxs(StyledSelect, Object.assign({ disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                             var _a;
                             return (jsxRuntime.jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                        })] }), void 0) }, void 0), jsxRuntime.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
+                        })] }), void 0) }, void 0), jsxRuntime.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.jsx(ClearButton, Object.assign({ disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
 };
 const ForwardedSelect = React.forwardRef(Select);
 
