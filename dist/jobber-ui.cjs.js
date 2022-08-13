@@ -1640,6 +1640,7 @@ const MenuContainer = styled__default["default"].div `
   z-index: 4;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  overflow: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `;
 const MenuWrapper = styled__default["default"].div `
