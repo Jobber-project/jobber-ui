@@ -73,6 +73,35 @@ export function Controlled({ placeholder }) {
   )
 }
 
+export function Disabled({ placeholder }) {
+  const [value, setValue] = useState<string | undefined>()
+
+  return (
+    <Container>
+      <Select
+        disabled
+        placeholder={placeholder}
+        value={value}
+        options={[
+          {
+            value: '1',
+            label: 'One',
+          },
+          {
+            value: '2',
+            label: 'Two',
+          },
+          {
+            value: '3',
+            label: 'Three',
+          },
+        ]}
+        onChange={e => setValue(e.target.value)}
+      />
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof Select> = {
   title: 'Design System/Select',
   component: Select,

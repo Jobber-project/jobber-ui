@@ -120,6 +120,10 @@ const ClearButton = styled.button`
   }
 `
 
+const StyledSelect = styled.select`
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`
+
 export type SelectOption = {
   /** Optional unique identifier to use as key. Default is value and label combined */
   id?: string
@@ -128,6 +132,7 @@ export type SelectOption = {
 }
 
 type SelectProps = {
+  disabled?: boolean
   className?: string
   id?: string
   placeholder?: string
@@ -138,7 +143,16 @@ type SelectProps = {
 }
 
 const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
-  { className, id, placeholder = '', name, value = '', options, onChange },
+  {
+    disabled,
+    className,
+    id,
+    placeholder = '',
+    name,
+    value = '',
+    options,
+    onChange,
+  },
   ref,
 ) => {
   const innerRef = useRef<HTMLSelectElement>(null)
@@ -176,7 +190,8 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
         viewBox="0 0 24 24"
       />
       <Hider>
-        <select
+        <StyledSelect
+          disabled={disabled}
           id={derivedId}
           ref={innerRef}
           value={selectedOption?.value}
@@ -193,10 +208,11 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
               {option.label}
             </option>
           ))}
-        </select>
+        </StyledSelect>
       </Hider>
       <ClearButtonWrapper $hidden={!value}>
         <ClearButton
+          disabled={disabled}
           type="button"
           onClick={handleClearClick}
           aria-label="clear"
