@@ -34,21 +34,6 @@ var reset__default = /*#__PURE__*/_interopDefaultLegacy(reset);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var RCSlider__default = /*#__PURE__*/_interopDefaultLegacy(RCSlider);
 
-const globalStyle = styled.css `
-  ${reset__default["default"]}
-  font-family: 'Roboto', sans-serif;
-
-  body,
-  input,
-  button,
-  textarea {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-const GlobalStyle = styled.createGlobalStyle `
-  ${globalStyle}
-`;
-
 // https://chir.ag/projects/name-that-color/#6B53FF
 const COLORS = {
     havelockBlue: '#5971dd',
@@ -73,9 +58,31 @@ const COLORS = {
     selago: '#F5F6FD',
     linkWater: '#EBEEFB',
     governorBay: '#3A52BF',
+    scienceBlue: '#005fcc',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
+
+const globalStyle = styled.css `
+  ${reset__default["default"]}
+  font-family: 'Roboto', sans-serif;
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  input,
+  button,
+  select {
+    outline-color: ${COLORS.scienceBlue};
+  }
+`;
+const GlobalStyle = styled.createGlobalStyle `
+  ${globalStyle}
+`;
 
 const animation = styled.keyframes `
   0% {

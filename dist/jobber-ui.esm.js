@@ -6,21 +6,6 @@ import { forwardRef, useRef, useEffect, useState, cloneElement, memo, createCont
 import RCSlider from 'rc-slider';
 import { createPortal } from 'react-dom';
 
-const globalStyle = css `
-  ${reset}
-  font-family: 'Roboto', sans-serif;
-
-  body,
-  input,
-  button,
-  textarea {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-const GlobalStyle = createGlobalStyle `
-  ${globalStyle}
-`;
-
 // https://chir.ag/projects/name-that-color/#6B53FF
 const COLORS = {
     havelockBlue: '#5971dd',
@@ -45,9 +30,31 @@ const COLORS = {
     selago: '#F5F6FD',
     linkWater: '#EBEEFB',
     governorBay: '#3A52BF',
+    scienceBlue: '#005fcc',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
+
+const globalStyle = css `
+  ${reset}
+  font-family: 'Roboto', sans-serif;
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  input,
+  button,
+  select {
+    outline-color: ${COLORS.scienceBlue};
+  }
+`;
+const GlobalStyle = createGlobalStyle `
+  ${globalStyle}
+`;
 
 const animation = keyframes `
   0% {

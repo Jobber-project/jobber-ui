@@ -22,6 +22,7 @@ const COLORS = {
     selago: '#F5F6FD',
     linkWater: '#EBEEFB',
     governorBay: '#3A52BF',
+    scienceBlue: '#005fcc',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
