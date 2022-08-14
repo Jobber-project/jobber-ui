@@ -74,9 +74,7 @@ const globalStyle = styled.css `
     font-family: 'Roboto', sans-serif;
   }
 
-  input,
-  button,
-  select {
+  * {
     outline-color: ${COLORS.scienceBlue};
   }
 `;
