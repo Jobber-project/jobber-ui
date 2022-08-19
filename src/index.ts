@@ -15,6 +15,7 @@ import Menu from './Menu/Menu'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 import Select, { SelectOption } from './Select/Select'
 import TextArea from './TextArea/TextArea'
+import MultiSelect from './MultiSelect/MultiSelect'
 
 export type {
   ButtonSize,
@@ -45,4 +46,5 @@ export {
   Toaster,
   Select,
   TextArea,
+  MultiSelect,
 }
