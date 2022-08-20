@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { ComponentMeta } from '@storybook/react'
 import styled from 'styled-components'
 
+// @ts-ignore
+import ClipboardCheckIcon from '../shared/icons/clipboard-check.svg'
+
 import MultiSelect, { MultiSelectOption, MultiSelectValue } from './MultiSelect'
 
 const Container = styled.div`
@@ -54,6 +57,23 @@ export function Default(props) {
         options={options}
         value={value}
         onChange={setValue}
+      />
+    </Container>
+  )
+}
+
+export function Icon(props) {
+  const [value, setValue] = useState<MultiSelectValue>([])
+
+  return (
+    <Container>
+      <MultiSelect
+        {...props}
+        label="Default"
+        options={options}
+        value={value}
+        onChange={setValue}
+        icon={<ClipboardCheckIcon viewBox="0 0 24 24" />}
       />
     </Container>
   )

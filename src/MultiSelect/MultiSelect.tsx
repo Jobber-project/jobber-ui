@@ -1,9 +1,4 @@
-import React, {
-  ComponentType,
-  PropsWithChildren,
-  useEffect,
-  useState,
-} from 'react'
+import React, { PropsWithChildren, ReactNode, useEffect, useState } from 'react'
 import Select, {
   ActionMeta,
   MultiValue,
@@ -11,6 +6,8 @@ import Select, {
   Props,
   GroupBase,
   MultiValueRemoveProps,
+  ControlProps,
+  components,
 } from 'react-select'
 import styled, { css, keyframes } from 'styled-components'
 import {
@@ -46,9 +43,12 @@ type CustomSelectPropsBase = Props<
 >
 
 type CustomSelectProps = CustomSelectPropsBase & {
-  icon: boolean
+  animate: boolean
+  icon?: ReactNode
   size: MultiSelectSize
   variant: MultiSelectVariant
+  helperText?: string
+  onAnimationEnd: () => void
 }
 
 function CustomSelect(props: CustomSelectProps) {
@@ -70,9 +70,23 @@ type MultiSelectProps = {
   helperText?: string
   value?: MultiSelectValue
   options?: MultiSelectOption[]
+  /** Icon to render ie `<Icon />` */
+  icon?: ReactNode
   noOptionsMessage?: CustomSelectProps['noOptionsMessage']
   onChange?: CustomSelectProps['onChange']
 }
+
+const animateIcon = keyframes`
+  0% {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+
+  100% {
+    tansform: none;
+    opacity: 1;
+  }
+`
 
 const animateHelperText = keyframes`
   0% {
@@ -101,8 +115,35 @@ function getVariantColor({ variant }: { variant: MultiSelectVariant }): string {
   }
 }
 
-function getIconLeft({ size }: { size: MultiSelectSize }): number {
-  switch (size) {
+function getIconColor({
+  $active,
+  $variant,
+}: {
+  $active: boolean
+  $variant: MultiSelectVariant
+}): string {
+  if (!$active) {
+    return COLORS.silverChalice
+  }
+
+  switch ($variant) {
+    case 'success':
+      return COLORS.emerald
+
+    case 'warning':
+      return COLORS.yellowOrange
+
+    case 'error':
+      return COLORS.carnation
+
+    case 'default':
+    default:
+      return COLORS.black
+  }
+}
+
+function getIconLeft({ $size }: { $size: MultiSelectSize }): number {
+  switch ($size) {
     case 'large':
       return 24
 
@@ -112,8 +153,8 @@ function getIconLeft({ size }: { size: MultiSelectSize }): number {
   }
 }
 
-function getIconSize({ size }: { size: MultiSelectSize }): number {
-  switch (size) {
+function getIconSize({ $size }: { $size: MultiSelectSize }): number {
+  switch ($size) {
     case 'large':
       return 24
 
@@ -135,7 +176,7 @@ function getPaddingRight({ size }: { size: MultiSelectSize }): number {
 }
 
 function getPaddingLeft({ size }: { size: MultiSelectSize }): number {
-  return getIconSize({ size }) + getIconLeft({ size }) * 1.5
+  return getIconSize({ $size: size }) + getIconLeft({ $size: size }) * 1.5
 }
 
 function getPadding({ size }: { size: MultiSelectSize }): string {
@@ -296,6 +337,44 @@ const Container = styled.div`
   flex-direction: column;
 `
 
+const SelectWrapper = styled.div`
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`
+
+const IconWrapper = styled.div<{
+  $active: boolean
+  $animate: boolean
+  $variant: MultiSelectVariant
+  $size: MultiSelectSize
+}>`
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${props => {
+    const left = getIconLeft(props)
+    return left ? `${left}px` : 'auto'
+  }};
+  display: flex;
+  align-items: center;
+  color: ${getIconColor};
+  transition: color 280ms ease;
+
+  ${props =>
+    props.$animate &&
+    css`
+      animation: ${animateIcon} 280ms ease;
+    `}
+
+  & svg {
+    width: ${getIconSize}px;
+    height: ${getIconSize}px;
+  }
+`
+
 const StyledSelect = styled(CustomSelect)`
   .jobello-select__control {
     display: flex;
@@ -426,6 +505,45 @@ const StyledMenu = styled.div<{
   }
 `
 
+function CustomControl(
+  props: ControlProps<MultiSelectOption, true, GroupBase<MultiSelectOption>>,
+) {
+  const { children, menuIsOpen, selectProps } = props
+  const { animate, value, variant, size, icon, helperText, onAnimationEnd } =
+    selectProps as CustomSelectProps
+
+  return (
+    <>
+      <components.Control {...props}>
+        {children}
+        {!!icon && (
+          <IconWrapper
+            $active={
+              !!value && (value as MultiValue<MultiSelectOption>).length > 0
+            }
+            $animate={animate}
+            $variant={variant}
+            $size={size}
+            key={variant}
+            onAnimationEnd={onAnimationEnd}
+          >
+            {icon}
+          </IconWrapper>
+        )}
+      </components.Control>
+      {!!helperText && !menuIsOpen && (
+        <HelperText
+          animate={animate}
+          variant={variant}
+          onAnimationEnd={onAnimationEnd}
+        >
+          {helperText}
+        </HelperText>
+      )}
+    </>
+  )
+}
+
 function CustomDropdownIndicator(
   props: PropsWithChildren<
     DropdownIndicatorProps<
@@ -504,7 +622,10 @@ const resetStyles: StylesConfig<MultiSelectOption, true> = {
     return provided
   },
   control: (provided, props) => {
-    const styles: any = {}
+    const styles: any = {
+      zIndex: 1,
+      position: 'relative',
+    }
     return styles
   },
   dropdownIndicator: (provided, props) => {
@@ -606,6 +727,7 @@ function MultiSelect({
   helperText,
   value,
   options = [],
+  icon,
   noOptionsMessage,
   onChange,
 }: MultiSelectProps) {
@@ -635,44 +757,41 @@ function MultiSelect({
   return (
     <Container className={className}>
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
-      <StyledSelect
-        icon={false}
-        variant={variant}
-        size={size}
-        isMulti
-        isDisabled={disabled}
-        autoFocus={autoFocus}
-        maxMenuHeight={maxMenuHeight}
-        inputId={derivedId}
-        name={name}
-        classNamePrefix="jobello-select"
-        placeholder={placeholder}
-        options={options}
-        value={value}
-        menuPortalTarget={
-          menuPortalTarget
-            ? document.getElementById(menuPortalTarget) ?? undefined
-            : undefined
-        }
-        styles={resetStyles}
-        noOptionsMessage={noOptionsMessage}
-        onChange={onChange}
-        components={{
-          DropdownIndicator: CustomDropdownIndicator,
-          ClearIndicator: CustomClearIndicator,
-          Menu: CustomMenu,
-          MultiValueRemove: CustomMultiValueRemove,
-        }}
-      />
-      {!!helperText && (
-        <HelperText
+      <SelectWrapper>
+        <StyledSelect
           animate={shouldAnimate}
+          icon={icon}
           variant={variant}
+          size={size}
+          helperText={helperText}
+          isMulti
+          isDisabled={disabled}
+          autoFocus={autoFocus}
+          maxMenuHeight={maxMenuHeight}
+          inputId={derivedId}
+          name={name}
+          classNamePrefix="jobello-select"
+          placeholder={placeholder}
+          options={options}
+          value={value}
+          menuPortalTarget={
+            menuPortalTarget
+              ? document.getElementById(menuPortalTarget) ?? undefined
+              : undefined
+          }
+          styles={resetStyles}
+          noOptionsMessage={noOptionsMessage}
+          onChange={onChange}
           onAnimationEnd={handleAnimationEnd}
-        >
-          {helperText}
-        </HelperText>
-      )}
+          components={{
+            Control: CustomControl,
+            DropdownIndicator: CustomDropdownIndicator,
+            ClearIndicator: CustomClearIndicator,
+            Menu: CustomMenu,
+            MultiValueRemove: CustomMultiValueRemove,
+          }}
+        />
+      </SelectWrapper>
     </Container>
   )
 }
