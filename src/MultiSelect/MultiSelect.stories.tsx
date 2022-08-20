@@ -23,25 +23,40 @@ export function Intro(props) {
   )
 }
 
-export function Default() {
-  const options = [
-    { label: 'One', value: 'one' },
-    { label: 'Two', value: 'two' },
-    { label: 'Three', value: 'three' },
-    { label: 'Four', value: 'four' },
-    { label: 'Five', value: 'five' },
-    { label: 'Six', value: 'six' },
-    { label: 'Seven', value: 'seven' },
-    { label: 'Eight', value: 'eight' },
-    { label: 'Nine', value: 'nine' },
-    { label: 'Ten', value: 'ten' },
-  ]
+const options = [
+  { label: 'One', value: 'one' },
+  { label: 'Two', value: 'two' },
+  { label: 'Three', value: 'three' },
+  { label: 'Four', value: 'four' },
+  { label: 'Five', value: 'five' },
+  { label: 'Six', value: 'six' },
+  { label: 'Seven', value: 'seven' },
+  { label: 'Eight', value: 'eight' },
+  { label: 'Nine', value: 'nine' },
+  { label: 'Ten', value: 'ten' },
+]
 
+export function Default() {
   const [value, setValue] = useState<MultiSelectValue>([])
 
   return (
     <Container>
       <MultiSelect options={options} value={value} onChange={setValue} />
+    </Container>
+  )
+}
+
+export function Disabled() {
+  const [value, setValue] = useState<MultiSelectValue>([])
+
+  return (
+    <Container>
+      <MultiSelect
+        disabled
+        options={options}
+        value={value}
+        onChange={setValue}
+      />
     </Container>
   )
 }
