@@ -1,4 +1,9 @@
-import React, { ComponentType, PropsWithChildren } from 'react'
+import React, {
+  ComponentType,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react'
 import Select, {
   ActionMeta,
   MultiValue,
@@ -7,7 +12,7 @@ import Select, {
   GroupBase,
   MultiValueRemoveProps,
 } from 'react-select'
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import {
   ClearIndicatorProps,
   DropdownIndicatorProps,
@@ -19,6 +24,7 @@ import ChevronDownIcon from '../shared/icons/chevron-down.svg'
 // @ts-ignore
 import XIcon from '../shared/icons/x.svg'
 import COLORS from '../shared/colors'
+import { usePrevious } from '../shared/hooks'
 
 export type MultiSelectVariant = 'default' | 'success' | 'warning' | 'error'
 
@@ -61,11 +67,22 @@ type MultiSelectProps = {
   label?: string
   menuPortalTarget?: string
   placeholder?: string
+  helperText?: string
   value?: MultiSelectValue
   options?: MultiSelectOption[]
   noOptionsMessage?: CustomSelectProps['noOptionsMessage']
   onChange?: CustomSelectProps['onChange']
 }
+
+const animateHelperText = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
 
 function getVariantColor({ variant }: { variant: MultiSelectVariant }): string {
   switch (variant) {
@@ -254,6 +271,24 @@ const Label = styled.label`
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+`
+
+const HelperText = styled.span<{
+  animate: boolean
+  variant: MultiSelectVariant
+}>`
+  display: block;
+  padding-top: 5px;
+  font-size: 10px;
+  line-height: 1.172em;
+  color: ${getVariantColor};
+  transition: color 280ms ease;
+
+  ${props =>
+    props.animate &&
+    css`
+      animation: ${animateHelperText} 280ms ease;
+    `}
 `
 
 const Container = styled.div`
@@ -568,17 +603,32 @@ function MultiSelect({
   label,
   menuPortalTarget,
   placeholder,
+  helperText,
   value,
   options = [],
   noOptionsMessage,
   onChange,
 }: MultiSelectProps) {
+  const prevVariant = usePrevious(variant)
+
+  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
+
+  function handleAnimationEnd() {
+    if (shouldAnimate) setShouldAnimate(false)
+  }
+
   function getDerivedId(): string {
     if (id) return id
     if (label && name) return name
     if (label) return label
     return Math.random().toString()
   }
+
+  useEffect(() => {
+    if (variant !== prevVariant && !shouldAnimate) {
+      setShouldAnimate(true)
+    }
+  }, [variant, prevVariant, shouldAnimate])
 
   const derivedId = getDerivedId()
 
@@ -614,6 +664,15 @@ function MultiSelect({
           MultiValueRemove: CustomMultiValueRemove,
         }}
       />
+      {!!helperText && (
+        <HelperText
+          animate={shouldAnimate}
+          variant={variant}
+          onAnimationEnd={handleAnimationEnd}
+        >
+          {helperText}
+        </HelperText>
+      )}
     </Container>
   )
 }

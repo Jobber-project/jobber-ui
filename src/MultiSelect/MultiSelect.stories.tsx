@@ -15,14 +15,6 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-export function Intro(props) {
-  return (
-    <Container>
-      <MultiSelect {...props} />
-    </Container>
-  )
-}
-
 const options = [
   { label: 'One', value: 'one' },
   { label: 'Two', value: 'two' },
@@ -35,6 +27,21 @@ const options = [
   { label: 'Nine', value: 'nine' },
   { label: 'Ten', value: 'ten' },
 ]
+
+export function Intro(props) {
+  const [value, setValue] = useState<MultiSelectValue>([])
+
+  return (
+    <Container>
+      <MultiSelect
+        {...props}
+        options={options}
+        value={value}
+        onChange={setValue}
+      />
+    </Container>
+  )
+}
 
 export function Default(props) {
   const [value, setValue] = useState<MultiSelectValue>([])
@@ -71,6 +78,24 @@ export function Disabled(props) {
         label="Disabled with values"
         options={options}
         value={[options[0], options[1]]}
+        onChange={setValue}
+      />
+    </Container>
+  )
+}
+
+export function Error(props) {
+  const [value, setValue] = useState<MultiSelectValue>([])
+
+  return (
+    <Container>
+      <MultiSelect
+        {...props}
+        variant="error"
+        label="Error"
+        helperText="Helper text"
+        options={options}
+        value={value}
         onChange={setValue}
       />
     </Container>
