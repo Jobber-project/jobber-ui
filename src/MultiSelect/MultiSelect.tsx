@@ -55,6 +55,9 @@ type MultiSelectProps = {
   maxMenuHeight?: number
   variant?: MultiSelectVariant
   size?: MultiSelectSize
+  id?: string
+  name?: string
+  label?: string
   menuPortalTarget?: string
   placeholder?: string
   value?: MultiSelectValue
@@ -240,6 +243,21 @@ const StyledMultiValueRemove = styled.button`
     margin-left: 4px;
     color: ${COLORS.charade};
   }
+`
+
+const Label = styled.label`
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12px;
+  line-height: 1.667em;
+  font-family: Roboto, sans-serif;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const StyledSelect = styled(CustomSelect)`
@@ -447,6 +465,9 @@ function MultiSelect({
   maxMenuHeight,
   variant = 'default',
   size = 'medium',
+  id,
+  name,
+  label,
   menuPortalTarget,
   placeholder,
   value,
@@ -550,34 +571,48 @@ function MultiSelect({
     },
   }
 
+  function getDerivedId(): string {
+    if (id) return id
+    if (label && name) return name
+    if (label) return label
+    return Math.random().toString()
+  }
+
+  const derivedId = getDerivedId()
+
   return (
-    <StyledSelect
-      icon={false}
-      variant={variant}
-      size={size}
-      isMulti
-      isDisabled={disabled}
-      autoFocus={autoFocus}
-      maxMenuHeight={maxMenuHeight}
-      classNamePrefix="jobello-select"
-      placeholder={placeholder}
-      options={options}
-      value={value}
-      menuPortalTarget={
-        menuPortalTarget
-          ? document.getElementById(menuPortalTarget) ?? undefined
-          : undefined
-      }
-      styles={resetStyles}
-      noOptionsMessage={noOptionsMessage}
-      onChange={onChange}
-      components={{
-        DropdownIndicator: CustomDropdownIndicator,
-        ClearIndicator: CustomClearIndicator,
-        Menu: CustomMenu,
-        MultiValueRemove: CustomMultiValueRemove,
-      }}
-    />
+    <Container>
+      {!!label && <Label htmlFor={derivedId}>{label}</Label>}
+      <StyledSelect
+        icon={false}
+        variant={variant}
+        size={size}
+        isMulti
+        isDisabled={disabled}
+        autoFocus={autoFocus}
+        maxMenuHeight={maxMenuHeight}
+        inputId={derivedId}
+        name={name}
+        classNamePrefix="jobello-select"
+        placeholder={placeholder}
+        options={options}
+        value={value}
+        menuPortalTarget={
+          menuPortalTarget
+            ? document.getElementById(menuPortalTarget) ?? undefined
+            : undefined
+        }
+        styles={resetStyles}
+        noOptionsMessage={noOptionsMessage}
+        onChange={onChange}
+        components={{
+          DropdownIndicator: CustomDropdownIndicator,
+          ClearIndicator: CustomClearIndicator,
+          Menu: CustomMenu,
+          MultiValueRemove: CustomMultiValueRemove,
+        }}
+      />
+    </Container>
   )
 }
 

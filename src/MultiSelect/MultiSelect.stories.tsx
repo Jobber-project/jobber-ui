@@ -41,7 +41,12 @@ export function Default() {
 
   return (
     <Container>
-      <MultiSelect options={options} value={value} onChange={setValue} />
+      <MultiSelect
+        label="Default"
+        options={options}
+        value={value}
+        onChange={setValue}
+      />
     </Container>
   )
 }
@@ -53,12 +58,14 @@ export function Disabled() {
     <Container>
       <MultiSelect
         disabled
+        label="Disabled"
         options={options}
         value={value}
         onChange={setValue}
       />
       <MultiSelect
         disabled
+        label="Disabled with values"
         options={options}
         value={[options[0], options[1]]}
         onChange={setValue}
@@ -71,6 +78,10 @@ const story: ComponentMeta<typeof MultiSelect> = {
   title: 'Design System/MultiSelect',
   component: MultiSelect,
   argTypes: {
+    label: {
+      type: 'string',
+      defaltValue: 'Default',
+    },
     onChange: { action: 'onChange' },
   },
 }
