@@ -354,10 +354,15 @@ const StyledMenu = styled.div<{
     padding: 8px 16px;
     border-radius: 8px;
     box-sizing: border-box;
+    cursor: pointer;
 
     &--is-focused,
     &:hover {
       background-color: ${COLORS.selago};
+    }
+
+    &:active {
+      background-color: ${COLORS.linkWater};
     }
   }
 `
