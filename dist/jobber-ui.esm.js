@@ -6,21 +6,6 @@ import { forwardRef, useRef, useEffect, useState, cloneElement, memo, createCont
 import RCSlider from 'rc-slider';
 import { createPortal } from 'react-dom';
 
-const globalStyle = css `
-  ${reset}
-  font-family: 'Roboto', sans-serif;
-
-  body,
-  input,
-  button,
-  textarea {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-const GlobalStyle = createGlobalStyle `
-  ${globalStyle}
-`;
-
 // https://chir.ag/projects/name-that-color/#6B53FF
 const COLORS = {
     havelockBlue: '#5971dd',
@@ -45,17 +30,37 @@ const COLORS = {
     selago: '#F5F6FD',
     linkWater: '#EBEEFB',
     governorBay: '#3A52BF',
+    scienceBlue: '#005fcc',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
+
+const globalStyle = css `
+  ${reset}
+  font-family: 'Roboto', sans-serif;
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  * {
+    outline-color: ${COLORS.scienceBlue};
+  }
+`;
+const GlobalStyle = createGlobalStyle `
+  ${globalStyle}
+`;
 
 const animation = keyframes `
   0% {
     transform: rotate(0deg);
   }
   
-  0% {
-    transform: rotate(-360deg);
+  100% {
+    transform: rotate(360deg);
   }
 `;
 const Container$7 = styled.span `
@@ -1612,6 +1617,7 @@ const MenuContainer = styled.div `
   z-index: 4;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  overflow: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `;
 const MenuWrapper = styled.div `
@@ -2144,6 +2150,10 @@ const Hider = styled.div `
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `;
 const Caption = styled.span `
   display: block;
@@ -2174,6 +2184,7 @@ const ClearButtonWrapper = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `;
 const ClearButton = styled.button `
   z-index: 1;
@@ -2199,7 +2210,10 @@ const ClearButton = styled.button `
     left: -15px;
   }
 `;
-const Select = ({ className, id, placeholder = '', name, value = '', options, onChange }, ref) => {
+const StyledSelect = styled.select `
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`;
+const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
     var _a, _b, _c;
     const innerRef = useRef(null);
     useImperativeHandle(ref, () => innerRef.current);
@@ -2221,10 +2235,10 @@ const Select = ({ className, id, placeholder = '', name, value = '', options, on
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxs(Container$1, Object.assign({ className: className }, { children: [jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsx(Hider, { children: jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
+    return (jsxs(Container$1, Object.assign({ className: className }, { children: [jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsx(Hider, { children: jsxs(StyledSelect, Object.assign({ disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                             var _a;
                             return (jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                        })] }), void 0) }, void 0), !!value && (jsx(ClearButtonWrapper, { children: jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }, void 0))] }), void 0));
+                        })] }), void 0) }, void 0), jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsx(ClearButton, Object.assign({ disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
 };
 const ForwardedSelect = forwardRef(Select);
 

@@ -1,6 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components'
 import reset from 'styled-reset'
 
+import COLORS from '../shared/colors'
+
 export const globalStyle = css`
   ${reset}
   font-family: 'Roboto', sans-serif;
@@ -10,6 +12,10 @@ export const globalStyle = css`
   button,
   textarea {
     font-family: 'Roboto', sans-serif;
+  }
+
+  * {
+    outline-color: ${COLORS.scienceBlue};
   }
 `
 

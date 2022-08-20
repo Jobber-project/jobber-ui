@@ -34,21 +34,6 @@ var reset__default = /*#__PURE__*/_interopDefaultLegacy(reset);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var RCSlider__default = /*#__PURE__*/_interopDefaultLegacy(RCSlider);
 
-const globalStyle = styled.css `
-  ${reset__default["default"]}
-  font-family: 'Roboto', sans-serif;
-
-  body,
-  input,
-  button,
-  textarea {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-const GlobalStyle = styled.createGlobalStyle `
-  ${globalStyle}
-`;
-
 // https://chir.ag/projects/name-that-color/#6B53FF
 const COLORS = {
     havelockBlue: '#5971dd',
@@ -73,17 +58,37 @@ const COLORS = {
     selago: '#F5F6FD',
     linkWater: '#EBEEFB',
     governorBay: '#3A52BF',
+    scienceBlue: '#005fcc',
     primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
+
+const globalStyle = styled.css `
+  ${reset__default["default"]}
+  font-family: 'Roboto', sans-serif;
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  * {
+    outline-color: ${COLORS.scienceBlue};
+  }
+`;
+const GlobalStyle = styled.createGlobalStyle `
+  ${globalStyle}
+`;
 
 const animation = styled.keyframes `
   0% {
     transform: rotate(0deg);
   }
   
-  0% {
-    transform: rotate(-360deg);
+  100% {
+    transform: rotate(360deg);
   }
 `;
 const Container$7 = styled__default["default"].span `
@@ -1640,6 +1645,7 @@ const MenuContainer = styled__default["default"].div `
   z-index: 4;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  overflow: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `;
 const MenuWrapper = styled__default["default"].div `
@@ -2172,6 +2178,10 @@ const Hider = styled__default["default"].div `
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `;
 const Caption = styled__default["default"].span `
   display: block;
@@ -2202,6 +2212,7 @@ const ClearButtonWrapper = styled__default["default"].div `
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `;
 const ClearButton = styled__default["default"].button `
   z-index: 1;
@@ -2227,7 +2238,10 @@ const ClearButton = styled__default["default"].button `
     left: -15px;
   }
 `;
-const Select = ({ className, id, placeholder = '', name, value = '', options, onChange }, ref) => {
+const StyledSelect = styled__default["default"].select `
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`;
+const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
     var _a, _b, _c;
     const innerRef = React.useRef(null);
     React.useImperativeHandle(ref, () => innerRef.current);
@@ -2249,10 +2263,10 @@ const Select = ({ className, id, placeholder = '', name, value = '', options, on
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (jsxRuntime.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.jsx(Hider, { children: jsxRuntime.jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
+    return (jsxRuntime.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.jsx(Hider, { children: jsxRuntime.jsxs(StyledSelect, Object.assign({ disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                             var _a;
                             return (jsxRuntime.jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                        })] }), void 0) }, void 0), !!value && (jsxRuntime.jsx(ClearButtonWrapper, { children: jsxRuntime.jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }, void 0))] }), void 0));
+                        })] }), void 0) }, void 0), jsxRuntime.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.jsx(ClearButton, Object.assign({ disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
 };
 const ForwardedSelect = React.forwardRef(Select);
 

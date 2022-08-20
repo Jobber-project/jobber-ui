@@ -48,6 +48,10 @@ const Hider = styled.div`
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `
 
 const Caption = styled.span<{
@@ -77,7 +81,9 @@ const StyledXIcon = styled(XIcon)`
   color: ${COLORS.silverChalice};
 `
 
-const ClearButtonWrapper = styled.div`
+const ClearButtonWrapper = styled.div<{
+  $hidden: boolean
+}>`
   z-index: 2;
   position: absolute;
   top: 0;
@@ -86,6 +92,7 @@ const ClearButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `
 
 const ClearButton = styled.button`
@@ -113,6 +120,10 @@ const ClearButton = styled.button`
   }
 `
 
+const StyledSelect = styled.select`
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`
+
 export type SelectOption = {
   /** Optional unique identifier to use as key. Default is value and label combined */
   id?: string
@@ -121,6 +132,7 @@ export type SelectOption = {
 }
 
 type SelectProps = {
+  disabled?: boolean
   className?: string
   id?: string
   placeholder?: string
@@ -131,7 +143,16 @@ type SelectProps = {
 }
 
 const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
-  { className, id, placeholder = '', name, value = '', options, onChange },
+  {
+    disabled,
+    className,
+    id,
+    placeholder = '',
+    name,
+    value = '',
+    options,
+    onChange,
+  },
   ref,
 ) => {
   const innerRef = useRef<HTMLSelectElement>(null)
@@ -169,7 +190,8 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
         viewBox="0 0 24 24"
       />
       <Hider>
-        <select
+        <StyledSelect
+          disabled={disabled}
           id={derivedId}
           ref={innerRef}
           value={selectedOption?.value}
@@ -186,19 +208,18 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
               {option.label}
             </option>
           ))}
-        </select>
+        </StyledSelect>
       </Hider>
-      {!!value && (
-        <ClearButtonWrapper>
-          <ClearButton
-            type="button"
-            onClick={handleClearClick}
-            aria-label="clear"
-          >
-            <StyledXIcon width={20} height={20} viewBox="0 0 24 24" />
-          </ClearButton>
-        </ClearButtonWrapper>
-      )}
+      <ClearButtonWrapper $hidden={!value}>
+        <ClearButton
+          disabled={disabled}
+          type="button"
+          onClick={handleClearClick}
+          aria-label="clear"
+        >
+          <StyledXIcon width={20} height={20} viewBox="0 0 24 24" />
+        </ClearButton>
+      </ClearButtonWrapper>
     </Container>
   )
 }

@@ -37,6 +37,35 @@
     styled.createGlobalStyle(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", ""], ["", ""])), reset);
     var templateObject_1, templateObject_2;
 
+    // https://chir.ag/projects/name-that-color/#6B53FF
+    const COLORS = {
+        havelockBlue: '#5971dd',
+        electricViolet: '#8d49f7',
+        cornflowerBlue: '#6b53ff',
+        royalBlue: '#586EE0',
+        mischa: '#dddfe5',
+        emerald: '#41c879',
+        yellowOrange: '#fda146',
+        carnation: '#fb5255',
+        supernova: '#ffc600',
+        sunshade: '#ff9e2c',
+        persianIndigo: '#371789',
+        silverChalice: '#a9a9a9',
+        alabster: '#f9f9f9',
+        charade: '#2b2a35',
+        white: '#ffffff',
+        black: '#000000',
+        razzleDazzleRose: '#F22CCD',
+        wildStrawberry: '#FF4591',
+        salmon: '#FF8761',
+        selago: '#F5F6FD',
+        linkWater: '#EBEEFB',
+        governorBay: '#3A52BF',
+        scienceBlue: '#005fcc',
+        primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
+        secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
+    };
+
     const globalStyle = styled.css `
   ${reset}
   font-family: 'Roboto', sans-serif;
@@ -46,6 +75,10 @@
   button,
   textarea {
     font-family: 'Roboto', sans-serif;
+  }
+
+  * {
+    outline-color: ${COLORS.scienceBlue};
   }
 `;
     const GlobalStyle = styled.createGlobalStyle `
@@ -1383,41 +1416,13 @@
       jsxRuntime.exports = reactJsxRuntime_development;
     }
 
-    // https://chir.ag/projects/name-that-color/#6B53FF
-    const COLORS = {
-        havelockBlue: '#5971dd',
-        electricViolet: '#8d49f7',
-        cornflowerBlue: '#6b53ff',
-        royalBlue: '#586EE0',
-        mischa: '#dddfe5',
-        emerald: '#41c879',
-        yellowOrange: '#fda146',
-        carnation: '#fb5255',
-        supernova: '#ffc600',
-        sunshade: '#ff9e2c',
-        persianIndigo: '#371789',
-        silverChalice: '#a9a9a9',
-        alabster: '#f9f9f9',
-        charade: '#2b2a35',
-        white: '#ffffff',
-        black: '#000000',
-        razzleDazzleRose: '#F22CCD',
-        wildStrawberry: '#FF4591',
-        salmon: '#FF8761',
-        selago: '#F5F6FD',
-        linkWater: '#EBEEFB',
-        governorBay: '#3A52BF',
-        primaryGradient: `linear-gradient(90deg, #8d49f7, #5971dd)`,
-        secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
-    };
-
     const animation = styled.keyframes `
   0% {
     transform: rotate(0deg);
   }
   
-  0% {
-    transform: rotate(-360deg);
+  100% {
+    transform: rotate(360deg);
   }
 `;
     const Container$7 = styled__default["default"].span `
@@ -5391,6 +5396,7 @@
   z-index: 4;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  overflow: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 `;
     const MenuWrapper = styled__default["default"].div `
@@ -5923,6 +5929,10 @@
     background: transparent;
     border: none;
   }
+
+  & option {
+    color: ${COLORS.charade};
+  }
 `;
     const Caption = styled__default["default"].span `
   display: block;
@@ -5953,6 +5963,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `;
     const ClearButton = styled__default["default"].button `
   z-index: 1;
@@ -5978,7 +5989,10 @@
     left: -15px;
   }
 `;
-    const Select = ({ className, id, placeholder = '', name, value = '', options, onChange }, ref) => {
+    const StyledSelect = styled__default["default"].select `
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
+`;
+    const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
         var _a, _b, _c;
         const innerRef = React.useRef(null);
         React.useImperativeHandle(ref, () => innerRef.current);
@@ -6000,10 +6014,10 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.exports.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.exports.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.exports.jsx(Hider, { children: jsxRuntime.exports.jsxs("select", Object.assign({ id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.exports.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
+        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.exports.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.exports.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.exports.jsx(Hider, { children: jsxRuntime.exports.jsxs(StyledSelect, Object.assign({ disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.exports.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
                                 var _a;
                                 return (jsxRuntime.exports.jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                            })] }), void 0) }, void 0), !!value && (jsxRuntime.exports.jsx(ClearButtonWrapper, { children: jsxRuntime.exports.jsx(ClearButton, Object.assign({ type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.exports.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }, void 0))] }), void 0));
+                            })] }), void 0) }, void 0), jsxRuntime.exports.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.exports.jsx(ClearButton, Object.assign({ disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.exports.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
     };
     const ForwardedSelect = React.forwardRef(Select);
 
