@@ -57,6 +57,12 @@ export function Disabled() {
         value={value}
         onChange={setValue}
       />
+      <MultiSelect
+        disabled
+        options={options}
+        value={[options[0], options[1]]}
+        onChange={setValue}
+      />
     </Container>
   )
 }

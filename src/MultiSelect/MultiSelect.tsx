@@ -271,6 +271,11 @@ const StyledSelect = styled(CustomSelect)`
     &--is-disabled {
       cursor: default;
       background-color: ${COLORS.alabster};
+
+      & .jobello-select__multi-value {
+        opacity: 0.5;
+        background-color: ${COLORS.mischa};
+      }
     }
 
     & {
