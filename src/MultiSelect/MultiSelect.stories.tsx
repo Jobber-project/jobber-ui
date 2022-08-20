@@ -36,12 +36,13 @@ const options = [
   { label: 'Ten', value: 'ten' },
 ]
 
-export function Default() {
+export function Default(props) {
   const [value, setValue] = useState<MultiSelectValue>([])
 
   return (
     <Container>
       <MultiSelect
+        {...props}
         label="Default"
         options={options}
         value={value}
@@ -51,12 +52,13 @@ export function Default() {
   )
 }
 
-export function Disabled() {
+export function Disabled(props) {
   const [value, setValue] = useState<MultiSelectValue>([])
 
   return (
     <Container>
       <MultiSelect
+        {...props}
         disabled
         label="Disabled"
         options={options}
@@ -64,6 +66,7 @@ export function Disabled() {
         onChange={setValue}
       />
       <MultiSelect
+        {...props}
         disabled
         label="Disabled with values"
         options={options}
@@ -80,7 +83,15 @@ const story: ComponentMeta<typeof MultiSelect> = {
   argTypes: {
     label: {
       type: 'string',
-      defaltValue: 'Default',
+      defaultValue: 'Default',
+    },
+    placeholder: {
+      type: 'string',
+      defaultValue: 'Placeholder',
+    },
+    noOptionsMessage: {
+      type: 'function',
+      defaultValue: () => 'No options',
     },
     onChange: { action: 'onChange' },
   },

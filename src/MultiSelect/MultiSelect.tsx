@@ -55,6 +55,7 @@ type MultiSelectProps = {
   maxMenuHeight?: number
   variant?: MultiSelectVariant
   size?: MultiSelectSize
+  className?: string
   id?: string
   name?: string
   label?: string
@@ -459,12 +460,109 @@ function CustomMultiValueRemove(
   )
 }
 
+const resetStyles: StylesConfig<MultiSelectOption, true> = {
+  clearIndicator: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  container: provided => {
+    return provided
+  },
+  control: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  dropdownIndicator: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  group: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  groupHeading: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  indicatorsContainer: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  indicatorSeparator: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  input: (provided, props) => {
+    const { margin, paddingTop, paddingBottom, color, ...styles } = provided
+    return { ...styles, padding: '0 2px' }
+  },
+  loadingIndicator: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  loadingMessage: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  menu: (provided, props) => {
+    const {
+      backgroundColor,
+      borderRadius,
+      boxShadow,
+      marginTop,
+      marginBottom,
+      ...styles
+    } = provided
+    return styles
+  },
+  menuList: (provided, props) => {
+    const { paddingTop, paddingBottom, ...styles } = provided
+    return styles
+  },
+  menuPortal: provided => {
+    return provided
+  },
+  multiValue: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  multiValueLabel: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  multiValueRemove: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  noOptionsMessage: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  option: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  placeholder: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  singleValue: (provided, props) => {
+    const styles: any = {}
+    return styles
+  },
+  valueContainer: (provided, props) => {
+    const { padding, ...styles } = provided
+    return styles
+  },
+}
+
 function MultiSelect({
   disabled,
   autoFocus,
   maxMenuHeight,
   variant = 'default',
   size = 'medium',
+  className,
   id,
   name,
   label,
@@ -475,102 +573,6 @@ function MultiSelect({
   noOptionsMessage,
   onChange,
 }: MultiSelectProps) {
-  const resetStyles: StylesConfig<MultiSelectOption, true> = {
-    clearIndicator: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    container: provided => {
-      return provided
-    },
-    control: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    dropdownIndicator: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    group: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    groupHeading: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    indicatorsContainer: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    indicatorSeparator: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    input: (provided, props) => {
-      const { margin, paddingTop, paddingBottom, color, ...styles } = provided
-      return styles
-    },
-    loadingIndicator: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    loadingMessage: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    menu: (provided, props) => {
-      const {
-        backgroundColor,
-        borderRadius,
-        boxShadow,
-        marginTop,
-        marginBottom,
-        ...styles
-      } = provided
-      return styles
-    },
-    menuList: (provided, props) => {
-      const { paddingTop, paddingBottom, ...styles } = provided
-      return styles
-    },
-    menuPortal: provided => {
-      return provided
-    },
-    multiValue: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    multiValueLabel: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    multiValueRemove: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    noOptionsMessage: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    option: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    placeholder: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    singleValue: (provided, props) => {
-      const styles: any = {}
-      return styles
-    },
-    valueContainer: (provided, props) => {
-      const { padding, ...styles } = provided
-      return styles
-    },
-  }
-
   function getDerivedId(): string {
     if (id) return id
     if (label && name) return name
@@ -581,7 +583,7 @@ function MultiSelect({
   const derivedId = getDerivedId()
 
   return (
-    <Container>
+    <Container className={className}>
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
       <StyledSelect
         icon={false}
