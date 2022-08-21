@@ -986,7 +986,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor$2({ $variant }) {
+    function getVariantColor$3({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -1152,7 +1152,7 @@
   margin: 0;
   padding: ${getPadding$1};
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor$2};
+  border: 1px solid ${getVariantColor$3};
   border-radius: 8px;
   background-color: ${COLORS.white};
   color: ${COLORS.charade};
@@ -1229,7 +1229,7 @@
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor$2};
+  color: ${getVariantColor$3};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
@@ -4620,6 +4620,19 @@
         })), getOrCreatePortalElement());
     };
 
+    function getVariantColor$2({ $variant }) {
+        switch ($variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.mischa;
+        }
+    }
     const Container$2 = styled__default["default"].div `
   z-index: 1;
   position: relative;
@@ -4628,8 +4641,14 @@
   justify-content: space-between;
   padding: 11px 16px;
   box-sizing: border-box;
-  border: 1px solid ${COLORS.mischa};
+  border: 1px solid ${getVariantColor$2};
   border-radius: 8px;
+  background-color: ${COLORS.white};
+
+  ${props => props.$disabled &&
+    `
+    background-color: ${COLORS.alabster};
+  `}
 `;
     const Hider = styled__default["default"].div `
   z-index: 1;
@@ -4670,7 +4689,9 @@
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   line-height: 1.1875em;
-  color: ${props => (props.$hasValue ? COLORS.charade : COLORS.silverChalice)};
+  color: ${props => props.$hasValue && !props.$disabled
+    ? COLORS.charade
+    : COLORS.silverChalice};
 `;
     const StyledChevronDownIcon$1 = styled__default["default"](SvgChevronDown) `
   color: ${COLORS.silverChalice};
@@ -4717,7 +4738,7 @@
     const StyledSelect$1 = styled__default["default"].select `
   cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
 `;
-    const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
+    const Select = ({ disabled, className, variant = 'default', id, placeholder = '', name, value = '', options, onChange, }, ref) => {
         var _a, _b, _c;
         const innerRef = React.useRef(null);
         React.useImperativeHandle(ref, () => innerRef.current);
@@ -4739,9 +4760,9 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (React__default["default"].createElement(Container$2, { className: className },
-            React__default["default"].createElement(Caption, { "$hasValue": !!selectedOption }, (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder),
-            React__default["default"].createElement(StyledChevronDownIcon$1, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }),
+        return (React__default["default"].createElement(Container$2, { "$disabled": disabled, "$variant": variant, className: className },
+            React__default["default"].createElement(Caption, { "$hasValue": !!selectedOption, "$disabled": disabled }, (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder),
+            React__default["default"].createElement(StyledChevronDownIcon$1, { "$hidden": !!value && !disabled, width: 20, height: 20, viewBox: "0 0 24 24" }),
             React__default["default"].createElement(Hider, null,
                 React__default["default"].createElement(StyledSelect$1, { disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange },
                     React__default["default"].createElement("option", { value: "" }, placeholder), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 :
@@ -4749,7 +4770,7 @@
                         var _a;
                         return (React__default["default"].createElement("option", { key: (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`, value: option.value }, option.label));
                     }))),
-            React__default["default"].createElement(ClearButtonWrapper, { "$hidden": !value },
+            React__default["default"].createElement(ClearButtonWrapper, { "$hidden": !value || !!disabled },
                 React__default["default"].createElement(ClearButton, { disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" },
                     React__default["default"].createElement(StyledXIcon$1, { width: 20, height: 20, viewBox: "0 0 24 24" })))));
     };
