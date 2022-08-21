@@ -21,26 +21,25 @@ const Container = styled.div`
   }
 `
 
+const options = [
+  {
+    value: '1',
+    label: 'One',
+  },
+  {
+    value: '2',
+    label: 'Two',
+  },
+  {
+    value: '3',
+    label: 'Three',
+  },
+]
+
 export function Intro({ ...props }) {
   return (
     <Container>
-      <Select
-        {...props}
-        options={[
-          {
-            value: '1',
-            label: 'One',
-          },
-          {
-            value: '2',
-            label: 'Two',
-          },
-          {
-            value: '3',
-            label: 'Three',
-          },
-        ]}
-      />
+      <Select {...props} options={options} />
     </Container>
   )
 }
@@ -53,20 +52,7 @@ export function Controlled({ placeholder }) {
       <Select
         placeholder={placeholder}
         value={value}
-        options={[
-          {
-            value: '1',
-            label: 'One',
-          },
-          {
-            value: '2',
-            label: 'Two',
-          },
-          {
-            value: '3',
-            label: 'Three',
-          },
-        ]}
+        options={options}
         onChange={e => setValue(e.target.value)}
       />
     </Container>
@@ -82,20 +68,23 @@ export function Disabled({ placeholder }) {
         disabled
         placeholder={placeholder}
         value={value}
-        options={[
-          {
-            value: '1',
-            label: 'One',
-          },
-          {
-            value: '2',
-            label: 'Two',
-          },
-          {
-            value: '3',
-            label: 'Three',
-          },
-        ]}
+        options={options}
+        onChange={e => setValue(e.target.value)}
+      />
+    </Container>
+  )
+}
+
+export function Error(props) {
+  const [value, setValue] = useState<string | undefined>()
+
+  return (
+    <Container>
+      <Select
+        {...props}
+        variant="error"
+        value={value}
+        options={options}
         onChange={e => setValue(e.target.value)}
       />
     </Container>
