@@ -23,12 +23,12 @@ type AvatarProps = {
 type IconProps = {
   size: SizeTypes
   icon: IconTypes
-  onClick: () => void
+  onClick?: () => void
 }
 
 type CircleProps = {
   size: SizeTypes
-  id: string
+  id?: string
   $disabled: boolean
 }
 
@@ -88,7 +88,7 @@ const getCircleSize = ({ size }: { size: SizeTypes }): number => {
 const getColorFromId = ({ id, $disabled }: CircleProps): string => {
   if ($disabled) return COLORS.mischa
   const firstValueFromId = id?.substring(0, 1) || id
-  const generatedNumber = firstValueFromId?.charCodeAt(0)
+  const generatedNumber = firstValueFromId?.charCodeAt?.(0) ?? 0
   const colorNumber = generatedNumber % 4
   switch (colorNumber) {
     case 0:
