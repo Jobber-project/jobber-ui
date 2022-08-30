@@ -13,7 +13,29 @@ import ChevronDownIcon from '../shared/icons/chevron-down.svg'
 import XIcon from '../shared/icons/x.svg'
 import COLORS from '../shared/colors'
 
-const Container = styled.div`
+type SelectVariant = 'default' | 'success' | 'warning' | 'error'
+
+function getVariantColor({ $variant }: { $variant: SelectVariant }): string {
+  switch ($variant) {
+    case 'success':
+      return COLORS.emerald
+
+    case 'warning':
+      return COLORS.yellowOrange
+
+    case 'error':
+      return COLORS.carnation
+
+    case 'default':
+    default:
+      return COLORS.mischa
+  }
+}
+
+const Container = styled.div<{
+  $disabled?: boolean
+  $variant: SelectVariant
+}>`
   z-index: 1;
   position: relative;
   display: flex;
@@ -21,8 +43,15 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 11px 16px;
   box-sizing: border-box;
-  border: 1px solid ${COLORS.mischa};
+  border: 1px solid ${getVariantColor};
   border-radius: 8px;
+  background-color: ${COLORS.white};
+
+  ${props =>
+    props.$disabled &&
+    `
+    background-color: ${COLORS.alabster};
+  `}
 `
 
 const Hider = styled.div`
@@ -56,6 +85,7 @@ const Hider = styled.div`
 
 const Caption = styled.span<{
   $hasValue: boolean
+  $disabled?: boolean
 }>`
   display: block;
   flex-grow: 1;
@@ -67,7 +97,10 @@ const Caption = styled.span<{
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   line-height: 1.1875em;
-  color: ${props => (props.$hasValue ? COLORS.charade : COLORS.silverChalice)};
+  color: ${props =>
+    props.$hasValue && !props.$disabled
+      ? COLORS.charade
+      : COLORS.silverChalice};
 `
 
 const StyledChevronDownIcon = styled(ChevronDownIcon)<{
@@ -134,6 +167,7 @@ export type SelectOption = {
 type SelectProps = {
   disabled?: boolean
   className?: string
+  variant?: SelectVariant
   id?: string
   placeholder?: string
   name?: string
@@ -146,6 +180,7 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
   {
     disabled,
     className,
+    variant = 'default',
     id,
     placeholder = '',
     name,
@@ -179,12 +214,12 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
   const derivedId = getDerivedId()
 
   return (
-    <Container className={className}>
-      <Caption $hasValue={!!selectedOption}>
+    <Container $disabled={disabled} $variant={variant} className={className}>
+      <Caption $hasValue={!!selectedOption} $disabled={disabled}>
         {selectedOption?.label ?? placeholder}
       </Caption>
       <StyledChevronDownIcon
-        $hidden={!!value}
+        $hidden={!!value && !disabled}
         width={20}
         height={20}
         viewBox="0 0 24 24"
@@ -210,7 +245,7 @@ const Select: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
           ))}
         </StyledSelect>
       </Hider>
-      <ClearButtonWrapper $hidden={!value}>
+      <ClearButtonWrapper $hidden={!value || !!disabled}>
         <ClearButton
           disabled={disabled}
           type="button"

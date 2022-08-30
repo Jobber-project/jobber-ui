@@ -16,14 +16,14 @@ const tsconfig = {
   moduleResolution: 'node',
   resolveJsonModule: true,
   isolatedModules: true,
-  jsx: 'react-jsx',
+  jsx: 'react',
   noUnusedLocals: false,
   declaration: true,
   declarationDir: 'dist',
   emitDeclarationOnly: true,
 }
 
-const external = ['react', 'styled-components', 'react-dom']
+const external = ['react', 'react-dom', 'react-select', 'styled-components']
 
 export default [
   {
@@ -51,7 +51,7 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [ts({ tsconfig }), svgr()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
   },
   {
     input: 'src/shared/colors.ts',

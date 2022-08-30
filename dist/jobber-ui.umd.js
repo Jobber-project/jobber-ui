@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('styled-components'), require('react'), require('react-dom')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'styled-components', 'react', 'react-dom'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["jobber-ui"] = {}, global.styled, global.React, global.reactDom));
-})(this, (function (exports, styled, React, reactDom) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('styled-components'), require('react'), require('react-dom'), require('react-select')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'styled-components', 'react', 'react-dom', 'react-select'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["jobber-ui"] = {}, global.styled, global.React, global.reactDom, global.Select$1));
+})(this, (function (exports, styled, React, reactDom, Select$1) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -27,6 +27,7 @@
     var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
     var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
     var React__namespace = /*#__PURE__*/_interopNamespace(React);
+    var Select__default = /*#__PURE__*/_interopDefaultLegacy(Select$1);
 
     var __makeTemplateObject = (undefined && undefined.__makeTemplateObject) || function (cooked, raw) {
         if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
@@ -85,1337 +86,6 @@
   ${globalStyle}
 `;
 
-    var jsxRuntime = {exports: {}};
-
-    var reactJsxRuntime_production_min = {};
-
-    /*
-    object-assign
-    (c) Sindre Sorhus
-    @license MIT
-    */
-    /* eslint-disable no-unused-vars */
-    var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-    function toObject(val) {
-    	if (val === null || val === undefined) {
-    		throw new TypeError('Object.assign cannot be called with null or undefined');
-    	}
-
-    	return Object(val);
-    }
-
-    function shouldUseNative() {
-    	try {
-    		if (!Object.assign) {
-    			return false;
-    		}
-
-    		// Detect buggy property enumeration order in older V8 versions.
-
-    		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-    		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-    		test1[5] = 'de';
-    		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-    			return false;
-    		}
-
-    		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-    		var test2 = {};
-    		for (var i = 0; i < 10; i++) {
-    			test2['_' + String.fromCharCode(i)] = i;
-    		}
-    		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-    			return test2[n];
-    		});
-    		if (order2.join('') !== '0123456789') {
-    			return false;
-    		}
-
-    		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-    		var test3 = {};
-    		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-    			test3[letter] = letter;
-    		});
-    		if (Object.keys(Object.assign({}, test3)).join('') !==
-    				'abcdefghijklmnopqrst') {
-    			return false;
-    		}
-
-    		return true;
-    	} catch (err) {
-    		// We don't expect any of the above to throw, but better to be safe.
-    		return false;
-    	}
-    }
-
-    var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-    	var from;
-    	var to = toObject(target);
-    	var symbols;
-
-    	for (var s = 1; s < arguments.length; s++) {
-    		from = Object(arguments[s]);
-
-    		for (var key in from) {
-    			if (hasOwnProperty.call(from, key)) {
-    				to[key] = from[key];
-    			}
-    		}
-
-    		if (getOwnPropertySymbols) {
-    			symbols = getOwnPropertySymbols(from);
-    			for (var i = 0; i < symbols.length; i++) {
-    				if (propIsEnumerable.call(from, symbols[i])) {
-    					to[symbols[i]] = from[symbols[i]];
-    				}
-    			}
-    		}
-    	}
-
-    	return to;
-    };
-
-    /** @license React v17.0.2
-     * react-jsx-runtime.production.min.js
-     *
-     * Copyright (c) Facebook, Inc. and its affiliates.
-     *
-     * This source code is licensed under the MIT license found in the
-     * LICENSE file in the root directory of this source tree.
-     */
-    var f=React__default["default"],g=60103;reactJsxRuntime_production_min.Fragment=60107;if("function"===typeof Symbol&&Symbol.for){var h=Symbol.for;g=h("react.element");reactJsxRuntime_production_min.Fragment=h("react.fragment");}var m=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,n=Object.prototype.hasOwnProperty,p={key:!0,ref:!0,__self:!0,__source:!0};
-    function q(c,a,k){var b,d={},e=null,l=null;void 0!==k&&(e=""+k);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(l=a.ref);for(b in a)n.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return {$$typeof:g,type:c,key:e,ref:l,props:d,_owner:m.current}}reactJsxRuntime_production_min.jsx=q;reactJsxRuntime_production_min.jsxs=q;
-
-    var reactJsxRuntime_development = {};
-
-    /** @license React v17.0.2
-     * react-jsx-runtime.development.js
-     *
-     * Copyright (c) Facebook, Inc. and its affiliates.
-     *
-     * This source code is licensed under the MIT license found in the
-     * LICENSE file in the root directory of this source tree.
-     */
-
-    (function (exports) {
-
-    if (process.env.NODE_ENV !== "production") {
-      (function() {
-
-    var React = React__default["default"];
-    var _assign = objectAssign;
-
-    // ATTENTION
-    // When adding new symbols to this file,
-    // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-    // nor polyfill, then a plain number is used for performance.
-    var REACT_ELEMENT_TYPE = 0xeac7;
-    var REACT_PORTAL_TYPE = 0xeaca;
-    exports.Fragment = 0xeacb;
-    var REACT_STRICT_MODE_TYPE = 0xeacc;
-    var REACT_PROFILER_TYPE = 0xead2;
-    var REACT_PROVIDER_TYPE = 0xeacd;
-    var REACT_CONTEXT_TYPE = 0xeace;
-    var REACT_FORWARD_REF_TYPE = 0xead0;
-    var REACT_SUSPENSE_TYPE = 0xead1;
-    var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-    var REACT_MEMO_TYPE = 0xead3;
-    var REACT_LAZY_TYPE = 0xead4;
-    var REACT_BLOCK_TYPE = 0xead9;
-    var REACT_SERVER_BLOCK_TYPE = 0xeada;
-    var REACT_FUNDAMENTAL_TYPE = 0xead5;
-    var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
-    var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
-
-    if (typeof Symbol === 'function' && Symbol.for) {
-      var symbolFor = Symbol.for;
-      REACT_ELEMENT_TYPE = symbolFor('react.element');
-      REACT_PORTAL_TYPE = symbolFor('react.portal');
-      exports.Fragment = symbolFor('react.fragment');
-      REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
-      REACT_PROFILER_TYPE = symbolFor('react.profiler');
-      REACT_PROVIDER_TYPE = symbolFor('react.provider');
-      REACT_CONTEXT_TYPE = symbolFor('react.context');
-      REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
-      REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
-      REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
-      REACT_MEMO_TYPE = symbolFor('react.memo');
-      REACT_LAZY_TYPE = symbolFor('react.lazy');
-      REACT_BLOCK_TYPE = symbolFor('react.block');
-      REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
-      REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
-      symbolFor('react.scope');
-      symbolFor('react.opaque.id');
-      REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
-      symbolFor('react.offscreen');
-      REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
-    }
-
-    var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-    var FAUX_ITERATOR_SYMBOL = '@@iterator';
-    function getIteratorFn(maybeIterable) {
-      if (maybeIterable === null || typeof maybeIterable !== 'object') {
-        return null;
-      }
-
-      var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
-
-      if (typeof maybeIterator === 'function') {
-        return maybeIterator;
-      }
-
-      return null;
-    }
-
-    var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-
-    function error(format) {
-      {
-        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-          args[_key2 - 1] = arguments[_key2];
-        }
-
-        printWarning('error', format, args);
-      }
-    }
-
-    function printWarning(level, format, args) {
-      // When changing this logic, you might want to also
-      // update consoleWithStackDev.www.js as well.
-      {
-        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-        var stack = ReactDebugCurrentFrame.getStackAddendum();
-
-        if (stack !== '') {
-          format += '%s';
-          args = args.concat([stack]);
-        }
-
-        var argsWithFormat = args.map(function (item) {
-          return '' + item;
-        }); // Careful: RN currently depends on this prefix
-
-        argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
-        // breaks IE9: https://github.com/facebook/react/issues/13610
-        // eslint-disable-next-line react-internal/no-production-logging
-
-        Function.prototype.apply.call(console[level], console, argsWithFormat);
-      }
-    }
-
-    // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
-
-    var enableScopeAPI = false; // Experimental Create Event Handle API.
-
-    function isValidElementType(type) {
-      if (typeof type === 'string' || typeof type === 'function') {
-        return true;
-      } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
-
-
-      if (type === exports.Fragment || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
-        return true;
-      }
-
-      if (typeof type === 'object' && type !== null) {
-        if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-    function getWrappedName(outerType, innerType, wrapperName) {
-      var functionName = innerType.displayName || innerType.name || '';
-      return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
-    }
-
-    function getContextName(type) {
-      return type.displayName || 'Context';
-    }
-
-    function getComponentName(type) {
-      if (type == null) {
-        // Host root, text node or just invalid type.
-        return null;
-      }
-
-      {
-        if (typeof type.tag === 'number') {
-          error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
-        }
-      }
-
-      if (typeof type === 'function') {
-        return type.displayName || type.name || null;
-      }
-
-      if (typeof type === 'string') {
-        return type;
-      }
-
-      switch (type) {
-        case exports.Fragment:
-          return 'Fragment';
-
-        case REACT_PORTAL_TYPE:
-          return 'Portal';
-
-        case REACT_PROFILER_TYPE:
-          return 'Profiler';
-
-        case REACT_STRICT_MODE_TYPE:
-          return 'StrictMode';
-
-        case REACT_SUSPENSE_TYPE:
-          return 'Suspense';
-
-        case REACT_SUSPENSE_LIST_TYPE:
-          return 'SuspenseList';
-      }
-
-      if (typeof type === 'object') {
-        switch (type.$$typeof) {
-          case REACT_CONTEXT_TYPE:
-            var context = type;
-            return getContextName(context) + '.Consumer';
-
-          case REACT_PROVIDER_TYPE:
-            var provider = type;
-            return getContextName(provider._context) + '.Provider';
-
-          case REACT_FORWARD_REF_TYPE:
-            return getWrappedName(type, type.render, 'ForwardRef');
-
-          case REACT_MEMO_TYPE:
-            return getComponentName(type.type);
-
-          case REACT_BLOCK_TYPE:
-            return getComponentName(type._render);
-
-          case REACT_LAZY_TYPE:
-            {
-              var lazyComponent = type;
-              var payload = lazyComponent._payload;
-              var init = lazyComponent._init;
-
-              try {
-                return getComponentName(init(payload));
-              } catch (x) {
-                return null;
-              }
-            }
-        }
-      }
-
-      return null;
-    }
-
-    // Helpers to patch console.logs to avoid logging during side-effect free
-    // replaying on render function. This currently only patches the object
-    // lazily which won't cover if the log function was extracted eagerly.
-    // We could also eagerly patch the method.
-    var disabledDepth = 0;
-    var prevLog;
-    var prevInfo;
-    var prevWarn;
-    var prevError;
-    var prevGroup;
-    var prevGroupCollapsed;
-    var prevGroupEnd;
-
-    function disabledLog() {}
-
-    disabledLog.__reactDisabledLog = true;
-    function disableLogs() {
-      {
-        if (disabledDepth === 0) {
-          /* eslint-disable react-internal/no-production-logging */
-          prevLog = console.log;
-          prevInfo = console.info;
-          prevWarn = console.warn;
-          prevError = console.error;
-          prevGroup = console.group;
-          prevGroupCollapsed = console.groupCollapsed;
-          prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
-
-          var props = {
-            configurable: true,
-            enumerable: true,
-            value: disabledLog,
-            writable: true
-          }; // $FlowFixMe Flow thinks console is immutable.
-
-          Object.defineProperties(console, {
-            info: props,
-            log: props,
-            warn: props,
-            error: props,
-            group: props,
-            groupCollapsed: props,
-            groupEnd: props
-          });
-          /* eslint-enable react-internal/no-production-logging */
-        }
-
-        disabledDepth++;
-      }
-    }
-    function reenableLogs() {
-      {
-        disabledDepth--;
-
-        if (disabledDepth === 0) {
-          /* eslint-disable react-internal/no-production-logging */
-          var props = {
-            configurable: true,
-            enumerable: true,
-            writable: true
-          }; // $FlowFixMe Flow thinks console is immutable.
-
-          Object.defineProperties(console, {
-            log: _assign({}, props, {
-              value: prevLog
-            }),
-            info: _assign({}, props, {
-              value: prevInfo
-            }),
-            warn: _assign({}, props, {
-              value: prevWarn
-            }),
-            error: _assign({}, props, {
-              value: prevError
-            }),
-            group: _assign({}, props, {
-              value: prevGroup
-            }),
-            groupCollapsed: _assign({}, props, {
-              value: prevGroupCollapsed
-            }),
-            groupEnd: _assign({}, props, {
-              value: prevGroupEnd
-            })
-          });
-          /* eslint-enable react-internal/no-production-logging */
-        }
-
-        if (disabledDepth < 0) {
-          error('disabledDepth fell below zero. ' + 'This is a bug in React. Please file an issue.');
-        }
-      }
-    }
-
-    var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-    var prefix;
-    function describeBuiltInComponentFrame(name, source, ownerFn) {
-      {
-        if (prefix === undefined) {
-          // Extract the VM specific prefix used by each line.
-          try {
-            throw Error();
-          } catch (x) {
-            var match = x.stack.trim().match(/\n( *(at )?)/);
-            prefix = match && match[1] || '';
-          }
-        } // We use the prefix to ensure our stacks line up with native stack frames.
-
-
-        return '\n' + prefix + name;
-      }
-    }
-    var reentry = false;
-    var componentFrameCache;
-
-    {
-      var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
-      componentFrameCache = new PossiblyWeakMap();
-    }
-
-    function describeNativeComponentFrame(fn, construct) {
-      // If something asked for a stack inside a fake render, it should get ignored.
-      if (!fn || reentry) {
-        return '';
-      }
-
-      {
-        var frame = componentFrameCache.get(fn);
-
-        if (frame !== undefined) {
-          return frame;
-        }
-      }
-
-      var control;
-      reentry = true;
-      var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
-
-      Error.prepareStackTrace = undefined;
-      var previousDispatcher;
-
-      {
-        previousDispatcher = ReactCurrentDispatcher.current; // Set the dispatcher in DEV because this might be call in the render function
-        // for warnings.
-
-        ReactCurrentDispatcher.current = null;
-        disableLogs();
-      }
-
-      try {
-        // This should throw.
-        if (construct) {
-          // Something should be setting the props in the constructor.
-          var Fake = function () {
-            throw Error();
-          }; // $FlowFixMe
-
-
-          Object.defineProperty(Fake.prototype, 'props', {
-            set: function () {
-              // We use a throwing setter instead of frozen or non-writable props
-              // because that won't throw in a non-strict mode function.
-              throw Error();
-            }
-          });
-
-          if (typeof Reflect === 'object' && Reflect.construct) {
-            // We construct a different control for this case to include any extra
-            // frames added by the construct call.
-            try {
-              Reflect.construct(Fake, []);
-            } catch (x) {
-              control = x;
-            }
-
-            Reflect.construct(fn, [], Fake);
-          } else {
-            try {
-              Fake.call();
-            } catch (x) {
-              control = x;
-            }
-
-            fn.call(Fake.prototype);
-          }
-        } else {
-          try {
-            throw Error();
-          } catch (x) {
-            control = x;
-          }
-
-          fn();
-        }
-      } catch (sample) {
-        // This is inlined manually because closure doesn't do it for us.
-        if (sample && control && typeof sample.stack === 'string') {
-          // This extracts the first frame from the sample that isn't also in the control.
-          // Skipping one frame that we assume is the frame that calls the two.
-          var sampleLines = sample.stack.split('\n');
-          var controlLines = control.stack.split('\n');
-          var s = sampleLines.length - 1;
-          var c = controlLines.length - 1;
-
-          while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-            // We expect at least one stack frame to be shared.
-            // Typically this will be the root most one. However, stack frames may be
-            // cut off due to maximum stack limits. In this case, one maybe cut off
-            // earlier than the other. We assume that the sample is longer or the same
-            // and there for cut off earlier. So we should find the root most frame in
-            // the sample somewhere in the control.
-            c--;
-          }
-
-          for (; s >= 1 && c >= 0; s--, c--) {
-            // Next we find the first one that isn't the same which should be the
-            // frame that called our sample function and the control.
-            if (sampleLines[s] !== controlLines[c]) {
-              // In V8, the first line is describing the message but other VMs don't.
-              // If we're about to return the first line, and the control is also on the same
-              // line, that's a pretty good indicator that our sample threw at same line as
-              // the control. I.e. before we entered the sample frame. So we ignore this result.
-              // This can happen if you passed a class to function component, or non-function.
-              if (s !== 1 || c !== 1) {
-                do {
-                  s--;
-                  c--; // We may still have similar intermediate frames from the construct call.
-                  // The next one that isn't the same should be our match though.
-
-                  if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                    // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                    var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
-
-                    {
-                      if (typeof fn === 'function') {
-                        componentFrameCache.set(fn, _frame);
-                      }
-                    } // Return the line we found.
-
-
-                    return _frame;
-                  }
-                } while (s >= 1 && c >= 0);
-              }
-
-              break;
-            }
-          }
-        }
-      } finally {
-        reentry = false;
-
-        {
-          ReactCurrentDispatcher.current = previousDispatcher;
-          reenableLogs();
-        }
-
-        Error.prepareStackTrace = previousPrepareStackTrace;
-      } // Fallback to just using the name if we couldn't make it throw.
-
-
-      var name = fn ? fn.displayName || fn.name : '';
-      var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
-
-      {
-        if (typeof fn === 'function') {
-          componentFrameCache.set(fn, syntheticFrame);
-        }
-      }
-
-      return syntheticFrame;
-    }
-    function describeFunctionComponentFrame(fn, source, ownerFn) {
-      {
-        return describeNativeComponentFrame(fn, false);
-      }
-    }
-
-    function shouldConstruct(Component) {
-      var prototype = Component.prototype;
-      return !!(prototype && prototype.isReactComponent);
-    }
-
-    function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
-
-      if (type == null) {
-        return '';
-      }
-
-      if (typeof type === 'function') {
-        {
-          return describeNativeComponentFrame(type, shouldConstruct(type));
-        }
-      }
-
-      if (typeof type === 'string') {
-        return describeBuiltInComponentFrame(type);
-      }
-
-      switch (type) {
-        case REACT_SUSPENSE_TYPE:
-          return describeBuiltInComponentFrame('Suspense');
-
-        case REACT_SUSPENSE_LIST_TYPE:
-          return describeBuiltInComponentFrame('SuspenseList');
-      }
-
-      if (typeof type === 'object') {
-        switch (type.$$typeof) {
-          case REACT_FORWARD_REF_TYPE:
-            return describeFunctionComponentFrame(type.render);
-
-          case REACT_MEMO_TYPE:
-            // Memo may contain any component type so we recursively resolve it.
-            return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
-
-          case REACT_BLOCK_TYPE:
-            return describeFunctionComponentFrame(type._render);
-
-          case REACT_LAZY_TYPE:
-            {
-              var lazyComponent = type;
-              var payload = lazyComponent._payload;
-              var init = lazyComponent._init;
-
-              try {
-                // Lazy may contain any component type so we recursively resolve it.
-                return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {}
-            }
-        }
-      }
-
-      return '';
-    }
-
-    var loggedTypeFailures = {};
-    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-
-    function setCurrentlyValidatingElement(element) {
-      {
-        if (element) {
-          var owner = element._owner;
-          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-          ReactDebugCurrentFrame.setExtraStackFrame(stack);
-        } else {
-          ReactDebugCurrentFrame.setExtraStackFrame(null);
-        }
-      }
-    }
-
-    function checkPropTypes(typeSpecs, values, location, componentName, element) {
-      {
-        // $FlowFixMe This is okay but Flow doesn't know it.
-        var has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-        for (var typeSpecName in typeSpecs) {
-          if (has(typeSpecs, typeSpecName)) {
-            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
-            // fail the render phase where it didn't fail before. So we log it.
-            // After these have been cleaned up, we'll let them throw.
-
-            try {
-              // This is intentionally an invariant that gets caught. It's the same
-              // behavior as without this statement except with a better message.
-              if (typeof typeSpecs[typeSpecName] !== 'function') {
-                var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
-                err.name = 'Invariant Violation';
-                throw err;
-              }
-
-              error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
-            } catch (ex) {
-              error$1 = ex;
-            }
-
-            if (error$1 && !(error$1 instanceof Error)) {
-              setCurrentlyValidatingElement(element);
-
-              error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
-
-              setCurrentlyValidatingElement(null);
-            }
-
-            if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
-              // Only monitor this failure once because there tends to be a lot of the
-              // same error.
-              loggedTypeFailures[error$1.message] = true;
-              setCurrentlyValidatingElement(element);
-
-              error('Failed %s type: %s', location, error$1.message);
-
-              setCurrentlyValidatingElement(null);
-            }
-          }
-        }
-      }
-    }
-
-    var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var RESERVED_PROPS = {
-      key: true,
-      ref: true,
-      __self: true,
-      __source: true
-    };
-    var specialPropKeyWarningShown;
-    var specialPropRefWarningShown;
-    var didWarnAboutStringRefs;
-
-    {
-      didWarnAboutStringRefs = {};
-    }
-
-    function hasValidRef(config) {
-      {
-        if (hasOwnProperty.call(config, 'ref')) {
-          var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
-
-          if (getter && getter.isReactWarning) {
-            return false;
-          }
-        }
-      }
-
-      return config.ref !== undefined;
-    }
-
-    function hasValidKey(config) {
-      {
-        if (hasOwnProperty.call(config, 'key')) {
-          var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
-
-          if (getter && getter.isReactWarning) {
-            return false;
-          }
-        }
-      }
-
-      return config.key !== undefined;
-    }
-
-    function warnIfStringRefCannotBeAutoConverted(config, self) {
-      {
-        if (typeof config.ref === 'string' && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
-          var componentName = getComponentName(ReactCurrentOwner.current.type);
-
-          if (!didWarnAboutStringRefs[componentName]) {
-            error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentName(ReactCurrentOwner.current.type), config.ref);
-
-            didWarnAboutStringRefs[componentName] = true;
-          }
-        }
-      }
-    }
-
-    function defineKeyPropWarningGetter(props, displayName) {
-      {
-        var warnAboutAccessingKey = function () {
-          if (!specialPropKeyWarningShown) {
-            specialPropKeyWarningShown = true;
-
-            error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
-          }
-        };
-
-        warnAboutAccessingKey.isReactWarning = true;
-        Object.defineProperty(props, 'key', {
-          get: warnAboutAccessingKey,
-          configurable: true
-        });
-      }
-    }
-
-    function defineRefPropWarningGetter(props, displayName) {
-      {
-        var warnAboutAccessingRef = function () {
-          if (!specialPropRefWarningShown) {
-            specialPropRefWarningShown = true;
-
-            error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
-          }
-        };
-
-        warnAboutAccessingRef.isReactWarning = true;
-        Object.defineProperty(props, 'ref', {
-          get: warnAboutAccessingRef,
-          configurable: true
-        });
-      }
-    }
-    /**
-     * Factory method to create a new React element. This no longer adheres to
-     * the class pattern, so do not use new to call it. Also, instanceof check
-     * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
-     * if something is a React Element.
-     *
-     * @param {*} type
-     * @param {*} props
-     * @param {*} key
-     * @param {string|object} ref
-     * @param {*} owner
-     * @param {*} self A *temporary* helper to detect places where `this` is
-     * different from the `owner` when React.createElement is called, so that we
-     * can warn. We want to get rid of owner and replace string `ref`s with arrow
-     * functions, and as long as `this` and owner are the same, there will be no
-     * change in behavior.
-     * @param {*} source An annotation object (added by a transpiler or otherwise)
-     * indicating filename, line number, and/or other information.
-     * @internal
-     */
-
-
-    var ReactElement = function (type, key, ref, self, source, owner, props) {
-      var element = {
-        // This tag allows us to uniquely identify this as a React Element
-        $$typeof: REACT_ELEMENT_TYPE,
-        // Built-in properties that belong on the element
-        type: type,
-        key: key,
-        ref: ref,
-        props: props,
-        // Record the component responsible for creating this element.
-        _owner: owner
-      };
-
-      {
-        // The validation flag is currently mutative. We put it on
-        // an external backing store so that we can freeze the whole object.
-        // This can be replaced with a WeakMap once they are implemented in
-        // commonly used development environments.
-        element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
-        // the validation flag non-enumerable (where possible, which should
-        // include every environment we run tests in), so the test framework
-        // ignores it.
-
-        Object.defineProperty(element._store, 'validated', {
-          configurable: false,
-          enumerable: false,
-          writable: true,
-          value: false
-        }); // self and source are DEV only properties.
-
-        Object.defineProperty(element, '_self', {
-          configurable: false,
-          enumerable: false,
-          writable: false,
-          value: self
-        }); // Two elements created in two different places should be considered
-        // equal for testing purposes and therefore we hide it from enumeration.
-
-        Object.defineProperty(element, '_source', {
-          configurable: false,
-          enumerable: false,
-          writable: false,
-          value: source
-        });
-
-        if (Object.freeze) {
-          Object.freeze(element.props);
-          Object.freeze(element);
-        }
-      }
-
-      return element;
-    };
-    /**
-     * https://github.com/reactjs/rfcs/pull/107
-     * @param {*} type
-     * @param {object} props
-     * @param {string} key
-     */
-
-    function jsxDEV(type, config, maybeKey, source, self) {
-      {
-        var propName; // Reserved names are extracted
-
-        var props = {};
-        var key = null;
-        var ref = null; // Currently, key can be spread in as a prop. This causes a potential
-        // issue if key is also explicitly declared (ie. <div {...props} key="Hi" />
-        // or <div key="Hi" {...props} /> ). We want to deprecate key spread,
-        // but as an intermediary step, we will use jsxDEV for everything except
-        // <div {...props} key="Hi" />, because we aren't currently able to tell if
-        // key is explicitly declared to be undefined or not.
-
-        if (maybeKey !== undefined) {
-          key = '' + maybeKey;
-        }
-
-        if (hasValidKey(config)) {
-          key = '' + config.key;
-        }
-
-        if (hasValidRef(config)) {
-          ref = config.ref;
-          warnIfStringRefCannotBeAutoConverted(config, self);
-        } // Remaining properties are added to a new props object
-
-
-        for (propName in config) {
-          if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-            props[propName] = config[propName];
-          }
-        } // Resolve default props
-
-
-        if (type && type.defaultProps) {
-          var defaultProps = type.defaultProps;
-
-          for (propName in defaultProps) {
-            if (props[propName] === undefined) {
-              props[propName] = defaultProps[propName];
-            }
-          }
-        }
-
-        if (key || ref) {
-          var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
-
-          if (key) {
-            defineKeyPropWarningGetter(props, displayName);
-          }
-
-          if (ref) {
-            defineRefPropWarningGetter(props, displayName);
-          }
-        }
-
-        return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
-      }
-    }
-
-    var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
-    var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
-
-    function setCurrentlyValidatingElement$1(element) {
-      {
-        if (element) {
-          var owner = element._owner;
-          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-          ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
-        } else {
-          ReactDebugCurrentFrame$1.setExtraStackFrame(null);
-        }
-      }
-    }
-
-    var propTypesMisspellWarningShown;
-
-    {
-      propTypesMisspellWarningShown = false;
-    }
-    /**
-     * Verifies the object is a ReactElement.
-     * See https://reactjs.org/docs/react-api.html#isvalidelement
-     * @param {?object} object
-     * @return {boolean} True if `object` is a ReactElement.
-     * @final
-     */
-
-    function isValidElement(object) {
-      {
-        return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-      }
-    }
-
-    function getDeclarationErrorAddendum() {
-      {
-        if (ReactCurrentOwner$1.current) {
-          var name = getComponentName(ReactCurrentOwner$1.current.type);
-
-          if (name) {
-            return '\n\nCheck the render method of `' + name + '`.';
-          }
-        }
-
-        return '';
-      }
-    }
-
-    function getSourceInfoErrorAddendum(source) {
-      {
-        if (source !== undefined) {
-          var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-          var lineNumber = source.lineNumber;
-          return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
-        }
-
-        return '';
-      }
-    }
-    /**
-     * Warn if there's no key explicitly set on dynamic arrays of children or
-     * object keys are not valid. This allows us to keep track of children between
-     * updates.
-     */
-
-
-    var ownerHasKeyUseWarning = {};
-
-    function getCurrentComponentErrorInfo(parentType) {
-      {
-        var info = getDeclarationErrorAddendum();
-
-        if (!info) {
-          var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
-
-          if (parentName) {
-            info = "\n\nCheck the top-level render call using <" + parentName + ">.";
-          }
-        }
-
-        return info;
-      }
-    }
-    /**
-     * Warn if the element doesn't have an explicit key assigned to it.
-     * This element is in an array. The array could grow and shrink or be
-     * reordered. All children that haven't already been validated are required to
-     * have a "key" property assigned to it. Error statuses are cached so a warning
-     * will only be shown once.
-     *
-     * @internal
-     * @param {ReactElement} element Element that requires a key.
-     * @param {*} parentType element's parent's type.
-     */
-
-
-    function validateExplicitKey(element, parentType) {
-      {
-        if (!element._store || element._store.validated || element.key != null) {
-          return;
-        }
-
-        element._store.validated = true;
-        var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
-
-        if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
-          return;
-        }
-
-        ownerHasKeyUseWarning[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
-        // property, it may be the creator of the child that's responsible for
-        // assigning it a key.
-
-        var childOwner = '';
-
-        if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
-          // Give the component that originally created this child.
-          childOwner = " It was passed a child from " + getComponentName(element._owner.type) + ".";
-        }
-
-        setCurrentlyValidatingElement$1(element);
-
-        error('Each child in a list should have a unique "key" prop.' + '%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
-
-        setCurrentlyValidatingElement$1(null);
-      }
-    }
-    /**
-     * Ensure that every element either is passed in a static location, in an
-     * array with an explicit keys property defined, or in an object literal
-     * with valid key property.
-     *
-     * @internal
-     * @param {ReactNode} node Statically passed child of any type.
-     * @param {*} parentType node's parent's type.
-     */
-
-
-    function validateChildKeys(node, parentType) {
-      {
-        if (typeof node !== 'object') {
-          return;
-        }
-
-        if (Array.isArray(node)) {
-          for (var i = 0; i < node.length; i++) {
-            var child = node[i];
-
-            if (isValidElement(child)) {
-              validateExplicitKey(child, parentType);
-            }
-          }
-        } else if (isValidElement(node)) {
-          // This element was passed in a valid location.
-          if (node._store) {
-            node._store.validated = true;
-          }
-        } else if (node) {
-          var iteratorFn = getIteratorFn(node);
-
-          if (typeof iteratorFn === 'function') {
-            // Entry iterators used to provide implicit keys,
-            // but now we print a separate warning for them later.
-            if (iteratorFn !== node.entries) {
-              var iterator = iteratorFn.call(node);
-              var step;
-
-              while (!(step = iterator.next()).done) {
-                if (isValidElement(step.value)) {
-                  validateExplicitKey(step.value, parentType);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    /**
-     * Given an element, validate that its props follow the propTypes definition,
-     * provided by the type.
-     *
-     * @param {ReactElement} element
-     */
-
-
-    function validatePropTypes(element) {
-      {
-        var type = element.type;
-
-        if (type === null || type === undefined || typeof type === 'string') {
-          return;
-        }
-
-        var propTypes;
-
-        if (typeof type === 'function') {
-          propTypes = type.propTypes;
-        } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-        // Inner props are checked in the reconciler.
-        type.$$typeof === REACT_MEMO_TYPE)) {
-          propTypes = type.propTypes;
-        } else {
-          return;
-        }
-
-        if (propTypes) {
-          // Intentionally inside to avoid triggering lazy initializers:
-          var name = getComponentName(type);
-          checkPropTypes(propTypes, element.props, 'prop', name, element);
-        } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
-          propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
-
-          var _name = getComponentName(type);
-
-          error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
-        }
-
-        if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
-          error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
-        }
-      }
-    }
-    /**
-     * Given a fragment, validate that it can only be provided with fragment props
-     * @param {ReactElement} fragment
-     */
-
-
-    function validateFragmentProps(fragment) {
-      {
-        var keys = Object.keys(fragment.props);
-
-        for (var i = 0; i < keys.length; i++) {
-          var key = keys[i];
-
-          if (key !== 'children' && key !== 'key') {
-            setCurrentlyValidatingElement$1(fragment);
-
-            error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
-
-            setCurrentlyValidatingElement$1(null);
-            break;
-          }
-        }
-
-        if (fragment.ref !== null) {
-          setCurrentlyValidatingElement$1(fragment);
-
-          error('Invalid attribute `ref` supplied to `React.Fragment`.');
-
-          setCurrentlyValidatingElement$1(null);
-        }
-      }
-    }
-
-    function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
-      {
-        var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
-        // succeed and there will likely be errors in render.
-
-        if (!validType) {
-          var info = '';
-
-          if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-            info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
-          }
-
-          var sourceInfo = getSourceInfoErrorAddendum(source);
-
-          if (sourceInfo) {
-            info += sourceInfo;
-          } else {
-            info += getDeclarationErrorAddendum();
-          }
-
-          var typeString;
-
-          if (type === null) {
-            typeString = 'null';
-          } else if (Array.isArray(type)) {
-            typeString = 'array';
-          } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
-            typeString = "<" + (getComponentName(type.type) || 'Unknown') + " />";
-            info = ' Did you accidentally export a JSX literal instead of a component?';
-          } else {
-            typeString = typeof type;
-          }
-
-          error('React.jsx: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
-        }
-
-        var element = jsxDEV(type, props, key, source, self); // The result can be nullish if a mock or a custom function is used.
-        // TODO: Drop this when these are no longer allowed as the type argument.
-
-        if (element == null) {
-          return element;
-        } // Skip key warning if the type isn't valid since our key validation logic
-        // doesn't expect a non-string/function type and can throw confusing errors.
-        // We don't want exception behavior to differ between dev and prod.
-        // (Rendering will throw with a helpful message and as soon as the type is
-        // fixed, the key warnings will appear.)
-
-
-        if (validType) {
-          var children = props.children;
-
-          if (children !== undefined) {
-            if (isStaticChildren) {
-              if (Array.isArray(children)) {
-                for (var i = 0; i < children.length; i++) {
-                  validateChildKeys(children[i], type);
-                }
-
-                if (Object.freeze) {
-                  Object.freeze(children);
-                }
-              } else {
-                error('React.jsx: Static children should always be an array. ' + 'You are likely explicitly calling React.jsxs or React.jsxDEV. ' + 'Use the Babel transform instead.');
-              }
-            } else {
-              validateChildKeys(children, type);
-            }
-          }
-        }
-
-        if (type === exports.Fragment) {
-          validateFragmentProps(element);
-        } else {
-          validatePropTypes(element);
-        }
-
-        return element;
-      }
-    } // These two functions exist to still get child warnings in dev
-    // even with the prod transform. This means that jsxDEV is purely
-    // opt-in behavior for better messages but that we won't stop
-    // giving you warnings if you use production apis.
-
-    function jsxWithValidationStatic(type, props, key) {
-      {
-        return jsxWithValidation(type, props, key, true);
-      }
-    }
-    function jsxWithValidationDynamic(type, props, key) {
-      {
-        return jsxWithValidation(type, props, key, false);
-      }
-    }
-
-    var jsx =  jsxWithValidationDynamic ; // we may want to special case jsxs internally to take advantage of static children.
-    // for now we can ship identical prod functions
-
-    var jsxs =  jsxWithValidationStatic ;
-
-    exports.jsx = jsx;
-    exports.jsxs = jsxs;
-      })();
-    }
-    }(reactJsxRuntime_development));
-
-    if (process.env.NODE_ENV === 'production') {
-      jsxRuntime.exports = reactJsxRuntime_production_min;
-    } else {
-      jsxRuntime.exports = reactJsxRuntime_development;
-    }
-
     const animation = styled.keyframes `
   0% {
     transform: rotate(0deg);
@@ -1425,7 +95,7 @@
     transform: rotate(360deg);
   }
 `;
-    const Container$7 = styled__default["default"].span `
+    const Container$8 = styled__default["default"].span `
   z-index: 1;
   position: relative;
   display: inline-block;
@@ -1469,10 +139,14 @@
         const radius = derivedSize / 2 - strokeWidth;
         const circumference = radius * 2 * Math.PI;
         const offset = circumference - (25 / 100) * circumference;
-        return (jsxRuntime.exports.jsxs(Container$7, Object.assign({ className: className }, { children: [jsxRuntime.exports.jsxs("svg", Object.assign({ width: derivedSize - strokeWidth, height: derivedSize - strokeWidth }, { children: [jsxRuntime.exports.jsx(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0), jsxRuntime.exports.jsx(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }, void 0)] }), void 0), children] }), void 0));
+        return (React__default["default"].createElement(Container$8, { className: className },
+            React__default["default"].createElement("svg", { width: derivedSize - strokeWidth, height: derivedSize - strokeWidth },
+                React__default["default"].createElement(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }),
+                React__default["default"].createElement(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 })),
+            children));
     };
 
-    function getIconSize$2({ $size }) {
+    function getIconSize$3({ $size }) {
         switch ($size) {
             case 'large':
                 return 24;
@@ -1521,7 +195,7 @@
     function getSpinnerColor({ $variant, $outlined, $spinnerColor, }) {
         return $spinnerColor !== null && $spinnerColor !== void 0 ? $spinnerColor : getTextColor({ $variant, $outlined });
     }
-    function getIconColor$1({ $variant, $outlined, }) {
+    function getIconColor$2({ $variant, $outlined, }) {
         switch ($variant) {
             case 'secondary':
                 return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
@@ -1551,17 +225,17 @@
     left: ${getIconLeftPosition({ $size })}px;
   `;
     }
-    const IconWrapper$2 = styled__default["default"].div `
+    const IconWrapper$3 = styled__default["default"].div `
   line-height: 0;
   z-index: 2;
   pointer-events: none;
 
   ${getIconFluidStyling}
-  color: ${getIconColor$1};
+  color: ${getIconColor$2};
 
   & svg {
-    width: ${getIconSize$2}px;
-    height: ${getIconSize$2}px;
+    width: ${getIconSize$3}px;
+    height: ${getIconSize$3}px;
   }
 `;
     const InnerWrapper = styled__default["default"].span `
@@ -1755,7 +429,12 @@
         // Styled-components TS as prop workaround
         const Component = ButtonContainer;
         const isLink = as === 'a';
-        return (jsxRuntime.exports.jsx("div", { children: jsxRuntime.exports.jsxs(Component, Object.assign({ ref: ref, className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined }, { children: [!!icon && (jsxRuntime.exports.jsx(IconWrapper$2, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, fluid: fluid }, { children: icon }), `${variant}-icon-wrapper`)), jsxRuntime.exports.jsx(ChildrenWrapper, Object.assign({ "$outlined": outlined, "$variant": variant, "$size": size, "$loading": loading }, { children: children }), `${variant}-children-wrapper`), loading && (jsxRuntime.exports.jsx(InnerWrapper, { children: jsxRuntime.exports.jsx(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }, void 0) }, void 0))] }), void 0) }, void 0));
+        return (React__default["default"].createElement("div", null,
+            React__default["default"].createElement(Component, { ref: ref, className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined },
+                !!icon && (React__default["default"].createElement(IconWrapper$3, { "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-icon-wrapper`, fluid: fluid }, icon)),
+                React__default["default"].createElement(ChildrenWrapper, { "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-children-wrapper`, "$loading": loading }, children),
+                loading && (React__default["default"].createElement(InnerWrapper, null,
+                    React__default["default"].createElement(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }))))));
     });
     Button.displayName = 'Button';
 
@@ -1811,7 +490,7 @@
                 return false;
         }
     }
-    const Container$6 = styled__default["default"].label `
+    const Container$7 = styled__default["default"].label `
   display: inline-flex;
   flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
@@ -1960,7 +639,13 @@
         const derivedId = getDerivedId();
         const derivedDefaultChecked = getDerivedDefaultChecked();
         const derivedChecked = getDerivedChecked();
-        return (jsxRuntime.exports.jsxs(Container$6, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(Square, { children: [jsxRuntime.exports.jsx(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }, void 0), jsxRuntime.exports.jsx(SquareBorder, { "$disabled": disabled, "$variant": variant }, void 0), jsxRuntime.exports.jsx(Svg, Object.assign({ width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: jsxRuntime.exports.jsx(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, void 0) }), void 0)] }, void 0), !!label && (jsxRuntime.exports.jsx(Text$2, Object.assign({ "$disabled": disabled, "$flipped": flipped, "$variant": variant }, { children: label }), void 0))] }), void 0));
+        return (React__default["default"].createElement(Container$7, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+            React__default["default"].createElement(Square, null,
+                React__default["default"].createElement(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }),
+                React__default["default"].createElement(SquareBorder, { "$disabled": disabled, "$variant": variant }),
+                React__default["default"].createElement(Svg, { width: "13", height: "10", viewBox: "0 0 13 10", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+                    React__default["default"].createElement(Checkmark, { "$disabled": disabled, "$variant": variant, d: "M1.3335 4.99996L4.66683 8.33329L11.3335 1.66663", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }))),
+            !!label && (React__default["default"].createElement(Text$2, { "$disabled": disabled, "$flipped": flipped, "$variant": variant }, label))));
     };
     const ForwardedCheckbox = React.forwardRef(Checkbox);
 
@@ -2015,7 +700,7 @@
                 return $disabled ? COLORS.silverChalice : COLORS.black;
         }
     }
-    const Container$5 = styled__default["default"].label `
+    const Container$6 = styled__default["default"].label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -2132,7 +817,11 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (jsxRuntime.exports.jsxs(Container$5, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {}), { children: [jsxRuntime.exports.jsxs(OuterCircle, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: [jsxRuntime.exports.jsx(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }, void 0), jsxRuntime.exports.jsx(InnerCircle, { "$variant": variant }, void 0)] }), void 0), !!label && (jsxRuntime.exports.jsx(Text$1, Object.assign({ "$disabled": disabled, "$variant": variant }, { children: label }), void 0))] }), void 0));
+        return (React__default["default"].createElement(Container$6, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+            React__default["default"].createElement(OuterCircle, { "$disabled": disabled, "$variant": variant },
+                React__default["default"].createElement(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }),
+                React__default["default"].createElement(InnerCircle, { "$variant": variant })),
+            !!label && (React__default["default"].createElement(Text$1, { "$disabled": disabled, "$variant": variant }, label))));
     };
     const ForwardedRadioButton = React.forwardRef(RadioButton);
 
@@ -2277,7 +966,7 @@
         return ref.current;
     }
 
-    const animateIcon = styled.keyframes `
+    const animateIcon$1 = styled.keyframes `
   0% {
     transform: scale(0.25);
     opacity: 0;
@@ -2288,7 +977,7 @@
     opacity: 1;
   }
 `;
-    const animateHelperText$1 = styled.keyframes `
+    const animateHelperText$2 = styled.keyframes `
   0% {
     opacity: 0;
   }
@@ -2297,7 +986,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor$1({ $variant }) {
+    function getVariantColor$3({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -2310,7 +999,7 @@
                 return COLORS.mischa;
         }
     }
-    function getIconColor({ $variant }) {
+    function getIconColor$1({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -2323,7 +1012,7 @@
                 return COLORS.black;
         }
     }
-    function getIconSize$1({ $size }) {
+    function getIconSize$2({ $size }) {
         switch ($size) {
             case 'large':
                 return 24;
@@ -2348,7 +1037,7 @@
                 return 0;
         }
     }
-    function getIconLeft({ $size, $iconAlign, }) {
+    function getIconLeft$1({ $size, $iconAlign, }) {
         switch ($iconAlign) {
             case 'right':
                 return 0;
@@ -2363,7 +1052,7 @@
                 }
         }
     }
-    function getPadding({ $size }) {
+    function getPadding$1({ $size }) {
         switch ($size) {
             case 'large':
                 return '16px 24px';
@@ -2372,10 +1061,10 @@
                 return '8px 16px';
         }
     }
-    function getPaddingRight({ $size, $iconAlign, }) {
+    function getPaddingRight$1({ $size, $iconAlign, }) {
         switch ($iconAlign) {
             case 'right':
-                return getIconSize$1({ $size }) + getIconRight({ $size, $iconAlign }) * 1.5;
+                return getIconSize$2({ $size }) + getIconRight({ $size, $iconAlign }) * 1.5;
             case 'left':
             default:
                 switch ($size) {
@@ -2387,7 +1076,7 @@
                 }
         }
     }
-    function getPaddingLeft({ $size, $iconAlign, }) {
+    function getPaddingLeft$1({ $size, $iconAlign, }) {
         switch ($iconAlign) {
             case 'right':
                 switch ($size) {
@@ -2399,10 +1088,10 @@
                 }
             case 'left':
             default:
-                return getIconSize$1({ $size }) + getIconLeft({ $size, $iconAlign }) * 1.5;
+                return getIconSize$2({ $size }) + getIconLeft$1({ $size, $iconAlign }) * 1.5;
         }
     }
-    function getInputHeight({ $size }) {
+    function getInputHeight$1({ $size }) {
         switch ($size) {
             case 'large':
                 return 56;
@@ -2411,7 +1100,7 @@
                 return 40;
         }
     }
-    function getInputFontSize({ $size }) {
+    function getInputFontSize$1({ $size }) {
         switch ($size) {
             case 'large':
                 return 18;
@@ -2420,7 +1109,7 @@
                 return 16;
         }
     }
-    function getInputLineHeight({ $size }) {
+    function getInputLineHeight$1({ $size }) {
         switch ($size) {
             case 'large':
                 return 1.1667; // 21px
@@ -2429,7 +1118,7 @@
                 return 1.1875; // 19px
         }
     }
-    function getFocusBorderColor$1({ $variant }) {
+    function getFocusBorderColor$2({ $variant }) {
         switch ($variant) {
             case 'default':
                 return COLORS.havelockBlue;
@@ -2437,11 +1126,11 @@
                 return false;
         }
     }
-    const Container$4 = styled__default["default"].div `
+    const Container$5 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
-    const Label$1 = styled__default["default"].label `
+    const Label$2 = styled__default["default"].label `
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
@@ -2459,11 +1148,11 @@
     const Input = styled__default["default"].input `
   display: flex;
   align-items: center;
-  height: ${getInputHeight}px;
+  height: ${getInputHeight$1}px;
   margin: 0;
-  padding: ${getPadding};
+  padding: ${getPadding$1};
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor$1};
+  border: 1px solid ${getVariantColor$3};
   border-radius: 8px;
   background-color: ${COLORS.white};
   color: ${COLORS.charade};
@@ -2471,13 +1160,13 @@
 
   ${props => props.$icon &&
     `
-      padding-right: ${getPaddingRight(props)}px;
-      padding-left: ${getPaddingLeft(props)}px;
+      padding-right: ${getPaddingRight$1(props)}px;
+      padding-left: ${getPaddingLeft$1(props)}px;
     `}
 
   &:focus {
     outline: none;
-    border-color: ${getFocusBorderColor$1};
+    border-color: ${getFocusBorderColor$2};
   }
 
   &:disabled {
@@ -2494,8 +1183,8 @@
 
   &,
   &::placeholder {
-    font-size: ${getInputFontSize}px;
-    line-height: ${getInputLineHeight}em;
+    font-size: ${getInputFontSize$1}px;
+    line-height: ${getInputLineHeight$1}em;
     font-weight: 400;
   }
 
@@ -2507,7 +1196,7 @@
     display: none;
   }
 `;
-    const IconWrapper$1 = styled__default["default"].div `
+    const IconWrapper$2 = styled__default["default"].div `
   z-index: 1;
   position: absolute;
   top: 0;
@@ -2517,35 +1206,35 @@
 }};
   bottom: 0;
   left: ${props => {
-    const left = getIconLeft(props);
+    const left = getIconLeft$1(props);
     return left ? `${left}px` : 'auto';
 }};
   display: flex;
   align-items: center;
-  color: ${getIconColor};
+  color: ${getIconColor$1};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
     styled.css `
-      animation: ${animateIcon} 280ms ease;
+      animation: ${animateIcon$1} 280ms ease;
     `}
 
   & svg {
-    width: ${getIconSize$1}px;
-    height: ${getIconSize$1}px;
+    width: ${getIconSize$2}px;
+    height: ${getIconSize$2}px;
   }
 `;
-    const HelperText$1 = styled__default["default"].span `
+    const HelperText$2 = styled__default["default"].span `
   display: block;
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor$1};
+  color: ${getVariantColor$3};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
     styled.css `
-      animation: ${animateHelperText$1} 280ms ease;
+      animation: ${animateHelperText$2} 280ms ease;
     `}
 `;
     const TextField = ({ required, disabled, autoFocus, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, ariaLabel, iconAlign = 'left', icon, onChange, }, ref) => {
@@ -2554,19 +1243,19 @@
         function getDerivedIcon() {
             switch (variant) {
                 case 'success':
-                    return jsxRuntime.exports.jsx(SvgCircleCheck, { viewBox: "0 0 24 24" }, void 0);
+                    return React__default["default"].createElement(SvgCircleCheck, { viewBox: "0 0 24 24" });
                 case 'warning':
-                    return jsxRuntime.exports.jsx(SvgAlertTriangle, { viewBox: "0 0 24 24" }, void 0);
+                    return React__default["default"].createElement(SvgAlertTriangle, { viewBox: "0 0 24 24" });
                 case 'error':
-                    return jsxRuntime.exports.jsx(SvgCircleX, { viewBox: "0 0 24 24" }, void 0);
+                    return React__default["default"].createElement(SvgCircleX, { viewBox: "0 0 24 24" });
                 case 'default':
                 default: {
                     if (icon)
                         return icon;
                     if (type === 'email')
-                        return jsxRuntime.exports.jsx(SvgMail, { viewBox: "0 0 24 24" }, void 0);
+                        return React__default["default"].createElement(SvgMail, { viewBox: "0 0 24 24" });
                     if (type === 'search')
-                        return jsxRuntime.exports.jsx(SvgSearch, { viewBox: "0 0 24 24" }, void 0);
+                        return React__default["default"].createElement(SvgSearch, { viewBox: "0 0 24 24" });
                     return undefined;
                 }
             }
@@ -2597,7 +1286,12 @@
         const derivedId = getDerivedId();
         const derivedIcon = getDerivedIcon();
         const derivedIconAlign = getDerivedIconAlign();
-        return (jsxRuntime.exports.jsxs(Container$4, Object.assign({ "$variant": variant, "$disabled": disabled, "$size": size, className: className }, { children: [!!label && jsxRuntime.exports.jsx(Label$1, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.exports.jsxs(InputWrapper, { children: [jsxRuntime.exports.jsx(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!derivedIcon && (jsxRuntime.exports.jsx(IconWrapper$1, Object.assign({ "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, onAnimationEnd: handleAnimationEnd }, { children: derivedIcon }), variant))] }, void 0), !!helperText && (jsxRuntime.exports.jsx(HelperText$1, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
+        return (React__default["default"].createElement(Container$5, { "$variant": variant, "$disabled": disabled, "$size": size, className: className },
+            !!label && React__default["default"].createElement(Label$2, { htmlFor: derivedId }, label),
+            React__default["default"].createElement(InputWrapper, null,
+                React__default["default"].createElement(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
+                !!derivedIcon && (React__default["default"].createElement(IconWrapper$2, { "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, key: variant, onAnimationEnd: handleAnimationEnd }, derivedIcon))),
+            !!helperText && (React__default["default"].createElement(HelperText$2, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText))));
     };
     const ForwardedTextField = React.forwardRef(TextField);
 
@@ -2646,10 +1340,10 @@
         switch (icon) {
             case 'camera':
             default:
-                return jsxRuntime.exports.jsx(SvgCamera, { height: "16px", width: "16", viewBox: "0 0 24 24" }, void 0);
+                return React__default["default"].createElement(SvgCamera, { height: "16px", width: "16", viewBox: "0 0 24 24" });
         }
     };
-    const getIconSize = ({ size }) => {
+    const getIconSize$1 = ({ size }) => {
         switch (size) {
             case 'small':
             case 'medium':
@@ -2727,7 +1421,7 @@
   background-color: transparent;
   cursor: pointer;
 `;
-    const IconWrapper = styled__default["default"].div `
+    const IconWrapper$1 = styled__default["default"].div `
   position: absolute;
   bottom: 0;
   right: 0;
@@ -2736,12 +1430,13 @@
   align-items: center;
   background: white;
   border-radius: 50%;
-  width: ${getIconSize}px;
-  height: ${getIconSize}px;
+  width: ${getIconSize$1}px;
+  height: ${getIconSize$1}px;
   border: 1px solid ${COLORS.mischa};
 `;
     const Icon = ({ icon, onClick, size }) => {
-        return (jsxRuntime.exports.jsx(ButtonWrapper, Object.assign({ onClick: onClick }, { children: jsxRuntime.exports.jsx(IconWrapper, Object.assign({ size: size }, { children: getIcon$1(icon) }), void 0) }), void 0));
+        return (React__default["default"].createElement(ButtonWrapper, { onClick: onClick },
+            React__default["default"].createElement(IconWrapper$1, { size: size }, getIcon$1(icon))));
     };
     const Avatar = ({ src, name = 'N N', id, size, className, disabled = false, onClick, icon, }) => {
         const initials = name
@@ -2750,7 +1445,9 @@
             .slice(0, 2)
             .map(n => n[0])
             .join('');
-        return (jsxRuntime.exports.jsxs(AvatarWrapper, { children: [jsxRuntime.exports.jsx(Circle, Object.assign({ size: size, id: id, className: className, "$disabled": disabled }, { children: src ? (jsxRuntime.exports.jsx(Image, { src: src, alt: 'Avatar' }, void 0)) : (jsxRuntime.exports.jsx(Text, Object.assign({ "$disabled": disabled, id: id, size: size }, { children: initials }), void 0)) }), void 0), icon && size === 'large' && (jsxRuntime.exports.jsx(Icon, { size: size, onClick: onClick, icon: icon }, void 0))] }, void 0));
+        return (React__default["default"].createElement(AvatarWrapper, null,
+            React__default["default"].createElement(Circle, { size: size, id: id, className: className, "$disabled": disabled }, src ? (React__default["default"].createElement(Image, { src: src, alt: 'Avatar' })) : (React__default["default"].createElement(Text, { "$disabled": disabled, id: id, size: size }, initials))),
+            icon && size === 'large' && (React__default["default"].createElement(Icon, { size: size, onClick: onClick, icon: icon }))));
     };
 
     var _path$4, _path2$4;
@@ -2845,7 +1542,7 @@
       })));
     };
 
-    const Container$3 = styled__default["default"].div `
+    const Container$4 = styled__default["default"].div `
   width: ${props => (props.$vertical ? 42 : 89)}px;
   height: ${props => (props.$vertical ? 89 : 42)}px;
   background-color: ${COLORS.white};
@@ -2912,10 +1609,24 @@
   user-select: none;
 `;
     const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
-        return (jsxRuntime.exports.jsx(Container$3, Object.assign({ className: className }, { children: jsxRuntime.exports.jsxs(Pill, { children: [jsxRuntime.exports.jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Left", onClick: onLeftButtonClick }, { children: [jsxRuntime.exports.jsx(SvgChevronLeft, {}, void 0), jsxRuntime.exports.jsx(HiddenText, { children: "Left" }, void 0)] }), void 0), jsxRuntime.exports.jsxs(PillHalf, Object.assign({ type: "button", "aria-label": "Right", onClick: onRightButtonClick }, { children: [jsxRuntime.exports.jsx(SvgChevronRight, {}, void 0), jsxRuntime.exports.jsx(HiddenText, { children: "Right" }, void 0)] }), void 0)] }, void 0) }), void 0));
+        return (React__default["default"].createElement(Container$4, { className: className },
+            React__default["default"].createElement(Pill, null,
+                React__default["default"].createElement(PillHalf, { type: "button", "aria-label": "Left", onClick: onLeftButtonClick },
+                    React__default["default"].createElement(SvgChevronLeft, null),
+                    React__default["default"].createElement(HiddenText, null, "Left")),
+                React__default["default"].createElement(PillHalf, { type: "button", "aria-label": "Right", onClick: onRightButtonClick },
+                    React__default["default"].createElement(SvgChevronRight, null),
+                    React__default["default"].createElement(HiddenText, null, "Right")))));
     };
     const Vertical = ({ className, onTopButtonClick, onBottomButtonClick, }) => {
-        return (jsxRuntime.exports.jsx(Container$3, Object.assign({ "$vertical": true, className: className }, { children: jsxRuntime.exports.jsxs(Pill, Object.assign({ "$vertical": true }, { children: [jsxRuntime.exports.jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick }, { children: [jsxRuntime.exports.jsx(SvgChevronUp, {}, void 0), jsxRuntime.exports.jsx(HiddenText, { children: "Up" }, void 0)] }), void 0), jsxRuntime.exports.jsxs(PillHalf, Object.assign({ "$vertical": true, type: "button", "aria-label": "Down", onClick: onBottomButtonClick }, { children: [jsxRuntime.exports.jsx(SvgChevronDown, {}, void 0), jsxRuntime.exports.jsx(HiddenText, { children: "Down" }, void 0)] }), void 0)] }), void 0) }), void 0));
+        return (React__default["default"].createElement(Container$4, { "$vertical": true, className: className },
+            React__default["default"].createElement(Pill, { "$vertical": true },
+                React__default["default"].createElement(PillHalf, { "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick },
+                    React__default["default"].createElement(SvgChevronUp, null),
+                    React__default["default"].createElement(HiddenText, null, "Up")),
+                React__default["default"].createElement(PillHalf, { "$vertical": true, type: "button", "aria-label": "Down", onClick: onBottomButtonClick },
+                    React__default["default"].createElement(SvgChevronDown, null),
+                    React__default["default"].createElement(HiddenText, null, "Down")))));
     };
 
     var Switcher = /*#__PURE__*/Object.freeze({
@@ -4638,10 +3349,10 @@
       var dotClassName = "".concat(prefixCls, "-dot");
       var active = included && includedStart <= value && value <= includedEnd; // ============================ Offset ============================
 
-      var mergedStyle = _objectSpread2(_objectSpread2({}, getDirectionStyle(direction, value, min, max)), style);
+      var mergedStyle = _objectSpread2(_objectSpread2({}, getDirectionStyle(direction, value, min, max)), typeof style === 'function' ? style(value) : style);
 
       if (active) {
-        mergedStyle = _objectSpread2(_objectSpread2({}, mergedStyle), activeStyle);
+        mergedStyle = _objectSpread2(_objectSpread2({}, mergedStyle), typeof activeStyle === 'function' ? activeStyle(value) : activeStyle);
       }
 
       return /*#__PURE__*/React__namespace.createElement("span", {
@@ -4669,7 +3380,7 @@
           dotSet.add(mark.value);
         }); // Fill dots
 
-        if (dots) {
+        if (dots && step !== null) {
           var current = min;
 
           while (current <= max) {
@@ -5388,7 +4099,8 @@
   }
 `;
     const Slider = ({ disabled, onChange, min = 0, max = 100, step = 1, defaultValue, }) => {
-        return (jsxRuntime.exports.jsx(SliderWrapper, { children: jsxRuntime.exports.jsx(Slider$1, { min: min, max: max, step: step, disabled: disabled, onChange: onChange, defaultValue: defaultValue !== null && defaultValue !== void 0 ? defaultValue : min }, void 0) }, void 0));
+        return (React__default["default"].createElement(SliderWrapper, null,
+            React__default["default"].createElement(Slider$1, { min: min, max: max, step: step, disabled: disabled, onChange: onChange, defaultValue: defaultValue !== null && defaultValue !== void 0 ? defaultValue : min })));
     };
 
     const MenuContainer = styled__default["default"].div `
@@ -5468,7 +4180,9 @@
   margin-right: 8px;
 `;
     const Item = ({ isVisible = false, as, className, href, onClick, icon, children, }) => {
-        return (jsxRuntime.exports.jsxs(MenuItemWrapper, Object.assign({ tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick }, { children: [icon && jsxRuntime.exports.jsx(MenuIcon, { children: icon }, void 0), children && jsxRuntime.exports.jsx(MenuLabel, { children: children }, void 0)] }), void 0));
+        return (React__default["default"].createElement(MenuItemWrapper, { tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick },
+            icon && React__default["default"].createElement(MenuIcon, null, icon),
+            children && React__default["default"].createElement(MenuLabel, null, children)));
     };
     const Menu = ({ className, isVisible, align = 'left', children }, ref) => {
         function getMutableChildrenArray() {
@@ -5480,15 +4194,16 @@
             }
             return [children];
         }
-        return (jsxRuntime.exports.jsx(MenuContainer, Object.assign({ className: className, isVisible: isVisible }, { children: jsxRuntime.exports.jsx(MenuWrapper, Object.assign({ ref: ref, "$align": align }, { children: getMutableChildrenArray().reduce((acc, child, i) => {
-                    if (child) {
-                        acc.push(React.cloneElement(child, {
-                            key: i,
-                            isVisible: isVisible,
-                        }));
-                    }
-                    return acc;
-                }, []) }), void 0) }), void 0));
+        return (React__default["default"].createElement(MenuContainer, { className: className, isVisible: isVisible },
+            React__default["default"].createElement(MenuWrapper, { ref: ref, "$align": align }, getMutableChildrenArray().reduce((acc, child, i) => {
+                if (child) {
+                    acc.push(React.cloneElement(child, {
+                        key: i,
+                        isVisible: isVisible,
+                    }));
+                }
+                return acc;
+            }, []))));
     };
     Menu.Item = Item;
     const withStaticProps = (forwarded, staticProps) => Object.assign(forwarded, staticProps);
@@ -5692,7 +4407,7 @@
   background-color: ${props => props.$color};
   animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `;
-    const Container$2 = styled__default["default"].div `
+    const Container$3 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -5783,13 +4498,13 @@
     function getIcon(variant) {
         switch (variant) {
             case 'info':
-                return jsxRuntime.exports.jsx(SvgInfoCircleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" }, void 0);
+                return React__default["default"].createElement(SvgInfoCircleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" });
             case 'success':
-                return jsxRuntime.exports.jsx(SvgCircleCheckFilled, { width: 32, height: 32, viewBox: "0 0 24 24" }, void 0);
+                return React__default["default"].createElement(SvgCircleCheckFilled, { width: 32, height: 32, viewBox: "0 0 24 24" });
             case 'warning':
-                return jsxRuntime.exports.jsx(SvgAlertTriangleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" }, void 0);
+                return React__default["default"].createElement(SvgAlertTriangleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" });
             case 'error':
-                return jsxRuntime.exports.jsx(SvgAlertCircleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" }, void 0);
+                return React__default["default"].createElement(SvgAlertCircleFilled, { width: 32, height: 32, viewBox: "0 0 24 24" });
             default:
                 return null;
         }
@@ -5809,7 +4524,8 @@
         }
     }
     const ProgressBar = React.memo(({ duration, color, onAnimationEnd }) => {
-        return (jsxRuntime.exports.jsx(ProgressWrapper, { children: jsxRuntime.exports.jsx(Progress, { "$duration": duration, "$color": color, onAnimationEnd: onAnimationEnd }, void 0) }, void 0));
+        return (React__default["default"].createElement(ProgressWrapper, null,
+            React__default["default"].createElement(Progress, { "$duration": duration, "$color": color, onAnimationEnd: onAnimationEnd })));
     });
     ProgressBar.displayName = 'ProgressBar';
     const Toast = ({ duration = 5000, id, variant = 'info', title, message, onClick, }) => {
@@ -5827,7 +4543,15 @@
             if (id)
                 context.close(id);
         }
-        return (jsxRuntime.exports.jsxs(Container$2, Object.assign({ onClick: handleClick }, { children: [jsxRuntime.exports.jsxs(Inner, { children: [jsxRuntime.exports.jsx(InnerLeft, Object.assign({ "$color": color }, { children: icon }), void 0), jsxRuntime.exports.jsxs(InnerRight, { children: [!!title && jsxRuntime.exports.jsx(Title, Object.assign({ "$color": color }, { children: title }), void 0), !!message && jsxRuntime.exports.jsx(Message, { children: message }, void 0)] }, void 0)] }, void 0), jsxRuntime.exports.jsx(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }, void 0), jsxRuntime.exports.jsx(CloseButton, Object.assign({ type: "button", onClick: handleCloseClick, "aria-label": "close" }, { children: jsxRuntime.exports.jsx(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0)] }), void 0));
+        return (React__default["default"].createElement(Container$3, { onClick: handleClick },
+            React__default["default"].createElement(Inner, null,
+                React__default["default"].createElement(InnerLeft, { "$color": color }, icon),
+                React__default["default"].createElement(InnerRight, null,
+                    !!title && React__default["default"].createElement(Title, { "$color": color }, title),
+                    !!message && React__default["default"].createElement(Message, null, message))),
+            React__default["default"].createElement(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }),
+            React__default["default"].createElement(CloseButton, { type: "button", onClick: handleCloseClick, "aria-label": "close" },
+                React__default["default"].createElement(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }))));
     };
     // @ts-ignore
     const MemoizedToast = React.memo(Toast);
@@ -5889,13 +4613,27 @@
                 close,
             };
         }, [remove, close]);
-        return reactDom.createPortal(jsxRuntime.exports.jsx(ToasterContext.Provider, Object.assign({ value: value }, { children: toasts.map((_a, index) => {
-                var { closing, bottom = 10, left = 10, onTransitionEnd } = _a, props = __rest(_a, ["closing", "bottom", "left", "onTransitionEnd"]);
-                return (jsxRuntime.exports.jsx(Positioner, Object.assign({ "$closing": closing, "$index": index, "$bottom": bottom, "$left": left, onTransitionEnd: onTransitionEnd }, { children: jsxRuntime.exports.jsx(MemoizedToast, Object.assign({}, props), void 0) }), props.id));
-            }) }), void 0), getOrCreatePortalElement());
+        return reactDom.createPortal(React__default["default"].createElement(ToasterContext.Provider, { value: value }, toasts.map((_a, index) => {
+            var { closing, bottom = 10, left = 10, onTransitionEnd } = _a, props = __rest(_a, ["closing", "bottom", "left", "onTransitionEnd"]);
+            return (React__default["default"].createElement(Positioner, { "$closing": closing, "$index": index, "$bottom": bottom, "$left": left, key: props.id, onTransitionEnd: onTransitionEnd },
+                React__default["default"].createElement(MemoizedToast, Object.assign({}, props))));
+        })), getOrCreatePortalElement());
     };
 
-    const Container$1 = styled__default["default"].div `
+    function getVariantColor$2({ $variant }) {
+        switch ($variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.mischa;
+        }
+    }
+    const Container$2 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -5903,8 +4641,14 @@
   justify-content: space-between;
   padding: 11px 16px;
   box-sizing: border-box;
-  border: 1px solid ${COLORS.mischa};
+  border: 1px solid ${getVariantColor$2};
   border-radius: 8px;
+  background-color: ${COLORS.white};
+
+  ${props => props.$disabled &&
+    `
+    background-color: ${COLORS.alabster};
+  `}
 `;
     const Hider = styled__default["default"].div `
   z-index: 1;
@@ -5945,13 +4689,15 @@
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   line-height: 1.1875em;
-  color: ${props => (props.$hasValue ? COLORS.charade : COLORS.silverChalice)};
+  color: ${props => props.$hasValue && !props.$disabled
+    ? COLORS.charade
+    : COLORS.silverChalice};
 `;
-    const StyledChevronDownIcon = styled__default["default"](SvgChevronDown) `
+    const StyledChevronDownIcon$1 = styled__default["default"](SvgChevronDown) `
   color: ${COLORS.silverChalice};
   visibility: ${props => (props.$hidden ? 'hidden' : 'visible')};
 `;
-    const StyledXIcon = styled__default["default"](SvgX) `
+    const StyledXIcon$1 = styled__default["default"](SvgX) `
   color: ${COLORS.silverChalice};
 `;
     const ClearButtonWrapper = styled__default["default"].div `
@@ -5989,10 +4735,10 @@
     left: -15px;
   }
 `;
-    const StyledSelect = styled__default["default"].select `
+    const StyledSelect$1 = styled__default["default"].select `
   cursor: ${props => (props.disabled ? 'not-allowed' : 'default')};
 `;
-    const Select = ({ disabled, className, id, placeholder = '', name, value = '', options, onChange, }, ref) => {
+    const Select = ({ disabled, className, variant = 'default', id, placeholder = '', name, value = '', options, onChange, }, ref) => {
         var _a, _b, _c;
         const innerRef = React.useRef(null);
         React.useImperativeHandle(ref, () => innerRef.current);
@@ -6014,14 +4760,23 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (jsxRuntime.exports.jsxs(Container$1, Object.assign({ className: className }, { children: [jsxRuntime.exports.jsx(Caption, Object.assign({ "$hasValue": !!selectedOption }, { children: (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder }), void 0), jsxRuntime.exports.jsx(StyledChevronDownIcon, { "$hidden": !!value, width: 20, height: 20, viewBox: "0 0 24 24" }, void 0), jsxRuntime.exports.jsx(Hider, { children: jsxRuntime.exports.jsxs(StyledSelect, Object.assign({ disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange }, { children: [jsxRuntime.exports.jsx("option", Object.assign({ value: "" }, { children: placeholder }), void 0), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 : _c.call(options, option => {
-                                var _a;
-                                return (jsxRuntime.exports.jsx("option", Object.assign({ value: option.value }, { children: option.label }), (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`));
-                            })] }), void 0) }, void 0), jsxRuntime.exports.jsx(ClearButtonWrapper, Object.assign({ "$hidden": !value }, { children: jsxRuntime.exports.jsx(ClearButton, Object.assign({ disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" }, { children: jsxRuntime.exports.jsx(StyledXIcon, { width: 20, height: 20, viewBox: "0 0 24 24" }, void 0) }), void 0) }), void 0)] }), void 0));
+        return (React__default["default"].createElement(Container$2, { "$disabled": disabled, "$variant": variant, className: className },
+            React__default["default"].createElement(Caption, { "$hasValue": !!selectedOption, "$disabled": disabled }, (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder),
+            React__default["default"].createElement(StyledChevronDownIcon$1, { "$hidden": !!value && !disabled, width: 20, height: 20, viewBox: "0 0 24 24" }),
+            React__default["default"].createElement(Hider, null,
+                React__default["default"].createElement(StyledSelect$1, { disabled: disabled, id: derivedId, ref: innerRef, value: selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value, name: name, placeholder: placeholder, onChange: onChange },
+                    React__default["default"].createElement("option", { value: "" }, placeholder), (_c = options === null || options === void 0 ? void 0 : options.map) === null || _c === void 0 ? void 0 :
+                    _c.call(options, option => {
+                        var _a;
+                        return (React__default["default"].createElement("option", { key: (_a = option.id) !== null && _a !== void 0 ? _a : `${option.value}-${option.label}`, value: option.value }, option.label));
+                    }))),
+            React__default["default"].createElement(ClearButtonWrapper, { "$hidden": !value || !!disabled },
+                React__default["default"].createElement(ClearButton, { disabled: disabled, type: "button", onClick: handleClearClick, "aria-label": "clear" },
+                    React__default["default"].createElement(StyledXIcon$1, { width: 20, height: 20, viewBox: "0 0 24 24" })))));
     };
     const ForwardedSelect = React.forwardRef(Select);
 
-    const animateHelperText = styled.keyframes `
+    const animateHelperText$1 = styled.keyframes `
   0% {
     opacity: 0;
   }
@@ -6030,7 +4785,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor({ $variant }) {
+    function getVariantColor$1({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -6043,7 +4798,7 @@
                 return COLORS.mischa;
         }
     }
-    function getFocusBorderColor({ $variant }) {
+    function getFocusBorderColor$1({ $variant }) {
         switch ($variant) {
             case 'default':
                 return COLORS.havelockBlue;
@@ -6051,11 +4806,11 @@
                 return false;
         }
     }
-    const Container = styled__default["default"].div `
+    const Container$1 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
-    const Label = styled__default["default"].label `
+    const Label$1 = styled__default["default"].label `
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
@@ -6068,7 +4823,7 @@
   display: block;
   padding: 20px 16px;
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor};
+  border: 1px solid ${getVariantColor$1};
   border-radius: 8px;
   background-color: ${COLORS.white};
   color: ${COLORS.charade};
@@ -6077,7 +4832,7 @@
 
   &:focus {
     outline: none;
-    border-color: ${getFocusBorderColor};
+    border-color: ${getFocusBorderColor$1};
   }
 
   &:disabled {
@@ -6097,17 +4852,17 @@
     font-weight: 400;
   }
 `;
-    const HelperText = styled__default["default"].span `
+    const HelperText$1 = styled__default["default"].span `
   display: block;
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor};
+  color: ${getVariantColor$1};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
     styled.css `
-      animation: ${animateHelperText} 280ms ease;
+      animation: ${animateHelperText$1} 280ms ease;
     `}
 `;
     const TextArea = ({ required, disabled, autoFocus, rows, className, resizable = false, variant = 'default', id, name, label, helperText, value, placeholder, ariaLabel, onChange, }, ref) => {
@@ -6132,15 +4887,545 @@
             }
         }, [variant, prevVariant, shouldAnimate]);
         const derivedId = getDerivedId();
-        return (jsxRuntime.exports.jsxs(Container, Object.assign({ className: className }, { children: [!!label && jsxRuntime.exports.jsx(Label, Object.assign({ htmlFor: derivedId }, { children: label }), void 0), jsxRuntime.exports.jsx(StyledTextArea, { "$resizable": resizable, "$variant": variant, required: required, disabled: disabled, autoFocus: autoFocus, rows: rows, ref: ref, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }, void 0), !!helperText && (jsxRuntime.exports.jsx(HelperText, Object.assign({ "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, { children: helperText }), void 0))] }), void 0));
+        return (React__default["default"].createElement(Container$1, { className: className },
+            !!label && React__default["default"].createElement(Label$1, { htmlFor: derivedId }, label),
+            React__default["default"].createElement(StyledTextArea, { "$resizable": resizable, "$variant": variant, required: required, disabled: disabled, autoFocus: autoFocus, rows: rows, ref: ref, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
+            !!helperText && (React__default["default"].createElement(HelperText$1, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText))));
     };
     const ForwardedTextArea = React.forwardRef(TextArea);
+
+    function CustomSelect(props) {
+        return React__default["default"].createElement(Select__default["default"], Object.assign({}, props));
+    }
+    const animateIcon = styled.keyframes `
+  0% {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+
+  100% {
+    tansform: none;
+    opacity: 1;
+  }
+`;
+    const animateHelperText = styled.keyframes `
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+    function getVariantColor({ variant }) {
+        switch (variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.mischa;
+        }
+    }
+    function getIconColor({ $active, $variant, }) {
+        if (!$active) {
+            return COLORS.silverChalice;
+        }
+        switch ($variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.black;
+        }
+    }
+    function getIconLeft({ $size }) {
+        switch ($size) {
+            case 'large':
+                return 24;
+            case 'medium':
+            default:
+                return 16;
+        }
+    }
+    function getIconSize({ $size }) {
+        switch ($size) {
+            case 'large':
+                return 24;
+            case 'medium':
+            default:
+                return 20;
+        }
+    }
+    function getPaddingRight({ size }) {
+        switch (size) {
+            case 'large':
+                return 24;
+            case 'medium':
+            default:
+                return 16;
+        }
+    }
+    function getPaddingLeft({ size }) {
+        return getIconSize({ $size: size }) + getIconLeft({ $size: size }) * 1.5;
+    }
+    function getPadding({ size }) {
+        switch (size) {
+            case 'large':
+                return '16px 24px';
+            case 'medium':
+            default:
+                return '8px 16px';
+        }
+    }
+    function getInputHeight({ size }) {
+        switch (size) {
+            case 'large':
+                return 56;
+            case 'medium':
+            default:
+                return 40;
+        }
+    }
+    function getInputFontSize({ size }) {
+        switch (size) {
+            case 'large':
+                return 18;
+            case 'medium':
+            default:
+                return 16;
+        }
+    }
+    function getInputLineHeight({ size }) {
+        switch (size) {
+            case 'large':
+                return 1.1667; // 21px
+            case 'medium':
+            default:
+                return 1.1875; // 19px
+        }
+    }
+    function getFocusBorderColor({ variant }) {
+        switch (variant) {
+            case 'default':
+                return COLORS.havelockBlue;
+            default:
+                return false;
+        }
+    }
+    function getTagFontSize({ size }) {
+        switch (size) {
+            case 'medium':
+            default:
+                return 12;
+        }
+    }
+    function getTagLineHeight({ size }) {
+        switch (size) {
+            case 'medium':
+            default:
+                return 1.1667; // 14px
+        }
+    }
+    function getRemoveSize({ size }) {
+        switch (size) {
+            case 'medium':
+            default:
+                return 12;
+        }
+    }
+    const StyledChevronDownIcon = styled__default["default"](SvgChevronDown) `
+  color: ${COLORS.silverChalice};
+`;
+    const StyledXIcon = styled__default["default"](SvgX) `
+  color: ${COLORS.silverChalice};
+`;
+    const StyledClearIndicator = styled__default["default"].button `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  padding: 0;
+  marign: 0;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  & svg {
+    color: ${COLORS.charade};
+  }
+`;
+    const StyledMultiValueRemove = styled__default["default"].button `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  padding: 0;
+  marign: 0;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  & svg {
+    margin-left: 4px;
+    color: ${COLORS.charade};
+  }
+`;
+    const Label = styled__default["default"].label `
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12px;
+  line-height: 1.667em;
+  font-family: Roboto, sans-serif;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+    const HelperText = styled__default["default"].span `
+  display: block;
+  padding-top: 5px;
+  font-size: 10px;
+  line-height: 1.172em;
+  color: ${getVariantColor};
+  transition: color 280ms ease;
+
+  ${props => props.animate &&
+    styled.css `
+      animation: ${animateHelperText} 280ms ease;
+    `}
+`;
+    const Container = styled__default["default"].div `
+  display: flex;
+  flex-direction: column;
+`;
+    const SelectWrapper = styled__default["default"].div `
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+    const IconWrapper = styled__default["default"].div `
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${props => {
+    const left = getIconLeft(props);
+    return left ? `${left}px` : 'auto';
+}};
+  display: flex;
+  align-items: center;
+  color: ${getIconColor};
+  transition: color 280ms ease;
+
+  ${props => props.$animate &&
+    styled.css `
+      animation: ${animateIcon} 280ms ease;
+    `}
+
+  & svg {
+    width: ${getIconSize}px;
+    height: ${getIconSize}px;
+  }
+`;
+    const StyledSelect = styled__default["default"](CustomSelect) `
+  .jobello-select__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: ${getInputHeight}px;
+    margin: 0;
+    padding: ${getPadding};
+    box-sizing: border-box;
+    border: 1px solid ${getVariantColor};
+    border-radius: 8px;
+    background-color: ${COLORS.white};
+    color: ${COLORS.charade};
+    transition: border-color 140ms ease-in;
+
+    ${props => props.icon &&
+    `
+        padding-right: ${getPaddingRight(props)}px;
+        padding-left: ${getPaddingLeft(props)}px;
+      `}
+
+    &--is-focused {
+      border-color: ${getFocusBorderColor};
+    }
+
+    &--is-disabled {
+      cursor: default;
+      background-color: ${COLORS.alabster};
+
+      & .jobello-select__multi-value {
+        opacity: 0.5;
+        background-color: ${COLORS.mischa};
+      }
+    }
+
+    & {
+      font-size: ${getInputFontSize}px;
+      line-height: ${getInputLineHeight}em;
+    }
+  }
+
+  .jobello-select__value-container {
+    display: flex;
+    align-items: center;
+
+    &--has-value
+      + .jobello-select__indicators
+      .jobello-select__indicator-separator {
+      display: block;
+    }
+  }
+
+  .jobello-select__placeholder {
+    color: ${COLORS.silverChalice};
+  }
+
+  .jobello-select__indicators {
+    display: flex;
+    align-items: center;
+  }
+
+  .jobello-select__multi-value {
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    background-color: ${COLORS.linkWater};
+    margin: 2px 0;
+    padding: 2px 6px;
+    box-sizing: border-box;
+    font-size: ${getTagFontSize}px;
+    line-height: ${getTagLineHeight}em;
+
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
+  }
+
+  .jobello-select__indicator-separator {
+    display: none;
+    align-self: stretch;
+    margin-right: 4px;
+    margin-left: 8px;
+    width: 1px;
+    background-color: ${COLORS.mischa};
+  }
+`;
+    const StyledMenu = styled__default["default"].div `
+  z-index: 1;
+  position: relative;
+  top: 5px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid ${COLORS.mischa};
+  border-radius: 8px;
+  background-color: ${COLORS.white};
+  color: ${COLORS.charade};
+  font-size: ${getInputFontSize}px;
+  line-height: ${getInputLineHeight}em;
+  font-weight: 400;
+
+  .jobello-select__menu-list {
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .jobello-select__option {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &--is-focused,
+    &:hover {
+      background-color: ${COLORS.selago};
+    }
+
+    &:active {
+      background-color: ${COLORS.linkWater};
+    }
+  }
+`;
+    function CustomControl(props) {
+        const { children, menuIsOpen, selectProps } = props;
+        const { animate, value, variant, size, icon, helperText, onAnimationEnd } = selectProps;
+        return (React__default["default"].createElement(React__default["default"].Fragment, null,
+            React__default["default"].createElement(Select$1.components.Control, Object.assign({}, props),
+                children,
+                !!icon && (React__default["default"].createElement(IconWrapper, { "$active": !!value && value.length > 0, "$animate": animate, "$variant": variant, "$size": size, key: variant, onAnimationEnd: onAnimationEnd }, icon))),
+            !!helperText && !menuIsOpen && (React__default["default"].createElement(HelperText, { animate: animate, variant: variant, onAnimationEnd: onAnimationEnd }, helperText))));
+    }
+    function CustomDropdownIndicator(props) {
+        return React__default["default"].createElement(StyledChevronDownIcon, null);
+    }
+    function CustomClearIndicator(props) {
+        const innerProps = props.innerProps;
+        return (React__default["default"].createElement(StyledClearIndicator, Object.assign({ type: "button" }, innerProps),
+            React__default["default"].createElement(StyledXIcon, { width: 18, height: 18, viewBox: "0 0 24 24" })));
+    }
+    function CustomMenu({ selectProps, innerProps, children, }) {
+        const customProps = selectProps;
+        return (React__default["default"].createElement(StyledMenu, Object.assign({ variant: customProps.variant, size: customProps.size }, innerProps), children));
+    }
+    function CustomMultiValueRemove(props) {
+        const innerProps = props.innerProps;
+        const customProps = props.selectProps;
+        const size = getRemoveSize(customProps);
+        return (React__default["default"].createElement(StyledMultiValueRemove, Object.assign({ type: "button" }, innerProps),
+            React__default["default"].createElement(SvgX, { width: size, height: size, viewBox: "0 0 24 24" })));
+    }
+    const resetStyles = {
+        clearIndicator: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        container: provided => {
+            return provided;
+        },
+        control: (provided, props) => {
+            const styles = {
+                zIndex: 1,
+                position: 'relative',
+            };
+            return styles;
+        },
+        dropdownIndicator: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        group: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        groupHeading: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        indicatorsContainer: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        indicatorSeparator: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        input: (provided, props) => {
+            const styles = __rest(provided, ["margin", "paddingTop", "paddingBottom", "color"]);
+            return Object.assign(Object.assign({}, styles), { padding: '0 2px' });
+        },
+        loadingIndicator: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        loadingMessage: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        menu: (provided, props) => {
+            const styles = __rest(provided, ["backgroundColor", "borderRadius", "boxShadow", "marginTop", "marginBottom"]);
+            return styles;
+        },
+        menuList: (provided, props) => {
+            const styles = __rest(provided, ["paddingTop", "paddingBottom"]);
+            return styles;
+        },
+        menuPortal: provided => {
+            return provided;
+        },
+        multiValue: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        multiValueLabel: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        multiValueRemove: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        noOptionsMessage: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        option: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        placeholder: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        singleValue: (provided, props) => {
+            const styles = {};
+            return styles;
+        },
+        valueContainer: (provided, props) => {
+            const styles = __rest(provided, ["padding"]);
+            return styles;
+        },
+    };
+    function MultiSelect({ disabled, autoFocus, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon, noOptionsMessage, onChange, }) {
+        var _a;
+        const prevVariant = usePrevious(variant);
+        const [shouldAnimate, setShouldAnimate] = React.useState(false);
+        function handleAnimationEnd() {
+            if (shouldAnimate)
+                setShouldAnimate(false);
+        }
+        function getDerivedId() {
+            if (id)
+                return id;
+            if (label && name)
+                return name;
+            if (label)
+                return label;
+            return Math.random().toString();
+        }
+        React.useEffect(() => {
+            if (variant !== prevVariant && !shouldAnimate) {
+                setShouldAnimate(true);
+            }
+        }, [variant, prevVariant, shouldAnimate]);
+        const derivedId = getDerivedId();
+        return (React__default["default"].createElement(Container, { className: className },
+            !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
+            React__default["default"].createElement(SelectWrapper, null,
+                React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: icon, variant: variant, size: size, helperText: helperText, isMulti: true, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+                        ? (_a = document.getElementById(menuPortalTarget)) !== null && _a !== void 0 ? _a : undefined
+                        : undefined, styles: resetStyles, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
+                        Control: CustomControl,
+                        DropdownIndicator: CustomDropdownIndicator,
+                        ClearIndicator: CustomClearIndicator,
+                        Menu: CustomMenu,
+                        MultiValueRemove: CustomMultiValueRemove,
+                    } }))));
+    }
 
     exports.Avatar = Avatar;
     exports.Button = Button;
     exports.Checkbox = ForwardedCheckbox;
     exports.GlobalStyle = GlobalStyle;
     exports.Menu = ForwardedMenu;
+    exports.MultiSelect = MultiSelect;
     exports.RadioButton = ForwardedRadioButton;
     exports.Select = ForwardedSelect;
     exports.Slider = Slider;

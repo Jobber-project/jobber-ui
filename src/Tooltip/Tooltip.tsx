@@ -27,7 +27,7 @@ const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
   }
 `
 
-type TooltipProps = {
+export type TooltipProps = {
   hidden?: boolean
   label?: string
   variant?: 'black' | 'default'
