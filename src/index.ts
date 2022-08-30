@@ -12,9 +12,11 @@ import Spinner, { SpinnerSize } from './Spinner/Spinner'
 import Switcher from './Switcher'
 import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu/Menu'
+import Tooltip from './Tooltip/Tooltip'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 import Select, { SelectOption } from './Select/Select'
 import TextArea from './TextArea/TextArea'
+import Text, { TextProps } from './Text/Text'
 
 export type {
   ButtonSize,
@@ -27,6 +29,7 @@ export type {
   ToastVariant,
   SliderProps,
   SelectOption,
+  TextProps,
 }
 
 export {
@@ -39,6 +42,8 @@ export {
   Avatar,
   Spinner,
   Slider,
+  Tooltip,
+  Text,
   Switcher,
   Menu,
   Toast,
