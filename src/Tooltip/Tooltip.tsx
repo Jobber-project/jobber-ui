@@ -20,7 +20,9 @@ const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
       props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
-  .tippy-content,
+  .tippy-content {
+    white-space: pre-wrap;
+  }
   .tippy-box {
     padding: 0;
     background-color: ${props =>
