@@ -9329,8 +9329,8 @@ const StyledSelect = styled__default["default"](CustomSelect) `
 `;
 const StyledMenu = styled__default["default"].div `
   z-index: 1;
-  position: relative;
-  top: 5px;
+  position: absolute;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   border: 1px solid ${COLORS.mischa};
@@ -9382,9 +9382,22 @@ function CustomClearIndicator(props) {
     return (React__default["default"].createElement(StyledClearIndicator, Object.assign({ type: "button" }, innerProps),
         React__default["default"].createElement(StyledXIcon, { width: 18, height: 18, viewBox: "0 0 24 24" })));
 }
-function CustomMenu({ selectProps, innerProps, children, }) {
+function CustomMenu(props) {
+    const { selectProps, innerProps, children, getStyles } = props;
+    const styles = getStyles('menu', props);
     const customProps = selectProps;
-    return (React__default["default"].createElement(StyledMenu, Object.assign({ variant: customProps.variant, size: customProps.size }, innerProps), children));
+    return (React__default["default"].createElement(StyledMenu, Object.assign({ variant: customProps.variant, size: customProps.size, style: styles }, innerProps), children));
+}
+function CustomOption(props) {
+    const { selectProps } = props;
+    const customProps = selectProps;
+    function render() {
+        if (customProps.renderOption) {
+            return customProps.renderOption(props);
+        }
+        return props.children;
+    }
+    return React__default["default"].createElement(Select$1.components.Option, Object.assign({}, props), render());
 }
 function CustomMultiValueRemove(props) {
     const innerProps = props.innerProps;
@@ -9484,7 +9497,7 @@ const resetStyles = {
         return styles;
     },
 };
-function MultiSelect({ disabled, autoFocus, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon, noOptionsMessage, onChange, }) {
+function MultiSelect({ disabled, autoFocus, menuIsOpen, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon, formatOptionLabel, renderOption, noOptionsMessage, onChange, }) {
     var _a;
     const prevVariant = usePrevious(variant);
     const [shouldAnimate, setShouldAnimate] = React.useState(false);
@@ -9510,13 +9523,14 @@ function MultiSelect({ disabled, autoFocus, maxMenuHeight, variant = 'default', 
     return (React__default["default"].createElement(Container, { className: className },
         !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
         React__default["default"].createElement(SelectWrapper, null,
-            React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: icon, variant: variant, size: size, helperText: helperText, isMulti: true, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+            React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: icon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                     ? (_a = document.getElementById(menuPortalTarget)) !== null && _a !== void 0 ? _a : undefined
-                    : undefined, styles: resetStyles, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
+                    : undefined, styles: resetStyles, formatOptionLabel: formatOptionLabel, renderOption: renderOption, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
                     Control: CustomControl,
                     DropdownIndicator: CustomDropdownIndicator,
                     ClearIndicator: CustomClearIndicator,
                     Menu: CustomMenu,
+                    Option: CustomOption,
                     MultiValueRemove: CustomMultiValueRemove,
                 } }))));
 }
