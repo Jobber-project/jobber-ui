@@ -20,7 +20,8 @@ const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
       props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
-  .tippy-content {
+  .tippy-content,
+  .tippy-box {
     padding: 0;
     background-color: ${props =>
       props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
@@ -45,6 +46,7 @@ export default function Tooltip({
 }: TooltipProps) {
   return (
     <StyledTippy
+      visible
       variant={variant}
       className={className}
       content={label}
