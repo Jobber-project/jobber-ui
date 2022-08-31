@@ -12,10 +12,12 @@ import Spinner, { SpinnerSize } from './Spinner/Spinner'
 import Switcher from './Switcher'
 import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu/Menu'
+import Tooltip, { TooltipProps } from './Tooltip/Tooltip'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 import Select, { SelectOption } from './Select/Select'
 import TextArea from './TextArea/TextArea'
-import MultiSelect from './MultiSelect/MultiSelect'
+import Text, { TextProps } from './Text/Text'
+import MultiSelect, { MultiSelectProps } from './MultiSelect/MultiSelect'
 
 export type {
   ButtonSize,
@@ -28,6 +30,9 @@ export type {
   ToastVariant,
   SliderProps,
   SelectOption,
+  TextProps,
+  MultiSelectProps,
+  TooltipProps,
 }
 
 export {
@@ -40,6 +45,8 @@ export {
   Avatar,
   Spinner,
   Slider,
+  Tooltip,
+  Text,
   Switcher,
   Menu,
   Toast,

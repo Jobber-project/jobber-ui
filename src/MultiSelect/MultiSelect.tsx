@@ -55,7 +55,7 @@ function CustomSelect(props: CustomSelectProps) {
   return <Select {...props} />
 }
 
-type MultiSelectProps = {
+export type MultiSelectProps = {
   disabled?: boolean
   autoFocus?: boolean
   maxMenuHeight?: number
