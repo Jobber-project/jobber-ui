@@ -8,8 +8,8 @@ import Select, {
   MultiValueRemoveProps,
   ControlProps,
   components,
-  OptionProps,
   FormatOptionLabelMeta,
+  OptionProps,
 } from 'react-select'
 import styled, { css, keyframes } from 'styled-components'
 import {
@@ -38,18 +38,27 @@ export type MultiSelectOption = {
   readonly value: string | number
 }
 
+export type { FormatOptionLabelMeta }
+
 type CustomSelectPropsBase = Props<
   MultiSelectOption,
   true,
   GroupBase<MultiSelectOption>
 >
 
-type CustomSelectProps = CustomSelectPropsBase & {
+export type RenderOptionProps = OptionProps<
+  MultiSelectOption,
+  true,
+  GroupBase<MultiSelectOption>
+>
+
+export type CustomSelectProps = CustomSelectPropsBase & {
   animate: boolean
   icon?: ReactNode
   size: MultiSelectSize
   variant: MultiSelectVariant
   helperText?: string
+  renderOption?: (props: RenderOptionProps) => ReactNode
   onAnimationEnd: () => void
 }
 
@@ -60,6 +69,7 @@ function CustomSelect(props: CustomSelectProps) {
 export type MultiSelectProps = {
   disabled?: boolean
   autoFocus?: boolean
+  menuIsOpen?: boolean
   maxMenuHeight?: number
   variant?: MultiSelectVariant
   size?: MultiSelectSize
@@ -78,6 +88,7 @@ export type MultiSelectProps = {
     data: MultiSelectOption,
     formatOptionLabelMeta: FormatOptionLabelMeta<MultiSelectOption>,
   ) => React.ReactNode
+  renderOption?: CustomSelectProps['renderOption']
   noOptionsMessage?: CustomSelectProps['noOptionsMessage']
   onChange?: CustomSelectProps['onChange']
 }
@@ -601,6 +612,24 @@ function CustomMenu(
   )
 }
 
+function CustomOption(
+  props: OptionProps<MultiSelectOption, true, GroupBase<MultiSelectOption>>,
+) {
+  const { selectProps } = props
+
+  const customProps = selectProps as unknown as CustomSelectProps
+
+  function render() {
+    if (customProps.renderOption) {
+      return customProps.renderOption(props)
+    }
+
+    return props.children
+  }
+
+  return <components.Option {...props}>{render()}</components.Option>
+}
+
 function CustomMultiValueRemove(
   props: MultiValueRemoveProps<
     MultiSelectOption,
@@ -724,6 +753,7 @@ const resetStyles: StylesConfig<MultiSelectOption, true> = {
 function MultiSelect({
   disabled,
   autoFocus,
+  menuIsOpen,
   maxMenuHeight,
   variant = 'default',
   size = 'medium',
@@ -738,6 +768,7 @@ function MultiSelect({
   options = [],
   icon,
   formatOptionLabel,
+  renderOption,
   noOptionsMessage,
   onChange,
 }: MultiSelectProps) {
@@ -775,6 +806,7 @@ function MultiSelect({
           size={size}
           helperText={helperText}
           isMulti
+          menuIsOpen={menuIsOpen}
           isDisabled={disabled}
           autoFocus={autoFocus}
           maxMenuHeight={maxMenuHeight}
@@ -791,6 +823,7 @@ function MultiSelect({
           }
           styles={resetStyles}
           formatOptionLabel={formatOptionLabel}
+          renderOption={renderOption}
           noOptionsMessage={noOptionsMessage}
           onChange={onChange}
           onAnimationEnd={handleAnimationEnd}
@@ -799,6 +832,7 @@ function MultiSelect({
             DropdownIndicator: CustomDropdownIndicator,
             ClearIndicator: CustomClearIndicator,
             Menu: CustomMenu,
+            Option: CustomOption,
             MultiValueRemove: CustomMultiValueRemove,
           }}
         />

@@ -17,7 +17,12 @@ import Toast, { Toaster, ToastVariant } from './Toast/Toast'
 import Select, { SelectOption } from './Select/Select'
 import TextArea from './TextArea/TextArea'
 import Text, { TextProps } from './Text/Text'
-import MultiSelect, { MultiSelectProps } from './MultiSelect/MultiSelect'
+import MultiSelect, {
+  MultiSelectProps,
+  MultiSelectOption,
+  FormatOptionLabelMeta,
+  RenderOptionProps,
+} from './MultiSelect/MultiSelect'
 
 export type {
   ButtonSize,
@@ -33,6 +38,9 @@ export type {
   TextProps,
   MultiSelectProps,
   TooltipProps,
+  MultiSelectOption,
+  FormatOptionLabelMeta,
+  RenderOptionProps,
 }
 
 export {
