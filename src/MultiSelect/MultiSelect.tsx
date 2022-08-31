@@ -8,6 +8,8 @@ import Select, {
   MultiValueRemoveProps,
   ControlProps,
   components,
+  OptionProps,
+  FormatOptionLabelMeta,
 } from 'react-select'
 import styled, { css, keyframes } from 'styled-components'
 import {
@@ -72,6 +74,10 @@ export type MultiSelectProps = {
   options?: MultiSelectOption[]
   /** Icon to render ie `<Icon />` */
   icon?: ReactNode
+  formatOptionLabel?: (
+    data: MultiSelectOption,
+    formatOptionLabelMeta: FormatOptionLabelMeta<MultiSelectOption>,
+  ) => React.ReactNode
   noOptionsMessage?: CustomSelectProps['noOptionsMessage']
   onChange?: CustomSelectProps['onChange']
 }
@@ -571,11 +577,13 @@ function CustomClearIndicator(
   )
 }
 
-function CustomMenu({
-  selectProps,
-  innerProps,
-  children,
-}: MenuProps<MultiSelectOption, true, GroupBase<MultiSelectOption>>) {
+function CustomMenu(
+  props: MenuProps<MultiSelectOption, true, GroupBase<MultiSelectOption>>,
+) {
+  const { selectProps, innerProps, children, getStyles } = props
+
+  const styles = getStyles('menu', props)
+
   const customProps = selectProps as unknown as {
     variant: MultiSelectVariant
     size: MultiSelectSize
@@ -585,6 +593,7 @@ function CustomMenu({
     <StyledMenu
       variant={customProps.variant}
       size={customProps.size}
+      style={styles}
       {...(innerProps as any)}
     >
       {children}
@@ -728,6 +737,7 @@ function MultiSelect({
   value,
   options = [],
   icon,
+  formatOptionLabel,
   noOptionsMessage,
   onChange,
 }: MultiSelectProps) {
@@ -780,6 +790,7 @@ function MultiSelect({
               : undefined
           }
           styles={resetStyles}
+          formatOptionLabel={formatOptionLabel}
           noOptionsMessage={noOptionsMessage}
           onChange={onChange}
           onAnimationEnd={handleAnimationEnd}
