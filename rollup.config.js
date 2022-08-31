@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import svgr from '@svgr/rollup'
 import ts from 'rollup-plugin-ts'
-import postcss from 'rollup-plugin-postcss'
+import css from 'rollup-plugin-import-css'
 
 import pkg from './package.json'
 
@@ -35,7 +35,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), postcss()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
   },
   {
     input: 'src/index.ts',
@@ -52,7 +52,7 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), postcss()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
   },
   {
     input: 'src/shared/colors.ts',
@@ -75,5 +75,10 @@ export default [
       },
     ],
     plugins: [ts({ tsconfig: { ...tsconfig, declarationDir: 'dist/shared' } })],
+  },
+  {
+    input: 'index.js',
+    output: { file: 'dist/index.js's, format: 'esm' },
+    plugins: [css()],
   },
 ]
