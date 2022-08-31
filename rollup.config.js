@@ -52,7 +52,7 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), css()],
   },
   {
     input: 'src/shared/colors.ts',
