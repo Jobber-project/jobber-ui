@@ -46,7 +46,6 @@ export default function Tooltip({
 }: TooltipProps) {
   return (
     <StyledTippy
-      visible
       variant={variant}
       className={className}
       content={label}
