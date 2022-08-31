@@ -78,7 +78,7 @@ export default [
   },
   {
     input: 'index.js',
-    output: { file: 'dist/index.js's, format: 'esm' },
+    output: { file: 'dist/index.js', format: 'esm' },
     plugins: [css()],
   },
 ]
