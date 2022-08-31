@@ -474,8 +474,8 @@ const StyledMenu = styled.div<{
   size: MultiSelectSize
 }>`
   z-index: 1;
-  position: relative;
-  top: 5px;
+  position: absolute;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   border: 1px solid ${COLORS.mischa};
