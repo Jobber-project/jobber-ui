@@ -35,7 +35,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr()],
+    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), css()],
   },
   {
     input: 'src/index.ts',
@@ -75,10 +75,5 @@ export default [
       },
     ],
     plugins: [ts({ tsconfig: { ...tsconfig, declarationDir: 'dist/shared' } })],
-  },
-  {
-    input: 'index.js',
-    output: { file: 'dist/index.js', format: 'esm' },
-    plugins: [css()],
   },
 ]
