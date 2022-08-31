@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import svgr from '@svgr/rollup'
 import ts from 'rollup-plugin-ts'
-import css from 'rollup-plugin-import-css'
+import styles from 'rollup-plugin-styles'
 
 import pkg from './package.json'
 
@@ -35,7 +35,15 @@ export default [
       file: pkg.browser,
       format: 'umd',
     },
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), css()],
+    plugins: [
+      resolve(),
+      commonjs(),
+      ts({ tsconfig }),
+      svgr(),
+      styles({
+        mode: ['inject', { prepend: true }],
+      }),
+    ],
   },
   {
     input: 'src/index.ts',
@@ -52,7 +60,15 @@ export default [
         format: 'esm',
       },
     ],
-    plugins: [resolve(), commonjs(), ts({ tsconfig }), svgr(), css()],
+    plugins: [
+      resolve(),
+      commonjs(),
+      ts({ tsconfig }),
+      svgr(),
+      styles({
+        mode: ['inject', { prepend: true }],
+      }),
+    ],
   },
   {
     input: 'src/shared/colors.ts',
