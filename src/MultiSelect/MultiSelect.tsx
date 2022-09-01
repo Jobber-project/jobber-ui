@@ -22,6 +22,16 @@ import { MenuProps } from 'react-select/dist/declarations/src/components/Menu'
 import ChevronDownIcon from '../shared/icons/chevron-down.svg'
 // @ts-ignore
 import XIcon from '../shared/icons/x.svg'
+// @ts-ignore
+import SuccessIcon from '../shared/icons/circle-check.svg'
+// @ts-ignore
+import WarningIcon from '../shared/icons/alert-triangle.svg'
+// @ts-ignore
+import ErrorIcon from '../shared/icons/circle-x.svg'
+// @ts-ignore
+import EmailIcon from '../shared/icons/mail.svg'
+// @ts-ignore
+import SearchIcon from '../shared/icons/search.svg'
 import COLORS from '../shared/colors'
 import { usePrevious } from '../shared/hooks'
 
@@ -787,6 +797,23 @@ function MultiSelect({
     return Math.random().toString()
   }
 
+  function getDerivedIcon(): ReactNode {
+    switch (variant) {
+      case 'success':
+        return <SuccessIcon viewBox="0 0 24 24" />
+
+      case 'warning':
+        return <WarningIcon viewBox="0 0 24 24" />
+
+      case 'error':
+        return <ErrorIcon viewBox="0 0 24 24" />
+
+      case 'default':
+      default:
+        return icon
+    }
+  }
+
   useEffect(() => {
     if (variant !== prevVariant && !shouldAnimate) {
       setShouldAnimate(true)
@@ -795,13 +822,15 @@ function MultiSelect({
 
   const derivedId = getDerivedId()
 
+  const derivedIcon = getDerivedIcon()
+
   return (
     <Container className={className}>
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
       <SelectWrapper>
         <StyledSelect
           animate={shouldAnimate}
-          icon={icon}
+          icon={derivedIcon}
           variant={variant}
           size={size}
           helperText={helperText}
