@@ -1371,12 +1371,12 @@ const getCircleSize = ({ size }) => {
     }
 };
 const getColorFromId = ({ id, $disabled }) => {
-    var _a, _b;
+    var _a;
     if ($disabled)
         return COLORS.mischa;
     const firstValueFromId = (id === null || id === void 0 ? void 0 : id.substring(0, 1)) || id;
-    const generatedNumber = (_b = (_a = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt) === null || _a === void 0 ? void 0 : _a.call(firstValueFromId, 0)) !== null && _b !== void 0 ? _b : 0;
-    const colorNumber = generatedNumber % 4;
+    const generatedNumber = (_a = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt) === null || _a === void 0 ? void 0 : _a.call(firstValueFromId, 0);
+    const colorNumber = generatedNumber ? generatedNumber % 4 : undefined;
     switch (colorNumber) {
         case 0:
             return `${COLORS.razzleDazzleRose}`;
@@ -8219,6 +8219,11 @@ var index = /*#__PURE__*/forwardRef( /*#__PURE__*/TippyGenerator(tippy));
 
 var Tippy = index;
 
+var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
+
+var css = ".tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:\"\";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}";
+n(css,{"prepend":true});
+
 const StyledTippy = styled__default["default"](Tippy) `
   background: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
   font-size: 12px;
@@ -8231,7 +8236,9 @@ const StyledTippy = styled__default["default"](Tippy) `
     color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
-  .tippy-content,
+  .tippy-content {
+    white-space: pre-wrap;
+  }
   .tippy-box {
     padding: 0;
     background-color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
@@ -9514,16 +9521,30 @@ function MultiSelect({ disabled, autoFocus, menuIsOpen, maxMenuHeight, variant =
             return label;
         return Math.random().toString();
     }
+    function getDerivedIcon() {
+        switch (variant) {
+            case 'success':
+                return React__default["default"].createElement(SvgCircleCheck, { viewBox: "0 0 24 24" });
+            case 'warning':
+                return React__default["default"].createElement(SvgAlertTriangle, { viewBox: "0 0 24 24" });
+            case 'error':
+                return React__default["default"].createElement(SvgCircleX, { viewBox: "0 0 24 24" });
+            case 'default':
+            default:
+                return icon;
+        }
+    }
     React.useEffect(() => {
         if (variant !== prevVariant && !shouldAnimate) {
             setShouldAnimate(true);
         }
     }, [variant, prevVariant, shouldAnimate]);
     const derivedId = getDerivedId();
+    const derivedIcon = getDerivedIcon();
     return (React__default["default"].createElement(Container, { className: className },
         !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
         React__default["default"].createElement(SelectWrapper, null,
-            React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: icon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+            React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                     ? (_a = document.getElementById(menuPortalTarget)) !== null && _a !== void 0 ? _a : undefined
                     : undefined, styles: resetStyles, formatOptionLabel: formatOptionLabel, renderOption: renderOption, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
                     Control: CustomControl,

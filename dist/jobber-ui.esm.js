@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle, keyframes } from 'styled-components';
+import styled, { css as css$1, createGlobalStyle, keyframes } from 'styled-components';
 import * as React from 'react';
 import React__default, { forwardRef as forwardRef$1, useRef, useEffect, useState, cloneElement, useLayoutEffect as useLayoutEffect$1, memo, createContext, useContext, useCallback, useMemo, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
@@ -9,7 +9,7 @@ var __makeTemplateObject = (undefined && undefined.__makeTemplateObject) || func
     return cooked;
 };
 // prettier-ignore
-var reset = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n/* http://meyerweb.com/eric/tools/css/reset/\n   v5.0.1 | 20191019\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, menu, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n  line-height: 1;\n}\nmenu, ol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n"], ["\n/* http://meyerweb.com/eric/tools/css/reset/\n   v5.0.1 | 20191019\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, menu, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n  line-height: 1;\n}\nmenu, ol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n"])));
+var reset = css$1(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n/* http://meyerweb.com/eric/tools/css/reset/\n   v5.0.1 | 20191019\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, menu, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n  line-height: 1;\n}\nmenu, ol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n"], ["\n/* http://meyerweb.com/eric/tools/css/reset/\n   v5.0.1 | 20191019\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, menu, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n  line-height: 1;\n}\nmenu, ol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n"])));
 createGlobalStyle(templateObject_2 || (templateObject_2 = __makeTemplateObject(["", ""], ["", ""])), reset);
 var templateObject_1, templateObject_2;
 
@@ -42,7 +42,7 @@ const COLORS = {
     secondaryGradient: `linear-gradient(90deg, #ffc600, #ff9e2c)`,
 };
 
-const globalStyle = css `
+const globalStyle = css$1 `
   ${reset}
   font-family: 'Roboto', sans-serif;
 
@@ -1190,7 +1190,7 @@ const IconWrapper$2 = styled.div `
   transition: color 280ms ease;
 
   ${props => props.$animate &&
-    css `
+    css$1 `
       animation: ${animateIcon$1} 280ms ease;
     `}
 
@@ -1208,7 +1208,7 @@ const HelperText$2 = styled.span `
   transition: color 280ms ease;
 
   ${props => props.$animate &&
-    css `
+    css$1 `
       animation: ${animateHelperText$2} 280ms ease;
     `}
 `;
@@ -1343,12 +1343,12 @@ const getCircleSize = ({ size }) => {
     }
 };
 const getColorFromId = ({ id, $disabled }) => {
-    var _a, _b;
+    var _a;
     if ($disabled)
         return COLORS.mischa;
     const firstValueFromId = (id === null || id === void 0 ? void 0 : id.substring(0, 1)) || id;
-    const generatedNumber = (_b = (_a = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt) === null || _a === void 0 ? void 0 : _a.call(firstValueFromId, 0)) !== null && _b !== void 0 ? _b : 0;
-    const colorNumber = generatedNumber % 4;
+    const generatedNumber = (_a = firstValueFromId === null || firstValueFromId === void 0 ? void 0 : firstValueFromId.charCodeAt) === null || _a === void 0 ? void 0 : _a.call(firstValueFromId, 0);
+    const colorNumber = generatedNumber ? generatedNumber % 4 : undefined;
     switch (colorNumber) {
         case 0:
             return `${COLORS.razzleDazzleRose}`;
@@ -8191,6 +8191,11 @@ var index = /*#__PURE__*/forwardRef( /*#__PURE__*/TippyGenerator(tippy));
 
 var Tippy = index;
 
+var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
+
+var css = ".tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:\"\";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}";
+n(css,{"prepend":true});
+
 const StyledTippy = styled(Tippy) `
   background: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
   font-size: 12px;
@@ -8203,7 +8208,9 @@ const StyledTippy = styled(Tippy) `
     color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
-  .tippy-content,
+  .tippy-content {
+    white-space: pre-wrap;
+  }
   .tippy-box {
     padding: 0;
     background-color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
@@ -8863,7 +8870,7 @@ const HelperText$1 = styled.span `
   transition: color 280ms ease;
 
   ${props => props.$animate &&
-    css `
+    css$1 `
       animation: ${animateHelperText$1} 280ms ease;
     `}
 `;
@@ -9175,7 +9182,7 @@ const HelperText = styled.span `
   transition: color 280ms ease;
 
   ${props => props.animate &&
-    css `
+    css$1 `
       animation: ${animateHelperText} 280ms ease;
     `}
 `;
@@ -9204,7 +9211,7 @@ const IconWrapper = styled.div `
   transition: color 280ms ease;
 
   ${props => props.$animate &&
-    css `
+    css$1 `
       animation: ${animateIcon} 280ms ease;
     `}
 
@@ -9486,16 +9493,30 @@ function MultiSelect({ disabled, autoFocus, menuIsOpen, maxMenuHeight, variant =
             return label;
         return Math.random().toString();
     }
+    function getDerivedIcon() {
+        switch (variant) {
+            case 'success':
+                return React__default.createElement(SvgCircleCheck, { viewBox: "0 0 24 24" });
+            case 'warning':
+                return React__default.createElement(SvgAlertTriangle, { viewBox: "0 0 24 24" });
+            case 'error':
+                return React__default.createElement(SvgCircleX, { viewBox: "0 0 24 24" });
+            case 'default':
+            default:
+                return icon;
+        }
+    }
     useEffect(() => {
         if (variant !== prevVariant && !shouldAnimate) {
             setShouldAnimate(true);
         }
     }, [variant, prevVariant, shouldAnimate]);
     const derivedId = getDerivedId();
+    const derivedIcon = getDerivedIcon();
     return (React__default.createElement(Container, { className: className },
         !!label && React__default.createElement(Label, { htmlFor: derivedId }, label),
         React__default.createElement(SelectWrapper, null,
-            React__default.createElement(StyledSelect, { animate: shouldAnimate, icon: icon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+            React__default.createElement(StyledSelect, { animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                     ? (_a = document.getElementById(menuPortalTarget)) !== null && _a !== void 0 ? _a : undefined
                     : undefined, styles: resetStyles, formatOptionLabel: formatOptionLabel, renderOption: renderOption, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
                     Control: CustomControl,
