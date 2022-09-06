@@ -94,6 +94,13 @@ export type MultiSelectProps = CustomSelectPropsBase & {
   options?: MultiSelectOption[]
   /** Icon to render ie `<Icon />` */
   icon?: ReactNode
+  formatOptionLabel?: (
+    data: MultiSelectOption,
+    formatOptionLabelMeta: FormatOptionLabelMeta<MultiSelectOption>,
+  ) => React.ReactNode
+  renderOption?: CustomSelectProps['renderOption']
+  noOptionsMessage?: CustomSelectProps['noOptionsMessage']
+  onChange?: CustomSelectProps['onChange']
 }
 
 const animateIcon = keyframes`
