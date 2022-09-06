@@ -1113,6 +1113,7 @@ const Label$2 = styled.label `
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
 const InputWrapper = styled.div `
   z-index: 1;
@@ -9172,6 +9173,7 @@ const Label = styled.label `
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
 const HelperText = styled.span `
   display: block;

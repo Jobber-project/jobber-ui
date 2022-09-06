@@ -1141,6 +1141,7 @@ const Label$2 = styled__default["default"].label `
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
 const InputWrapper = styled__default["default"].div `
   z-index: 1;
@@ -9200,6 +9201,7 @@ const Label = styled__default["default"].label `
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
 const HelperText = styled__default["default"].span `
   display: block;

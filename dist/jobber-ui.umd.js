@@ -1138,6 +1138,7 @@
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
     const InputWrapper = styled__default["default"].div `
   z-index: 1;
@@ -9197,6 +9198,7 @@
   font-family: Roboto, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
 `;
     const HelperText = styled__default["default"].span `
   display: block;
