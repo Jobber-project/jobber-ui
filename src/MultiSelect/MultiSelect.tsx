@@ -76,7 +76,7 @@ function CustomSelect(props: CustomSelectProps) {
   return <Select {...props} />
 }
 
-export type MultiSelectProps = {
+export type MultiSelectProps = CustomSelectPropsBase & {
   disabled?: boolean
   autoFocus?: boolean
   menuIsOpen?: boolean
@@ -94,13 +94,6 @@ export type MultiSelectProps = {
   options?: MultiSelectOption[]
   /** Icon to render ie `<Icon />` */
   icon?: ReactNode
-  formatOptionLabel?: (
-    data: MultiSelectOption,
-    formatOptionLabelMeta: FormatOptionLabelMeta<MultiSelectOption>,
-  ) => React.ReactNode
-  renderOption?: CustomSelectProps['renderOption']
-  noOptionsMessage?: CustomSelectProps['noOptionsMessage']
-  onChange?: CustomSelectProps['onChange']
 }
 
 const animateIcon = keyframes`
@@ -778,10 +771,7 @@ function MultiSelect({
   value,
   options = [],
   icon,
-  formatOptionLabel,
-  renderOption,
-  noOptionsMessage,
-  onChange,
+  ...rest
 }: MultiSelectProps) {
   const prevVariant = usePrevious(variant)
 
@@ -830,6 +820,7 @@ function MultiSelect({
       {!!label && <Label htmlFor={derivedId}>{label}</Label>}
       <SelectWrapper>
         <StyledSelect
+          {...rest}
           animate={shouldAnimate}
           icon={derivedIcon}
           variant={variant}
@@ -852,10 +843,6 @@ function MultiSelect({
               : undefined
           }
           styles={resetStyles}
-          formatOptionLabel={formatOptionLabel}
-          renderOption={renderOption}
-          noOptionsMessage={noOptionsMessage}
-          onChange={onChange}
           onAnimationEnd={handleAnimationEnd}
           components={{
             Control: CustomControl,
