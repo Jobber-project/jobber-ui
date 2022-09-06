@@ -9506,8 +9506,9 @@ const resetStyles = {
         return styles;
     },
 };
-function MultiSelect({ disabled, autoFocus, menuIsOpen, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon, formatOptionLabel, renderOption, noOptionsMessage, onChange, }) {
-    var _a;
+function MultiSelect(_a) {
+    var _b;
+    var { disabled, autoFocus, menuIsOpen, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon } = _a, rest = __rest(_a, ["disabled", "autoFocus", "menuIsOpen", "maxMenuHeight", "variant", "size", "className", "id", "name", "label", "menuPortalTarget", "placeholder", "helperText", "value", "options", "icon"]);
     const prevVariant = usePrevious(variant);
     const [shouldAnimate, setShouldAnimate] = React.useState(false);
     function handleAnimationEnd() {
@@ -9546,16 +9547,16 @@ function MultiSelect({ disabled, autoFocus, menuIsOpen, maxMenuHeight, variant =
     return (React__default["default"].createElement(Container, { className: className },
         !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
         React__default["default"].createElement(SelectWrapper, null,
-            React__default["default"].createElement(StyledSelect, { animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
-                    ? (_a = document.getElementById(menuPortalTarget)) !== null && _a !== void 0 ? _a : undefined
-                    : undefined, styles: resetStyles, formatOptionLabel: formatOptionLabel, renderOption: renderOption, noOptionsMessage: noOptionsMessage, onChange: onChange, onAnimationEnd: handleAnimationEnd, components: {
+            React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+                    ? (_b = document.getElementById(menuPortalTarget)) !== null && _b !== void 0 ? _b : undefined
+                    : undefined, styles: resetStyles, onAnimationEnd: handleAnimationEnd, components: {
                     Control: CustomControl,
                     DropdownIndicator: CustomDropdownIndicator,
                     ClearIndicator: CustomClearIndicator,
                     Menu: CustomMenu,
                     Option: CustomOption,
                     MultiValueRemove: CustomMultiValueRemove,
-                } }))));
+                } })))));
 }
 
 exports.Avatar = Avatar;
