@@ -28,10 +28,6 @@ import SuccessIcon from '../shared/icons/circle-check.svg'
 import WarningIcon from '../shared/icons/alert-triangle.svg'
 // @ts-ignore
 import ErrorIcon from '../shared/icons/circle-x.svg'
-// @ts-ignore
-import EmailIcon from '../shared/icons/mail.svg'
-// @ts-ignore
-import SearchIcon from '../shared/icons/search.svg'
 import COLORS from '../shared/colors'
 import { usePrevious } from '../shared/hooks'
 
@@ -45,7 +41,7 @@ export type MultiSelectActionMeta = ActionMeta<MultiSelectOption>
 
 export type MultiSelectOption = {
   readonly label: string
-  readonly value: string | number
+  readonly value: string | number | any
 }
 
 export type { FormatOptionLabelMeta }
