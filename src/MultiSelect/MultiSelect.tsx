@@ -149,10 +149,7 @@ function getIconColor({
   $active: boolean
   $variant: MultiSelectVariant
 }): string {
-  if (!$active) {
-    return COLORS.silverChalice
-  }
-
+  console.log('active', $active)
   switch ($variant) {
     case 'success':
       return COLORS.emerald
@@ -165,7 +162,7 @@ function getIconColor({
 
     case 'default':
     default:
-      return COLORS.black
+      return $active ? COLORS.black : COLORS.silverChalice
   }
 }
 
