@@ -9037,9 +9037,7 @@
         }
     }
     function getIconColor({ $active, $variant, }) {
-        if (!$active) {
-            return COLORS.silverChalice;
-        }
+        console.log('active', $active);
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -9049,7 +9047,7 @@
                 return COLORS.carnation;
             case 'default':
             default:
-                return COLORS.black;
+                return $active ? COLORS.black : COLORS.silverChalice;
         }
     }
     function getIconLeft({ $size }) {
