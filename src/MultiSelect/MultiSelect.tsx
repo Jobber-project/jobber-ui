@@ -149,7 +149,6 @@ function getIconColor({
   $active: boolean
   $variant: MultiSelectVariant
 }): string {
-  console.log('active', $active)
   switch ($variant) {
     case 'success':
       return COLORS.emerald
