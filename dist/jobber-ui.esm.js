@@ -9012,7 +9012,6 @@ function getVariantColor({ variant }) {
     }
 }
 function getIconColor({ $active, $variant, }) {
-    console.log('active', $active);
     switch ($variant) {
         case 'success':
             return COLORS.emerald;
