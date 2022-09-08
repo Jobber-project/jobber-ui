@@ -87,7 +87,10 @@ const CustomSelect: ForwardRefRenderFunction<
 
 const ForwardedRefCustomSelect = forwardRef(CustomSelect)
 
-export type MultiSelectProps = CustomSelectPropsBase & {
+export type MultiSelectProps = Omit<
+  CustomSelectPropsBase,
+  'menuPortalTarget'
+> & {
   disabled?: boolean
   autoFocus?: boolean
   menuIsOpen?: boolean
