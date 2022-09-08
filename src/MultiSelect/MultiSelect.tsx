@@ -717,7 +717,11 @@ const resetStyles: StylesConfig<MultiSelectOption, true> = {
     return styles
   },
   menuPortal: provided => {
-    return provided
+    const styles: any = {
+      ...provided,
+      zIndex: 2,
+    }
+    return styles
   },
   multiValue: (provided, props) => {
     const styles: any = {}
