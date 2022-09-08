@@ -9000,9 +9000,11 @@
         return (React__default["default"].createElement(StyledText, { ref: ref, "$margin": margin, "$wrap": wrap, as: as, className: className, "$size": size, "$weight": weight, "$color": color, "$align": align }, children));
     });
 
-    function CustomSelect(props) {
-        return React__default["default"].createElement(Select__default["default"], Object.assign({}, props));
-    }
+    const CustomSelect = (props, ref) => {
+        // @ts-ignore
+        return React__default["default"].createElement(Select__default["default"], Object.assign({ ref: ref }, props));
+    };
+    const ForwardedRefCustomSelect = React.forwardRef(CustomSelect);
     const animateIcon = styled.keyframes `
   0% {
     transform: scale(0.25);
@@ -9244,7 +9246,7 @@
     height: ${getIconSize}px;
   }
 `;
-    const StyledSelect = styled__default["default"](CustomSelect) `
+    const StyledSelect = styled__default["default"](ForwardedRefCustomSelect) `
   .jobello-select__control {
     display: flex;
     align-items: center;
@@ -9465,7 +9467,8 @@
             return styles;
         },
         menuPortal: provided => {
-            return provided;
+            const styles = Object.assign(Object.assign({}, provided), { zIndex: 2 });
+            return styles;
         },
         multiValue: (provided, props) => {
             const styles = {};
@@ -9502,8 +9505,11 @@
     };
     function MultiSelect(_a) {
         var _b;
-        var { disabled, autoFocus, menuIsOpen, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon } = _a, rest = __rest(_a, ["disabled", "autoFocus", "menuIsOpen", "maxMenuHeight", "variant", "size", "className", "id", "name", "label", "menuPortalTarget", "placeholder", "helperText", "value", "options", "icon"]);
+        var { disabled, autoFocus, menuIsOpen, rerenderOnControlResize = false, rerenderOnWindowResize = false, maxMenuHeight, variant = 'default', size = 'medium', className, id, name, label, menuPortalTarget, placeholder, helperText, value, options = [], icon } = _a, rest = __rest(_a, ["disabled", "autoFocus", "menuIsOpen", "rerenderOnControlResize", "rerenderOnWindowResize", "maxMenuHeight", "variant", "size", "className", "id", "name", "label", "menuPortalTarget", "placeholder", "helperText", "value", "options", "icon"]);
         const prevVariant = usePrevious(variant);
+        const [, rerender] = React.useState({});
+        const selectRef = React.useRef(null);
+        const resizeObserverRef = React.useRef(null);
         const [shouldAnimate, setShouldAnimate] = React.useState(false);
         function handleAnimationEnd() {
             if (shouldAnimate)
@@ -9536,12 +9542,48 @@
                 setShouldAnimate(true);
             }
         }, [variant, prevVariant, shouldAnimate]);
+        // Force-rerender on *control* resize
+        // Workaround for react-select bug where menu doesn't resize
+        // Should be fixed in v6
+        React.useEffect(() => {
+            var _a;
+            function resizeCallback() {
+                rerender({});
+            }
+            if (rerenderOnControlResize && ((_a = selectRef.current) === null || _a === void 0 ? void 0 : _a.controlRef)) {
+                if (!resizeObserverRef.current) {
+                    resizeObserverRef.current = new ResizeObserver(resizeCallback);
+                }
+                const elem = selectRef.current.controlRef;
+                if (elem) {
+                    resizeObserverRef.current.observe(elem);
+                    return () => {
+                        var _a, _b;
+                        (_b = (_a = resizeObserverRef.current) === null || _a === void 0 ? void 0 : _a.unobserve) === null || _b === void 0 ? void 0 : _b.call(_a, elem);
+                    };
+                }
+            }
+        }, [rerenderOnControlResize]);
+        // Force-rerender on *window* resize
+        // Workaround for react-select bug where menu doesn't resize
+        // Should be fixed in v6
+        React.useEffect(() => {
+            function handleWindowResize() {
+                rerender({});
+            }
+            if (rerenderOnWindowResize) {
+                window.addEventListener('resize', handleWindowResize);
+                return () => {
+                    window.removeEventListener('resize', handleWindowResize);
+                };
+            }
+        }, [rerenderOnWindowResize]);
         const derivedId = getDerivedId();
         const derivedIcon = getDerivedIcon();
         return (React__default["default"].createElement(Container, { className: className },
             !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
             React__default["default"].createElement(SelectWrapper, null,
-                React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+                React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { ref: selectRef, animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                         ? (_b = document.getElementById(menuPortalTarget)) !== null && _b !== void 0 ? _b : undefined
                         : undefined, styles: resetStyles, onAnimationEnd: handleAnimationEnd, components: {
                         Control: CustomControl,
