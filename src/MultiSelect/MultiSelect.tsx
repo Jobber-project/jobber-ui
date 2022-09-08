@@ -1,4 +1,12 @@
-import React, { PropsWithChildren, ReactNode, useEffect, useState } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  PropsWithChildren,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import Select, {
   ActionMeta,
   MultiValue,
@@ -10,6 +18,7 @@ import Select, {
   components,
   FormatOptionLabelMeta,
   OptionProps,
+  SelectInstance,
 } from 'react-select'
 import styled, { css, keyframes } from 'styled-components'
 import {
@@ -68,14 +77,22 @@ export type CustomSelectProps = CustomSelectPropsBase & {
   onAnimationEnd: () => void
 }
 
-function CustomSelect(props: CustomSelectProps) {
-  return <Select {...props} />
+const CustomSelect: ForwardRefRenderFunction<
+  SelectInstance,
+  CustomSelectProps
+> = (props: CustomSelectProps, ref) => {
+  // @ts-ignore
+  return <Select ref={ref} {...props} />
 }
+
+const ForwardedRefCustomSelect = forwardRef(CustomSelect)
 
 export type MultiSelectProps = CustomSelectPropsBase & {
   disabled?: boolean
   autoFocus?: boolean
   menuIsOpen?: boolean
+  rerenderOnControlResize?: boolean
+  rerenderOnWindowResize?: boolean
   maxMenuHeight?: number
   variant?: MultiSelectVariant
   size?: MultiSelectSize
@@ -395,7 +412,7 @@ const IconWrapper = styled.div<{
   }
 `
 
-const StyledSelect = styled(CustomSelect)`
+const StyledSelect = styled(ForwardedRefCustomSelect)`
   .jobello-select__control {
     display: flex;
     align-items: center;
@@ -761,6 +778,8 @@ function MultiSelect({
   disabled,
   autoFocus,
   menuIsOpen,
+  rerenderOnControlResize = false,
+  rerenderOnWindowResize = false,
   maxMenuHeight,
   variant = 'default',
   size = 'medium',
@@ -777,6 +796,10 @@ function MultiSelect({
   ...rest
 }: MultiSelectProps) {
   const prevVariant = usePrevious(variant)
+
+  const [, rerender] = useState<object>({})
+  const selectRef = useRef<SelectInstance | null>(null)
+  const resizeObserverRef = useRef<ResizeObserver | null>(null)
 
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
 
@@ -814,6 +837,48 @@ function MultiSelect({
     }
   }, [variant, prevVariant, shouldAnimate])
 
+  // Force-rerender on *control* resize
+  // Workaround for react-select bug where menu doesn't resize
+  // Should be fixed in v6
+  useEffect(() => {
+    function resizeCallback() {
+      rerender({})
+    }
+
+    if (rerenderOnControlResize && selectRef.current?.controlRef) {
+      if (!resizeObserverRef.current) {
+        resizeObserverRef.current = new ResizeObserver(resizeCallback)
+      }
+
+      const elem = selectRef.current.controlRef
+
+      if (elem) {
+        resizeObserverRef.current.observe(elem)
+
+        return () => {
+          resizeObserverRef.current?.unobserve?.(elem)
+        }
+      }
+    }
+  }, [rerenderOnControlResize])
+
+  // Force-rerender on *window* resize
+  // Workaround for react-select bug where menu doesn't resize
+  // Should be fixed in v6
+  useEffect(() => {
+    function handleWindowResize() {
+      rerender({})
+    }
+
+    if (rerenderOnWindowResize) {
+      window.addEventListener('resize', handleWindowResize)
+
+      return () => {
+        window.removeEventListener('resize', handleWindowResize)
+      }
+    }
+  }, [rerenderOnWindowResize])
+
   const derivedId = getDerivedId()
 
   const derivedIcon = getDerivedIcon()
@@ -824,6 +889,7 @@ function MultiSelect({
       <SelectWrapper>
         <StyledSelect
           {...rest}
+          ref={selectRef}
           animate={shouldAnimate}
           icon={derivedIcon}
           variant={variant}

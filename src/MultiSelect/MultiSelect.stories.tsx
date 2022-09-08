@@ -5,9 +5,11 @@ import styled from 'styled-components'
 // @ts-ignore
 import ClipboardCheckIcon from '../shared/icons/clipboard-check.svg'
 
-import MultiSelect, { MultiSelectOption, MultiSelectValue } from './MultiSelect'
+import MultiSelect, { MultiSelectValue } from './MultiSelect'
 
-const Container = styled.div`
+const Container = styled.div<{
+  $fluid?: boolean
+}>`
   min-width: 333px;
   height: 500px;
   width: 333px;
@@ -16,6 +18,12 @@ const Container = styled.div`
   border: 1px dashed #7b61ff;
   padding: 50px 20px;
   box-sizing: border-box;
+
+  ${props =>
+    props.$fluid &&
+    `
+    width: 100%;
+  `}
 `
 
 const options = [
@@ -122,6 +130,37 @@ export function Error(props) {
   )
 }
 
+export function Portal(props) {
+  const [value, setValue] = useState<MultiSelectValue>([])
+
+  return (
+    <>
+      <Container>
+        <MultiSelect
+          {...props}
+          rerenderOnControlResize
+          label="Portal - with rerenderOnControlResize"
+          menuPortalTarget="multi-select-portal"
+          options={options}
+          value={value}
+          onChange={setValue}
+        />
+      </Container>
+      <Container $fluid>
+        <MultiSelect
+          {...props}
+          rerenderOnWindowResize
+          label="Portal - with rerenderOnWindowResize"
+          menuPortalTarget="multi-select-portal"
+          options={options}
+          value={value}
+          onChange={setValue}
+        />
+      </Container>
+    </>
+  )
+}
+
 const story: ComponentMeta<typeof MultiSelect> = {
   title: 'Design System/MultiSelect',
   component: MultiSelect,
@@ -137,6 +176,22 @@ const story: ComponentMeta<typeof MultiSelect> = {
     noOptionsMessage: {
       type: 'function',
       defaultValue: () => 'No options',
+    },
+    helperText: {
+      type: 'string',
+      defaultValue: '',
+    },
+    rerenderOnControlResize: {
+      type: 'boolean',
+      defaultValue: false,
+      description:
+        'Optional workaround for menu not resizing when using portals',
+    },
+    rerenderOnWindowResize: {
+      type: 'boolean',
+      defaultValue: false,
+      description:
+        'Optional workaround for menu not resizing when using portals',
     },
     onChange: { action: 'onChange' },
   },
