@@ -8226,7 +8226,7 @@ var css = ".tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-ti
 n(css,{"prepend":true});
 
 const StyledTippy = styled__default["default"](Tippy) `
-  background: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
+  background: ${props => props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   font-size: 12px;
   font-family: Roboto, sans-serif;
   color: white;
@@ -8234,7 +8234,7 @@ const StyledTippy = styled__default["default"](Tippy) `
   border-radius: 8px;
 
   .tippy-arrow {
-    color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
+    color: ${props => props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
   .tippy-content {
@@ -8242,11 +8242,11 @@ const StyledTippy = styled__default["default"](Tippy) `
   }
   .tippy-box {
     padding: 0;
-    background-color: ${props => (props === null || props === void 0 ? void 0 : props.variant) !== 'default' ? COLORS.black : COLORS.havelockBlue};
+    background-color: ${props => props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 `;
 function Tooltip({ label = '', position = 'top', variant = 'default', className, children, }) {
-    return (React__default["default"].createElement(StyledTippy, { variant: variant, className: className, content: label, placement: position }, children));
+    return (React__default["default"].createElement(StyledTippy, { "$variant": variant, className: className, content: label, placement: position }, children));
 }
 
 /*! *****************************************************************************
@@ -8412,7 +8412,7 @@ const progressOut = styled.keyframes `
   }
 `;
 const Positioner = styled__default["default"].div `
-  z-index: 1;
+  z-index: 2;
   position: fixed;
   right: ${props => { var _a; return (_a = props.$left) !== null && _a !== void 0 ? _a : 0; }}px;
   bottom: ${props => { var _a; return (_a = props.$bottom) !== null && _a !== void 0 ? _a : 0; }}px;
