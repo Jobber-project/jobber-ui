@@ -61,7 +61,7 @@ const Positioner = styled.div<{
   $left?: number
   $index: number
 }>`
-  z-index: 1;
+  z-index: 2;
   position: fixed;
   right: ${props => props.$left ?? 0}px;
   bottom: ${props => props.$bottom ?? 0}px;
