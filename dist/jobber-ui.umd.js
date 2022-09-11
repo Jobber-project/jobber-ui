@@ -173,7 +173,10 @@
                 return COLORS.white;
         }
     }
-    function getTextColor({ $variant, $outlined, }) {
+    function getTextColor({ $disabled, $variant, $outlined, }) {
+        if ($disabled) {
+            return COLORS.silverChalice;
+        }
         switch ($variant) {
             case 'secondary':
                 return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
@@ -192,10 +195,13 @@
                 return COLORS.charade;
         }
     }
-    function getSpinnerColor({ $variant, $outlined, $spinnerColor, }) {
-        return $spinnerColor !== null && $spinnerColor !== void 0 ? $spinnerColor : getTextColor({ $variant, $outlined });
+    function getSpinnerColor({ $variant, $outlined, $spinnerColor, $disabled, }) {
+        return $spinnerColor !== null && $spinnerColor !== void 0 ? $spinnerColor : getTextColor({ $disabled, $variant, $outlined });
     }
-    function getIconColor$2({ $variant, $outlined, }) {
+    function getIconColor$2({ $variant, $outlined, $disabled, }) {
+        if ($disabled) {
+            return COLORS.silverChalice;
+        }
         switch ($variant) {
             case 'secondary':
                 return $outlined ? COLORS.sunshade : COLORS.persianIndigo;
@@ -264,8 +270,8 @@
   justify-content: center;
 `;
     function getOutlinedStyles({ $outlined }) {
-        return ($outlined &&
-            `
+        return $outlined
+            ? `
     display: flex;
     z-index: 1;
     &::before {
@@ -290,7 +296,8 @@
         border-radius: 6px;
       }
     }
-    `);
+    `
+            : '';
     }
     function getFilledHoverStyles({ $variant, $outlined, $loading, }) {
         if ($outlined || $loading)
@@ -430,11 +437,20 @@
         const Component = ButtonContainer;
         const isLink = as === 'a';
         return (React__default["default"].createElement("div", null,
-            React__default["default"].createElement(Component, { ref: ref, className: className, "$variant": variant, type: isLink ? undefined : type, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, href: isLink ? href : undefined, download: isLink ? download : undefined, as: as, target: isLink ? target : undefined },
-                !!icon && (React__default["default"].createElement(IconWrapper$3, { "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-icon-wrapper`, fluid: fluid }, icon)),
-                React__default["default"].createElement(ChildrenWrapper, { "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-children-wrapper`, "$loading": loading }, children),
+            React__default["default"].createElement(Component, Object.assign({ "$disabled": disabled, ref: ref, className: className, "$variant": variant, onClick: onClick, "$size": size, "$outlined": outlined, disabled: disabled, icon: !!icon, fluid: fluid, "$loading": loading, as: as }, (isLink
+                ? {
+                    href,
+                    download,
+                    target,
+                }
+                : {
+                    type,
+                    disabled,
+                })),
+                !!icon && (React__default["default"].createElement(IconWrapper$3, { "$disabled": disabled, "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-icon-wrapper`, fluid: fluid }, icon)),
+                React__default["default"].createElement(ChildrenWrapper, { "$disabled": disabled, "$outlined": outlined, "$variant": variant, "$size": size, key: `${variant}-children-wrapper`, "$loading": loading }, children),
                 loading && (React__default["default"].createElement(InnerWrapper, null,
-                    React__default["default"].createElement(StyledSpinner, { "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }))))));
+                    React__default["default"].createElement(StyledSpinner, { "$disabled": disabled, "$variant": variant, "$outlined": outlined, "$spinnerColor": spinnerColor, size: "small" }))))));
     });
     Button.displayName = 'Button';
 
