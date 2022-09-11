@@ -6,9 +6,9 @@ import 'tippy.js/dist/tippy.css'
 
 import COLORS from '../shared/colors'
 
-const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
+const StyledTippy = styled(Tippy)<{ $variant: 'black' | 'default' }>`
   background: ${props =>
-    props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
+    props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   font-size: 12px;
   font-family: Roboto, sans-serif;
   color: white;
@@ -17,7 +17,7 @@ const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
 
   .tippy-arrow {
     color: ${props =>
-      props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
+      props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 
   .tippy-content {
@@ -26,7 +26,7 @@ const StyledTippy = styled(Tippy)<{ variant: 'black' | 'default' }>`
   .tippy-box {
     padding: 0;
     background-color: ${props =>
-      props?.variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
+      props.$variant !== 'default' ? COLORS.black : COLORS.havelockBlue};
   }
 `
 
@@ -48,7 +48,7 @@ export default function Tooltip({
 }: TooltipProps) {
   return (
     <StyledTippy
-      variant={variant}
+      $variant={variant}
       className={className}
       content={label}
       placement={position}
