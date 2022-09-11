@@ -99,12 +99,18 @@ function getBackgroundColor({
 }
 
 function getTextColor({
+  $disabled,
   $variant,
   $outlined,
 }: {
+  $disabled: boolean
   $variant?: ButtonVariant
   $outlined: boolean
 }): string {
+  if ($disabled) {
+    return COLORS.silverChalice
+  }
+
   switch ($variant) {
     case 'secondary':
       return $outlined ? COLORS.sunshade : COLORS.persianIndigo
@@ -128,21 +134,29 @@ function getSpinnerColor({
   $variant,
   $outlined,
   $spinnerColor,
+  $disabled,
 }: {
   $variant?: ButtonVariant
   $outlined: boolean
   $spinnerColor?: string
+  $disabled: boolean
 }): string {
-  return $spinnerColor ?? getTextColor({ $variant, $outlined })
+  return $spinnerColor ?? getTextColor({ $disabled, $variant, $outlined })
 }
 
 function getIconColor({
   $variant,
   $outlined,
+  $disabled,
 }: {
   $variant: ButtonVariant
   $outlined: boolean
+  $disabled: boolean
 }): string {
+  if ($disabled) {
+    return COLORS.silverChalice
+  }
+
   switch ($variant) {
     case 'secondary':
       return $outlined ? COLORS.sunshade : COLORS.persianIndigo
@@ -189,6 +203,7 @@ const IconWrapper = styled.div<{
   $size: ButtonSize
   $outlined: boolean
   fluid: boolean
+  $disabled: boolean
 }>`
   line-height: 0;
   z-index: 2;
@@ -222,6 +237,7 @@ const ChildrenWrapper = styled.span<{
   $size: ButtonSize
   $outlined: boolean
   $loading: boolean
+  $disabled: boolean
 }>`
   z-index: 2;
   color: ${getTextColor};
@@ -232,12 +248,14 @@ const StyledSpinner = styled(Spinner).attrs<{
   $variant: ButtonVariant
   $outlined: boolean
   $spinnerColor?: string
+  $disabled: boolean
 }>(props => ({
   color: getSpinnerColor(props),
 }))<{
   $variant: ButtonVariant
   $outlined: boolean
   $spinnerColor?: string
+  $disabled: boolean
 }>`
   display: flex;
   flex-direction: column;
@@ -245,9 +263,8 @@ const StyledSpinner = styled(Spinner).attrs<{
 `
 
 function getOutlinedStyles({ $outlined }: { $outlined?: boolean }): string {
-  return (
-    $outlined &&
-    `
+  return $outlined
+    ? `
     display: flex;
     z-index: 1;
     &::before {
@@ -273,7 +290,7 @@ function getOutlinedStyles({ $outlined }: { $outlined?: boolean }): string {
       }
     }
     `
-  )
+    : ''
 }
 
 function getFilledHoverStyles({
@@ -418,6 +435,7 @@ const ButtonContainer = styled.button<{
   icon: boolean
   fluid: boolean
   $loading: boolean
+  $disabled: boolean
 }>`
   cursor: pointer;
   position: relative;
@@ -476,17 +494,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const derivedDisabled = disabled || loading
 
     // Styled-components TS as prop workaround
-    const Component = ButtonContainer as unknown as ElementType
+    const Component = ButtonContainer
 
     const isLink = as === 'a'
 
     return (
       <div>
         <Component
+          $disabled={disabled}
           ref={ref}
           className={className}
           $variant={variant}
-          type={isLink ? undefined : type}
           onClick={onClick}
           $size={size}
           $outlined={outlined}
@@ -494,13 +512,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           icon={!!icon}
           fluid={fluid}
           $loading={loading}
-          href={isLink ? href : undefined}
-          download={isLink ? download : undefined}
-          as={as}
-          target={isLink ? target : undefined}
+          as={as as undefined}
+          {...(isLink
+            ? {
+                href,
+                download,
+                target,
+              }
+            : {
+                type,
+                disabled,
+              })}
         >
           {!!icon && (
             <IconWrapper
+              $disabled={disabled}
               $outlined={outlined}
               $variant={variant as ButtonVariant}
               $size={size as ButtonSize}
@@ -511,6 +537,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             </IconWrapper>
           )}
           <ChildrenWrapper
+            $disabled={disabled}
             $outlined={outlined}
             $variant={variant as ButtonVariant}
             $size={size as ButtonSize}
@@ -522,6 +549,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {loading && (
             <InnerWrapper>
               <StyledSpinner
+                $disabled={disabled}
                 $variant={variant as ButtonVariant}
                 $outlined={outlined}
                 $spinnerColor={spinnerColor}
