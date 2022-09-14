@@ -2,6 +2,9 @@ import React, { forwardRef, HTMLProps, useEffect, useState } from 'react'
 import { ForwardRefRenderFunction } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
+// @ts-ignore
+import QuestionMarkIcon from '../shared/icons/question-mark.svg'
+import Tooltip from '../Tooltip/Tooltip'
 import COLORS from '../shared/colors'
 import { usePrevious } from '../shared/hooks'
 
@@ -45,6 +48,7 @@ function getFocusBorderColor({ $variant }: { $variant: TextAreaVariant }) {
 }
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
 `
@@ -114,6 +118,19 @@ const HelperText = styled.span<{
     `}
 `
 
+const QuestionMarkContainer = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: ${COLORS.primaryGradient};
+`
+
 type TextAreaProps = {
   required?: HTMLProps<HTMLTextAreaElement>['required']
   disabled?: HTMLProps<HTMLTextAreaElement>['disabled']
@@ -130,6 +147,7 @@ type TextAreaProps = {
   placeholder?: HTMLProps<HTMLTextAreaElement>['placeholder']
   ariaLabel?: HTMLProps<HTMLTextAreaElement>['aria-label']
   onChange?: HTMLProps<HTMLTextAreaElement>['onChange']
+  question?: string
 }
 
 const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
@@ -149,6 +167,7 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
     placeholder,
     ariaLabel,
     onChange,
+    question,
   },
   ref,
 ) => {
@@ -201,6 +220,18 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
         >
           {helperText}
         </HelperText>
+      )}
+      {question && !disabled && (
+        <Tooltip label={question} position="left">
+          <QuestionMarkContainer>
+            <QuestionMarkIcon
+              width={16}
+              height={16}
+              color={COLORS.white}
+              viewBox="0 0 24 24"
+            />
+          </QuestionMarkContainer>
+        </Tooltip>
       )}
     </Container>
   )

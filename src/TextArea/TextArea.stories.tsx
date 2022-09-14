@@ -46,6 +46,18 @@ export function Error() {
   )
 }
 
+export function Question() {
+  return (
+    <Container>
+      <TextArea
+        question="This is my exceptional Question!"
+        label="Question"
+        placeholder="Question"
+      />
+    </Container>
+  )
+}
+
 const story: ComponentMeta<typeof TextArea> = {
   title: 'Design System/TextArea',
   component: TextArea,
