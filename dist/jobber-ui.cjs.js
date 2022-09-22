@@ -98,7 +98,7 @@ const animation = styled.keyframes `
     transform: rotate(360deg);
   }
 `;
-const Container$8 = styled__default["default"].span `
+const Container$9 = styled__default["default"].span `
   z-index: 1;
   position: relative;
   display: inline-block;
@@ -142,7 +142,7 @@ const Spinner = ({ size = 'medium', color = COLORS.emerald, className, children,
     const radius = derivedSize / 2 - strokeWidth;
     const circumference = radius * 2 * Math.PI;
     const offset = circumference - (25 / 100) * circumference;
-    return (React__default["default"].createElement(Container$8, { className: className },
+    return (React__default["default"].createElement(Container$9, { className: className },
         React__default["default"].createElement("svg", { width: derivedSize - strokeWidth, height: derivedSize - strokeWidth },
             React__default["default"].createElement(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }),
             React__default["default"].createElement(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 })),
@@ -509,7 +509,7 @@ function getFocusedBorderColor({ $variant }) {
             return false;
     }
 }
-const Container$7 = styled__default["default"].label `
+const Container$8 = styled__default["default"].label `
   display: inline-flex;
   flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
@@ -658,7 +658,7 @@ const Checkbox = ({ required, disabled = false, defaultChecked, checked, flipped
     const derivedId = getDerivedId();
     const derivedDefaultChecked = getDerivedDefaultChecked();
     const derivedChecked = getDerivedChecked();
-    return (React__default["default"].createElement(Container$7, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+    return (React__default["default"].createElement(Container$8, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
         React__default["default"].createElement(Square, null,
             React__default["default"].createElement(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }),
             React__default["default"].createElement(SquareBorder, { "$disabled": disabled, "$variant": variant }),
@@ -719,7 +719,7 @@ function getLabelColor({ $disabled, $variant, }) {
             return $disabled ? COLORS.silverChalice : COLORS.black;
     }
 }
-const Container$6 = styled__default["default"].label `
+const Container$7 = styled__default["default"].label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -836,7 +836,7 @@ const RadioButton = ({ required, disabled = false, defaultChecked, checked, vari
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (React__default["default"].createElement(Container$6, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+    return (React__default["default"].createElement(Container$7, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
         React__default["default"].createElement(OuterCircle, { "$disabled": disabled, "$variant": variant },
             React__default["default"].createElement(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }),
             React__default["default"].createElement(InnerCircle, { "$variant": variant })),
@@ -1145,7 +1145,7 @@ function getFocusBorderColor$2({ $variant }) {
             return false;
     }
 }
-const Container$5 = styled__default["default"].div `
+const Container$6 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
@@ -1306,7 +1306,7 @@ const TextField = ({ required, disabled, autoFocus, variant = 'default', id, nam
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
     const derivedIconAlign = getDerivedIconAlign();
-    return (React__default["default"].createElement(Container$5, { "$variant": variant, "$disabled": disabled, "$size": size, className: className },
+    return (React__default["default"].createElement(Container$6, { "$variant": variant, "$disabled": disabled, "$size": size, className: className },
         !!label && React__default["default"].createElement(Label$2, { htmlFor: derivedId }, label),
         React__default["default"].createElement(InputWrapper, null,
             React__default["default"].createElement(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
@@ -1563,7 +1563,7 @@ var SvgChevronLeft = function SvgChevronLeft(props) {
   })));
 };
 
-const Container$4 = styled__default["default"].div `
+const Container$5 = styled__default["default"].div `
   width: ${props => (props.$vertical ? 42 : 89)}px;
   height: ${props => (props.$vertical ? 89 : 42)}px;
   background-color: ${COLORS.white};
@@ -1630,7 +1630,7 @@ const HiddenText = styled__default["default"].span `
   user-select: none;
 `;
 const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
-    return (React__default["default"].createElement(Container$4, { className: className },
+    return (React__default["default"].createElement(Container$5, { className: className },
         React__default["default"].createElement(Pill, null,
             React__default["default"].createElement(PillHalf, { type: "button", "aria-label": "Left", onClick: onLeftButtonClick },
                 React__default["default"].createElement(SvgChevronLeft, null),
@@ -1640,7 +1640,7 @@ const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
                 React__default["default"].createElement(HiddenText, null, "Right")))));
 };
 const Vertical = ({ className, onTopButtonClick, onBottomButtonClick, }) => {
-    return (React__default["default"].createElement(Container$4, { "$vertical": true, className: className },
+    return (React__default["default"].createElement(Container$5, { "$vertical": true, className: className },
         React__default["default"].createElement(Pill, { "$vertical": true },
             React__default["default"].createElement(PillHalf, { "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick },
                 React__default["default"].createElement(SvgChevronUp, null),
@@ -8461,7 +8461,7 @@ const Progress = styled__default["default"].span `
   background-color: ${props => props.$color};
   animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `;
-const Container$3 = styled__default["default"].div `
+const Container$4 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -8527,7 +8527,7 @@ const InnerRight = styled__default["default"].span `
   text-align: left;
   overflow: hidden;
 `;
-const Title = styled__default["default"].span `
+const Title$1 = styled__default["default"].span `
   display: block;
   margin-bottom: 4px;
   font-family: Roboto, sans-serif;
@@ -8597,11 +8597,11 @@ const Toast = ({ duration = 5000, id, variant = 'info', title, message, onClick,
         if (id)
             context.close(id);
     }
-    return (React__default["default"].createElement(Container$3, { onClick: handleClick },
+    return (React__default["default"].createElement(Container$4, { onClick: handleClick },
         React__default["default"].createElement(Inner, null,
             React__default["default"].createElement(InnerLeft, { "$color": color }, icon),
             React__default["default"].createElement(InnerRight, null,
-                !!title && React__default["default"].createElement(Title, { "$color": color }, title),
+                !!title && React__default["default"].createElement(Title$1, { "$color": color }, title),
                 !!message && React__default["default"].createElement(Message, null, message))),
         React__default["default"].createElement(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }),
         React__default["default"].createElement(CloseButton, { type: "button", onClick: handleCloseClick, "aria-label": "close" },
@@ -8687,7 +8687,7 @@ function getVariantColor$2({ $variant }) {
             return COLORS.mischa;
     }
 }
-const Container$2 = styled__default["default"].div `
+const Container$3 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -8814,7 +8814,7 @@ const Select = ({ disabled, className, variant = 'default', id, placeholder = ''
         return Math.random().toString();
     }
     const derivedId = getDerivedId();
-    return (React__default["default"].createElement(Container$2, { "$disabled": disabled, "$variant": variant, className: className },
+    return (React__default["default"].createElement(Container$3, { "$disabled": disabled, "$variant": variant, className: className },
         React__default["default"].createElement(Caption, { "$hasValue": !!selectedOption, "$disabled": disabled }, (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder),
         React__default["default"].createElement(StyledChevronDownIcon$1, { "$hidden": !!value && !disabled, width: 20, height: 20, viewBox: "0 0 24 24" }),
         React__default["default"].createElement(Hider, null,
@@ -8883,7 +8883,7 @@ function getFocusBorderColor$1({ $variant }) {
             return false;
     }
 }
-const Container$1 = styled__default["default"].div `
+const Container$2 = styled__default["default"].div `
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8977,7 +8977,7 @@ const TextArea = ({ required, disabled, autoFocus, rows, className, resizable = 
         }
     }, [variant, prevVariant, shouldAnimate]);
     const derivedId = getDerivedId();
-    return (React__default["default"].createElement(Container$1, { className: className },
+    return (React__default["default"].createElement(Container$2, { className: className },
         !!label && React__default["default"].createElement(Label$1, { htmlFor: derivedId }, label),
         React__default["default"].createElement(StyledTextArea, { "$resizable": resizable, "$variant": variant, required: required, disabled: disabled, autoFocus: autoFocus, rows: rows, ref: ref, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
         !!helperText && (React__default["default"].createElement(HelperText$1, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText)),
@@ -9270,7 +9270,7 @@ const HelperText = styled__default["default"].span `
       animation: ${animateHelperText} 280ms ease;
     `}
 `;
-const Container = styled__default["default"].div `
+const Container$1 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
@@ -9638,7 +9638,7 @@ function MultiSelect(_a) {
     }, [rerenderOnWindowResize]);
     const derivedId = getDerivedId();
     const derivedIcon = getDerivedIcon();
-    return (React__default["default"].createElement(Container, { className: className },
+    return (React__default["default"].createElement(Container$1, { className: className },
         !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
         React__default["default"].createElement(SelectWrapper, null,
             React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { ref: selectRef, animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
@@ -9653,10 +9653,59 @@ function MultiSelect(_a) {
                 } })))));
 }
 
+const Container = styled__default["default"].div `
+  z-index: -1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
+  max-height: 453px;
+  min-height: 250px;
+  background-color: ${COLORS.white};
+  background-image: url('/static/images/hero-bg.jpg');
+  background-size: cover;
+  color: ${COLORS.charade};
+  text-align: center;
+  box-sizing: border-box;
+  padding: 15px;
+  overflow: hidden;
+`;
+const Header = styled__default["default"].header `
+  display: flex;
+  flex-direction: column;
+`;
+const Subtitle = styled__default["default"].h2 `
+  flex-shrink: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 1.4em;
+  max-width: 440px;
+`;
+const Title = styled__default["default"].h1 `
+  flex-shrink: 0;
+  font-size: 64px;
+  line-height: 0.828125em;
+  font-weight: 700;
+
+  & + ${Subtitle} {
+    padding-top: 32px;
+  }
+`;
+function Hero({ className, title, subtitle, children }) {
+    return (React__default["default"].createElement(Container, { className: className },
+        (!!title || !!subtitle) && (React__default["default"].createElement(Header, null,
+            !!title && React__default["default"].createElement(Title, null, title),
+            !!subtitle && React__default["default"].createElement(Subtitle, null, subtitle))),
+        children));
+}
+
 exports.Avatar = Avatar;
 exports.Button = Button;
 exports.Checkbox = ForwardedCheckbox;
 exports.GlobalStyle = GlobalStyle;
+exports.Hero = Hero;
 exports.Menu = ForwardedMenu;
 exports.MultiSelect = MultiSelect;
 exports.RadioButton = ForwardedRadioButton;
