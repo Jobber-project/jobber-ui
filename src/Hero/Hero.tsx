@@ -10,11 +10,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 50vh;
   max-height: 453px;
-  min-height: 200px;
+  min-height: 250px;
   background-color: ${COLORS.white};
   background-image: url('/static/images/hero-bg.jpg');
+  background-size: cover;
   color: ${COLORS.charade};
   text-align: center;
   box-sizing: border-box;
@@ -50,9 +51,10 @@ interface HeroProps {
   className?: string
   title?: ReactNode
   subtitle?: ReactNode
+  children?: ReactNode
 }
 
-function Hero({ className, title, subtitle }: HeroProps) {
+function Hero({ className, title, subtitle, children }: HeroProps) {
   return (
     <Container className={className}>
       {(!!title || !!subtitle) && (
@@ -61,6 +63,7 @@ function Hero({ className, title, subtitle }: HeroProps) {
           {!!subtitle && <Subtitle>{subtitle}</Subtitle>}
         </Header>
       )}
+      {children}
     </Container>
   )
 }
