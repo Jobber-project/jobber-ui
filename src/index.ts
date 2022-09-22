@@ -23,6 +23,7 @@ import MultiSelect, {
   FormatOptionLabelMeta,
   RenderOptionProps,
 } from './MultiSelect/MultiSelect'
+import Hero from './Hero/Hero'
 
 export type {
   ButtonSize,
@@ -62,4 +63,5 @@ export {
   Select,
   TextArea,
   MultiSelect,
+  Hero,
 }
