@@ -164,7 +164,7 @@ export type SelectOption = {
   label: string
 }
 
-type SelectProps = {
+export type SelectProps = {
   disabled?: boolean
   className?: string
   variant?: SelectVariant
