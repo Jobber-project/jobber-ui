@@ -14,7 +14,7 @@ import Slider, { SliderProps } from './Slider/Slider'
 import Menu from './Menu/Menu'
 import Tooltip, { TooltipProps } from './Tooltip/Tooltip'
 import Toast, { Toaster, ToastVariant } from './Toast/Toast'
-import Select, { SelectOption } from './Select/Select'
+import Select, { SelectOption, SelectProps } from './Select/Select'
 import TextArea from './TextArea/TextArea'
 import Text, { TextProps } from './Text/Text'
 import MultiSelect, {
@@ -42,6 +42,7 @@ export type {
   MultiSelectOption,
   FormatOptionLabelMeta,
   RenderOptionProps,
+  SelectProps,
 }
 
 export {
