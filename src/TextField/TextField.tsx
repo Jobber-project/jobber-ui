@@ -385,7 +385,7 @@ const HelperText = styled.span<{
     `}
 `
 
-type TextFieldProps = {
+export type TextFieldProps = {
   required?: boolean
   disabled?: boolean
   autoFocus?: boolean

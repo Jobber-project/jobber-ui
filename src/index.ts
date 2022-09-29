@@ -3,6 +3,7 @@ import Button, { ButtonSize, ButtonVariant } from './Button/Button'
 import Checkbox, { CheckboxVariant } from './Checkbox/Checkbox'
 import RadioButton from './RadioButton/RadioButton'
 import TextField, {
+  TextFieldProps,
   TextFieldIconAlign,
   TextFieldSize,
   TextFieldVariant,
@@ -29,6 +30,7 @@ export type {
   ButtonSize,
   ButtonVariant,
   CheckboxVariant,
+  TextFieldProps,
   TextFieldIconAlign,
   TextFieldSize,
   TextFieldVariant,
