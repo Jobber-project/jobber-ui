@@ -3,8 +3,27 @@ import styled from 'styled-components'
 
 import COLORS from '../shared/colors'
 
+type LabelVariant = 'default' | 'success' | 'warning' | 'error'
+
+function getVariantColor({ $variant }: { $variant: LabelVariant }) {
+  switch ($variant) {
+    case 'success':
+      return COLORS.emerald
+
+    case 'warning':
+      return COLORS.yellowOrange
+
+    case 'error':
+      return COLORS.carnation
+
+    case 'default':
+    default:
+      return COLORS.charade
+  }
+}
+
 const Container = styled.label<{
-  $invalid: boolean
+  $variant: LabelVariant
 }>`
   display: block;
   margin-bottom: 3px;
@@ -13,20 +32,20 @@ const Container = styled.label<{
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: left;
-  color: ${props => (props.$invalid ? COLORS.carnation : COLORS.charade)};
+  color: ${getVariantColor};
 `
 
 interface LabelProps {
-  invalid?: boolean
+  variant?: LabelVariant
   as?: keyof HTMLElementTagNameMap
   htmlFor?: string
   children?: ReactNode
 }
 
-function Label({ invalid = false, as, htmlFor, children }: LabelProps) {
+function Label({ variant = 'default', as, htmlFor, children }: LabelProps) {
   return (
     <Container
-      $invalid={invalid}
+      $variant={variant}
       as={as as any}
       htmlFor={as ? undefined : htmlFor}
     >
