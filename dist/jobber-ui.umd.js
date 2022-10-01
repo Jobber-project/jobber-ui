@@ -95,10 +95,12 @@
     transform: rotate(360deg);
   }
 `;
-    const Container$9 = styled__default["default"].span `
+    const Container$e = styled__default["default"].span `
   z-index: 1;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
     const Circle$1 = styled__default["default"].circle `
   transform: rotate(-90deg);
@@ -112,6 +114,9 @@
   animation: ${animation} 1.25s infinite linear;
 `;
     function getDerivedSize(size) {
+        if (typeof size === 'number') {
+            return size;
+        }
         switch (size) {
             case 'large':
                 return 100;
@@ -123,6 +128,9 @@
         }
     }
     function getStrokeWidth(size) {
+        if (typeof size === 'number') {
+            return size / 10;
+        }
         switch (size) {
             case 'large':
                 return 10;
@@ -139,7 +147,7 @@
         const radius = derivedSize / 2 - strokeWidth;
         const circumference = radius * 2 * Math.PI;
         const offset = circumference - (25 / 100) * circumference;
-        return (React__default["default"].createElement(Container$9, { className: className },
+        return (React__default["default"].createElement(Container$e, { className: className },
             React__default["default"].createElement("svg", { width: derivedSize - strokeWidth, height: derivedSize - strokeWidth },
                 React__default["default"].createElement(BackgroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: circumference - 1 * circumference, r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 }),
                 React__default["default"].createElement(ForegroundCircle, { stroke: color, strokeWidth: strokeWidth, fill: "transparent", strokeDasharray: `${circumference} ${circumference}`, strokeDashoffset: offset, strokeLinecap: "round", r: radius, cx: radius + strokeWidth / 2, cy: radius + strokeWidth / 2 })),
@@ -506,7 +514,7 @@
                 return false;
         }
     }
-    const Container$8 = styled__default["default"].label `
+    const Container$d = styled__default["default"].label `
   display: inline-flex;
   flex-direction: ${props => (props.$flipped ? 'row-reverse' : 'row')};
   align-items: center;
@@ -655,7 +663,7 @@
         const derivedId = getDerivedId();
         const derivedDefaultChecked = getDerivedDefaultChecked();
         const derivedChecked = getDerivedChecked();
-        return (React__default["default"].createElement(Container$8, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+        return (React__default["default"].createElement(Container$d, Object.assign({ "$disabled": disabled, "$flipped": flipped, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
             React__default["default"].createElement(Square, null,
                 React__default["default"].createElement(Input$2, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: derivedDefaultChecked, checked: derivedChecked, value: value, type: "checkbox", id: derivedId, name: name, onChange: onChange }),
                 React__default["default"].createElement(SquareBorder, { "$disabled": disabled, "$variant": variant }),
@@ -716,7 +724,7 @@
                 return $disabled ? COLORS.silverChalice : COLORS.black;
         }
     }
-    const Container$7 = styled__default["default"].label `
+    const Container$c = styled__default["default"].label `
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.$disabled ? 'default' : 'pointer')};
@@ -833,7 +841,7 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (React__default["default"].createElement(Container$7, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
+        return (React__default["default"].createElement(Container$c, Object.assign({ "$disabled": disabled, className: className, as: label ? undefined : 'span' }, (label ? { htmlFor: derivedId } : {})),
             React__default["default"].createElement(OuterCircle, { "$disabled": disabled, "$variant": variant },
                 React__default["default"].createElement(Input$1, { ref: ref, "$disabled": disabled, "$variant": variant, required: required, disabled: disabled, defaultChecked: defaultChecked, checked: checked, type: "radio", id: derivedId, name: name, value: value, onChange: onChange }),
                 React__default["default"].createElement(InnerCircle, { "$variant": variant })),
@@ -993,7 +1001,7 @@
     opacity: 1;
   }
 `;
-    const animateHelperText$2 = styled.keyframes `
+    const animateHelperText$3 = styled.keyframes `
   0% {
     opacity: 0;
   }
@@ -1002,7 +1010,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor$3({ $variant }) {
+    function getVariantColor$5({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -1142,11 +1150,11 @@
                 return false;
         }
     }
-    const Container$6 = styled__default["default"].div `
+    const Container$b = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
-    const Label$2 = styled__default["default"].label `
+    const Label$3 = styled__default["default"].label `
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
@@ -1169,7 +1177,7 @@
   margin: 0;
   padding: ${getPadding$1};
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor$3};
+  border: 1px solid ${getVariantColor$5};
   border-radius: 8px;
   background-color: ${COLORS.white};
   color: ${COLORS.charade};
@@ -1241,17 +1249,17 @@
     height: ${getIconSize$2}px;
   }
 `;
-    const HelperText$2 = styled__default["default"].span `
+    const HelperText$3 = styled__default["default"].span `
   display: block;
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor$3};
+  color: ${getVariantColor$5};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
     styled.css `
-      animation: ${animateHelperText$2} 280ms ease;
+      animation: ${animateHelperText$3} 280ms ease;
     `}
 `;
     const TextField = ({ required, disabled, autoFocus, variant = 'default', id, name, type = 'text', className, size = 'medium', label, value, placeholder, helperText, ariaLabel, iconAlign = 'left', icon, onChange, }, ref) => {
@@ -1303,12 +1311,12 @@
         const derivedId = getDerivedId();
         const derivedIcon = getDerivedIcon();
         const derivedIconAlign = getDerivedIconAlign();
-        return (React__default["default"].createElement(Container$6, { "$variant": variant, "$disabled": disabled, "$size": size, className: className },
-            !!label && React__default["default"].createElement(Label$2, { htmlFor: derivedId }, label),
+        return (React__default["default"].createElement(Container$b, { "$variant": variant, "$disabled": disabled, "$size": size, className: className },
+            !!label && React__default["default"].createElement(Label$3, { htmlFor: derivedId }, label),
             React__default["default"].createElement(InputWrapper, null,
                 React__default["default"].createElement(Input, { ref: ref, "$icon": !!derivedIcon, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, required: required, disabled: disabled, autoFocus: autoFocus, type: type, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
                 !!derivedIcon && (React__default["default"].createElement(IconWrapper$2, { "$animate": shouldAnimate, "$variant": variant, "$size": size, "$iconAlign": derivedIconAlign, key: variant, onAnimationEnd: handleAnimationEnd }, derivedIcon))),
-            !!helperText && (React__default["default"].createElement(HelperText$2, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText))));
+            !!helperText && (React__default["default"].createElement(HelperText$3, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText))));
     };
     const ForwardedTextField = React.forwardRef(TextField);
 
@@ -1560,7 +1568,7 @@
       })));
     };
 
-    const Container$5 = styled__default["default"].div `
+    const Container$a = styled__default["default"].div `
   width: ${props => (props.$vertical ? 42 : 89)}px;
   height: ${props => (props.$vertical ? 89 : 42)}px;
   background-color: ${COLORS.white};
@@ -1627,7 +1635,7 @@
   user-select: none;
 `;
     const Horizontal = ({ className, onLeftButtonClick, onRightButtonClick, }) => {
-        return (React__default["default"].createElement(Container$5, { className: className },
+        return (React__default["default"].createElement(Container$a, { className: className },
             React__default["default"].createElement(Pill, null,
                 React__default["default"].createElement(PillHalf, { type: "button", "aria-label": "Left", onClick: onLeftButtonClick },
                     React__default["default"].createElement(SvgChevronLeft, null),
@@ -1637,7 +1645,7 @@
                     React__default["default"].createElement(HiddenText, null, "Right")))));
     };
     const Vertical = ({ className, onTopButtonClick, onBottomButtonClick, }) => {
-        return (React__default["default"].createElement(Container$5, { "$vertical": true, className: className },
+        return (React__default["default"].createElement(Container$a, { "$vertical": true, className: className },
             React__default["default"].createElement(Pill, { "$vertical": true },
                 React__default["default"].createElement(PillHalf, { "$vertical": true, type: "button", "aria-label": "Up", onClick: onTopButtonClick },
                     React__default["default"].createElement(SvgChevronUp, null),
@@ -8289,6 +8297,16 @@
         return t;
     }
 
+    function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
     var _path$1, _path2$1;
 
     function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
@@ -8458,7 +8476,7 @@
   background-color: ${props => props.$color};
   animation: ${progressOut} ${props => props.$duration}ms linear forwards;
 `;
-    const Container$4 = styled__default["default"].div `
+    const Container$9 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -8524,7 +8542,7 @@
   text-align: left;
   overflow: hidden;
 `;
-    const Title$1 = styled__default["default"].span `
+    const Title$2 = styled__default["default"].span `
   display: block;
   margin-bottom: 4px;
   font-family: Roboto, sans-serif;
@@ -8536,7 +8554,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-    const Message = styled__default["default"].span `
+    const Message$1 = styled__default["default"].span `
   display: block;
   font-family: Roboto, sans-serif;
   font-size: 12px;
@@ -8594,12 +8612,12 @@
             if (id)
                 context.close(id);
         }
-        return (React__default["default"].createElement(Container$4, { onClick: handleClick },
+        return (React__default["default"].createElement(Container$9, { onClick: handleClick },
             React__default["default"].createElement(Inner, null,
                 React__default["default"].createElement(InnerLeft, { "$color": color }, icon),
                 React__default["default"].createElement(InnerRight, null,
-                    !!title && React__default["default"].createElement(Title$1, { "$color": color }, title),
-                    !!message && React__default["default"].createElement(Message, null, message))),
+                    !!title && React__default["default"].createElement(Title$2, { "$color": color }, title),
+                    !!message && React__default["default"].createElement(Message$1, null, message))),
             React__default["default"].createElement(ProgressBar, { duration: duration, color: color, onAnimationEnd: handleAnimationEnd }),
             React__default["default"].createElement(CloseButton, { type: "button", onClick: handleCloseClick, "aria-label": "close" },
                 React__default["default"].createElement(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }))));
@@ -8671,7 +8689,7 @@
         })), getOrCreatePortalElement());
     };
 
-    function getVariantColor$2({ $variant }) {
+    function getVariantColor$4({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -8684,7 +8702,7 @@
                 return COLORS.mischa;
         }
     }
-    const Container$3 = styled__default["default"].div `
+    const Container$8 = styled__default["default"].div `
   z-index: 1;
   position: relative;
   display: flex;
@@ -8692,7 +8710,7 @@
   justify-content: space-between;
   padding: 11px 16px;
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor$2};
+  border: 1px solid ${getVariantColor$4};
   border-radius: 8px;
   background-color: ${COLORS.white};
 
@@ -8811,7 +8829,7 @@
             return Math.random().toString();
         }
         const derivedId = getDerivedId();
-        return (React__default["default"].createElement(Container$3, { "$disabled": disabled, "$variant": variant, className: className },
+        return (React__default["default"].createElement(Container$8, { "$disabled": disabled, "$variant": variant, className: className },
             React__default["default"].createElement(Caption, { "$hasValue": !!selectedOption, "$disabled": disabled }, (_b = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.label) !== null && _b !== void 0 ? _b : placeholder),
             React__default["default"].createElement(StyledChevronDownIcon$1, { "$hidden": !!value && !disabled, width: 20, height: 20, viewBox: "0 0 24 24" }),
             React__default["default"].createElement(Hider, null,
@@ -8850,7 +8868,7 @@
       })));
     };
 
-    const animateHelperText$1 = styled.keyframes `
+    const animateHelperText$2 = styled.keyframes `
   0% {
     opacity: 0;
   }
@@ -8859,7 +8877,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor$1({ $variant }) {
+    function getVariantColor$3({ $variant }) {
         switch ($variant) {
             case 'success':
                 return COLORS.emerald;
@@ -8880,12 +8898,12 @@
                 return false;
         }
     }
-    const Container$2 = styled__default["default"].div `
+    const Container$7 = styled__default["default"].div `
   position: relative;
   display: flex;
   flex-direction: column;
 `;
-    const Label$1 = styled__default["default"].label `
+    const Label$2 = styled__default["default"].label `
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
@@ -8898,7 +8916,7 @@
   display: block;
   padding: 20px 16px;
   box-sizing: border-box;
-  border: 1px solid ${getVariantColor$1};
+  border: 1px solid ${getVariantColor$3};
   border-radius: 8px;
   background-color: ${COLORS.white};
   color: ${COLORS.charade};
@@ -8927,17 +8945,17 @@
     font-weight: 400;
   }
 `;
-    const HelperText$1 = styled__default["default"].span `
+    const HelperText$2 = styled__default["default"].span `
   display: block;
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor$1};
+  color: ${getVariantColor$3};
   transition: color 280ms ease;
 
   ${props => props.$animate &&
     styled.css `
-      animation: ${animateHelperText$1} 280ms ease;
+      animation: ${animateHelperText$2} 280ms ease;
     `}
 `;
     const QuestionMarkContainer = styled__default["default"].div `
@@ -8974,10 +8992,10 @@
             }
         }, [variant, prevVariant, shouldAnimate]);
         const derivedId = getDerivedId();
-        return (React__default["default"].createElement(Container$2, { className: className },
-            !!label && React__default["default"].createElement(Label$1, { htmlFor: derivedId }, label),
+        return (React__default["default"].createElement(Container$7, { className: className },
+            !!label && React__default["default"].createElement(Label$2, { htmlFor: derivedId }, label),
             React__default["default"].createElement(StyledTextArea, { "$resizable": resizable, "$variant": variant, required: required, disabled: disabled, autoFocus: autoFocus, rows: rows, ref: ref, id: derivedId, name: name, value: value, placeholder: placeholder, "aria-label": ariaLabel, onChange: onChange }),
-            !!helperText && (React__default["default"].createElement(HelperText$1, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText)),
+            !!helperText && (React__default["default"].createElement(HelperText$2, { "$animate": shouldAnimate, "$variant": variant, onAnimationEnd: handleAnimationEnd }, helperText)),
             question && !disabled && (React__default["default"].createElement(Tooltip, { label: question, position: "left" },
                 React__default["default"].createElement(QuestionMarkContainer, null,
                     React__default["default"].createElement(SvgQuestionMark, { width: 16, height: 16, color: COLORS.white, viewBox: "0 0 24 24" }))))));
@@ -9071,7 +9089,7 @@
     opacity: 1;
   }
 `;
-    const animateHelperText = styled.keyframes `
+    const animateHelperText$1 = styled.keyframes `
   0% {
     opacity: 0;
   }
@@ -9080,7 +9098,7 @@
     opacity: 1;
   }
 `;
-    function getVariantColor({ variant }) {
+    function getVariantColor$2({ variant }) {
         switch (variant) {
             case 'success':
                 return COLORS.emerald;
@@ -9244,7 +9262,7 @@
     color: ${COLORS.charade};
   }
 `;
-    const Label = styled__default["default"].label `
+    const Label$1 = styled__default["default"].label `
   display: block;
   margin-bottom: 3px;
   font-size: 12px;
@@ -9254,20 +9272,20 @@
   overflow: hidden;
   text-align: left;
 `;
-    const HelperText = styled__default["default"].span `
+    const HelperText$1 = styled__default["default"].span `
   display: block;
   padding-top: 5px;
   font-size: 10px;
   line-height: 1.172em;
-  color: ${getVariantColor};
+  color: ${getVariantColor$2};
   transition: color 280ms ease;
 
   ${props => props.animate &&
     styled.css `
-      animation: ${animateHelperText} 280ms ease;
+      animation: ${animateHelperText$1} 280ms ease;
     `}
 `;
-    const Container$1 = styled__default["default"].div `
+    const Container$6 = styled__default["default"].div `
   display: flex;
   flex-direction: column;
 `;
@@ -9310,7 +9328,7 @@
     margin: 0;
     padding: ${getPadding};
     box-sizing: border-box;
-    border: 1px solid ${getVariantColor};
+    border: 1px solid ${getVariantColor$2};
     border-radius: 8px;
     background-color: ${COLORS.white};
     color: ${COLORS.charade};
@@ -9432,7 +9450,7 @@
             React__default["default"].createElement(Select$1.components.Control, Object.assign({}, props),
                 children,
                 !!icon && (React__default["default"].createElement(IconWrapper, { "$active": !!value && value.length > 0, "$animate": animate, "$variant": variant, "$size": size, key: variant, onAnimationEnd: onAnimationEnd }, icon))),
-            !!helperText && !menuIsOpen && (React__default["default"].createElement(HelperText, { animate: animate, variant: variant, onAnimationEnd: onAnimationEnd }, helperText))));
+            !!helperText && !menuIsOpen && (React__default["default"].createElement(HelperText$1, { animate: animate, variant: variant, onAnimationEnd: onAnimationEnd }, helperText))));
     }
     function CustomDropdownIndicator(props) {
         return React__default["default"].createElement(StyledChevronDownIcon, null);
@@ -9635,8 +9653,8 @@
         }, [rerenderOnWindowResize]);
         const derivedId = getDerivedId();
         const derivedIcon = getDerivedIcon();
-        return (React__default["default"].createElement(Container$1, { className: className },
-            !!label && React__default["default"].createElement(Label, { htmlFor: derivedId }, label),
+        return (React__default["default"].createElement(Container$6, { className: className },
+            !!label && React__default["default"].createElement(Label$1, { htmlFor: derivedId }, label),
             React__default["default"].createElement(SelectWrapper, null,
                 React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { ref: selectRef, animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                         ? (_b = document.getElementById(menuPortalTarget)) !== null && _b !== void 0 ? _b : undefined
@@ -9650,7 +9668,7 @@
                     } })))));
     }
 
-    const Container = styled__default["default"].div `
+    const Container$5 = styled__default["default"].div `
   z-index: -1;
   position: relative;
   display: flex;
@@ -9680,7 +9698,7 @@
   line-height: 1.4em;
   max-width: 440px;
 `;
-    const Title = styled__default["default"].h1 `
+    const Title$1 = styled__default["default"].h1 `
   flex-shrink: 0;
   font-size: 64px;
   line-height: 0.828125em;
@@ -9691,20 +9709,540 @@
   }
 `;
     function Hero({ className, title, subtitle, children }) {
-        return (React__default["default"].createElement(Container, { className: className },
+        return (React__default["default"].createElement(Container$5, { className: className },
             (!!title || !!subtitle) && (React__default["default"].createElement(Header, null,
-                !!title && React__default["default"].createElement(Title, null, title),
+                !!title && React__default["default"].createElement(Title$1, null, title),
                 !!subtitle && React__default["default"].createElement(Subtitle, null, subtitle))),
             children));
+    }
+
+    function getVariantColor$1({ $variant }) {
+        switch ($variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.charade;
+        }
+    }
+    const Container$4 = styled__default["default"].label `
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12px;
+  line-height: 1.667em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+  color: ${getVariantColor$1};
+`;
+    function Label({ className, variant = 'default', as, htmlFor, children, }) {
+        return (React__default["default"].createElement(Container$4, { "$variant": variant, as: as, htmlFor: as ? undefined : htmlFor, className: className }, children));
+    }
+
+    function useVariantAnimation(variant) {
+        const prevVariant = usePrevious(variant);
+        const ref = React.useRef(null);
+        const [shouldAnimate, setShouldAnimate] = React.useState(false);
+        React.useEffect(() => {
+            if (variant !== prevVariant && !shouldAnimate) {
+                setShouldAnimate(true);
+            }
+        }, [variant, prevVariant, shouldAnimate]);
+        React.useEffect(() => {
+            function handleAnimationEnd() {
+                if (shouldAnimate)
+                    setShouldAnimate(false);
+            }
+            const elem = ref.current;
+            elem === null || elem === void 0 ? void 0 : elem.addEventListener('animationend', handleAnimationEnd);
+            return () => {
+                elem === null || elem === void 0 ? void 0 : elem.removeEventListener('animationend', handleAnimationEnd);
+            };
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
+        return {
+            ref,
+            shouldAnimate,
+        };
+    }
+
+    const animateHelperText = styled.keyframes `
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+    const Container$3 = styled__default["default"].span `
+  display: block;
+  padding-top: 5px;
+  font-size: 10px;
+  line-height: 1.172em;
+  color: ${getVariantColor};
+  transition: color 280ms ease;
+
+  ${props => props.$animate &&
+    styled.css `
+      animation: ${animateHelperText} 280ms ease;
+    `}
+`;
+    function getVariantColor({ $variant }) {
+        switch ($variant) {
+            case 'success':
+                return COLORS.emerald;
+            case 'warning':
+                return COLORS.yellowOrange;
+            case 'error':
+                return COLORS.carnation;
+            case 'default':
+            default:
+                return COLORS.charade;
+        }
+    }
+    function HelperText({ className, variant = 'default', children, }) {
+        const { ref, shouldAnimate } = useVariantAnimation(variant);
+        return (React__default["default"].createElement(Container$3, { ref: ref, "$animate": shouldAnimate, "$variant": variant, className: className }, children));
+    }
+
+    const Container$2 = styled__default["default"].button `
+  appearance: none;
+  background: transparent;
+  font: inherit;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: ${COLORS.charade};
+  text-align: center;
+  box-sizing: border-box;
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+`;
+    function PlainButtonComponent(_a, ref) {
+        var { type = 'button' } = _a, buttonProps = __rest(_a, ["type"]);
+        return React__default["default"].createElement(Container$2, Object.assign({ ref: ref, type: type }, buttonProps));
+    }
+    const PlainButton = React.forwardRef(PlainButtonComponent);
+
+    const backdropFadeIn = styled.keyframes `
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+    const backdropFadeOut = styled.keyframes `
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+    const containerFadeIn = styled.keyframes `
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+`;
+    const containerFadeOut = styled.keyframes `
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+`;
+    const Wrapper = styled__default["default"].div `
+  z-index: ${props => (props.$hidden ? -1 : 2)};
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: ${props => (props.$hidden ? 'none' : 'flex')};
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  visibility: ${props => (props.$visible ? 'visible' : 'hidden')};
+  pointer-events: ${props => (props.$visible ? 'auto' : 'none')};
+  padding: 10px;
+`;
+    const Backdrop = styled__default["default"].div `
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: ${props => (props.$closing ? backdropFadeOut : backdropFadeIn)}
+    180ms ease-out;
+`;
+    const Container$1 = styled__default["default"].section `
+  max-height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  animation: ${props => (props.$closing ? containerFadeOut : containerFadeIn)}
+    180ms ease-out;
+`;
+    const openModals = new Set([]);
+    function ModalComponent({ unmountOnClose = false, id = '', className, children, onDidClose, }, ref) {
+        const [visible, setVisible] = React.useState(false);
+        const [closing, setClosing] = React.useState(false);
+        const [mounted, setMounted] = React.useState(false);
+        const [internalID, setInternalID] = React.useState('');
+        const closeCb = React.useRef(null);
+        const portalRef = React.useRef(null);
+        const backdropRef = React.useRef(null);
+        const containerRef = React.useRef(null);
+        React.useImperativeHandle(ref, () => ({
+            open: () => (visible ? undefined : setVisible(true)),
+            close: cb => {
+                if (cb) {
+                    closeCb.current = cb;
+                }
+                if (visible && !closing) {
+                    setClosing(true);
+                }
+            },
+            toggle: () => {
+                if (visible && !closing) {
+                    setClosing(true);
+                }
+                else if (!visible && !closing) {
+                    setVisible(true);
+                }
+            },
+        }));
+        React.useEffect(() => {
+            const { current: backdrop } = backdropRef;
+            function handleAnimationEnd() {
+                var _a;
+                console.log('handleAnimationEnd');
+                setVisible(false);
+                setClosing(false);
+                onDidClose === null || onDidClose === void 0 ? void 0 : onDidClose();
+                (_a = closeCb.current) === null || _a === void 0 ? void 0 : _a.call(closeCb);
+            }
+            if (backdrop && closing) {
+                backdrop.addEventListener('animationend', handleAnimationEnd);
+            }
+            return () => {
+                if (backdrop) {
+                    backdrop.removeEventListener('animationend', handleAnimationEnd);
+                }
+            };
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [closing]);
+        React.useEffect(() => {
+            function selector(tag) {
+                return `${tag}:not([type="hidden"]:not([tabIndex="-1"]):not([disabled])):not([data-plain-button])`;
+            }
+            function focusFirstFocusable() {
+                var _a;
+                if (containerRef.current) {
+                    const focusableElems = ['a', 'input', 'button', 'select', 'textarea'];
+                    const selectors = focusableElems.map(selector);
+                    const elem = containerRef.current.querySelector(selectors.join(','));
+                    if (elem) {
+                        // @ts-ignore
+                        (_a = elem.focus) === null || _a === void 0 ? void 0 : _a.call(elem, { focusVisible: true });
+                    }
+                }
+            }
+            function handleEscape({ keyCode, key }) {
+                if (visible &&
+                    !closing &&
+                    (keyCode === 27 || key === 'Escape' || key === 'Esc')) {
+                    setClosing(true);
+                }
+            }
+            if (mounted && visible && !closing) {
+                focusFirstFocusable();
+                document.addEventListener('keydown', handleEscape);
+            }
+            return () => {
+                document.removeEventListener('keydown', handleEscape);
+            };
+        }, [closing, visible, mounted]);
+        React.useEffect(() => {
+            if (internalID) {
+                if (visible && !openModals.has(internalID)) {
+                    openModals.add(internalID);
+                }
+                else if (openModals.has(internalID)) {
+                    openModals.delete(internalID);
+                }
+                document.body.style.overflow = openModals.size > 0 ? 'hidden' : '';
+            }
+        }, [visible, internalID]);
+        React.useEffect(() => {
+            portalRef.current = document.getElementById('modal-portal');
+            const generatedInternalID = `modal-${Math.random().toString().split('.')[1]}`;
+            setInternalID(generatedInternalID);
+            setMounted(true);
+            return () => {
+                if (openModals.has(generatedInternalID)) {
+                    openModals.delete(generatedInternalID);
+                }
+            };
+        }, []);
+        function shouldRender() {
+            if (!mounted) {
+                return false;
+            }
+            if (unmountOnClose) {
+                return visible || closing;
+            }
+            return true;
+        }
+        return shouldRender()
+            ? reactDom.createPortal(React__default["default"].createElement(Wrapper, { "$visible": visible, "$hidden": !visible && !closing },
+                React__default["default"].createElement(Backdrop, { ref: backdropRef, "$closing": closing, onClick: visible && !closing ? () => setClosing(true) : undefined }),
+                React__default["default"].createElement(Container$1, { ref: containerRef, "$closing": closing, className: className, "aria-modal": "true", role: "dialog" }, children)), portalRef.current, id)
+            : null;
+    }
+    const Modal = React.forwardRef(ModalComponent);
+
+    function useModal(forwardedRef) {
+        const ref = React.useRef(null);
+        const derivedRef = typeof forwardedRef === 'function' ? ref : forwardedRef !== null && forwardedRef !== void 0 ? forwardedRef : ref;
+        const toggle = React.useCallback(() => {
+            var _a, _b;
+            (_b = (_a = derivedRef === null || derivedRef === void 0 ? void 0 : derivedRef.current) === null || _a === void 0 ? void 0 : _a.toggle) === null || _b === void 0 ? void 0 : _b.call(_a);
+        }, [derivedRef]);
+        const open = React.useCallback(() => {
+            var _a, _b;
+            (_b = (_a = derivedRef === null || derivedRef === void 0 ? void 0 : derivedRef.current) === null || _a === void 0 ? void 0 : _a.open) === null || _b === void 0 ? void 0 : _b.call(_a);
+        }, [derivedRef]);
+        const close = React.useCallback((cb) => {
+            var _a, _b;
+            (_b = (_a = derivedRef === null || derivedRef === void 0 ? void 0 : derivedRef.current) === null || _a === void 0 ? void 0 : _a.close) === null || _b === void 0 ? void 0 : _b.call(_a, cb);
+        }, [derivedRef]);
+        close.wrap = (cb) => close(cb);
+        return { ref: forwardedRef !== null && forwardedRef !== void 0 ? forwardedRef : ref, toggle, open, close };
+    }
+
+    const DialogModal = styled__default["default"](Modal) `
+  width: 100%;
+  max-width: 390px;
+`;
+    const Container = styled__default["default"].div `
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 18px 18px 32px;
+  text-align: center;
+  background-color: ${COLORS.white};
+  color: ${COLORS.charade};
+  border-radius: 8px;
+`;
+    const TopBar = styled__default["default"].div `
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: -10px;
+`;
+    const Title = styled__default["default"](Text) `
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.167em;
+`;
+    const HorizontalLine = styled__default["default"].div `
+  margin-bottom: 32px;
+  width: 100%;
+  height: 1px;
+  background-color: ${COLORS.mischa};
+`;
+    const Message = styled__default["default"](Text) `
+  max-width: 316px;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  line-height: 1.167em;
+`;
+    const ButtonsRow = styled__default["default"].div `
+  display: flex;
+  margin: 0 -8px;
+`;
+    const ButtonCol = styled__default["default"].div `
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 0 8px;
+  box-sizing: border-box;
+`;
+    function DialogComponent({ title, message, buttons, onDidClose }, forwardedRef) {
+        const { ref, close } = useModal(forwardedRef);
+        return (React__default["default"].createElement(DialogModal, { ref: ref, unmountOnClose: true, onDidClose: onDidClose },
+            React__default["default"].createElement(Container, null,
+                React__default["default"].createElement(TopBar, null,
+                    React__default["default"].createElement(PlainButton, { onClick: () => close(), "aria-label": "close" },
+                        React__default["default"].createElement(SvgX, { width: 20, height: 20, viewBox: "0 0 24 24" }))),
+                !!title && React__default["default"].createElement(Title, null, title),
+                !!title && !!message && React__default["default"].createElement(HorizontalLine, null),
+                !!message && React__default["default"].createElement(Message, null, message),
+                !!(buttons === null || buttons === void 0 ? void 0 : buttons.length) && (React__default["default"].createElement(ButtonsRow, null, buttons.map(({ loading, outlined, variant, title, onClick }) => (React__default["default"].createElement(ButtonCol, { key: title },
+                    React__default["default"].createElement(Button, { loading: loading, outlined: outlined, variant: variant, onClick: onClick }, title)))))))));
+    }
+    DialogComponent.confirm = () => __awaiter(void 0, void 0, void 0, function* () {
+        throw new Error('Dialog.confirm() was called before it had been initialized');
+    });
+    DialogComponent.info = () => __awaiter(void 0, void 0, void 0, function* () {
+        throw new Error('Dialog.info() was called before it had been initialized');
+    });
+    const Dialog = React.forwardRef(DialogComponent);
+
+    function DialogProvider() {
+        const { ref, open, close } = useModal();
+        const [config, setConfig] = React.useState(null);
+        const didClickButton = React.useRef(false);
+        React.useEffect(() => {
+            function updateConfirmAcceptButton(isLoading) {
+                setConfig(prev => prev
+                    ? Object.assign(Object.assign({}, prev), { buttons: [
+                            Object.assign(Object.assign({}, prev.buttons[0]), { disabled: isLoading }),
+                            Object.assign(Object.assign({}, prev.buttons[1]), { isLoading }),
+                        ] }) : null);
+            }
+            function handleAcceptButtonClick(button) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    didClickButton.current = true;
+                    if (button.onClick) {
+                        try {
+                            const maybePromise = button.onClick();
+                            if (maybePromise.then) {
+                                updateConfirmAcceptButton(true);
+                                yield maybePromise;
+                            }
+                        }
+                        catch (err) {
+                            updateConfirmAcceptButton(false);
+                            throw err;
+                        }
+                    }
+                });
+            }
+            function confirm(args) {
+                var _a, _b;
+                const defaultDecline = {
+                    title: 'Decline',
+                    variant: 'error',
+                    outlined: true,
+                };
+                const defaultAccept = {
+                    title: 'Accept',
+                    variant: 'success',
+                    outlined: true,
+                };
+                const decline = Object.assign(Object.assign({}, defaultDecline), ((_a = args.decline) !== null && _a !== void 0 ? _a : {}));
+                const accept = Object.assign(Object.assign({}, defaultAccept), ((_b = args.accept) !== null && _b !== void 0 ? _b : {}));
+                return new Promise(resolve => {
+                    setConfig({
+                        title: args.title,
+                        message: args.message,
+                        onDidClose: () => {
+                            if (!didClickButton.current) {
+                                resolve(false);
+                            }
+                        },
+                        buttons: [
+                            Object.assign(Object.assign({}, decline), { onClick: () => __awaiter(this, void 0, void 0, function* () {
+                                    didClickButton.current = true;
+                                    close(() => resolve(false));
+                                }) }),
+                            Object.assign(Object.assign({}, accept), { onClick: () => __awaiter(this, void 0, void 0, function* () {
+                                    yield handleAcceptButtonClick(accept);
+                                    close(() => resolve(true));
+                                }) }),
+                        ],
+                    });
+                });
+            }
+            Dialog.confirm = args => new Promise(resolve => {
+                confirm(args).then(result => {
+                    setConfig(null);
+                    didClickButton.current = false;
+                    resolve(result);
+                });
+            });
+            function info(args) {
+                return new Promise(resolve => {
+                    var _a;
+                    const defaultInfoButton = {
+                        title: 'OK',
+                        variant: 'default',
+                        outlined: true,
+                        onClick: () => close(),
+                    };
+                    const infoButton = Object.assign(Object.assign({}, defaultInfoButton), ((_a = args.button) !== null && _a !== void 0 ? _a : {}));
+                    setConfig({
+                        title: args.title,
+                        message: args.message,
+                        buttons: [infoButton],
+                        onDidClose: () => {
+                            setConfig(null);
+                            resolve();
+                        },
+                    });
+                });
+            }
+            Dialog.info = info;
+        }, [close]);
+        React.useEffect(() => {
+            if (config) {
+                open();
+            }
+        }, [config, open]);
+        return config ? (React__default["default"].createElement(Dialog, { ref: ref, title: config.title, message: config.message, buttons: config.buttons, onDidClose: config.onDidClose })) : null;
+    }
+
+    function useDialog() {
+        const confirm = React.useCallback((args) => __awaiter(this, void 0, void 0, function* () {
+            const result = yield Dialog.confirm(args);
+            return result;
+        }), []);
+        const info = React.useCallback((args) => __awaiter(this, void 0, void 0, function* () {
+            yield Dialog.info(args);
+        }), []);
+        return {
+            confirm,
+            info,
+        };
     }
 
     exports.Avatar = Avatar;
     exports.Button = Button;
     exports.Checkbox = ForwardedCheckbox;
+    exports.DialogProvider = DialogProvider;
     exports.GlobalStyle = GlobalStyle;
+    exports.HelperText = HelperText;
     exports.Hero = Hero;
+    exports.Label = Label;
     exports.Menu = ForwardedMenu;
+    exports.Modal = Modal;
     exports.MultiSelect = MultiSelect;
+    exports.PlainButton = PlainButton;
     exports.RadioButton = ForwardedRadioButton;
     exports.Select = ForwardedSelect;
     exports.Slider = Slider;
@@ -9717,6 +10255,8 @@
     exports.Toaster = Toaster;
     exports.Tooltip = Tooltip;
     exports.globalStyle = globalStyle;
+    exports.useDialog = useDialog;
+    exports.useModal = useModal;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
