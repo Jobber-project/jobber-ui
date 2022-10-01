@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 
 import COLORS from '../shared/colors'
 
-export type SpinnerSize = 'small' | 'medium' | 'large'
+export type SpinnerSize = 'small' | 'medium' | 'large' | number
 
 const animation = keyframes`
   0% {
@@ -18,7 +18,9 @@ const animation = keyframes`
 const Container = styled.span`
   z-index: 1;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const Circle = styled.circle`
@@ -36,6 +38,10 @@ const ForegroundCircle = styled(Circle)`
 `
 
 function getDerivedSize(size: SpinnerSize): number {
+  if (typeof size === 'number') {
+    return size
+  }
+
   switch (size) {
     case 'large':
       return 100
@@ -50,6 +56,10 @@ function getDerivedSize(size: SpinnerSize): number {
 }
 
 function getStrokeWidth(size: SpinnerSize): number {
+  if (typeof size === 'number') {
+    return size / 10
+  }
+
   switch (size) {
     case 'large':
       return 10
