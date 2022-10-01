@@ -10,8 +10,6 @@ import React, {
 import { createPortal } from 'react-dom'
 import styled, { keyframes } from 'styled-components'
 
-import COLORS from '../shared/colors'
-
 import { ModalInstance } from './types'
 
 const backdropFadeIn = keyframes`
@@ -153,9 +151,11 @@ function ModalComponent(
     const { current: backdrop } = backdropRef
 
     function handleAnimationEnd() {
+      console.log('handleAnimationEnd')
       setVisible(false)
       setClosing(false)
       onDidClose?.()
+      closeCb.current?.()
     }
 
     if (backdrop && closing) {
@@ -274,5 +274,7 @@ function ModalComponent(
 }
 
 const Modal = forwardRef(ModalComponent)
+
+export type { ModalProps }
 
 export default Modal

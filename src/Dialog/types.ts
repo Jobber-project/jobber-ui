@@ -17,7 +17,6 @@ export interface DialogButtonConfig {
 }
 
 export interface DialogConfig {
-  center?: boolean
   title?: ReactNode
   message?: ReactNode
   buttons: DialogButtonConfig[]
@@ -30,23 +29,18 @@ export interface DialogConfirmButtonConfig {
 }
 
 export type DialogConfirmArgs = {
-  center?: boolean
   title?: ReactNode
   message?: ReactNode
   accept?: DialogConfirmButtonConfig
   decline?: DialogConfirmButtonConfig
 }
 
-export interface DialogInfoButton {
+export interface DialogInfoButtonConfig {
   title: string
 }
-
-export type DialogConfirmCallback = (
-  args: DialogConfirmArgs,
-) => Promise<boolean>
 
 export type DialogInfoArgs = {
   title?: ReactNode
   message?: ReactNode
-  button?: DialogInfoButton
+  button?: DialogInfoButtonConfig
 }

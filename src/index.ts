@@ -30,6 +30,24 @@ import HelperText, {
   HelperTextProps,
   HelperTextVariant,
 } from './HelperText/HelperText'
+import PlainButton, { PlainButtonProps } from './PlainButton/PlainButton'
+import Modal, { ModalProps } from './Modal/Modal'
+import useModal from './Modal/useModal'
+import {
+  CloseFunction,
+  ModalInstance,
+  UseModalReturnValue,
+} from './Modal/types'
+import DialogProvider from './Dialog/DialogProvider'
+import useDialog from './Dialog/useDialog'
+import {
+  DialogButtonConfig,
+  DialogConfig,
+  DialogConfirmArgs,
+  DialogConfirmButtonConfig,
+  DialogInfoArgs,
+  DialogInfoButtonConfig,
+} from './Dialog/types'
 
 export type {
   ButtonSize,
@@ -54,6 +72,17 @@ export type {
   LabelVariant,
   HelperTextProps,
   HelperTextVariant,
+  PlainButtonProps,
+  ModalProps,
+  CloseFunction,
+  ModalInstance,
+  UseModalReturnValue,
+  DialogButtonConfig,
+  DialogConfig,
+  DialogConfirmArgs,
+  DialogConfirmButtonConfig,
+  DialogInfoArgs,
+  DialogInfoButtonConfig,
 }
 
 export {
@@ -78,4 +107,9 @@ export {
   Hero,
   Label,
   HelperText,
+  PlainButton,
+  Modal,
+  useModal,
+  DialogProvider,
+  useDialog,
 }

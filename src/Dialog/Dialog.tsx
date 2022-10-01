@@ -1,11 +1,4 @@
-import React, {
-  ForwardedRef,
-  forwardRef,
-  ReactNode,
-  Ref,
-  RefObject,
-  useRef,
-} from 'react'
+import React, { forwardRef, ReactNode, Ref } from 'react'
 import styled from 'styled-components'
 
 import Modal from '../Modal/Modal'
