@@ -25,7 +25,7 @@ import MultiSelect, {
   RenderOptionProps,
 } from './MultiSelect/MultiSelect'
 import Hero from './Hero/Hero'
-import Label, { LabelProps } from './Label/Label'
+import Label, { LabelProps, LabelVariant } from './Label/Label'
 
 export type {
   ButtonSize,
@@ -47,6 +47,7 @@ export type {
   RenderOptionProps,
   SelectProps,
   LabelProps,
+  LabelVariant,
 }
 
 export {

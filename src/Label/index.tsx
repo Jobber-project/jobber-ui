@@ -1,5 +1,5 @@
-import Label, { LabelProps } from './Label'
+import Label, { LabelProps, LabelVariant } from './Label'
 
-export type { LabelProps }
+export type { LabelProps, LabelVariant }
 
 export default Label

@@ -62,6 +62,6 @@ function Label({
   )
 }
 
-export type { LabelProps }
+export type { LabelProps, LabelVariant }
 
 export default Label
