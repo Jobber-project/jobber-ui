@@ -36,18 +36,26 @@ const Container = styled.label<{
 `
 
 interface LabelProps {
+  className?: string
   variant?: LabelVariant
   as?: keyof HTMLElementTagNameMap
   htmlFor?: string
   children?: ReactNode
 }
 
-function Label({ variant = 'default', as, htmlFor, children }: LabelProps) {
+function Label({
+  className,
+  variant = 'default',
+  as,
+  htmlFor,
+  children,
+}: LabelProps) {
   return (
     <Container
       $variant={variant}
       as={as as any}
       htmlFor={as ? undefined : htmlFor}
+      className={className}
     >
       {children}
     </Container>
