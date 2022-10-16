@@ -47,8 +47,9 @@ const MenuItemWrapper = styled.button<any>`
   padding: 0px 16px;
   margin: 10px 16px 0px 16px;
   border-radius: 8px;
-
   transition: background-color 0.2s ease-in;
+
+  ${props => props.$active && `background-color: ${COLORS.linkWater};`}
 
   &:last-child {
     margin-bottom: 16px;
@@ -93,6 +94,7 @@ const MenuIcon = styled.div`
 `
 
 type MenuItemProps = {
+  active?: boolean
   isVisible?: boolean
   as?: 'button' | 'a' | 'span'
   className?: string
@@ -103,6 +105,7 @@ type MenuItemProps = {
 }
 
 export const Item: FC<MenuItemProps> = ({
+  active = false,
   isVisible = false,
   as,
   className,
@@ -113,6 +116,7 @@ export const Item: FC<MenuItemProps> = ({
 }): JSX.Element => {
   return (
     <MenuItemWrapper
+      $active={active}
       tabIndex={isVisible ? undefined : -1}
       as={as}
       className={className}
