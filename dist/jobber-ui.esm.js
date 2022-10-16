@@ -4138,8 +4138,9 @@ const MenuItemWrapper = styled.button `
   padding: 0px 16px;
   margin: 10px 16px 0px 16px;
   border-radius: 8px;
-
   transition: background-color 0.2s ease-in;
+
+  ${props => props.$active && `background-color: ${COLORS.linkWater};`}
 
   &:last-child {
     margin-bottom: 16px;
@@ -4180,8 +4181,8 @@ const MenuIcon = styled.div `
   color: ${COLORS.havelockBlue};
   margin-right: 8px;
 `;
-const Item = ({ isVisible = false, as, className, href, onClick, icon, children, }) => {
-    return (React__default.createElement(MenuItemWrapper, { tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick },
+const Item = ({ active = false, isVisible = false, as, className, href, onClick, icon, children, }) => {
+    return (React__default.createElement(MenuItemWrapper, { "$active": active, tabIndex: isVisible ? undefined : -1, as: as, className: className, type: as === undefined ? 'button' : undefined, href: as === 'a' ? href : undefined, onClick: onClick },
         icon && React__default.createElement(MenuIcon, null, icon),
         children && React__default.createElement(MenuLabel, null, children)));
 };
