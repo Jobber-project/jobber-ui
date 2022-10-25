@@ -9913,7 +9913,6 @@ function ModalComponent({ unmountOnClose = false, id = '', className, children, 
         const { current: backdrop } = backdropRef;
         function handleAnimationEnd() {
             var _a;
-            console.log('handleAnimationEnd');
             setVisible(false);
             setClosing(false);
             onDidClose === null || onDidClose === void 0 ? void 0 : onDidClose();
