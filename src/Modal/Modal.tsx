@@ -151,7 +151,6 @@ function ModalComponent(
     const { current: backdrop } = backdropRef
 
     function handleAnimationEnd() {
-      console.log('handleAnimationEnd')
       setVisible(false)
       setClosing(false)
       onDidClose?.()
