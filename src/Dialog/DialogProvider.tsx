@@ -33,9 +33,21 @@ function DialogProvider() {
       )
     }
 
-    async function handleAcceptButtonClick(button: DialogConfirmButtonConfig) {
-      didClickButton.current = true
+    function updateConfirmDeclineButton(isLoading: boolean) {
+      setConfig(prev =>
+        prev
+          ? {
+              ...prev,
+              buttons: [
+                { ...prev.buttons[0], isLoading },
+                { ...prev.buttons[1], disabled: isLoading },
+              ],
+            }
+          : null,
+      )
+    }
 
+    async function handleAcceptButtonClick(button: DialogConfirmButtonConfig) {
       if (button.onClick) {
         try {
           const maybePromise = button.onClick()
@@ -45,6 +57,21 @@ function DialogProvider() {
           }
         } catch (err) {
           updateConfirmAcceptButton(false)
+          throw err
+        }
+      }
+    }
+
+    async function handleDeclineButtonClick(button: DialogConfirmButtonConfig) {
+      if (button.onClick) {
+        try {
+          const maybePromise = button.onClick()
+          if ((maybePromise as Promise<any>).then) {
+            updateConfirmDeclineButton(true)
+            await maybePromise
+          }
+        } catch (err) {
+          updateConfirmDeclineButton(false)
           throw err
         }
       }
@@ -87,12 +114,14 @@ function DialogProvider() {
               ...decline,
               onClick: async () => {
                 didClickButton.current = true
+                await handleDeclineButtonClick(decline)
                 close(() => resolve(false))
               },
             },
             {
               ...accept,
               onClick: async () => {
+                didClickButton.current = true
                 await handleAcceptButtonClick(accept)
                 close(() => resolve(true))
               },
