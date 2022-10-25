@@ -10125,9 +10125,15 @@
                             Object.assign(Object.assign({}, prev.buttons[1]), { isLoading }),
                         ] }) : null);
             }
+            function updateConfirmDeclineButton(isLoading) {
+                setConfig(prev => prev
+                    ? Object.assign(Object.assign({}, prev), { buttons: [
+                            Object.assign(Object.assign({}, prev.buttons[0]), { isLoading }),
+                            Object.assign(Object.assign({}, prev.buttons[1]), { disabled: isLoading }),
+                        ] }) : null);
+            }
             function handleAcceptButtonClick(button) {
                 return __awaiter(this, void 0, void 0, function* () {
-                    didClickButton.current = true;
                     if (button.onClick) {
                         try {
                             const maybePromise = button.onClick();
@@ -10138,6 +10144,23 @@
                         }
                         catch (err) {
                             updateConfirmAcceptButton(false);
+                            throw err;
+                        }
+                    }
+                });
+            }
+            function handleDeclineButtonClick(button) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    if (button.onClick) {
+                        try {
+                            const maybePromise = button.onClick();
+                            if (maybePromise.then) {
+                                updateConfirmDeclineButton(true);
+                                yield maybePromise;
+                            }
+                        }
+                        catch (err) {
+                            updateConfirmDeclineButton(false);
                             throw err;
                         }
                     }
@@ -10169,9 +10192,11 @@
                         buttons: [
                             Object.assign(Object.assign({}, decline), { onClick: () => __awaiter(this, void 0, void 0, function* () {
                                     didClickButton.current = true;
+                                    yield handleDeclineButtonClick(decline);
                                     close(() => resolve(false));
                                 }) }),
                             Object.assign(Object.assign({}, accept), { onClick: () => __awaiter(this, void 0, void 0, function* () {
+                                    didClickButton.current = true;
                                     yield handleAcceptButtonClick(accept);
                                     close(() => resolve(true));
                                 }) }),
