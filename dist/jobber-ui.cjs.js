@@ -10121,18 +10121,18 @@ function DialogProvider() {
     const [config, setConfig] = React.useState(null);
     const didClickButton = React.useRef(false);
     React.useEffect(() => {
-        function updateConfirmAcceptButton(isLoading) {
+        function updateConfirmAcceptButton(loading) {
             setConfig(prev => prev
                 ? Object.assign(Object.assign({}, prev), { buttons: [
-                        Object.assign(Object.assign({}, prev.buttons[0]), { disabled: isLoading }),
-                        Object.assign(Object.assign({}, prev.buttons[1]), { isLoading }),
+                        Object.assign(Object.assign({}, prev.buttons[0]), { disabled: loading }),
+                        Object.assign(Object.assign({}, prev.buttons[1]), { loading }),
                     ] }) : null);
         }
-        function updateConfirmDeclineButton(isLoading) {
+        function updateConfirmDeclineButton(loading) {
             setConfig(prev => prev
                 ? Object.assign(Object.assign({}, prev), { buttons: [
-                        Object.assign(Object.assign({}, prev.buttons[0]), { isLoading }),
-                        Object.assign(Object.assign({}, prev.buttons[1]), { disabled: isLoading }),
+                        Object.assign(Object.assign({}, prev.buttons[0]), { loading }),
+                        Object.assign(Object.assign({}, prev.buttons[1]), { disabled: loading }),
                     ] }) : null);
         }
         function handleAcceptButtonClick(button) {
