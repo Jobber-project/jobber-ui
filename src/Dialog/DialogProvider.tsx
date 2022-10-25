@@ -19,28 +19,28 @@ function DialogProvider() {
   const didClickButton = useRef<boolean>(false)
 
   useEffect(() => {
-    function updateConfirmAcceptButton(isLoading: boolean) {
+    function updateConfirmAcceptButton(loading: boolean) {
       setConfig(prev =>
         prev
           ? {
               ...prev,
               buttons: [
-                { ...prev.buttons[0], disabled: isLoading },
-                { ...prev.buttons[1], isLoading },
+                { ...prev.buttons[0], disabled: loading },
+                { ...prev.buttons[1], loading },
               ],
             }
           : null,
       )
     }
 
-    function updateConfirmDeclineButton(isLoading: boolean) {
+    function updateConfirmDeclineButton(loading: boolean) {
       setConfig(prev =>
         prev
           ? {
               ...prev,
               buttons: [
-                { ...prev.buttons[0], isLoading },
-                { ...prev.buttons[1], disabled: isLoading },
+                { ...prev.buttons[0], loading },
+                { ...prev.buttons[1], disabled: loading },
               ],
             }
           : null,
