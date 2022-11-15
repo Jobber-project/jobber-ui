@@ -9321,7 +9321,7 @@
   }
 `;
     const StyledSelect = styled__default["default"](ForwardedRefCustomSelect) `
-  .jobello-select__control {
+  .jobber-select__control {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9349,7 +9349,7 @@
       cursor: default;
       background-color: ${COLORS.alabster};
 
-      & .jobello-select__multi-value {
+      & .jobber-select__multi-value {
         opacity: 0.5;
         background-color: ${COLORS.mischa};
       }
@@ -9361,27 +9361,27 @@
     }
   }
 
-  .jobello-select__value-container {
+  .jobber-select__value-container {
     display: flex;
     align-items: center;
 
     &--has-value
-      + .jobello-select__indicators
-      .jobello-select__indicator-separator {
+      + .jobber-select__indicators
+      .jobber-select__indicator-separator {
       display: block;
     }
   }
 
-  .jobello-select__placeholder {
+  .jobber-select__placeholder {
     color: ${COLORS.silverChalice};
   }
 
-  .jobello-select__indicators {
+  .jobber-select__indicators {
     display: flex;
     align-items: center;
   }
 
-  .jobello-select__multi-value {
+  .jobber-select__multi-value {
     display: flex;
     align-items: center;
     border-radius: 3px;
@@ -9397,7 +9397,7 @@
     }
   }
 
-  .jobello-select__indicator-separator {
+  .jobber-select__indicator-separator {
     display: none;
     align-self: stretch;
     margin-right: 4px;
@@ -9420,12 +9420,12 @@
   line-height: ${getInputLineHeight}em;
   font-weight: 400;
 
-  .jobello-select__menu-list {
+  .jobber-select__menu-list {
     padding: 16px;
     box-sizing: border-box;
   }
 
-  .jobello-select__option {
+  .jobber-select__option {
     display: flex;
     align-items: center;
     margin: 5px 0;
@@ -9657,7 +9657,7 @@
         return (React__default["default"].createElement(Container$6, { className: className },
             !!label && React__default["default"].createElement(Label$1, { htmlFor: derivedId }, label),
             React__default["default"].createElement(SelectWrapper, null,
-                React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { ref: selectRef, animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobello-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
+                React__default["default"].createElement(StyledSelect, Object.assign({}, rest, { ref: selectRef, animate: shouldAnimate, icon: derivedIcon, variant: variant, size: size, helperText: helperText, isMulti: true, menuIsOpen: menuIsOpen, isDisabled: disabled, autoFocus: autoFocus, maxMenuHeight: maxMenuHeight, inputId: derivedId, name: name, classNamePrefix: "jobber-select", placeholder: placeholder, options: options, value: value, menuPortalTarget: menuPortalTarget
                         ? (_b = document.getElementById(menuPortalTarget)) !== null && _b !== void 0 ? _b : undefined
                         : undefined, styles: resetStyles, onAnimationEnd: handleAnimationEnd, components: {
                         Control: CustomControl,
