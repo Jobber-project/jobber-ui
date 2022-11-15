@@ -416,7 +416,7 @@ const IconWrapper = styled.div<{
 `
 
 const StyledSelect = styled(ForwardedRefCustomSelect)`
-  .jobello-select__control {
+  .jobber-select__control {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -445,7 +445,7 @@ const StyledSelect = styled(ForwardedRefCustomSelect)`
       cursor: default;
       background-color: ${COLORS.alabster};
 
-      & .jobello-select__multi-value {
+      & .jobber-select__multi-value {
         opacity: 0.5;
         background-color: ${COLORS.mischa};
       }
@@ -457,27 +457,27 @@ const StyledSelect = styled(ForwardedRefCustomSelect)`
     }
   }
 
-  .jobello-select__value-container {
+  .jobber-select__value-container {
     display: flex;
     align-items: center;
 
     &--has-value
-      + .jobello-select__indicators
-      .jobello-select__indicator-separator {
+      + .jobber-select__indicators
+      .jobber-select__indicator-separator {
       display: block;
     }
   }
 
-  .jobello-select__placeholder {
+  .jobber-select__placeholder {
     color: ${COLORS.silverChalice};
   }
 
-  .jobello-select__indicators {
+  .jobber-select__indicators {
     display: flex;
     align-items: center;
   }
 
-  .jobello-select__multi-value {
+  .jobber-select__multi-value {
     display: flex;
     align-items: center;
     border-radius: 3px;
@@ -493,7 +493,7 @@ const StyledSelect = styled(ForwardedRefCustomSelect)`
     }
   }
 
-  .jobello-select__indicator-separator {
+  .jobber-select__indicator-separator {
     display: none;
     align-self: stretch;
     margin-right: 4px;
@@ -520,12 +520,12 @@ const StyledMenu = styled.div<{
   line-height: ${getInputLineHeight}em;
   font-weight: 400;
 
-  .jobello-select__menu-list {
+  .jobber-select__menu-list {
     padding: 16px;
     box-sizing: border-box;
   }
 
-  .jobello-select__option {
+  .jobber-select__option {
     display: flex;
     align-items: center;
     margin: 5px 0;
@@ -905,7 +905,7 @@ function MultiSelect({
           maxMenuHeight={maxMenuHeight}
           inputId={derivedId}
           name={name}
-          classNamePrefix="jobello-select"
+          classNamePrefix="jobber-select"
           placeholder={placeholder}
           options={options}
           value={value}
